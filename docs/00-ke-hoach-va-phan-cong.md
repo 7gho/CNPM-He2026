@@ -7,10 +7,10 @@
 
 | Thành viên | Module phụ trách | Thư mục |
 |---|---|---|
-| Quan (trưởng nhóm) | Module 1 — Ký hợp đồng tay đua với đội đua | `Quan-Module1-KyHopDong/` |
-| Kin | Module 2 — Đăng ký tay đua tham gia chặng đua | `Kin-Module2-DangKyThiDau/` |
-| Kiet | Module 3 — Cập nhật kết quả và tính điểm chặng đua | `Kiet-Module3-CapNhatKetQua/` |
-| Thanh | Module 4 — Quyết toán và trao giải cuối mùa | `Thanh-Module4-QuyetToanTraoGiai/` |
+| Quan (trưởng nhóm) | Module 1 — Ký hợp đồng tay đua với đội đua | `Module 1 - Quan/` |
+| Kin | Module 2 — Đăng ký tay đua tham gia chặng đua | `Module 2 - Kin/` |
+| Kiet | Module 3 — Cập nhật kết quả và tính điểm chặng đua | `Module 3 - Kiet/` |
+| Thanh | Module 4 — Quyết toán và trao giải cuối mùa | `Module 4 - Thanh/` |
 
 ## 2. Sản phẩm phải nộp (theo yêu cầu giảng viên)
 
@@ -79,9 +79,9 @@ docs/                          ← tài liệu chung + kế hoạch
   01-dac-ta-yeu-cau.md
   02-usecase-tong-quat.md
   03-lop-thuc-the-va-csdl.md
-Quan-Module1-KyHopDong/        ← mỗi thành viên 1 thư mục
-Kin-Module2-DangKyThiDau/
-Kiet-Module3-CapNhatKetQua/
-Thanh-Module4-QuyetToanTraoGiai/
+Module 1 - Quan/               ← mỗi thành viên 1 thư mục
+Module 2 - Kin/
+Module 3 - Kiet/
+Module 4 - Thanh/
 Lectures/                      ← tài liệu giảng viên (tham khảo)
 ```
