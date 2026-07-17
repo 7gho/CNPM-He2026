@@ -10,7 +10,7 @@
 - Nếu tay đua nằm trong top 10 nhưng không hoàn thành chặng đua do bỏ cuộc hoặc tai nạn thì nhận 0 điểm.
 - Điểm số và thời gian của mỗi tay đua sẽ được cộng dồn qua các chặng để quyết định giải cá nhân và giải đồng đội của mùa giải.
 
-## 4 module mới (chia cân bằng)
+## 4 module
 
 1. **Module "Quản lý hợp đồng tay đua (chuyển đội)"**: Nhân viên chọn chức năng quản lý hợp đồng tay đua → giao diện tìm tay đua theo tên hiện ra → nhân viên nhập tên và click tìm kiếm → hệ thống hiển thị danh sách tay đua có tên chứa từ khóa, mỗi dòng: mã, tên, ngày sinh, quốc tịch, đội hiện tại (nếu chưa có trong hệ thống thì thêm mới tay đua) → nhân viên click vào tay đua đúng → hệ thống hiển thị lịch sử thi đấu của tay đua, mỗi dòng một giai đoạn: tên đội, ngày bắt đầu, ngày kết thúc (dòng có ngày kết thúc trống là hợp đồng đang hiệu lực) → nhân viên click "chuyển đội / ký mới" → giao diện chọn đội từ danh sách thả xuống + nhập ngày bắt đầu hiệu lực → hệ thống **kiểm tra ràng buộc: tại một thời điểm tay đua chỉ thuộc 1 đội** (nếu còn hợp đồng đang hiệu lực thì tự động đóng hợp đồng cũ bằng ngày liền trước ngày bắt đầu mới; nếu ngày bắt đầu chồng lấn lịch sử cũ thì báo lỗi và yêu cầu nhập lại) → nhân viên xác nhận → hệ thống lưu vào CSDL và hiển thị lại lịch sử đã cập nhật.
 
