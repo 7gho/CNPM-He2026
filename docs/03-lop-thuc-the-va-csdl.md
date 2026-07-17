@@ -1,0 +1,71 @@
+# Biểu đồ lớp thực thể & Thiết kế CSDL — Quản lý giải đua xe F1
+
+> Sản phẩm chung của nhóm. Rút ra bằng phương pháp trích danh từ từ đề bài (theo lecture B2/B3).
+
+## 1. Các lớp thực thể (pha phân tích → thiết kế)
+
+| Lớp | Thuộc tính (pha thiết kế, kèm kiểu) | Ghi chú |
+|---|---|---|
+| `MuaGiai` | id:int, nam:int, tenGiai:String, moTa:String | Một mùa giải / năm |
+| `ChangDua` | id:int, ma:String, ten:String, soVong:int, diaDiem:String, thoiGian:Date, moTa:String | Thuộc 1 mùa giải |
+| `DoiDua` | id:int, ma:String, ten:String, hang:String, moTa:String | |
+| `TayDua` | id:int, ma:String, ten:String, ngaySinh:Date, quocTich:String, tieuSu:String | |
+| `HopDong` | id:int, ngayBatDau:Date, ngayKetThuc:Date | Trung gian TayDua–DoiDua (M1) |
+| `DangKyChang` | id:int | Trung gian ChangDua–TayDua–DoiDua (M2) |
+| `KetQua` | id:int, thoiGian:double, soVong:int, dnf:boolean, hang:int, diem:int | 1-1 với DangKyChang (M3) |
+| `TraoGiai` | id:int, loai:String, hang:int, tongDiem:int, tongThoiGian:double, tienThuong:double | Kết quả quyết toán (M4) |
+| `ThamGia` | id:int | Trung gian MuaGiai–DoiDua |
+
+## 2. Quan hệ số lượng
+
+- 1 `MuaGiai` — n `ChangDua` (1-n)
+- `MuaGiai` — `DoiDua` là **n-n** ⇒ tách bằng `ThamGia` (1 đội tham gia 1 mùa)
+- `TayDua` — `DoiDua` là **n-n theo thời gian** ⇒ tách bằng `HopDong` (mỗi hợp đồng: 1 tay đua – 1 đội – khoảng thời gian)
+- `ChangDua` — `TayDua` là **n-n** ⇒ tách bằng `DangKyChang` (kèm đội đăng ký)
+- 1 `DangKyChang` — 1 `KetQua` (1-1, có thể gộp)
+- 1 `MuaGiai` — n `TraoGiai`; mỗi `TraoGiai` trỏ tới 1 `TayDua` **hoặc** 1 `DoiDua` tùy `loai`
+
+## 3. Thiết kế CSDL (bảng, khóa)
+
+| Bảng | Cột | PK / FK |
+|---|---|---|
+| `tblMuaGiai` | id, nam, tenGiai, moTa | PK: id |
+| `tblDoiDua` | id, ma, ten, hang, moTa | PK: id |
+| `tblTayDua` | id, ma, ten, ngaySinh, quocTich, tieuSu | PK: id |
+| `tblChangDua` | id, ma, ten, soVong, diaDiem, thoiGian, moTa, **muaGiaiId** | PK: id · FK: muaGiaiId→tblMuaGiai |
+| `tblThamGia` | id, **muaGiaiId**, **doiDuaId** | PK: id · FK→tblMuaGiai, tblDoiDua |
+| `tblHopDong` | id, **tayDuaId**, **doiDuaId**, ngayBatDau, ngayKetThuc | PK: id · FK→tblTayDua, tblDoiDua |
+| `tblDangKyChang` | id, **changDuaId**, **tayDuaId**, **doiDuaId** | PK: id · FK→tblChangDua, tblTayDua, tblDoiDua |
+| `tblKetQua` | id, **dangKyChangId**, thoiGian, soVong, dnf, hang, diem | PK: id · FK→tblDangKyChang |
+| `tblTraoGiai` | id, **muaGiaiId**, loai, **tayDuaId**(null), **doiDuaId**(null), hang, tongDiem, tongThoiGian, tienThuong | PK: id · FK→tblMuaGiai, tblTayDua, tblDoiDua |
+
+> `tblKetQua` quan hệ 1-1 với `tblDangKyChang` nên có thể gộp các cột kết quả thẳng vào `tblDangKyChang` để giảm bảng — tùy nhóm.
+
+## 4. Blueprint PlantUML (lớp thực thể pha thiết kế)
+
+```plantuml
+@startuml
+class MuaGiai { id:int\nnam:int\ntenGiai:String\nmoTa:String }
+class ChangDua { id:int\nma:String\nten:String\nsoVong:int\ndiaDiem:String\nthoiGian:Date\nmoTa:String }
+class DoiDua { id:int\nma:String\nten:String\nhang:String\nmoTa:String }
+class TayDua { id:int\nma:String\nten:String\nngaySinh:Date\nquocTich:String\ntieuSu:String }
+class HopDong { id:int\nngayBatDau:Date\nngayKetThuc:Date }
+class DangKyChang { id:int }
+class KetQua { id:int\nthoiGian:double\nsoVong:int\ndnf:boolean\nhang:int\ndiem:int }
+class TraoGiai { id:int\nloai:String\nhang:int\ntongDiem:int\ntongThoiGian:double\ntienThuong:double }
+class ThamGia { id:int }
+
+MuaGiai "1" -- "n" ChangDua
+MuaGiai "1" -- "n" ThamGia
+DoiDua "1" -- "n" ThamGia
+TayDua "1" -- "n" HopDong
+DoiDua "1" -- "n" HopDong
+ChangDua "1" -- "n" DangKyChang
+TayDua "1" -- "n" DangKyChang
+DoiDua "1" -- "n" DangKyChang
+DangKyChang "1" -- "1" KetQua
+MuaGiai "1" -- "n" TraoGiai
+TayDua "1" -- "n" TraoGiai
+DoiDua "1" -- "n" TraoGiai
+@enduml
+```
