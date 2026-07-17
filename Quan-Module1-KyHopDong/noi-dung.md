@@ -184,9 +184,9 @@ HopDongDAO --> HopDong
 @enduml
 ```
 
-## 7. Biểu đồ tuần tự (Sequence) — mức đầy đủ
+## 7. Biểu đồ tuần tự (Sequence) — luồng chính
 
-> 8 lifeline (có lifeline CSDL), mũi tên return, activation, và các khối `alt` lồng nhau cho luồng ngoại lệ.
+> Chỉ vẽ **luồng chính (thành công)**: 8 lifeline (có lifeline CSDL), mũi tên return, activation. Các ngoại lệ (không tìm thấy tay đua, ngày không hợp lệ, chồng lấn) đã mô tả trong đặc tả UC ở mục 2, không đưa vào sequence.
 
 ```plantuml
 @startuml
@@ -246,33 +246,25 @@ activate V2
 V2 -> C : luuHopDong(tayDuaId, doiId, batDau, ketThuc)
 activate C
 C -> C : kiemTraNgay(batDau, ketThuc)
-alt ngày không hợp lệ (KT <= BĐ)
-  C --> V2 : báo lỗi "ngày không hợp lệ"
-else ngày hợp lệ
-  C -> HDAO : kiemTraChongLan(tayDuaId, batDau, ketThuc)
-  activate HDAO
-  HDAO -> DB : SELECT COUNT(*) hợp đồng chồng lấn
-  activate DB
-  DB --> HDAO : count
-  deactivate DB
-  HDAO --> C : coChongLan
-  deactivate HDAO
-  alt có chồng lấn (count > 0)
-    C --> V2 : báo lỗi "đã có hợp đồng trong khoảng thời gian này"
-  else không chồng lấn
-    C -> HDAO : them(hopDong)
-    activate HDAO
-    HDAO -> DB : INSERT INTO tblHopDong ...
-    activate DB
-    DB --> HDAO : ok
-    deactivate DB
-    HDAO --> C : ok
-    deactivate HDAO
-    C --> V2 : in hợp đồng
-  end
-end
-V2 --> NV : kết quả (hợp đồng / thông báo lỗi)
+C -> HDAO : kiemTraChongLan(tayDuaId, batDau, ketThuc)
+activate HDAO
+HDAO -> DB : SELECT COUNT(*) hợp đồng chồng lấn
+activate DB
+DB --> HDAO : count
+deactivate DB
+HDAO --> C : coChongLan = false
+deactivate HDAO
+C -> HDAO : them(hopDong)
+activate HDAO
+HDAO -> DB : INSERT INTO tblHopDong ...
+activate DB
+DB --> HDAO : ok
+deactivate DB
+HDAO --> C : ok
+deactivate HDAO
+C --> V2 : in hợp đồng
 deactivate C
+V2 --> NV : hợp đồng đã in
 deactivate V2
 @enduml
 ```
