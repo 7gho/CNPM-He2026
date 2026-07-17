@@ -45,15 +45,63 @@
 
 ```plantuml
 @startuml
-class MuaGiai { id:int\nnam:int\ntenGiai:String\nmoTa:String }
-class ChangDua { id:int\nma:String\nten:String\nsoVong:int\ndiaDiem:String\nthoiGian:Date\nmoTa:String }
-class DoiDua { id:int\nma:String\nten:String\nhang:String\nmoTa:String }
-class TayDua { id:int\nma:String\nten:String\nngaySinh:Date\nquocTich:String\ntieuSu:String }
-class HopDong { id:int\nngayBatDau:Date\nngayKetThuc:Date }
-class DangKyChang { id:int }
-class KetQua { id:int\nthoiGian:double\nsoVong:int\ndnf:boolean\nhang:int\ndiem:int }
-class TraoGiai { id:int\nloai:String\nhang:int\ntongDiem:int\ntongThoiGian:double\ntienThuong:double }
-class ThamGia { id:int }
+class MuaGiai {
+  id : int
+  nam : int
+  tenGiai : String
+  moTa : String
+}
+class ChangDua {
+  id : int
+  ma : String
+  ten : String
+  soVong : int
+  diaDiem : String
+  thoiGian : Date
+  moTa : String
+}
+class DoiDua {
+  id : int
+  ma : String
+  ten : String
+  hang : String
+  moTa : String
+}
+class TayDua {
+  id : int
+  ma : String
+  ten : String
+  ngaySinh : Date
+  quocTich : String
+  tieuSu : String
+}
+class HopDong {
+  id : int
+  ngayBatDau : Date
+  ngayKetThuc : Date
+}
+class DangKyChang {
+  id : int
+}
+class KetQua {
+  id : int
+  thoiGian : double
+  soVong : int
+  dnf : boolean
+  hang : int
+  diem : int
+}
+class TraoGiai {
+  id : int
+  loai : String
+  hang : int
+  tongDiem : int
+  tongThoiGian : double
+  tienThuong : double
+}
+class ThamGia {
+  id : int
+}
 
 MuaGiai "1" -- "n" ChangDua
 MuaGiai "1" -- "n" ThamGia

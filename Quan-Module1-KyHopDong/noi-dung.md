@@ -76,9 +76,24 @@ endif
 
 ```plantuml
 @startuml
-class GDTimTayDua <<boundary>> { txtTen\nbtnTim\nlstTayDua }
-class GDNhapHopDong <<boundary>> { lstHopDongCu\ncboDoi\ndtpBatDau\ndtpKetThuc\nbtnLuu }
-class KyHopDongControl <<control>> { timTayDua(ten)\nlayHopDongCu(td)\nkiemTraChongLan(td,bd,kt)\nluuHopDong(td,doi,bd,kt) }
+class GDTimTayDua <<boundary>> {
+  txtTen
+  btnTim
+  lstTayDua
+}
+class GDNhapHopDong <<boundary>> {
+  lstHopDongCu
+  cboDoi
+  dtpBatDau
+  dtpKetThuc
+  btnLuu
+}
+class KyHopDongControl <<control>> {
+  timTayDua(ten)
+  layHopDongCu(td)
+  kiemTraChongLan(td, bd, kt)
+  luuHopDong(td, doi, bd, kt)
+}
 class TayDua <<entity>>
 class DoiDua <<entity>>
 class HopDong <<entity>>
@@ -107,10 +122,24 @@ KyHopDongControl --> HopDong
 
 ```plantuml
 @startuml
-package View { class gdTimTayDua\nclass gdNhapHopDong\nclass doLuuHopDong }
-package Controller { class HopDongController }
-package DAO { class TayDuaDAO\nclass DoiDuaDAO\nclass HopDongDAO }
-package Entity { class TayDua\nclass DoiDua\nclass HopDong }
+package View {
+  class gdTimTayDua
+  class gdNhapHopDong
+  class doLuuHopDong
+}
+package Controller {
+  class HopDongController
+}
+package DAO {
+  class TayDuaDAO
+  class DoiDuaDAO
+  class HopDongDAO
+}
+package Entity {
+  class TayDua
+  class DoiDua
+  class HopDong
+}
 gdTimTayDua --> HopDongController
 gdNhapHopDong --> HopDongController
 doLuuHopDong --> HopDongController
