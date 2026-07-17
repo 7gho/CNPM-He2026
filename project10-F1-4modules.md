@@ -10,7 +10,7 @@
 - Nếu tay đua nằm trong top 10 nhưng không hoàn thành chặng đua do bỏ cuộc hoặc tai nạn thì nhận 0 điểm.
 - Điểm số và thời gian của mỗi tay đua sẽ được cộng dồn qua các chặng để quyết định giải cá nhân và giải đồng đội của mùa giải.
 
-## 4 module (mỗi thành viên chủ trì 1 module)
+## 4 module
 
 **1. Module "Ký hợp đồng tay đua với đội đua"** (Thành viên 1)
 
