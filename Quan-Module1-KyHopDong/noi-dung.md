@@ -70,33 +70,65 @@ endif
 
 ## 4. Biểu đồ lớp phân tích (Boundary / Control / Entity)
 
-- **Boundary:** `GDTimTayDua` (txtTen, btnTim, lstTayDua), `GDNhapHopDong` (lblTayDua, lstHopDongCu, cboDoi, dtpBatDau, dtpKetThuc, btnLuu)
-- **Control:** `KyHopDongControl` (timTayDua(ten), layHopDongCu(tayDua), kiemTraChongLan(tayDua, batDau, ketThuc), luuHopDong(...))
-- **Entity:** `TayDua`, `DoiDua`, `HopDong`
+- **Boundary (1 lớp/màn hình):** `GDKyHopDong` (menu), `GDTimTayDua`, `GDNhapHopDong`
+- **Control:** `KyHopDongControl` điều phối toàn bộ luồng
+- **Entity (kèm phương thức nghiệp vụ gán trong pha phân tích):** `TayDua`, `DoiDua`, `HopDong`
 
 ```plantuml
 @startuml
+class GDKyHopDong <<boundary>> {
+  btnKyHopDong
+  moManTim()
+}
 class GDTimTayDua <<boundary>> {
   txtTen
   btnTim
   lstTayDua
+  hienDanhSach(ds)
+  chonTayDua(id)
 }
 class GDNhapHopDong <<boundary>> {
+  lblTayDua
   lstHopDongCu
   cboDoi
   dtpBatDau
   dtpKetThuc
   btnLuu
+  hienHopDongCu(ds)
+  baoLoi(tb)
+  inHopDong(hd)
 }
 class KyHopDongControl <<control>> {
   timTayDua(ten)
-  layHopDongCu(td)
-  kiemTraChongLan(td, bd, kt)
+  chonTayDua(id)
+  layDanhSachDoi()
+  kiemTraNgay(bd, kt)
   luuHopDong(td, doi, bd, kt)
 }
-class TayDua <<entity>>
-class DoiDua <<entity>>
-class HopDong <<entity>>
+class TayDua <<entity>> {
+  id
+  ma
+  ten
+  ngaySinh
+  quocTich
+  timTheoTen(ten)
+}
+class DoiDua <<entity>> {
+  id
+  ma
+  ten
+  hang
+  getAll()
+}
+class HopDong <<entity>> {
+  id
+  ngayBatDau
+  ngayKetThuc
+  getByTayDua(tayDuaId)
+  kiemTraChongLan(tayDuaId, bd, kt)
+  them()
+}
+GDKyHopDong --> GDTimTayDua
 GDTimTayDua --> KyHopDongControl
 GDNhapHopDong --> KyHopDongControl
 KyHopDongControl --> TayDua
@@ -152,37 +184,96 @@ HopDongDAO --> HopDong
 @enduml
 ```
 
-## 7. Biểu đồ tuần tự (Sequence)
+## 7. Biểu đồ tuần tự (Sequence) — mức đầy đủ
+
+> 8 lifeline (có lifeline CSDL), mũi tên return, activation, và các khối `alt` lồng nhau cho luồng ngoại lệ.
 
 ```plantuml
 @startuml
 actor NhanVien as NV
-participant gdTimTayDua as V1
-participant gdNhapHopDong as V2
-participant HopDongController as C
-participant TayDuaDAO as TDAO
-participant HopDongDAO as HDAO
+participant "gdTimTayDua" as V1
+participant "gdNhapHopDong" as V2
+participant "HopDongController" as C
+participant "TayDuaDAO" as TDAO
+participant "DoiDuaDAO" as DDAO
+participant "HopDongDAO" as HDAO
+database "CSDL" as DB
+
 NV -> V1 : nhập tên, click Tìm
+activate V1
 V1 -> C : timTayDua(ten)
+activate C
 C -> TDAO : timTheoTen(ten)
-TDAO --> C : danh sách tay đua
+activate TDAO
+TDAO -> DB : SELECT tblTayDua WHERE ten LIKE ?
+activate DB
+DB --> TDAO : rows
+deactivate DB
+TDAO --> C : List<TayDua>
+deactivate TDAO
 C --> V1 : hiển thị danh sách
+deactivate C
+V1 --> NV : danh sách tay đua
+deactivate V1
+
 NV -> V1 : chọn tay đua
-V1 -> C : layHopDongCu(tayDua)
-C -> HDAO : getByTayDua(id)
-HDAO --> C : hợp đồng cũ
-C --> V2 : mở màn nhập + hợp đồng cũ
-NV -> V2 : chọn đội, nhập ngày, click Lưu
-V2 -> C : luuHopDong(td, doi, bd, kt)
-C -> HDAO : kiemTraChongLan(td, bd, kt)
-HDAO --> C : ket qua
-alt hợp lệ
-  C -> HDAO : insert(hopDong)
-  HDAO --> C : ok
-  C --> V2 : in hợp đồng
-else chồng lấn
-  C --> V2 : báo lỗi
+activate V1
+V1 -> C : chonTayDua(tayDuaId)
+activate C
+C -> HDAO : getByTayDua(tayDuaId)
+activate HDAO
+HDAO -> DB : SELECT tblHopDong WHERE tayDuaId = ?
+activate DB
+DB --> HDAO : rows
+deactivate DB
+HDAO --> C : List<HopDong>
+deactivate HDAO
+C -> DDAO : getAll()
+activate DDAO
+DDAO -> DB : SELECT tblDoiDua
+activate DB
+DB --> DDAO : rows
+deactivate DB
+DDAO --> C : List<DoiDua>
+deactivate DDAO
+C --> V2 : mở màn nhập (hợp đồng cũ + danh sách đội)
+deactivate C
+V2 --> NV : màn nhập hợp đồng
+deactivate V1
+
+NV -> V2 : chọn đội, nhập ngày BĐ/KT, click Lưu
+activate V2
+V2 -> C : luuHopDong(tayDuaId, doiId, batDau, ketThuc)
+activate C
+C -> C : kiemTraNgay(batDau, ketThuc)
+alt ngày không hợp lệ (KT <= BĐ)
+  C --> V2 : báo lỗi "ngày không hợp lệ"
+else ngày hợp lệ
+  C -> HDAO : kiemTraChongLan(tayDuaId, batDau, ketThuc)
+  activate HDAO
+  HDAO -> DB : SELECT COUNT(*) hợp đồng chồng lấn
+  activate DB
+  DB --> HDAO : count
+  deactivate DB
+  HDAO --> C : coChongLan
+  deactivate HDAO
+  alt có chồng lấn (count > 0)
+    C --> V2 : báo lỗi "đã có hợp đồng trong khoảng thời gian này"
+  else không chồng lấn
+    C -> HDAO : them(hopDong)
+    activate HDAO
+    HDAO -> DB : INSERT INTO tblHopDong ...
+    activate DB
+    DB --> HDAO : ok
+    deactivate DB
+    HDAO --> C : ok
+    deactivate HDAO
+    C --> V2 : in hợp đồng
+  end
 end
+V2 --> NV : kết quả (hợp đồng / thông báo lỗi)
+deactivate C
+deactivate V2
 @enduml
 ```
 
