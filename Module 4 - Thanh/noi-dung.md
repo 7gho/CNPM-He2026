@@ -2,6 +2,19 @@
 
 > Nội dung chữ do Claude dựng. Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
 
+## 0. Danh sách ảnh cần export (đặt vào `hinh/`)
+
+| Tên file | Biểu đồ (mục) |
+|---|---|
+| `m4-uc-chitiet.png` | UC chi tiết (mục 1) |
+| `m4-hoatdong.png` | Biểu đồ hoạt động (mục 3) |
+| `m4-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4) |
+| `m4-giaodien-quyettoan.png` | Giao diện quyết toán (mục 5) |
+| `m4-lop-mvc.png` | Biểu đồ lớp thiết kế MVC (mục 6) |
+| `m4-tuantu.png` | Biểu đồ tuần tự (mục 7) |
+
+> **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
+
 ---
 
 ## 1. Biểu đồ UC chi tiết
@@ -138,7 +151,7 @@ QuyetToanControl --> TraoGiai
 
 **Màn Quyết toán:** nút [Quyết toán mùa giải] ở trên; sau khi bấm hiện 2 bảng — bảng Xếp hạng cá nhân (Hạng, Tay đua, Đội, Tổng điểm, Tổng thời gian) và bảng Xếp hạng đội (Hạng, Đội, Tổng điểm, Tổng thời gian); khu nhập mức thưởng cho hạng 1/2/3; nút [Tính thưởng] → bổ sung cột Tiền thưởng vào 2 bảng; nút [Lưu]. Sau khi lưu → in danh sách trao giải.
 
-> Vẽ mockup màn này trong VP và export vào `hinh/gd-quyettoan.png`.
+> Vẽ mockup màn này trong VP và export → `hinh/m4-giaodien-quyettoan.png`.
 
 ## 6. Biểu đồ lớp thiết kế (MVC)
 

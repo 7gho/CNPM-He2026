@@ -2,6 +2,20 @@
 
 > Nội dung chữ do Claude dựng. Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
 
+## 0. Danh sách ảnh cần export (đặt vào `hinh/`)
+
+| Tên file | Biểu đồ (mục) |
+|---|---|
+| `m1-uc-chitiet.png` | UC chi tiết (mục 1) |
+| `m1-hoatdong.png` | Biểu đồ hoạt động (mục 3) |
+| `m1-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4) |
+| `m1-giaodien-timtaydua.png` | Giao diện tìm tay đua (mục 5) |
+| `m1-giaodien-nhaphopdong.png` | Giao diện nhập hợp đồng (mục 5) |
+| `m1-lop-mvc.png` | Biểu đồ lớp thiết kế MVC (mục 6) |
+| `m1-tuantu.png` | Biểu đồ tuần tự (mục 7) |
+
+> **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
+
 ---
 
 ## 1. Biểu đồ UC chi tiết
@@ -143,7 +157,7 @@ KyHopDongControl --> HopDong
 
 **Màn 2 — Nhập hợp đồng:** phần trên hiển thị thông tin tay đua đã chọn + bảng "Hợp đồng cũ" (Đội, Ngày bắt đầu, Ngày kết thúc); phần dưới form: combobox [Đội đua], date [Ngày bắt đầu], date [Ngày kết thúc], nút [Lưu]. Khi lưu lỗi → hiện thông báo đỏ dưới form.
 
-> Vẽ mockup 2 màn này trong VP (hoặc Balsamiq) và export vào `hinh/gd-*.png`.
+> Vẽ 2 mockup này trong VP và export: màn tìm tay đua → `hinh/m1-giaodien-timtaydua.png`, màn nhập hợp đồng → `hinh/m1-giaodien-nhaphopdong.png`.
 
 ## 6. Biểu đồ lớp thiết kế (MVC)
 

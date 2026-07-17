@@ -2,6 +2,20 @@
 
 > Nội dung chữ do Claude dựng. Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
 
+## 0. Danh sách ảnh cần export (đặt vào `hinh/`)
+
+| Tên file | Biểu đồ (mục) |
+|---|---|
+| `m3-uc-chitiet.png` | UC chi tiết (mục 1) |
+| `m3-hoatdong.png` | Biểu đồ hoạt động (mục 3) |
+| `m3-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4) |
+| `m3-giaodien-chonchang.png` | Giao diện chọn chặng (mục 5) |
+| `m3-giaodien-nhapketqua.png` | Giao diện nhập kết quả (mục 5) |
+| `m3-lop-mvc.png` | Biểu đồ lớp thiết kế MVC (mục 6) |
+| `m3-tuantu.png` | Biểu đồ tuần tự (mục 7) |
+
+> **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
+
 ---
 
 ## 1. Biểu đồ UC chi tiết
@@ -127,7 +141,7 @@ KetQuaControl --> KetQua
 
 **Màn Nhập kết quả:** bảng các tay đua đã đăng ký (cột Tay đua, Đội, ô nhập [Thời gian], ô nhập [Số vòng], checkbox [DNF]); nút [Tính kết quả] → sau khi tính, bảng bổ sung cột Hạng và Điểm, sắp xếp theo hạng; nút [Lưu]. Sau khi lưu → in bảng kết quả chặng.
 
-> Vẽ 2 mockup này trong VP và export vào `hinh/gd-*.png`.
+> Export: màn chọn chặng → `hinh/m3-giaodien-chonchang.png`, màn nhập kết quả → `hinh/m3-giaodien-nhapketqua.png`.
 
 ## 6. Biểu đồ lớp thiết kế (MVC)
 

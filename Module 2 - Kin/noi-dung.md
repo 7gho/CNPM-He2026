@@ -2,6 +2,19 @@
 
 > Nội dung chữ do Claude dựng. Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
 
+## 0. Danh sách ảnh cần export (đặt vào `hinh/`)
+
+| Tên file | Biểu đồ (mục) |
+|---|---|
+| `m2-uc-chitiet.png` | UC chi tiết (mục 1) |
+| `m2-hoatdong.png` | Biểu đồ hoạt động (mục 3) |
+| `m2-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4) |
+| `m2-giaodien-dangky.png` | Giao diện đăng ký (mục 5) |
+| `m2-lop-mvc.png` | Biểu đồ lớp thiết kế MVC (mục 6) |
+| `m2-tuantu.png` | Biểu đồ tuần tự (mục 7) |
+
+> **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
+
 ---
 
 ## 1. Biểu đồ UC chi tiết
@@ -126,7 +139,7 @@ DangKyChangControl --> DangKyChang
 
 **Màn Đăng ký thi đấu:** hàng trên có 2 danh sách thả xuống [Chặng đua] và [Đội đua]; bên dưới là bảng tay đua (cột checkbox chọn, Mã, Tên, Quốc tịch) — chỉ hiện tay đua có hợp đồng hiệu lực với đội đã chọn; dưới cùng nút [Lưu]. Sau khi lưu → in phiếu đăng ký (danh sách xuất phát) gồm: tên chặng, ngày đua, tên đội, danh sách tay đua đã đăng ký (mỗi tay đua một dòng).
 
-> Vẽ mockup màn này trong VP và export vào `hinh/gd-dangky.png`.
+> Vẽ mockup màn này trong VP và export → `hinh/m2-giaodien-dangky.png`.
 
 ## 6. Biểu đồ lớp thiết kế (MVC)
 
