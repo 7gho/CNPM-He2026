@@ -14,11 +14,13 @@
 
 | Use case | Actor | Ghi chú |
 |---|---|---|
-| Đăng nhập | ThanhVien | chung |
+| Đăng nhập | ThanhVien | chung (đặc tả gọn: [04-dac-ta-danh-muc-va-auth.md](04-dac-ta-danh-muc-va-auth.md)) |
 | Đổi mật khẩu | ThanhVien | chung |
+| Quản lý mùa giải | NhanVien | danh mục (hỗ trợ) |
 | Quản lý tay đua | NhanVien | danh mục (hỗ trợ) |
 | Quản lý đội đua | NhanVien | danh mục (hỗ trợ) |
 | Quản lý chặng đua | NhanVien | danh mục (hỗ trợ) |
+| Đăng ký đội tham gia mùa giải | NhanVien | danh mục (hỗ trợ) — sinh dữ liệu `ThamGia` |
 | **Ký hợp đồng tay đua** | NhanVien | **Module 1 (Quan)** |
 | **Đăng ký tay đua vào chặng** | NhanVien | **Module 2 (Kin)** |
 | **Cập nhật kết quả chặng** | NhanVien | **Module 3 (Kiet)** |
@@ -27,7 +29,7 @@
 ## 3. Quan hệ
 
 - `NhanVien` và `QuanLy` **kế thừa** (generalization) `ThanhVien` ⇒ dùng được Đăng nhập, Đổi mật khẩu.
-- Các use case nghiệp vụ đều **include** "Đăng nhập" (bắt buộc đăng nhập trước).
+- 4 use case nghiệp vụ của module (Ký hợp đồng, Đăng ký tay đua vào chặng, Cập nhật kết quả, Quyết toán) **include** "Đăng nhập" (bắt buộc đăng nhập trước). Các UC danh mục cũng yêu cầu đăng nhập nhưng để gọn ở mức tổng quát chỉ vẽ include cho 4 UC chính.
 - Không có quan hệ extend ở mức tổng quát (để dành cho biểu đồ UC chi tiết của từng module).
 
 ## 4. Blueprint PlantUML
@@ -46,9 +48,11 @@ QuanLy --|> ThanhVien
 rectangle "Hệ thống quản lý giải đua F1" {
   usecase "Đăng nhập" as UCDN
   usecase "Đổi mật khẩu" as UCMK
+  usecase "Quản lý mùa giải" as UCMG
   usecase "Quản lý tay đua" as UCTD
   usecase "Quản lý đội đua" as UCDD
   usecase "Quản lý chặng đua" as UCCD
+  usecase "Đăng ký đội tham gia mùa giải" as UCTG
   usecase "Ký hợp đồng tay đua\n(Module 1)" as UC1
   usecase "Đăng ký tay đua vào chặng\n(Module 2)" as UC2
   usecase "Cập nhật kết quả chặng\n(Module 3)" as UC3
@@ -57,9 +61,11 @@ rectangle "Hệ thống quản lý giải đua F1" {
 
 ThanhVien --> UCDN
 ThanhVien --> UCMK
+NhanVien --> UCMG
 NhanVien --> UCTD
 NhanVien --> UCDD
 NhanVien --> UCCD
+NhanVien --> UCTG
 NhanVien --> UC1
 NhanVien --> UC2
 NhanVien --> UC3

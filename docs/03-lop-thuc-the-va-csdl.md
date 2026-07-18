@@ -10,11 +10,12 @@
 | `ChangDua` | id:int, ma:String, ten:String, soVong:int, diaDiem:String, thoiGian:Date, moTa:String | Thuộc 1 mùa giải |
 | `DoiDua` | id:int, ma:String, ten:String, hang:String, moTa:String | |
 | `TayDua` | id:int, ma:String, ten:String, ngaySinh:Date, quocTich:String, tieuSu:String | |
-| `HopDong` | id:int, ngayBatDau:Date, ngayKetThuc:Date | Trung gian TayDua–DoiDua (M1) |
+| `HopDong` | id:int, ngayBatDau:Date, ngayKetThuc:Date (**nullable**) | Trung gian TayDua–DoiDua (M1). `ngayKetThuc` để trống (NULL) = hợp đồng đang hiệu lực |
 | `DangKyChang` | id:int | Trung gian ChangDua–TayDua–DoiDua (M2) |
 | `KetQua` | id:int, thoiGian:double, soVong:int, dnf:boolean, hang:int, diem:int | 1-1 với DangKyChang (M3) |
 | `TraoGiai` | id:int, loai:String, hang:int, tongDiem:int, tongThoiGian:double, tienThuong:double | Kết quả quyết toán (M4) |
-| `ThamGia` | id:int | Trung gian MuaGiai–DoiDua |
+| `ThamGia` | id:int | Trung gian MuaGiai–DoiDua (đội tham gia mùa giải). Dữ liệu do UC "Đăng ký đội tham gia mùa giải" sinh ra |
+| `ThanhVien` | id:int, tenDangNhap:String, matKhau:String, hoTen:String, vaiTro:String {NhanVien\|QuanLy} | Tài khoản đăng nhập + phân quyền (nền cho UC Đăng nhập) |
 
 ## 2. Quan hệ số lượng
 
@@ -24,6 +25,7 @@
 - `ChangDua` — `TayDua` là **n-n** ⇒ tách bằng `DangKyChang` (kèm đội đăng ký)
 - 1 `DangKyChang` — 1 `KetQua` (1-1, có thể gộp)
 - 1 `MuaGiai` — n `TraoGiai`; mỗi `TraoGiai` trỏ tới 1 `TayDua` **hoặc** 1 `DoiDua` tùy `loai`
+- `ThanhVien` là lớp độc lập (tài khoản); thuộc tính `vaiTro` phân biệt NhanVien / QuanLy (tương ứng 2 actor)
 
 ## 3. Thiết kế CSDL (bảng, khóa)
 
@@ -34,12 +36,16 @@
 | `tblTayDua` | id, ma, ten, ngaySinh, quocTich, tieuSu | PK: id |
 | `tblChangDua` | id, ma, ten, soVong, diaDiem, thoiGian, moTa, **muaGiaiId** | PK: id · FK: muaGiaiId→tblMuaGiai |
 | `tblThamGia` | id, **muaGiaiId**, **doiDuaId** | PK: id · FK→tblMuaGiai, tblDoiDua |
-| `tblHopDong` | id, **tayDuaId**, **doiDuaId**, ngayBatDau, ngayKetThuc | PK: id · FK→tblTayDua, tblDoiDua |
-| `tblDangKyChang` | id, **changDuaId**, **tayDuaId**, **doiDuaId** | PK: id · FK→tblChangDua, tblTayDua, tblDoiDua |
+| `tblHopDong` | id, **tayDuaId**, **doiDuaId**, ngayBatDau, ngayKetThuc(**NULL-able**) | PK: id · FK→tblTayDua, tblDoiDua |
+| `tblDangKyChang` | id, **changDuaId**, **tayDuaId**, **doiDuaId** | PK: id · FK→tblChangDua, tblTayDua, tblDoiDua · **UNIQUE(changDuaId, tayDuaId)** |
 | `tblKetQua` | id, **dangKyChangId**, thoiGian, soVong, dnf, hang, diem | PK: id · FK→tblDangKyChang |
 | `tblTraoGiai` | id, **muaGiaiId**, loai, **tayDuaId**(null), **doiDuaId**(null), hang, tongDiem, tongThoiGian, tienThuong | PK: id · FK→tblMuaGiai, tblTayDua, tblDoiDua |
+| `tblThanhVien` | id, tenDangNhap, matKhau, hoTen, vaiTro | PK: id |
 
-> `tblKetQua` quan hệ 1-1 với `tblDangKyChang` nên có thể gộp các cột kết quả thẳng vào `tblDangKyChang` để giảm bảng — tùy nhóm.
+> **Ghi chú ràng buộc:**
+> - `tblDangKyChang` có `UNIQUE(changDuaId, tayDuaId)` để đảm bảo "mỗi tay đua chỉ đăng ký 1 lần trong 1 chặng" (đề bài M2) ở tầng CSDL. Ràng buộc "≤ 2 tay đua/đội/chặng" là ràng buộc **nghiệp vụ**, kiểm ở tầng Control (`demSoTayDua`), không thể hiện bằng khóa.
+> - `tblHopDong.ngayKetThuc` NULL = hợp đồng đang hiệu lực (đề bài M1: "dòng có ngày kết thúc trống là hợp đồng đang hiệu lực").
+> - `tblKetQua` quan hệ 1-1 với `tblDangKyChang` nên có thể gộp các cột kết quả thẳng vào `tblDangKyChang` để giảm bảng — tùy nhóm.
 
 ## 4. Blueprint PlantUML (lớp thực thể pha thiết kế)
 
@@ -78,7 +84,7 @@ class TayDua {
 class HopDong {
   id : int
   ngayBatDau : Date
-  ngayKetThuc : Date
+  ngayKetThuc : Date [nullable]
 }
 class DangKyChang {
   id : int
@@ -101,6 +107,13 @@ class TraoGiai {
 }
 class ThamGia {
   id : int
+}
+class ThanhVien {
+  id : int
+  tenDangNhap : String
+  matKhau : String
+  hoTen : String
+  vaiTro : String
 }
 
 MuaGiai "1" -- "n" ChangDua

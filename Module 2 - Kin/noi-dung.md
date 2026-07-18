@@ -50,6 +50,7 @@ UC ..> CT : include
 | **Tiền điều kiện** | Nhân viên đã đăng nhập; chặng đua và đội đua đã tồn tại |
 | **Hậu điều kiện** | Danh sách đăng ký (tối đa 2 tay đua) của đội cho chặng được lưu và in phiếu |
 | **Kịch bản chính** | 1. Nhân viên chọn menu "Đăng ký thi đấu".<br>2. Hệ thống hiển thị giao diện đăng ký (danh sách thả xuống chặng đua và đội đua).<br>3. Nhân viên chọn chặng đua và đội đua.<br>4. Hệ thống hiển thị danh sách tay đua đang có hợp đồng hiệu lực với đội tại thời điểm chặng.<br>5. Nhân viên tick chọn các tay đua theo yêu cầu của đội, click Lưu.<br>6. Hệ thống kiểm tra ràng buộc; nếu hợp lệ thì lưu đăng ký và in phiếu đăng ký (danh sách xuất phát). |
+| **Luồng phụ — Thay tay đua trước ngày đua** | Trước ngày đua, nhân viên mở lại chặng + đội đã đăng ký → hệ thống hiển thị lại danh sách với các tay đua đang đăng ký được tick sẵn → nhân viên bỏ tick / tick lại tay đua → hệ thống kiểm tra lại ràng buộc (≤ 2 tay đua, không trùng đăng ký) → lưu thay đổi. |
 | **Ngoại lệ** | 4a. Đội không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng → thông báo, không đăng ký được.<br>5a. Chọn quá 2 tay đua → báo lỗi "Mỗi đội tối đa 2 tay đua trong một chặng", yêu cầu chọn lại.<br>5b. Tay đua đã được đăng ký chặng này (cho đội khác) → báo lỗi trùng đăng ký. |
 
 ## 3. Biểu đồ hoạt động (Activity)
@@ -92,8 +93,8 @@ class GDDangKyChang <<boundary>> {
 }
 class DangKyChangControl <<control>> {
   moManDangKy()
-  chonChangDoi(changId, doiId)
-  luuDangKy(changId, doiId, dsTayDua)
+  chonChangDoi(changDuaId, doiDuaId)
+  luuDangKy(changDuaId, doiDuaId, dsTayDua)
 }
 class ChangDua <<entity>> {
   id
@@ -113,7 +114,7 @@ class TayDua <<entity>> {
   ma
   ten
   quocTich
-  getTayDuaHieuLuc(doiId, thoiGianChang)
+  getTayDuaHieuLuc(doiDuaId, thoiGianChang)
 }
 class HopDong <<entity>> {
   id
@@ -122,9 +123,9 @@ class HopDong <<entity>> {
 }
 class DangKyChang <<entity>> {
   id
-  demSoTayDua(changId, doiId)
-  daDangKy(changId, tayDuaId)
-  them()
+  demSoTayDua(changDuaId, doiDuaId)
+  daDangKy(changDuaId, tayDuaId)
+  insert()
 }
 GDDangKyChang --> DangKyChangControl
 DangKyChangControl --> ChangDua
@@ -137,7 +138,7 @@ DangKyChangControl --> DangKyChang
 
 ## 5. Thiết kế giao diện
 
-**Màn Đăng ký thi đấu:** hàng trên có 2 danh sách thả xuống [Chặng đua] và [Đội đua]; bên dưới là bảng tay đua (cột checkbox chọn, Mã, Tên, Quốc tịch) — chỉ hiện tay đua có hợp đồng hiệu lực với đội đã chọn; dưới cùng nút [Lưu]. Sau khi lưu → in phiếu đăng ký (danh sách xuất phát) gồm: tên chặng, ngày đua, tên đội, danh sách tay đua đã đăng ký (mỗi tay đua một dòng).
+**Màn Đăng ký thi đấu:** hàng trên có 2 danh sách thả xuống [Chặng đua] và [Đội đua]; bên dưới là bảng tay đua (cột checkbox chọn, Mã, Tên, Quốc tịch, **Trạng thái đăng ký** — cho biết tay đua đã được đăng ký cho đội khác trong chặng này hay chưa) — chỉ hiện tay đua có hợp đồng hiệu lực với đội đã chọn, **danh sách sắp xếp theo alphabet của Tên**; dưới cùng có nút [Lưu] và nút **[Sửa]** (mở lại chặng + đội để thay tay đua trước ngày đua). Sau khi lưu → in phiếu đăng ký (danh sách xuất phát) gồm: tên chặng, ngày đua, tên đội, danh sách tay đua đã đăng ký (mỗi tay đua một dòng).
 
 > Vẽ mockup màn này trong VP và export → `hinh/m2-giaodien-dangky.png`.
 
@@ -147,6 +148,7 @@ DangKyChangControl --> DangKyChang
 - **Controller:** `DangKyChangController`
 - **DAO:** `ChangDuaDAO` (getAll), `DoiDuaDAO` (getAll), `TayDuaDAO` (getTayDuaHieuLuc), `DangKyChangDAO` (demSoTayDua, daDangKy, insert)
 - **Entity:** `ChangDua`, `DoiDua`, `TayDua`, `HopDong`, `DangKyChang`
+- **Ghi chú:** `HopDong` được truy cập qua JOIN trong `TayDuaDAO.getTayDuaHieuLuc` nên không tạo `HopDongDAO` riêng (khớp với lớp phân tích mục 4 có `HopDong`).
 
 ```plantuml
 @startuml
@@ -224,9 +226,9 @@ deactivate V
 
 NV -> V : chọn chặng, chọn đội
 activate V
-V -> C : chonChangDoi(changId, doiId)
+V -> C : chonChangDoi(changDuaId, doiDuaId)
 activate C
-C -> TDAO : getTayDuaHieuLuc(doiId, thoiGianChang)
+C -> TDAO : getTayDuaHieuLuc(doiDuaId, thoiGianChang)
 activate TDAO
 TDAO -> DB : SELECT tblTayDua JOIN tblHopDong (hiệu lực)
 activate DB
@@ -241,9 +243,9 @@ deactivate V
 
 NV -> V : tick chọn tay đua, click Lưu
 activate V
-V -> C : luuDangKy(changId, doiId, dsTayDua)
+V -> C : luuDangKy(changDuaId, doiDuaId, dsTayDua)
 activate C
-C -> KDAO : demSoTayDua(changId, doiId)
+C -> KDAO : demSoTayDua(changDuaId, doiDuaId)
 activate KDAO
 KDAO -> DB : SELECT COUNT(*) tblDangKyChang
 activate DB
@@ -252,7 +254,7 @@ deactivate DB
 KDAO --> C : soHienTai
 deactivate KDAO
 loop mỗi tay đua được chọn
-  C -> KDAO : them(changId, doiId, tayDuaId)
+  C -> KDAO : insert(changDuaId, doiDuaId, tayDuaId)
   activate KDAO
   KDAO -> DB : INSERT INTO tblDangKyChang ...
   activate DB

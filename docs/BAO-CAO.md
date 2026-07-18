@@ -52,13 +52,14 @@ Hệ thống gồm 4 chức năng nghiệp vụ chính, mỗi thành viên phụ
 | Người dùng (actor) | Được thực hiện |
 |---|---|
 | Thành viên (chung) | Đăng nhập, đổi mật khẩu |
-| Nhân viên | Ký hợp đồng (M1), đăng ký tay đua vào chặng (M2), cập nhật kết quả chặng (M3), quản lý danh mục |
+| Nhân viên | Ký hợp đồng (M1), đăng ký tay đua vào chặng (M2), cập nhật kết quả chặng (M3); quản lý danh mục (mùa giải, tay đua, đội, chặng); đăng ký đội tham gia mùa giải |
 | Quản lý | Quyết toán và trao giải cuối mùa (M4) |
 
 ### 2.2. Yêu cầu chức năng
 
-- **FR1 — Quản lý danh mục:** thêm/sửa/xóa tay đua, đội đua, chặng đua.
-- **FR2 — Ký hợp đồng (M1):** tìm tay đua, ký hợp đồng mới với đội; ràng buộc: tại một thời điểm tay đua chỉ thuộc 1 đội (không chồng lấn thời gian); lưu và in hợp đồng.
+- **FR0 — Xác thực & tài khoản:** đăng nhập, đổi mật khẩu, phân quyền theo vai trò.
+- **FR1 — Quản lý danh mục:** thêm/sửa/xóa tay đua, đội đua, chặng đua; quản lý mùa giải; đăng ký đội tham gia mùa giải (sinh ThamGia).
+- **FR2 — Ký hợp đồng (M1):** ký hợp đồng: CHỈ nhập ngày bắt đầu; nếu tay đua còn HĐ hiệu lực thì hệ thống TỰ ĐỘNG ĐÓNG hợp đồng cũ (ngày kết thúc = ngày liền trước ngày bắt đầu mới); nếu chồng lấn khoảng đã đóng thì báo lỗi; lưu và in hợp đồng.
 - **FR3 — Đăng ký chặng (M2):** chọn chặng và đội, hiển thị tay đua có hợp đồng hiệu lực, tick chọn; ràng buộc: mỗi đội tối đa 2 tay đua/chặng, không trùng; lưu và in phiếu đăng ký.
 - **FR4 — Cập nhật kết quả (M3):** nhập thời gian/số vòng/DNF; tính điểm top 10 (25→1), DNF = 0; lưu và in bảng kết quả.
 - **FR5 — Quyết toán (M4):** kiểm tra đủ kết quả tất cả chặng, cộng dồn điểm/thời gian, xếp hạng cá nhân và đội, nhập mức thưởng và tính tiền thưởng; lưu và in danh sách trao giải.
@@ -81,7 +82,9 @@ Hệ thống gồm 4 chức năng nghiệp vụ chính, mỗi thành viên phụ
 
 **Actor:** `ThanhVien` (trừu tượng), `NhanVien` và `QuanLy` kế thừa `ThanhVien`.
 
-**Use case:** Đăng nhập, Đổi mật khẩu, Quản lý tay đua/đội/chặng, Ký hợp đồng (M1), Đăng ký tay đua vào chặng (M2), Cập nhật kết quả chặng (M3), Quyết toán và trao giải (M4). Các use case nghiệp vụ đều **include** "Đăng nhập".
+**Use case:** Đăng nhập, Đổi mật khẩu, Quản lý tay đua/đội/chặng, Quản lý mùa giải, Đăng ký đội tham gia mùa giải (actor NhanVien, danh mục), Ký hợp đồng (M1), Đăng ký tay đua vào chặng (M2), Cập nhật kết quả chặng (M3), Quyết toán và trao giải (M4). Các use case nghiệp vụ đều **include** "Đăng nhập".
+
+Đặc tả gọn cho các UC danh mục và Đăng nhập/Đổi mật khẩu xem docs/04-dac-ta-danh-muc-va-auth.md.
 
 **[Hình 3.1 — Biểu đồ Use Case tổng quát]** — chèn ảnh `docs/hinh/uc-tongquat.png`
 
@@ -93,7 +96,7 @@ Hệ thống gồm 4 chức năng nghiệp vụ chính, mỗi thành viên phụ
 
 ### 4.1. Các lớp thực thể
 
-`MuaGiai`, `ChangDua`, `DoiDua`, `TayDua`, `HopDong` (trung gian TayDua–DoiDua), `DangKyChang` (trung gian ChangDua–TayDua–DoiDua), `KetQua`, `TraoGiai`, `ThamGia` (trung gian MuaGiai–DoiDua).
+`MuaGiai`, `ChangDua`, `DoiDua`, `TayDua`, `HopDong` (trung gian TayDua–DoiDua), `DangKyChang` (trung gian ChangDua–TayDua–DoiDua), `KetQua`, `TraoGiai`, `ThamGia` (trung gian MuaGiai–DoiDua), `ThanhVien` (tài khoản người dùng).
 
 Các quan hệ n-n được tách bằng lớp trung gian: `HopDong`, `DangKyChang`, `ThamGia`.
 
@@ -114,6 +117,10 @@ Các quan hệ n-n được tách bằng lớp trung gian: `HopDong`, `DangKyCha
 | `tblDangKyChang` | id, changDuaId, tayDuaId, doiDuaId | PK: id · FK: changDuaId, tayDuaId, doiDuaId |
 | `tblKetQua` | id, dangKyChangId, thoiGian, soVong, dnf, hang, diem | PK: id · FK: dangKyChangId |
 | `tblTraoGiai` | id, muaGiaiId, loai, tayDuaId, doiDuaId, hang, tongDiem, tongThoiGian, tienThuong | PK: id · FK: muaGiaiId, tayDuaId, doiDuaId |
+| tblThanhVien | id, tenDangNhap, matKhau, hoTen, vaiTro | PK: id |
+
+- tblDangKyChang có UNIQUE(changDuaId, tayDuaId)
+- tblHopDong.ngayKetThuc NULL-able (NULL = HĐ đang hiệu lực)
 
 ---
 
@@ -133,8 +140,8 @@ UC `Ký hợp đồng` include {Đăng nhập, Tìm tay đua, Nhập thông tin 
 | Actor | Nhân viên |
 | Tiền điều kiện | Nhân viên đã đăng nhập |
 | Hậu điều kiện | Một hợp đồng mới hợp lệ được lưu và in ra |
-| Kịch bản chính | 1. Chọn menu Ký hợp đồng. 2. Hệ thống hiện giao diện tìm tay đua. 3. Nhập tên, click Tìm. 4. Hệ thống hiện danh sách tay đua. 5. Chọn tay đua. 6. Hệ thống hiện chi tiết + hợp đồng cũ. 7. Chọn đội, nhập ngày bắt đầu/kết thúc, click Lưu. 8. Hệ thống kiểm tra chồng lấn; hợp lệ → lưu và in hợp đồng. |
-| Ngoại lệ | 4a. Không tìm thấy → thêm tay đua mới. 7a. Ngày kết thúc ≤ bắt đầu → báo lỗi. 8a. Chồng lấn hợp đồng cũ → báo lỗi. |
+| Kịch bản chính | 1. Chọn menu Ký hợp đồng. 2. Hệ thống hiện giao diện tìm tay đua. 3. Nhập tên, click Tìm. 4. Hệ thống hiện danh sách tay đua. 5. Chọn tay đua. 6. Hệ thống hiện chi tiết + hợp đồng cũ. 7. Chọn đội, CHỈ nhập ngày bắt đầu hiệu lực, click Lưu. 8. Hệ thống: nếu tay đua còn HĐ hiệu lực → tự động đóng HĐ cũ (ngày kết thúc = ngày bắt đầu mới − 1); nếu ngày bắt đầu chồng lấn khoảng đã đóng → báo lỗi; hợp lệ → lưu và in hợp đồng. |
+| Ngoại lệ | 4a. Không tìm thấy → thêm tay đua mới. 8a. Chồng lấn khoảng thời gian của hợp đồng ĐÃ ĐÓNG (lịch sử) → báo lỗi. |
 
 ### 5.3. Biểu đồ hoạt động
 **[Hình 5.2]** — `../Module 1 - Quan/hinh/m1-hoatdong.png`
@@ -163,10 +170,10 @@ UC `Ký hợp đồng` include {Đăng nhập, Tìm tay đua, Nhập thông tin 
 
 | ID | Mục tiêu | Dữ liệu vào | Kết quả mong đợi |
 |---|---|---|---|
-| TC1 | Ký hợp đồng hợp lệ | Tay đua A, Đội X, 01/01–31/12/2026 | Lưu thành công, in hợp đồng |
+| TC1 | Ký hợp đồng hợp lệ | Tay đua A, Đội X, từ 01/01/2026 (ngày kết thúc để trống) | Lưu thành công, in hợp đồng |
 | TC2 | Chặn chồng lấn | A đã có HĐ 01/06–31/12; nhập 01/01–30/06 | Báo lỗi, không lưu |
 | TC3 | Thêm tay đua khi không tìm thấy | Tên chưa có | Hiện form thêm tay đua |
-| TC4 | Kiểm tra ngày | Ngày kết thúc < bắt đầu | Báo lỗi ngày không hợp lệ |
+| TC4 | Ký HĐ mới khi tay đua CÒN HĐ hiệu lực với đội khác | Tay đua A đang có HĐ hiệu lực với đội Y, ký HĐ mới với đội X | Tự động đóng HĐ cũ (ngày kết thúc = ngày bắt đầu mới − 1), lưu HĐ mới |
 
 ---
 

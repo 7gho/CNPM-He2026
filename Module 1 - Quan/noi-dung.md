@@ -53,8 +53,8 @@ THEM ..> NHAP : extend
 | **Actor** | Nhân viên |
 | **Tiền điều kiện** | Nhân viên đã đăng nhập thành công |
 | **Hậu điều kiện** | Một hợp đồng mới hợp lệ được lưu vào hệ thống và in ra |
-| **Kịch bản chính** | 1. Nhân viên chọn menu "Ký hợp đồng".<br>2. Hệ thống hiển thị giao diện tìm tay đua.<br>3. Nhân viên nhập tên tay đua và click Tìm.<br>4. Hệ thống hiển thị danh sách tay đua có tên chứa từ khóa.<br>5. Nhân viên chọn đúng tay đua.<br>6. Hệ thống hiển thị chi tiết tay đua và danh sách hợp đồng cũ (đội, ngày bắt đầu, ngày kết thúc).<br>7. Nhân viên chọn đội đua, nhập ngày bắt đầu và ngày kết thúc, click Lưu.<br>8. Hệ thống kiểm tra ràng buộc chồng lấn; nếu hợp lệ thì lưu hợp đồng và in ra hợp đồng. |
-| **Ngoại lệ** | 4a. Không tìm thấy tay đua → hệ thống cho phép nhập tay đua mới (UC Thêm tay đua) rồi quay lại bước 6.<br>7a. Ngày kết thúc ≤ ngày bắt đầu → báo lỗi, yêu cầu nhập lại.<br>8a. Khoảng thời gian hợp đồng mới chồng lấn một hợp đồng cũ (tay đua đã thuộc đội khác trong thời gian đó) → báo lỗi "Tay đua đã có hợp đồng trong khoảng thời gian này", yêu cầu nhập lại. |
+| **Kịch bản chính** | 1. Nhân viên chọn menu "Ký hợp đồng".<br>2. Hệ thống hiển thị giao diện tìm tay đua.<br>3. Nhân viên nhập tên tay đua và click Tìm.<br>4. Hệ thống hiển thị danh sách tay đua có tên chứa từ khóa.<br>5. Nhân viên chọn đúng tay đua.<br>6. Hệ thống hiển thị chi tiết tay đua và danh sách hợp đồng cũ (đội, ngày bắt đầu, ngày kết thúc — dòng có **ngày kết thúc trống là hợp đồng đang hiệu lực**).<br>7. Nhân viên chọn đội đua, **chỉ nhập ngày bắt đầu hiệu lực**, click Lưu.<br>8. Hệ thống: nếu tay đua còn hợp đồng đang hiệu lực thì **tự động đóng** hợp đồng cũ (đặt ngày kết thúc = ngày liền trước ngày bắt đầu mới); sau đó lưu hợp đồng mới (ngày kết thúc để trống) và in ra hợp đồng. |
+| **Ngoại lệ** | 4a. Không tìm thấy tay đua → hệ thống cho phép nhập tay đua mới (UC Thêm tay đua) rồi quay lại bước 6.<br>8a. Ngày bắt đầu mới chồng lấn khoảng thời gian của một hợp đồng **đã đóng** (lịch sử) → báo lỗi "Tay đua đã có hợp đồng trong khoảng thời gian này", yêu cầu nhập lại. |
 
 ## 3. Biểu đồ hoạt động (Activity)
 
@@ -69,13 +69,17 @@ else (có)
 endif
 :Chọn tay đua;
 :Hiển thị hợp đồng cũ;
-:Chọn đội, nhập ngày bắt đầu/kết thúc;
+:Chọn đội, nhập ngày bắt đầu;
 :Click Lưu;
-if (Ngày hợp lệ và không chồng lấn?) then (không)
+if (Ngày bắt đầu chồng lấn hợp đồng đã đóng?) then (có)
   :Báo lỗi;
   stop
-else (có)
-  :Lưu hợp đồng;
+else (không)
+  if (Còn hợp đồng đang hiệu lực?) then (có)
+    :Tự động đóng HĐ cũ (ngày KT = ngày BĐ mới − 1);
+  else (không)
+  endif
+  :Lưu hợp đồng mới (ngày KT trống);
   :In hợp đồng;
   stop
 endif
@@ -85,7 +89,7 @@ endif
 ## 4. Biểu đồ lớp phân tích (Boundary / Control / Entity)
 
 - **Boundary (1 lớp/màn hình):** `GDKyHopDong` (menu), `GDTimTayDua`, `GDNhapHopDong`
-- **Control:** `KyHopDongControl` điều phối toàn bộ luồng
+- **Control:** `HopDongControl` điều phối toàn bộ luồng
 - **Entity (kèm phương thức nghiệp vụ gán trong pha phân tích):** `TayDua`, `DoiDua`, `HopDong`
 
 ```plantuml
@@ -106,18 +110,16 @@ class GDNhapHopDong <<boundary>> {
   lstHopDongCu
   cboDoi
   dtpBatDau
-  dtpKetThuc
   btnLuu
   hienHopDongCu(ds)
   baoLoi(tb)
   inHopDong(hd)
 }
-class KyHopDongControl <<control>> {
+class HopDongControl <<control>> {
   timTayDua(ten)
   chonTayDua(id)
   layDanhSachDoi()
-  kiemTraNgay(bd, kt)
-  luuHopDong(td, doi, bd, kt)
+  luuHopDong(tayDuaId, doiDuaId, batDau)
 }
 class TayDua <<entity>> {
   id
@@ -125,7 +127,7 @@ class TayDua <<entity>> {
   ten
   ngaySinh
   quocTich
-  timTheoTen(ten)
+  getByTen(ten)
 }
 class DoiDua <<entity>> {
   id
@@ -139,15 +141,16 @@ class HopDong <<entity>> {
   ngayBatDau
   ngayKetThuc
   getByTayDua(tayDuaId)
-  kiemTraChongLan(tayDuaId, bd, kt)
-  them()
+  kiemTraChongLan(tayDuaId, batDau)
+  dongHopDongCu(tayDuaId, batDau)
+  insert()
 }
 GDKyHopDong --> GDTimTayDua
-GDTimTayDua --> KyHopDongControl
-GDNhapHopDong --> KyHopDongControl
-KyHopDongControl --> TayDua
-KyHopDongControl --> DoiDua
-KyHopDongControl --> HopDong
+GDTimTayDua --> HopDongControl
+GDNhapHopDong --> HopDongControl
+HopDongControl --> TayDua
+HopDongControl --> DoiDua
+HopDongControl --> HopDong
 @enduml
 ```
 
@@ -155,7 +158,7 @@ KyHopDongControl --> HopDong
 
 **Màn 1 — Tìm tay đua:** ô nhập "Tên tay đua" + nút [Tìm]; bảng kết quả (Mã, Tên, Ngày sinh, Quốc tịch) mỗi dòng có nút [Chọn]; nút [+ Thêm tay đua mới].
 
-**Màn 2 — Nhập hợp đồng:** phần trên hiển thị thông tin tay đua đã chọn + bảng "Hợp đồng cũ" (Đội, Ngày bắt đầu, Ngày kết thúc); phần dưới form: combobox [Đội đua], date [Ngày bắt đầu], date [Ngày kết thúc], nút [Lưu]. Khi lưu lỗi → hiện thông báo đỏ dưới form.
+**Màn 2 — Nhập hợp đồng:** phần trên hiển thị thông tin tay đua đã chọn + bảng "Hợp đồng cũ" (Đội, Ngày bắt đầu, Ngày kết thúc — dòng ngày kết thúc trống là hợp đồng đang hiệu lực); phần dưới form: combobox [Đội đua], date [Ngày bắt đầu], nút [Lưu]. **Không nhập ngày kết thúc** — hợp đồng mở, ngày kết thúc để trống = đang hiệu lực (hệ thống tự đóng khi ký hợp đồng mới). Khi lưu lỗi → hiện thông báo đỏ dưới form.
 
 > Vẽ 2 mockup này trong VP và export: màn tìm tay đua → `hinh/m1-giaodien-timtaydua.png`, màn nhập hợp đồng → `hinh/m1-giaodien-nhaphopdong.png`.
 
@@ -163,7 +166,7 @@ KyHopDongControl --> HopDong
 
 - **View (jsp):** `gdTimTayDua.jsp`, `gdNhapHopDong.jsp`, `doLuuHopDong.jsp`
 - **Controller:** `HopDongController`
-- **DAO:** `TayDuaDAO` (timTheoTen), `DoiDuaDAO` (getAll), `HopDongDAO` (getByTayDua, kiemTraChongLan, insert)
+- **DAO:** `TayDuaDAO` (getByTen), `DoiDuaDAO` (getAll), `HopDongDAO` (getByTayDua, kiemTraChongLan, dongHopDongCu, insert)
 - **Entity:** `TayDua`, `DoiDua`, `HopDong`
 
 ```plantuml
@@ -200,7 +203,7 @@ HopDongDAO --> HopDong
 
 ## 7. Biểu đồ tuần tự (Sequence) — luồng chính
 
-> Chỉ vẽ **luồng chính (thành công)**: 8 lifeline (có lifeline CSDL), mũi tên return, activation. Các ngoại lệ (không tìm thấy tay đua, ngày không hợp lệ, chồng lấn) đã mô tả trong đặc tả UC ở mục 2, không đưa vào sequence.
+> Chỉ vẽ **luồng chính (thành công)**: 8 lifeline (có lifeline CSDL), mũi tên return, activation. Luồng chính thể hiện trường hợp tay đua chuyển đội (còn HĐ hiệu lực → hệ thống tự đóng HĐ cũ rồi tạo HĐ mới). Các ngoại lệ (không tìm thấy tay đua, chồng lấn khoảng đã đóng) đã mô tả trong đặc tả UC ở mục 2, không đưa vào sequence.
 
 ```plantuml
 @startuml
@@ -217,7 +220,7 @@ NV -> V1 : nhập tên, click Tìm
 activate V1
 V1 -> C : timTayDua(ten)
 activate C
-C -> TDAO : timTheoTen(ten)
+C -> TDAO : getByTen(ten)
 activate TDAO
 TDAO -> DB : SELECT tblTayDua WHERE ten LIKE ?
 activate DB
@@ -255,22 +258,29 @@ deactivate C
 V2 --> NV : màn nhập hợp đồng
 deactivate V1
 
-NV -> V2 : chọn đội, nhập ngày BĐ/KT, click Lưu
+NV -> V2 : chọn đội, nhập ngày bắt đầu, click Lưu
 activate V2
-V2 -> C : luuHopDong(tayDuaId, doiId, batDau, ketThuc)
+V2 -> C : luuHopDong(tayDuaId, doiDuaId, batDau)
 activate C
-C -> C : kiemTraNgay(batDau, ketThuc)
-C -> HDAO : kiemTraChongLan(tayDuaId, batDau, ketThuc)
+C -> HDAO : kiemTraChongLan(tayDuaId, batDau)
 activate HDAO
-HDAO -> DB : SELECT COUNT(*) hợp đồng chồng lấn
+HDAO -> DB : SELECT COUNT(*) hợp đồng đã đóng chồng lấn
 activate DB
 DB --> HDAO : count
 deactivate DB
 HDAO --> C : coChongLan = false
 deactivate HDAO
-C -> HDAO : them(hopDong)
+C -> HDAO : dongHopDongCu(tayDuaId, batDau)
 activate HDAO
-HDAO -> DB : INSERT INTO tblHopDong ...
+HDAO -> DB : UPDATE tblHopDong SET ngayKetThuc = batDau-1 WHERE tayDuaId=? AND ngayKetThuc IS NULL
+activate DB
+DB --> HDAO : ok
+deactivate DB
+HDAO --> C : ok
+deactivate HDAO
+C -> HDAO : insert(hopDong)
+activate HDAO
+HDAO -> DB : INSERT INTO tblHopDong (ngayKetThuc = NULL)
 activate DB
 DB --> HDAO : ok
 deactivate DB
@@ -287,7 +297,7 @@ deactivate V2
 
 | ID | Mục tiêu | Tiền điều kiện | Dữ liệu vào | Các bước | Kết quả mong đợi |
 |---|---|---|---|---|---|
-| TC1 | Ký hợp đồng hợp lệ | Đã đăng nhập; tay đua chưa có hợp đồng trùng thời gian | Tay đua A, Đội X, 01/01/2026–31/12/2026 | Tìm A → chọn → chọn X, nhập ngày → Lưu | Lưu thành công, in hợp đồng |
-| TC2 | Chặn chồng lấn thời gian | Tay đua A đã có HĐ với Đội Y 01/06/2026–31/12/2026 | Tay đua A, Đội X, 01/01/2026–30/06/2026 | Tìm A → chọn → nhập ngày chồng lấn → Lưu | Báo lỗi "đã có hợp đồng trong khoảng thời gian này", không lưu |
+| TC1 | Ký hợp đồng mới (hợp đồng mở) | Đã đăng nhập; tay đua A chưa có hợp đồng | Tay đua A, Đội X, từ 01/01/2026 (ngày kết thúc để trống) | Tìm A → chọn → chọn X, nhập ngày bắt đầu → Lưu | Lưu thành công (ngày kết thúc trống = đang hiệu lực), in hợp đồng |
+| TC2 | Chặn chồng lấn lịch sử | Tay đua A có HĐ **đã đóng** với Đội Y 01/06/2025–31/12/2025 | Tay đua A, Đội X, từ 01/09/2025 | Tìm A → chọn → nhập ngày bắt đầu rơi vào khoảng đã đóng → Lưu | Báo lỗi "đã có hợp đồng trong khoảng thời gian này", không lưu |
 | TC3 | Thêm tay đua khi không tìm thấy | Đã đăng nhập | Tên "Zzz" (chưa có) | Tìm "Zzz" → không có → Thêm mới | Hiện form thêm tay đua, thêm xong quay lại ký HĐ |
-| TC4 | Kiểm tra ngày | Đã đăng nhập | Tay đua A, Đội X, 31/12/2026–01/01/2026 | Nhập ngày kết thúc < bắt đầu → Lưu | Báo lỗi ngày không hợp lệ, không lưu |
+| TC4 | Tự động đóng HĐ cũ khi chuyển đội | Tay đua A đang có HĐ **hiệu lực** với Đội Y (từ 01/01/2026, ngày kết thúc trống) | Tay đua A, Đội X, từ 01/07/2026 | Tìm A → chọn → chọn X, nhập ngày bắt đầu → Lưu | Hệ thống tự đóng HĐ Y (ngày kết thúc = 30/06/2026), lưu HĐ X mới, in hợp đồng |

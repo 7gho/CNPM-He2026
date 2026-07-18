@@ -95,9 +95,9 @@ class GDQuyetToan <<boundary>> {
   baoLoi(tb)
 }
 class QuyetToanControl <<control>> {
-  quyetToan(muaId)
+  quyetToan(muaGiaiId)
   tinhThuong(mucThuong)
-  luuTraoGiai(muaId, dsTraoGiai)
+  luuTraoGiai(muaGiaiId, dsTraoGiai)
 }
 class MuaGiai <<entity>> {
   id
@@ -106,14 +106,14 @@ class MuaGiai <<entity>> {
 }
 class ChangDua <<entity>> {
   id
-  demChangChuaCoKetQua(muaId)
+  demChangChuaCoKetQua(muaGiaiId)
 }
 class KetQua <<entity>> {
   id
   diem
   thoiGian
-  tongHopCaNhan(muaId)
-  tongHopDoi(muaId)
+  tongHopCaNhan(muaGiaiId)
+  tongHopDoi(muaGiaiId)
 }
 class TayDua <<entity>> {
   id
@@ -133,7 +133,7 @@ class TraoGiai <<entity>> {
   tongThoiGian
   tienThuong
   tinhThuong(hang, mucThuong)
-  them()
+  insert()
 }
 GDQuyetToan --> QuyetToanControl
 QuyetToanControl --> MuaGiai
@@ -146,6 +146,8 @@ QuyetToanControl --> TraoGiai
 ```
 
 > Quy tắc xếp hạng (cài trong `tongHopCaNhan`/`tongHopDoi` + sắp xếp): cộng dồn tổng điểm và tổng thời gian qua tất cả chặng; sắp xếp giảm dần theo tổng điểm, nếu bằng điểm thì tăng dần theo tổng thời gian.
+>
+> **Lưu ý xếp hạng đội:** cộng dồn theo `DangKyChang.doiDuaId` — tức đội đã đăng ký tay đua ở TỪNG chặng, KHÔNG theo đội hiện tại của tay đua (một tay đua có thể đổi đội giữa mùa, nên điểm ở mỗi chặng phải thuộc về đội đã đăng ký tại chặng đó). Truy vết đề bài dòng 8, 11.
 
 ## 5. Thiết kế giao diện
 
@@ -157,8 +159,8 @@ QuyetToanControl --> TraoGiai
 
 - **View (jsp):** `gdQuyetToan.jsp`, `doLuuTraoGiai.jsp`
 - **Controller:** `QuyetToanController`
-- **DAO:** `ChangDuaDAO` (demChangChuaCoKetQua), `KetQuaDAO` (tongHopCaNhan, tongHopDoi), `TraoGiaiDAO` (insert)
-- **Entity:** `MuaGiai`, `ChangDua`, `KetQua`, `TayDua`, `DoiDua`, `TraoGiai`
+- **DAO:** `MuaGiaiDAO` (getAll, getMuaGiaiHienTai — nạp `muaGiaiId` của mùa hiện hành), `ChangDuaDAO` (demChangChuaCoKetQua), `KetQuaDAO` (tongHopCaNhan, tongHopDoi), `TraoGiaiDAO` (insert)
+- **Entity:** `MuaGiai`, `ChangDua`, `DangKyChang`, `KetQua`, `TayDua`, `DoiDua`, `TraoGiai`
 
 ```plantuml
 @startuml
@@ -170,6 +172,7 @@ package Controller {
   class QuyetToanController
 }
 package DAO {
+  class MuaGiaiDAO
   class ChangDuaDAO
   class KetQuaDAO
   class TraoGiaiDAO
@@ -177,6 +180,7 @@ package DAO {
 package Entity {
   class MuaGiai
   class ChangDua
+  class DangKyChang
   class KetQua
   class TayDua
   class DoiDua
@@ -184,14 +188,17 @@ package Entity {
 }
 gdQuyetToan --> QuyetToanController
 doLuuTraoGiai --> QuyetToanController
+QuyetToanController --> MuaGiaiDAO
 QuyetToanController --> ChangDuaDAO
 QuyetToanController --> KetQuaDAO
 QuyetToanController --> TraoGiaiDAO
+MuaGiaiDAO --> MuaGiai
 KetQuaDAO --> KetQua
 ChangDuaDAO --> ChangDua
 TraoGiaiDAO --> TraoGiai
-KetQua --> TayDua
-KetQua --> DoiDua
+KetQua --> DangKyChang
+DangKyChang --> TayDua
+DangKyChang --> DoiDua
 @enduml
 ```
 
@@ -211,9 +218,9 @@ database "CSDL" as DB
 
 QL -> V : click Quyết toán mùa giải
 activate V
-V -> C : quyetToan(muaId)
+V -> C : quyetToan(muaGiaiId)
 activate C
-C -> CDAO : demChangChuaCoKetQua(muaId)
+C -> CDAO : demChangChuaCoKetQua(muaGiaiId)
 activate CDAO
 CDAO -> DB : SELECT COUNT(*) chặng chưa có kết quả
 activate DB
@@ -221,17 +228,17 @@ DB --> CDAO : count
 deactivate DB
 CDAO --> C : 0 (đủ kết quả)
 deactivate CDAO
-C -> KDAO : tongHopCaNhan(muaId)
+C -> KDAO : tongHopCaNhan(muaGiaiId)
 activate KDAO
-KDAO -> DB : SELECT SUM(diem), SUM(thoiGian) GROUP BY tayDua
+KDAO -> DB : SELECT SUM(diem), SUM(thoiGian) FROM tblKetQua JOIN tblDangKyChang GROUP BY tblDangKyChang.tayDuaId
 activate DB
 DB --> KDAO : rows
 deactivate DB
 KDAO --> C : List<XH cá nhân>
 deactivate KDAO
-C -> KDAO : tongHopDoi(muaId)
+C -> KDAO : tongHopDoi(muaGiaiId)
 activate KDAO
-KDAO -> DB : SELECT SUM(diem), SUM(thoiGian) GROUP BY doi
+KDAO -> DB : SELECT SUM(diem), SUM(thoiGian) FROM tblKetQua JOIN tblDangKyChang GROUP BY tblDangKyChang.doiDuaId
 activate DB
 DB --> KDAO : rows
 deactivate DB
@@ -255,10 +262,10 @@ deactivate C
 V --> QL : bảng có tiền thưởng
 
 QL -> V : click Lưu
-V -> C : luuTraoGiai(muaId, dsTraoGiai)
+V -> C : luuTraoGiai(muaGiaiId, dsTraoGiai)
 activate C
 loop mỗi bản ghi trao giải
-  C -> TDAO : them(traoGiai)
+  C -> TDAO : insert(traoGiai)
   activate TDAO
   TDAO -> DB : INSERT INTO tblTraoGiai ...
   activate DB

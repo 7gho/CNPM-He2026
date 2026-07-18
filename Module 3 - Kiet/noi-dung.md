@@ -78,7 +78,7 @@ stop
 
 - **Boundary:** `GDChonChang` (cboChang, btnTiepTuc), `GDNhapKetQua` (tblKetQua: thoiGian/soVong/chkDNF, btnTinh, btnLuu)
 - **Control:** `KetQuaControl` điều phối luồng và tính điểm
-- **Entity (kèm phương thức nghiệp vụ):** `ChangDua`, `DangKyChang`, `TayDua`, `KetQua`
+- **Entity (kèm phương thức nghiệp vụ):** `ChangDua`, `DangKyChang`, `TayDua`, `DoiDua`, `KetQua`
 
 ```plantuml
 @startuml
@@ -95,9 +95,9 @@ class GDNhapKetQua <<boundary>> {
 }
 class KetQuaControl <<control>> {
   moManChon()
-  chonChang(changId)
+  chonChang(changDuaId)
   tinhDiem(dsKetQua)
-  luuKetQua(changId, dsKetQua)
+  luuKetQua(changDuaId, dsKetQua)
 }
 class ChangDua <<entity>> {
   id
@@ -107,7 +107,7 @@ class ChangDua <<entity>> {
 }
 class DangKyChang <<entity>> {
   id
-  getByChang(changId)
+  getByChang(changDuaId)
 }
 class TayDua <<entity>> {
   id
@@ -122,18 +122,26 @@ class KetQua <<entity>> {
   hang
   diem
   xepHangVaTinhDiem(dsKetQua)
-  them()
+  insert()
+  update()
+}
+class DoiDua <<entity>> {
+  id
+  ten
 }
 GDChonChang --> KetQuaControl
 GDNhapKetQua --> KetQuaControl
 KetQuaControl --> ChangDua
 KetQuaControl --> DangKyChang
 KetQuaControl --> TayDua
+KetQuaControl --> DoiDua
 KetQuaControl --> KetQua
 @enduml
 ```
 
 > Quy tắc tính điểm (cài trong `xepHangVaTinhDiem`): sắp xếp tăng dần theo thời gian, tay đua DNF đẩy xuống cuối; bảng điểm `[25,18,15,12,10,8,6,4,2,1]` gán cho hạng 1..10; DNF hoặc hạng > 10 nhận 0 điểm.
+>
+> **Ghi chú nghiệp vụ (ghi đè kết quả):** Khi chặng đã có kết quả từ trước, sau khi nhân viên xác nhận ghi đè, hệ thống `update()`/xóa toàn bộ kết quả cũ của chặng rồi tính lại điểm và lưu kết quả mới cho toàn bộ chặng (không cộng dồn lên bản ghi cũ).
 
 ## 5. Thiết kế giao diện
 
@@ -147,7 +155,7 @@ KetQuaControl --> KetQua
 
 - **View (jsp):** `gdChonChang.jsp`, `gdNhapKetQua.jsp`, `doLuuKetQua.jsp`
 - **Controller:** `KetQuaController`
-- **DAO:** `ChangDuaDAO` (getAll), `DangKyChangDAO` (getByChang), `KetQuaDAO` (getByChang, insert/update)
+- **DAO:** `ChangDuaDAO` (getAll), `DangKyChangDAO` (getByChang), `KetQuaDAO` (getByChang, insert, update)
 - **Entity:** `ChangDua`, `DangKyChang`, `TayDua`, `DoiDua`, `KetQua`
 
 ```plantuml
@@ -220,9 +228,9 @@ deactivate V1
 
 NV -> V1 : chọn chặng, click Tiếp tục
 activate V1
-V1 -> C : chonChang(changId)
+V1 -> C : chonChang(changDuaId)
 activate C
-C -> DDAO : getByChang(changId)
+C -> DDAO : getByChang(changDuaId)
 activate DDAO
 DDAO -> DB : SELECT tblDangKyChang JOIN tblTayDua, tblDoiDua
 activate DB
@@ -248,10 +256,10 @@ deactivate C
 V2 --> NV : bảng kết quả có điểm
 
 NV -> V2 : click Lưu
-V2 -> C : luuKetQua(changId, dsKetQua)
+V2 -> C : luuKetQua(changDuaId, dsKetQua)
 activate C
 loop mỗi kết quả tay đua
-  C -> KDAO : them(ketQua)
+  C -> KDAO : insert(ketQua)
   activate KDAO
   KDAO -> DB : INSERT INTO tblKetQua ...
   activate DB

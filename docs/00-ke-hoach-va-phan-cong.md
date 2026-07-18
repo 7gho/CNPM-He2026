@@ -21,6 +21,9 @@
 | 2 | Đặc tả yêu cầu (chức năng + phi chức năng) | `docs/01-dac-ta-yeu-cau.md` | ✅ nội dung, ⬜ chốt |
 | 3 | Biểu đồ UC tổng quát | `docs/02-usecase-tong-quat.md` | ✅ blueprint, ⬜ vẽ VP |
 | 4 | Biểu đồ lớp thực thể + Thiết kế CSDL | `docs/03-lop-thuc-the-va-csdl.md` | ✅ blueprint, ⬜ vẽ VP |
+| 5 | Đặc tả UC gọn — danh mục & xác thực | `docs/04-dac-ta-danh-muc-va-auth.md` | ✅ xong |
+
+> **Ghi chú phạm vi:** các UC danh mục (quản lý mùa giải, tay đua, đội, chặng, đăng ký đội tham gia mùa) và Đăng nhập/Đổi mật khẩu là **chức năng hỗ trợ** — chỉ cần đặc tả UC gọn ở `docs/04`, **không** thuộc 4 module được phân công (mỗi module vẫn làm đủ 6 mục). Không phát sinh module thứ 5.
 
 ### 2.2. Phần mỗi thành viên tự làm (cho 1 module = 1 Use Case)
 Mỗi người làm đủ 6 mục sau cho module của mình (chi tiết trong README thư mục riêng):
