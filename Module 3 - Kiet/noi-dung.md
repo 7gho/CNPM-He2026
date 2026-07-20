@@ -95,16 +95,10 @@ stop
 
 ## 4. Biểu đồ lớp phân tích (Boundary / Control / Entity)
 
-<<<<<<< HEAD
 - **Boundary:**
   - `GDNhapKetQua` (màn hình duy nhất: chọn chặng → nhập kết quả → đối soát → lưu)
 - **Control:** `KetQuaControl` điều phối toàn bộ luồng và thực hiện logic xếp hạng, tính điểm
 - **Entity:** `ChangDua`, `DangKyChang`, `TayDua`, `DoiDua`, `KetQua`
-=======
-- **Boundary:** `GDChonChang` (cboChang, btnTiepTuc), `GDNhapKetQua` (tblKetQua: thoiGian/soVong/chkDNF, btnTinh, btnLuu)
-- **Control:** `KetQuaControl` điều phối luồng và tính điểm
-- **Entity (kèm phương thức nghiệp vụ):** `ChangDua`, `DangKyChang`, `TayDua`, `DoiDua`, `KetQua`
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 
 ```plantuml
 @startuml
@@ -128,12 +122,6 @@ class KetQuaControl <<control>> {
   xepHangVaTinhDiem(dsNhap : List<KetQua>) : List<KetQua>
   kiemTraKetQuaCu(changId : int) : boolean
   luuKetQua(changId : int, dsKetQua : List<KetQua>) : boolean
-=======
-  moManChon()
-  chonChang(changDuaId)
-  tinhDiem(dsKetQua)
-  luuKetQua(changDuaId, dsKetQua)
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 }
 
 class ChangDua <<entity>> {
@@ -147,16 +135,11 @@ class ChangDua <<entity>> {
 }
 
 class DangKyChang <<entity>> {
-<<<<<<< HEAD
   id : int
   changId : int
   tayDuaId : int
   doiDuaId : int
   getByChang(changId : int) : List<DangKyChang>
-=======
-  id
-  getByChang(changDuaId)
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 }
 
 class TayDua <<entity>> {
@@ -175,7 +158,6 @@ class DoiDua <<entity>> {
 }
 
 class KetQua <<entity>> {
-<<<<<<< HEAD
   id : int
   dangKyChangId : int
   thoiGian : double
@@ -186,21 +168,6 @@ class KetQua <<entity>> {
   getByChang(changId : int) : List<KetQua>
   xoaTheoChang(changId : int)
   them() : boolean
-=======
-  id
-  thoiGian
-  soVong
-  dnf
-  hang
-  diem
-  xepHangVaTinhDiem(dsKetQua)
-  insert()
-  update()
-}
-class DoiDua <<entity>> {
-  id
-  ten
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 }
 
 GDNhapKetQua --> KetQuaControl
@@ -214,13 +181,7 @@ DangKyChang "1" -- "1" DoiDua
 @enduml
 ```
 
-<<<<<<< HEAD
-=======
-> Quy tắc tính điểm (cài trong `xepHangVaTinhDiem`): sắp xếp tăng dần theo thời gian, tay đua DNF đẩy xuống cuối; bảng điểm `[25,18,15,12,10,8,6,4,2,1]` gán cho hạng 1..10; DNF hoặc hạng > 10 nhận 0 điểm.
->
-> **Ghi chú nghiệp vụ (ghi đè kết quả):** Khi chặng đã có kết quả từ trước, sau khi nhân viên xác nhận ghi đè, hệ thống `update()`/xóa toàn bộ kết quả cũ của chặng rồi tính lại điểm và lưu kết quả mới cho toàn bộ chặng (không cộng dồn lên bản ghi cũ).
 
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 ## 5. Thiết kế giao diện
 
 **Màn hình duy nhất — Nhập kết quả chặng (`m3-giaodien-nhapketqua.png`):**
@@ -259,14 +220,10 @@ Giao diện gồm hai phần hiển thị tuần tự trên cùng một màn hì
 
 - **View (jsp):** `gdNhapKetQua.jsp`, `doLuuKetQua.jsp`
 - **Controller:** `KetQuaController`
-<<<<<<< HEAD
 - **DAO:**
   - `ChangDuaDAO` — `getAll()`
   - `DangKyChangDAO` — `getByChang(changId)`
   - `KetQuaDAO` — `getByChang(changId)`, `deleteByChang(changId)`, `insert(ketQua)`
-=======
-- **DAO:** `ChangDuaDAO` (getAll), `DangKyChangDAO` (getByChang), `KetQuaDAO` (getByChang, insert, update)
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 - **Entity:** `ChangDua`, `DangKyChang`, `TayDua`, `DoiDua`, `KetQua`
 
 ```plantuml
@@ -341,15 +298,9 @@ deactivate C
 V --> NV : giao diện chọn chặng
 deactivate V
 
-<<<<<<< HEAD
 NV -> V : chọn chặng, click Tiếp tục
 activate V
 V -> C : chonChang(changId)
-=======
-NV -> V1 : chọn chặng, click Tiếp tục
-activate V1
-V1 -> C : chonChang(changDuaId)
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
 activate C
 C -> DDAO : getByChang(changDuaId)
 activate DDAO
@@ -383,7 +334,6 @@ deactivate C
 V --> NV : bảng đối soát (Hạng, Tên, Đội, TG, SV, Điểm)
 deactivate V
 
-<<<<<<< HEAD
 NV -> V : click Lưu
 activate V
 V -> C : luuKetQua(changId, dsKetQua)
@@ -398,12 +348,6 @@ KDAO --> C : coKetQuaCu = false
 deactivate KDAO
 
 loop mỗi ketQua trong dsKetQua
-=======
-NV -> V2 : click Lưu
-V2 -> C : luuKetQua(changDuaId, dsKetQua)
-activate C
-loop mỗi kết quả tay đua
->>>>>>> 3e4a8c40605e72516e307674501884f37d6bc6ca
   C -> KDAO : insert(ketQua)
   activate KDAO
   KDAO -> DB : INSERT INTO tblKetQua\n(dangKyChangId, thoiGian, soVong, dnf, hang, diem)\nVALUES (?, ?, ?, ?, ?, ?)
