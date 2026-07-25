@@ -125,70 +125,60 @@ TT --> UC7
 
 ## 3. Biểu đồ hoạt động (Activity)
 
-> Sử dụng **swimlane** để phân biệt rõ hoạt động của Nhân viên và Trọng tài. Biểu đồ bao gồm đầy đủ: luồng chính, 2 ngoại lệ phía Nhân viên, và 3 luồng extend phía Trọng tài.
-
 ```plantuml
 @startuml
 |Nhân viên|
 start
 :Chọn menu Nhập kết quả chặng;
-:Hệ thống hiển thị dropdown chọn chặng đua;
-:Chọn chặng đua, click Tiếp tục;
-:Hệ thống hiển thị bảng danh sách\ntay đua đã đăng ký chặng;
-:Nhập thời gian hoàn thành, số vòng chạy,\ntick DNF (nếu có) cho từng tay đua;
-:Click nút "Tính kết quả";
+:Hệ thống hiển thị dropdown chọn chặng menu;
+:Chọn chặng đua;
 
-if (Tất cả tay đua không DNF\nđều có thời gian hợp lệ?) then (không)
-  :Báo lỗi: "Vui lòng nhập thời gian\nhợp lệ cho tay đua chưa DNF";
-  :Yêu cầu nhập lại;
-  stop
-else (có)
-endif
+while (Kết quả nhập đã hợp lệ?) is (không hợp lệ)
+  :Hệ thống hiển thị bảng danh sách\ntay đua đã đăng ký chặng;
+  :Nhập thời gian hoàn thành, số vòng chạy,\ntick DNF (nếu có) cho từng tay đua;
+  :Báo lỗi "Vui lòng nhập thời gian\nhợp lệ cho tay đua chưa DNF";
+endwhile (hợp lệ)
 
-:Sắp xếp tăng dần theo thời gian về đích\n(tay đua DNF xếp cuối);
-:Gán điểm top 10: 25, 18, 15, 12, 10, 8, 6, 4, 2, 1\n(tay đua DNF trong top 10 nhận 0 điểm);
-:Hiển thị bảng đối soát:\nHạng | Tên tay đua | Tên đội | Thời gian | Số vòng | Điểm;
-:Click nút "Lưu";
+:Hệ thống sắp xếp tay đua tăng dần\ntheo thời gian (tay đua DNF xếp cuối);
+:Hệ thống gán điểm top 10: 25, 18, 15, 12, 10, 8, 6, 4, 2, 1\n(tay đua DNF trong top 10 nhận 0 điểm);
+:Hệ thống hiển thị bảng đối soát:\nHạng | Tên tay đua | Tên đội | Thời gian | Số vòng | Điểm;
+:Click lưu;
 
 if (Chặng đua đã có kết quả cũ?) then (có)
-  :Hiển thị cảnh báo:\n"Chặng đua này đã có kết quả,\nbạn có muốn ghi đè?";
-  if (Nhân viên xác nhận Đồng ý?) then (không — Hủy)
+  :Hệ thống hiển thị cảnh báo:\n"Chặng đua này đã có kết quả,\nbạn có muốn ghi đè?";
+  if (Nhân viên xác nhận ghi đè?) then (hủy)
     :Giữ nguyên kết quả cũ, không lưu;
-    stop
-  else (có — Đồng ý)
-    :Xóa kết quả cũ của chặng trong CSDL;
+  else (xác nhận)
+    :Xóa kết quả cũ và cập nhật\nkết quả mới của chặng;
+    :Hệ thống lưu kết quả;
   endif
 else (không)
+  :Hệ thống lưu kết quả;
 endif
 
-:Lưu kết quả (trạng thái: chờ phê duyệt);
-
-if (Đội đua nộp kháng nghị?) then (có)
+if (Đội đua nộp đơn kháng nghị?) then (có)
   :Tiếp nhận kháng nghị từ đội đua;
-  :Ghi nhận nội dung kháng nghị vào CSDL\n(trạng thái: chờ xử lý);
+  :Hệ thống ghi nhận nội dung kháng nghị\nvà gửi cho bên xử lý;
+
   |Trọng tài|
-  :Xem xét kháng nghị;
+  repeat :Xem xét kháng nghị;
   if (Chấp nhận kháng nghị?) then (có)
-    :Áp dụng án phạt\n(phạt giây hoặc phạt vị trí);
-    :Hệ thống tính lại xếp hạng và điểm;
-    :Lưu án phạt vào CSDL;
-  else (không — Từ chối)
-    :Cập nhật kháng nghị: trạng thái = từ chối;
+    :Đối chiếu kết quả qua camera\nvới kháng nghị;
+    if (Kháng nghị thành công?) then (có)
+      :Hệ thống cập nhật lại điểm xếp hạng;
+    else (không)
+    endif
+  else (từ chối)
   endif
-  |Nhân viên|
+  repeat while (Còn kháng nghị từ đội đua khác?) is (còn) not (hết)
+
 else (không)
+  |Trọng tài|
 endif
 
-|Trọng tài|
-:Kiểm tra bảng kết quả chặng;
-if (Còn kháng nghị chưa xử lý?) then (có)
-  :Báo lỗi: "Còn kháng nghị chưa xử lý,\nkhông thể phê duyệt";
-  stop
-else (không)
-endif
-:Click Phê duyệt;
-:Cập nhật trạng thái kết quả: chính thức;
-:Thông báo phê duyệt thành công;
+:Phê duyệt kết quả;
+:Click phê duyệt;
+:Hệ thống thông báo phê duyệt thành công;
 stop
 @enduml
 ```
@@ -295,6 +285,7 @@ class KetQua <<entity>> {
   thoiGian : double
   soVong : int
   dnf : boolean
+  dnq : boolean
   hang : int
   diem : int
   trangThai : String
@@ -427,7 +418,9 @@ package Entity {
   class DangKyChang
   class TayDua
   class DoiDua
-  class KetQua
+  class KetQua {
+    dnq : boolean
+  }
   class KhangNghi
   class AnPhat
 }
