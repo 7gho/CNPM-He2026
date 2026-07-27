@@ -1,60 +1,80 @@
-# Thử import PlantUML vào Visual Paradigm
+# Cách import PlantUML vào Visual Paradigm
 
-Thư mục thử nghiệm plugin [nbourdi/PlantUML-VP-Plugin](https://github.com/nbourdi/PlantUML-VP-Plugin).
-Nếu import chạy tốt thì nhóm đỡ phải kéo-thả tay 29 biểu đồ.
+## Plugin đã cài sẵn trên máy
 
-**Đây là thư mục nháp.** Nội dung trong này được tách ra từ các khối ```plantuml trong
-`Module N/noi-dung.md`, `docs/02`, `docs/03` — sửa ở đó mới là sửa thật, sửa ở đây không tính.
-Thử xong có thể xoá cả thư mục.
+Kiểm tra: `C:\Users\K\AppData\Roaming\VisualParadigm\plugins\plugin-plantuml-vp-v1.0.0`
 
-## Cách thử
+Nếu máy khác chưa có thì tải [plugin-plantuml-vp-v1.0.0.zip](https://github.com/nbourdi/PlantUML-VP-Plugin/releases/download/v1.0.0/plugin-plantuml-vp-v1.0.0.zip)
+rồi trong Visual Paradigm vào **Help → Install Plugin → Install from a zip of plugin**, chọn file zip, khởi động lại VP.
 
-1. Cài plugin theo hướng dẫn của repo trên (Visual Paradigm → `Help` → `Install Plugin`).
-2. Import lần lượt vài file, **bắt đầu bằng 4 file dễ nhất** để biết plugin có chạy không:
-   `m1-trangthai.puml` · `m1-uc-chitiet.puml` · `chung-dao-kethua.puml` · `chung-package-trienkhai.puml`
-3. Nếu 4 file trên vào được thì thử tiếp file nặng: `m4-tuantu.puml` (157 dòng), `m2-lop-phantich.puml` (120 dòng).
-4. Ghi lại file nào lỗi để nhóm biết loại nào phải vẽ tay.
+## Import — 4 bước
 
-## Danh sách file
+1. Mở Visual Paradigm, mở project `.vpp` muốn nhập vào.
+   Nên tạo project rỗng mới để thử trước, đừng nhập thẳng vào project đang làm.
+2. Vào tab **Project** trên ribbon.
+3. Chọn **Import → PlantUML...**
+4. Trỏ tới thư mục này (`test import plantuml to vp`) hoặc tới một file `.puml` cụ thể.
 
-Tên file trùng với tên ảnh cần export ở `docs/00-ke-hoach-va-phan-cong.md` mục 7.
+Xong. Biểu đồ hiện trong Project Browser bên trái.
 
-| File | Loại biểu đồ | Nguồn |
+> Đường dẫn menu lấy từ `plugin.xml` của plugin: `ribbonPath="Project/Import/XML"`.
+
+## Export ngược lại (nếu cần)
+
+- **Project → Export → PlantUML...** — xuất toàn bộ project ra `.puml`
+- **Project → Export → Active Diagram as PlantUML...** — chỉ xuất biểu đồ đang mở
+
+## Nếu menu không hiện
+
+Plugin cài rồi mà không thấy **Project → Import → PlantUML...** thì khởi động lại VP một lần nữa.
+Vẫn không có thì dùng dòng lệnh — `Plugin.bat` đã có sẵn ở `bin`:
+
+```bat
+cd /d "C:\Program Files\Visual Paradigm CE 17.2\bin"
+Plugin.bat -project "C:\Users\K\Documents\VPProjects\thu-plantuml.vpp" -pluginid "plugins.plantUML" -pluginargs -action "import" -path "e:\HK3-N4\cnpm\test import plantuml to vp"
+```
+
+Đổi `thu-plantuml.vpp` thành tên project của bạn. Lệnh này nhập **cả thư mục** (29 biểu đồ) một lượt.
+
+## Nên thử file nào trước
+
+Đừng nhập cả 29 file ngay. Thử 2 file nhẹ nhất để biết plugin có chạy không:
+
+| File | Dòng | Loại |
 |---|---|---|
-| `m1-uc-chitiet.puml` · `m2-` · `m3-` · `m4-` | Use Case | `Module N/noi-dung.md` mục 1 |
-| `m1-trangthai.puml` · `m2-` · `m3-` · `m4-` | State Machine | mục 3 |
-| `m1-lop-phantich.puml` · `m2-` · `m3-` · `m4-` | Class | mục 4 |
-| `m1-lop-mvc.puml` · `m2-` · `m3-` · `m4-` | Class | mục 5 |
-| `m1-hoatdong.puml` · `m2-` · `m3-` · `m4-` | Activity (new syntax) | mục 6 |
-| `m1-tuantu.puml` · `m2-` · `m3-` · `m4-` | Sequence | mục 7 |
-| `chung-uc-tongquat.puml` | Use Case | `docs/02` mục 4 |
-| `chung-lop-thucthe-phantich.puml` | Class | `docs/03` mục 3.1 |
-| `chung-lop-thucthe-thietke.puml` | Class | `docs/03` mục 3.2 |
-| `chung-package-trienkhai.puml` | Package / Component | `docs/03` mục 6 |
-| `chung-dao-kethua.puml` | Class | `docs/03` mục 4 |
+| `m1-trangthai.puml` | 12 | State Machine |
+| `m1-uc-chitiet.puml` | 23 | Use Case |
 
-Cả 29 file đã qua `plantuml -checkonly`: **0 lỗi cú pháp**. Nếu import hỏng thì là do plugin, không phải do file.
+Chạy được thì thử file nặng nhất: `m4-tuantu.puml` (157 dòng, Sequence).
 
-## Bốn chỗ nhiều khả năng plugin nuốt không trôi
+## Danh sách 29 file
 
-Thử xong thì biết ngay — ghi lại ở đây để khỏi mất công đoán:
+Tên file trùng tên ảnh cần export ở `docs/00-ke-hoach-va-phan-cong.md` mục 7 — import xong export ra là dùng luôn.
 
-1. **`class "gdChinhNV.jsp" as gdChinhNV`** (file `*-lop-mvc.puml`). Dạng đặt bí danh này có thể bị plugin
-   lấy `gdChinhNV` làm tên lớp và bỏ mất đuôi `.jsp`. Nếu vậy, sửa tay tên lớp sau khi import.
-2. **`partition "Xử lí tại gdXxx.jsp"`** (file `*-hoatdong.puml`). Plugin ghi là hỗ trợ activity "new syntax"
-   nhưng không nói có nhận `partition` không. Đây là khối dễ hỏng nhất.
-   Nhắc lại: khi vẽ, node `XxxDAO: tenHam()` phải nằm **ngoài** khung, nối bằng mũi tên — plugin
-   chắc chắn không tự làm được việc đó, phải kéo tay.
-3. **Tiếng Việt có dấu.** Toàn bộ file lưu UTF-8 không BOM. Nếu VP hiện ô vuông hoặc dấu hỏi thì là
-   lỗi encoding lúc đọc file, thử đổi font trong VP trước khi kết luận plugin lỗi.
-4. **`chung-package-trienkhai.puml`** dùng package lồng package. Plugin liệt kê Component và Deployment
-   chứ không liệt kê Package diagram, nên file này có thể vào sai loại biểu đồ.
+| File | Loại | Nguồn |
+|---|---|---|
+| `m1-uc-chitiet` · `m2-` · `m3-` · `m4-` | Use Case | `Module N/noi-dung.md` mục 1 |
+| `m1-trangthai` · `m2-` · `m3-` · `m4-` | State Machine | mục 3 |
+| `m1-lop-phantich` · `m2-` · `m3-` · `m4-` | Class | mục 4 |
+| `m1-lop-mvc` · `m2-` · `m3-` · `m4-` | Class | mục 5 |
+| `m1-hoatdong` · `m2-` · `m3-` · `m4-` | Activity | mục 6 |
+| `m1-tuantu` · `m2-` · `m3-` · `m4-` | Sequence | mục 7 |
+| `chung-uc-tongquat` | Use Case | `docs/02` mục 4 |
+| `chung-lop-thucthe-phantich` | Class | `docs/03` mục 3.1 |
+| `chung-lop-thucthe-thietke` | Class | `docs/03` mục 3.2 |
+| `chung-package-trienkhai` | Package | `docs/03` mục 6 |
+| `chung-dao-kethua` | Class | `docs/03` mục 4 |
+
+Cả 29 file đã qua `plantuml -checkonly`: 0 lỗi cú pháp. Import hỏng là do plugin, không phải do file.
 
 ## Sau khi import vẫn phải chỉnh tay
 
-Plugin chỉ dựng phần tử và quan hệ, không dựng được cách trình bày mà thầy yêu cầu:
+Plugin dựng phần tử và quan hệ, không dựng được cách trình bày:
 
-- **Biểu đồ tuần tự:** bật *Show sequence number* để có số thứ tự message chạy suốt.
-- **Biểu đồ lớp thiết kế:** xếp lại ba tầng theo hàng — `gdXxx.jsp` trên, `XxxDAO` giữa, lớp thực thể dưới.
-- **Biểu đồ hoạt động:** tách node DAO ra ngoài khung `Xử lí tại gdXxx.jsp`.
-- **Biểu đồ UC chi tiết:** kiểm tra `<<include>>` / `<<extend>>` và mũi tên kế thừa `Đăng nhập` ← `NV đăng nhập`.
+- **Tuần tự:** bật *Show sequence number* để có số message chạy suốt.
+- **Lớp thiết kế:** xếp lại ba tầng theo hàng — `gdXxx.jsp` trên, `XxxDAO` giữa, lớp thực thể dưới.
+- **Hoạt động:** tách node `XxxDAO: tenHam()` ra ngoài khung `Xử lí tại gdXxx.jsp`.
+
+---
+
+Đây là thư mục nháp. Sửa blueprint thì sửa trong `Module N/noi-dung.md`, không sửa ở đây.
