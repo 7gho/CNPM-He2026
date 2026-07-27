@@ -11,7 +11,7 @@ Module 3 cần đúng **6 ảnh**:
 | `m3-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4, mẫu Hình 3.6) | có ảnh — **sửa lại** |
 | `m3-lop-mvc.png` | Biểu đồ lớp thiết kế (jsp / DAO / model) (mục 5, mẫu Hình 4.4) | có ảnh — **vẽ lại** |
 | `m3-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mục 6, mẫu Hình 4.9) | có ảnh — **vẽ lại** |
-| `m3-tuantu.png` | Biểu đồ tuần tự (mục 7, mẫu Hình 4.10/4.12) | chưa có |
+| `m3-tuantu.png` | Biểu đồ tuần tự (mục 7, mẫu Hình 4.10/4.12) | có ảnh — **vẽ lại** |
 
 > Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng bảng phác thảo xen giữa các bước Kịch bản chính ở mục 2 của `../noi-dung.md`. Vì vậy `m3-giaodien-nhapketqua.png` không dùng đến.
 >
@@ -56,3 +56,17 @@ Tên phương thức lấy đúng theo mục 5 của `../noi-dung.md` (`getDSCha
 ### `m3-hoatdong.png` — vẽ lại
 
 Bản hiện tại là biểu đồ hoạt động **nghiệp vụ** (swimlane theo người thực hiện). Mục 6 cần biểu đồ hoạt động **pha thiết kế**: khung `Xử lí tại gdXxx.jsp` cho từng trang, mỗi hành động ứng với một phương thức đã thiết kế ở mục 5, lời gọi tầng dữ liệu ghi rõ `XxxDAO: tenHam()`.
+
+### `m3-tuantu.png` — vẽ lại
+
+| Cần sửa | Hiện tại | Đúng phải là |
+|---|---|---|
+| Lifeline trang | `Login.jsp`, `NhanVien.jsp`, `Chang.jsp`, `ChangChiTiet.jsp` | `gdChinhNV.jsp`, `gdChonChang.jsp`, `gdNhapKetQua.jsp`, `doLuuKetQua.jsp` |
+| Đăng nhập | vẽ cả luồng đăng nhập trong biểu đồ của module | bỏ — đăng nhập dùng chung toàn hệ thống, không có lifeline riêng; luồng bắt đầu bằng `Nhân viên click Cập nhật kết quả chặng đua` trên `gdChinhNV.jsp` |
+| Nhãn message | `actionperformed()` | trang web không có `actionPerformed`. Nhãn để cực ngắn: `goi`, `tra ve`, `hien thi`, `chon …`, `click …`; **chỉ self-call mới ghi tên hàm** |
+| Đánh số | phân cấp `1.1.1.1.1.1` | đánh số **phẳng, liên tục 1 → 52** (bật *Show sequence number* trong Visual Paradigm), khớp 1-1 với 52 dòng thuyết minh ở mục 7.1 |
+| Lifeline DAO | thiếu `MuaGiaiDAO`, `DangKyChangDAO`; tên hàm `getAllChang` / `getAllTayDua` / `createKetQua` | đủ `MuaGiaiDAO`, `ChangDuaDAO`, `DangKyChangDAO`, `KetQuaDAO` với đúng tên hàm ở mục 5 |
+| Luồng lưu | gọi thẳng DAO | lớp thực thể `KetQua` tự gọi `setter()` đóng gói **trước**, rồi `doLuuKetQua.jsp` mới gọi `KetQuaDAO.luuKetQua()` |
+| Kết thúc | dừng ở thông báo | `thong bao thanh cong` → `click OK` → `goi` → `gdChinhNV.jsp` `hien thi` |
+
+Bản render tham chiếu đúng chuẩn: `ref/7-2-bieu-do-tuan-tu-sequence.png`.
