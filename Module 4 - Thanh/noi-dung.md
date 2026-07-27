@@ -9,16 +9,15 @@
 | `m4-uc-chitiet.png` | UC chi tiết (mục 1) |
 | `m4-trangthai.png` | Biểu đồ trạng thái (mục 3) |
 | `m4-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4) |
-| `m4-giaodien-xephang.png` | Giao diện Bảng tổng sắp (mục 5) |
-| `m4-giaodien-chitietxephang.png` | Giao diện Chi tiết theo chặng (mục 5) |
-| `m4-giaodien-traogiai.png` | Giao diện Trao giải (mục 5) |
-| `m4-lop-mvc.png` | Biểu đồ lớp thiết kế view/DAO/model (mục 6) |
-| `m4-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mục 7) |
-| `m4-tuantu.png` | Biểu đồ tuần tự (mục 8) |
+| `m4-lop-mvc.png` | Biểu đồ lớp thiết kế view/DAO/model (mục 5) |
+| `m4-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mục 6) |
+| `m4-tuantu.png` | Biểu đồ tuần tự (mục 7) |
 
 > **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
 >
-> **Lưu ý:** module có **3 ảnh giao diện** (Bảng tổng sắp, Chi tiết theo chặng, Trao giải) khớp 1-1 với 3 màn hình hiển thị; ảnh `m4-giaodien-quyettoan.png` cũ bị bỏ. Bốn ảnh đã export trước đây (`m4-uc-chitiet`, `m4-hoatdong`, `m4-lop-mvc`, `m4-tuantu`) đều **phải vẽ lại** vì các biểu đồ tương ứng đã đổi; `m4-trangthai.png` là ảnh mới.
+> **Lưu ý:** bốn ảnh đã export trước đây (`m4-uc-chitiet`, `m4-hoatdong`, `m4-lop-mvc`, `m4-tuantu`) đều **phải vẽ lại** vì các biểu đồ tương ứng đã đổi; `m4-trangthai.png` là ảnh mới.
+>
+> Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo trong mục 2.2.
 >
 > **Ghi chú cho người vẽ (mẫu hình trong giáo trình PDF):**
 > - Biểu đồ trạng thái: vẽ theo mẫu **Hình 3.9/3.11** (máy trạng thái đơn giản, nhãn cung `[hành động]`).
@@ -70,6 +69,8 @@ QL -- UC
 
 ## 2. Đặc tả Use Case
 
+### 2.1. Bảng đặc tả
+
 | Mục | Nội dung |
 |---|---|
 | **Use case** | Quyết toán và trao giải cuối mùa |
@@ -78,6 +79,115 @@ QL -- UC
 | **Hậu điều kiện** | Quyết định trao giải của mùa giải (giải cá nhân hạng 1–3, giải đồng đội hạng 1–3 kèm tiền thưởng) được lưu vào CSDL; danh sách trao giải được in ra |
 | **Kịch bản chính** | 1. Quản lý click "Quyết toán mùa giải" trên trang chính của hệ thống.<br>2. Hệ thống lấy mùa giải hiện tại `FIA Formula One World Championship 2025` và hiển thị màn **Bảng tổng sắp** kèm **danh sách chọn chặng** gồm 6 chặng `R01 Melbourne, R02 Thượng Hải, R06 Monaco, R10 Silverstone, R16 Monza, R24 Abu Dhabi`.<br>3. Quản lý chọn chặng `Abu Dhabi` — **chặng cuối** — từ danh sách. Hệ thống kiểm tra cả 6/6 chặng đều đã có kết quả; cộng dồn điểm, tổng thời gian và số lần đạt từng thứ hạng của mỗi tay đua và mỗi đội **tính đến chặng đã chọn**, rồi sắp xếp theo **3 tầng**: (1) tổng điểm giảm dần; (2) bằng điểm → **countback** (so số lần về nhất, rồi về nhì, về ba…); (3) countback vẫn bằng → **tổng thời gian tăng dần**. Hệ thống hiển thị 2 bảng: bảng *Xếp hạng cá nhân* có các cột `Hạng \| Tên tay đua \| Quốc tịch \| Tên đội \| Tổng điểm \| Tổng thời gian`, 12 dòng, dòng đầu là `1 \| Lando Norris \| Anh \| McLaren \| 119 \| 9:03:19.885`, dòng thứ hai là `2 \| Max Verstappen \| Hà Lan \| Red Bull \| 119 \| 9:03:12.418`; bảng *Xếp hạng đội* có các cột `Hạng \| Tên đội \| Hãng \| Tổng điểm \| Tổng thời gian`, 6 dòng, dòng đầu là `1 \| McLaren \| Mercedes \| 214 \| 18:07:21.092`. Mỗi dòng của 2 bảng là một liên kết click được. Nút [Tiếp tục] **đang active** (vì chặng được chọn là chặng cuối và mọi chặng đều có kết quả).<br>4. Quản lý xem bảng tổng sắp và click [Tiếp tục].<br>5. Hệ thống hiển thị màn **Trao giải**: bảng *Danh sách trao giải* có các cột `Loại giải \| Hạng \| Tay đua/Đội \| Tổng điểm \| Tiền thưởng` với 6 dòng (cá nhân hạng 1–3, đội hạng 1–3), **cột Tiền thưởng đang rỗng**; 6 ô nhập mức thưởng (cá nhân hạng 1/2/3, đội hạng 1/2/3) **đang rỗng**; nút [Tính thưởng] đang active, nút [Lưu] **chưa được active**.<br>6. Quản lý nhập mức thưởng: cá nhân hạng 1 = `5.000.000.000`, hạng 2 = `3.000.000.000`, hạng 3 = `2.000.000.000`; đội hạng 1 = `20.000.000.000`, hạng 2 = `12.000.000.000`, hạng 3 = `8.000.000.000` rồi click [Tính thưởng].<br>7. Hệ thống điền cột Tiền thưởng cho 6 dòng: `Cá nhân \| 1 \| Lando Norris \| 119 \| 5.000.000.000`, `Cá nhân \| 2 \| Max Verstappen \| 119 \| 3.000.000.000`, `Cá nhân \| 3 \| Oscar Piastri \| 95 \| 2.000.000.000`, `Đội \| 1 \| McLaren \| 214 \| 20.000.000.000`, `Đội \| 2 \| Ferrari \| 132 \| 12.000.000.000`, `Đội \| 3 \| Red Bull \| 121 \| 8.000.000.000`; nút [Lưu] **chuyển sang active**.<br>*(Lặp lại các bước 6–7 cho đến khi quản lý ưng ý với mức thưởng.)*<br>8. Quản lý kiểm tra danh sách và click [Lưu].<br>9. Hệ thống lưu 6 bản ghi trao giải, in danh sách trao giải mùa giải 2025 và hiển thị thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025`.<br>10. Quản lý click OK; hệ thống quay về trang chính của quản lý. |
 | **Ngoại lệ** | 2a. Không có mùa giải nào ở trạng thái `Đã kết thúc` → hệ thống báo `Không có mùa giải nào đủ điều kiện quyết toán`, quay về trang chính, dừng.<br>3a. Quản lý click vào dòng `Max Verstappen` trên bảng xếp hạng cá nhân → hệ thống hiển thị màn **Chi tiết theo chặng**: tiêu đề `Max Verstappen — Red Bull`, bảng chi tiết có các cột `Tên chặng \| Hạng về đích \| Điểm \| Thời gian về đích`, 6 dòng, dòng đầu là `Australian Grand Prix \| 2 \| 18 \| 1:28:06.334`; quản lý click [Quay lại] → về bước 3. Khi click 1 dòng **đội**, hệ thống hiển thị bảng chi tiết đội với các cột `Tên chặng \| Tổng điểm \| Tổng thời gian của 2 tay đua`.<br>3b. Quản lý chọn chặng **giữa mùa** (ví dụ `R10 Silverstone`) → hệ thống hiển thị 2 bảng xếp hạng **tính đến chặng đó**; nút [Tiếp tục] **chưa active** vì chưa phải chặng cuối.<br>3c. Mùa giải còn chặng chưa có kết quả (ví dụ `R24 Abu Dhabi` chưa nhập) → hệ thống vẫn cho xem bảng xếp hạng tính đến chặng gần nhất đã có kết quả, nhưng báo `Mùa giải 2025 còn 1 chặng chưa có kết quả (R24 — Abu Dhabi Grand Prix), chưa thể quyết toán`, nút [Tiếp tục] **chưa active**.<br>3d. Hai tay đua (hoặc hai đội) bằng tổng điểm → phân định bằng **countback**: `Lando Norris` và `Max Verstappen` cùng 119 điểm, Norris có 3 lần về nhất so với 2 của Verstappen nên Norris xếp trên (dù tổng thời gian của Verstappen nhỏ hơn).<br>3e. Countback vẫn không phân định được sau khi so hết các thứ hạng → hệ thống so **tổng thời gian tăng dần**: bên có tổng thời gian nhỏ hơn xếp trên (đúng mô tả bài toán).<br>6a. Ô mức thưởng bỏ trống, nhập chữ hoặc nhập số âm → hệ thống báo `Mức thưởng phải là số không âm`, giữ nguyên màn Trao giải, nút [Lưu] vẫn chưa active.<br>8a. Mùa giải đã có quyết định trao giải trước đó → hệ thống cảnh báo `Mùa giải 2025 đã có quyết định trao giải, xác nhận ghi đè?`; chọn Có → xoá quyết định cũ rồi lưu bản mới; chọn Không → huỷ thao tác lưu, giữ nguyên màn Trao giải. |
+
+### 2.2. Giao diện phác thảo
+
+> Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh.
+
+Module có 3 màn hình hiển thị nghiệp vụ, khớp 1-1 với 3 UC con màn hình và 3 lớp biên ở mục 1 và mục 4; trang chính `gdChinhQL.jsp` là trang chủ chung của hệ thống nên không phác thảo riêng. Dữ liệu minh hoạ lấy từ bộ dữ liệu mẫu mùa 2025 (`docs/03` mục 5). Quy ước ký hiệu trong khung: `[ ... ]` = ô nhập hoặc nút; `[ v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích.
+
+**Màn 1 — Bảng tổng sắp** (trang `gdXepHang.jsp`, lớp biên `GDXepHang`)
+
+```
++--------------------------------------------------------------------------------+
+|  BẢNG TỔNG SẮP — FIA Formula One World Championship 2025                       |
++--------------------------------------------------------------------------------+
+|  Chặng: [ R24 Abu Dhabi                  v ]   ( 6/6 chặng đã có kết quả )     |
++--------------------------------------------------------------------------------+
+|  Xếp hạng cá nhân:                                                             |
+|  ( bảng 1 bên dưới — mỗi dòng là một liên kết click được )                     |
++--------------------------------------------------------------------------------+
+|  Xếp hạng đội:                                                                 |
+|  ( bảng 2 bên dưới — mỗi dòng là một liên kết click được )                     |
++--------------------------------------------------------------------------------+
+|  ( Xếp hạng: tổng điểm giảm dần → countback → tổng thời gian tăng dần )        |
+|                                                            [ Tiếp tục ]        |
++--------------------------------------------------------------------------------+
+```
+
+Bảng *Xếp hạng cá nhân* — 12 dòng, trích 3 dòng đầu:
+
+| Hạng | Tên tay đua | Quốc tịch | Tên đội | Tổng điểm | Tổng thời gian |
+|---|---|---|---|---|---|
+| 1 | Lando Norris | Anh | McLaren | 119 | 9:03:19.885 |
+| 2 | Max Verstappen | Hà Lan | Red Bull | 119 | 9:03:12.418 |
+| 3 | Oscar Piastri | Úc | McLaren | 95 | 9:04:01.207 |
+
+Bảng *Xếp hạng đội* — 6 dòng, trích 3 dòng đầu:
+
+| Hạng | Tên đội | Hãng | Tổng điểm | Tổng thời gian |
+|---|---|---|---|---|
+| 1 | McLaren | Mercedes | 214 | 18:07:21.092 |
+| 2 | Ferrari | Ferrari | 132 | 18:10:03.757 |
+| 3 | Red Bull | Honda RBPT | 121 | 18:12:45.433 |
+
+Danh sách thả xuống chọn chặng ứng với thuộc tính `-inChangDua` của lớp biên; hai bảng xếp hạng ứng với `-outsubXHCaNhan` và `-outsubXHDoi`; nút [Tiếp tục] ứng với `-subTiepTuc`. Bảng xếp hạng luôn được tính **đến chặng đang chọn**, nên đổi chặng trong danh sách thì hai bảng được tính lại. Hai dòng đầu bảng cá nhân bằng 119 điểm nên được tô nền nhạt kèm chú thích `Phân định bằng countback (số lần về nhất)`. Nút [Tiếp tục] **chưa active** khi mới vào màn hoặc khi chặng đang chọn không phải chặng cuối, và **chuyển sang active** khi chặng đang chọn là chặng cuối và cả 6/6 chặng đều đã có kết quả. Click 1 dòng bất kỳ của hai bảng → chuyển sang màn **Chi tiết theo chặng** (`gdChiTietXepHang.jsp`); click [Tiếp tục] → chuyển sang màn **Trao giải** (`gdTraoGiai.jsp`).
+
+**Màn 2 — Chi tiết theo chặng** (trang `gdChiTietXepHang.jsp`, lớp biên `GDChiTietXepHang`)
+
+```
++--------------------------------------------------------------------------------+
+|  CHI TIẾT THEO CHẶNG — Max Verstappen — Red Bull                               |
++--------------------------------------------------------------------------------+
+|  ( phạm vi: tính đến chặng R24 Abu Dhabi )                                     |
++--------------------------------------------------------------------------------+
+|  Kết quả từng chặng:                                                           |
+|  ( bảng bên dưới )                                                             |
++--------------------------------------------------------------------------------+
+|                                                            [ Quay lại ]        |
++--------------------------------------------------------------------------------+
+```
+
+Bảng chi tiết khi click 1 dòng **tay đua** — 6 dòng, trích dòng đầu:
+
+| Tên chặng | Hạng về đích | Điểm | Thời gian về đích |
+|---|---|---|---|
+| Australian Grand Prix | 2 | 18 | 1:28:06.334 |
+
+Bảng chi tiết khi click 1 dòng **đội** (ví dụ `McLaren — Mercedes`) — 6 dòng, trích dòng đầu:
+
+| Tên chặng | Tổng điểm | Tổng thời gian của 2 tay đua |
+|---|---|---|
+| Australian Grand Prix | 35 | 2:56:36.414 |
+
+Tiêu đề tên đối tượng ứng với thuộc tính `-outTenDoiTuong`, bảng chi tiết ứng với `-outBangChiTiet`, nút [Quay lại] ứng với `-subQuayLai`. Đây là màn chỉ đọc, không có ô nhập nên nút [Quay lại] **luôn active** ngay khi vào màn. Số cột của bảng chi tiết đổi theo loại đối tượng được click: 4 cột với tay đua, 3 cột với đội. Phạm vi dữ liệu vẫn là "tính đến chặng đang chọn" ở màn Bảng tổng sắp, nên nếu chọn chặng `R01 Melbourne` thì bảng chỉ còn 1 dòng. Click [Quay lại] → trở về màn **Bảng tổng sắp**, giữ nguyên chặng đang chọn.
+
+**Màn 3 — Trao giải** (trang `gdTraoGiai.jsp`, lớp biên `GDTraoGiai`)
+
+```
++--------------------------------------------------------------------------------+
+|  TRAO GIẢI MÙA GIẢI — FIA Formula One World Championship 2025                  |
++--------------------------------------------------------------------------------+
+|  Mức thưởng (VNĐ):                                                             |
+|    Giải cá nhân    Hạng 1 [ 5.000.000.000  ]                                   |
+|                    Hạng 2 [ 3.000.000.000  ]                                   |
+|                    Hạng 3 [ 2.000.000.000  ]                                   |
+|    Giải đồng đội   Hạng 1 [ 20.000.000.000 ]                                   |
+|                    Hạng 2 [ 12.000.000.000 ]                                   |
+|                    Hạng 3 [ 8.000.000.000  ]                                   |
+|                                                         [ Tính thưởng ]        |
++--------------------------------------------------------------------------------+
+|  Danh sách trao giải:                                                          |
+|  ( bảng bên dưới )                                                             |
++--------------------------------------------------------------------------------+
+|                                                                 [ Lưu ]        |
++--------------------------------------------------------------------------------+
+```
+
+Bảng *Danh sách trao giải* — 6 dòng, hiển thị sau khi click [Tính thưởng]:
+
+| Loại giải | Hạng | Tay đua/Đội | Tổng điểm | Tiền thưởng |
+|---|---|---|---|---|
+| Cá nhân | 1 | Lando Norris | 119 | 5.000.000.000 |
+| Cá nhân | 2 | Max Verstappen | 119 | 3.000.000.000 |
+| Cá nhân | 3 | Oscar Piastri | 95 | 2.000.000.000 |
+| Đội | 1 | McLaren | 214 | 20.000.000.000 |
+| Đội | 2 | Ferrari | 132 | 12.000.000.000 |
+| Đội | 3 | Red Bull | 121 | 8.000.000.000 |
+
+Sáu ô nhập mức thưởng ứng với thuộc tính `-inMucThuong`, nút [Tính thưởng] ứng với `-subTinhThuong`, bảng danh sách trao giải ứng với `-outDSTraoGiai`, nút [Lưu] ứng với `-subLuu`. Khi mới vào màn, cả 6 ô nhập đều rỗng và **cột Tiền thưởng của bảng cũng rỗng** (4 cột đầu đã có sẵn dữ liệu top 3 cá nhân và top 3 đội); nút [Tính thưởng] **đang active**, nút [Lưu] **chưa active**. Sau khi nhập đủ 6 mức thưởng là số không âm và click [Tính thưởng], hệ thống điền cột Tiền thưởng và nút [Lưu] **chuyển sang active**; quản lý có thể sửa mức thưởng rồi tính lại nhiều lần trước khi lưu. Click [Lưu] → gửi sang **trang xử lý** `doLuuTraoGiai.jsp`, trang này lưu 6 bản ghi trao giải, in danh sách và hiện thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025`; quản lý click OK → quay về trang chính `gdChinhQL.jsp`. `doLuuTraoGiai.jsp` là trang xử lý, không phải màn hình tương tác ⇒ không sinh UC con, không sinh lớp biên và không phác thảo riêng.
+
+> Luồng chuyển màn: **Trang chính → Bảng tổng sắp → (click 1 dòng) Chi tiết theo chặng → (Quay lại) Bảng tổng sắp → (Tiếp tục) Trao giải → (Lưu) → Trang chính**.
 
 ## 3. Phân tích hoạt động — biểu đồ trạng thái
 
@@ -102,7 +212,7 @@ S4 --> [*] : [click OK]
 @enduml
 ```
 
-> Export → `hinh/m4-trangthai.png`. Vẽ theo mẫu Hình 3.9/3.11 giáo trình PDF. Cung tự quay `[chọn chặng từ danh sách]` thể hiện việc xem bảng xếp hạng tính đến chặng bất kỳ; cung tự quay `[nhập mức thưởng, click Tính thưởng]` thể hiện việc tính lại tiền thưởng nhiều lần trước khi lưu. Biểu đồ hoạt động (pha thiết kế) xem mục 7.
+> Export → `hinh/m4-trangthai.png`. Vẽ theo mẫu Hình 3.9/3.11 giáo trình PDF. Cung tự quay `[chọn chặng từ danh sách]` thể hiện việc xem bảng xếp hạng tính đến chặng bất kỳ; cung tự quay `[nhập mức thưởng, click Tính thưởng]` thể hiện việc tính lại tiền thưởng nhiều lần trước khi lưu. Biểu đồ hoạt động (pha thiết kế) xem mục 6.
 
 ## 4. Biểu đồ lớp phân tích
 
@@ -238,48 +348,7 @@ ThanhVien <|-- QuanLy
 >
 > **Ghi chú 4 — xếp hạng đội:** cộng dồn theo đội đã đăng ký tay đua ở **từng chặng** (`DangKyChang` — đội tại thời điểm chặng), **không** theo đội hiện tại của tay đua; một tay đua có thể đổi đội giữa mùa nên điểm ở mỗi chặng phải thuộc về đội đã đăng ký tại chặng đó. Truy vết đề bài dòng 11 (một thời điểm chỉ thi đấu cho 1 đội) và dòng 13 (cộng dồn điểm và thời gian qua các chặng để trao giải cá nhân, đồng đội).
 
-## 5. Thiết kế giao diện
-
-Module có 3 màn hình hiển thị nghiệp vụ, khớp 1-1 với 3 UC con màn hình và 3 lớp biên ở mục 1 và mục 4 (trang chính `gdChinhQL.jsp` là trang chủ chung của hệ thống — **không cần mockup riêng**). Dữ liệu minh hoạ lấy từ bộ dữ liệu mẫu mùa 2025 (`docs/03` mục 5).
-
-### 5.1. Màn Bảng tổng sắp — `gdXepHang.jsp` (lớp biên `GDXepHang`)
-
-Màn hình mở ra ngay sau khi quản lý click "Quyết toán mùa giải" trên trang chính. Bố cục từ trên xuống:
-
-- **Tiêu đề:** `Bảng tổng sắp — FIA Formula One World Championship 2025`.
-- **Danh sách chọn chặng** (thuộc tính `-inChangDua`) — dropdown 6 chặng `R01 Melbourne … R24 Abu Dhabi`; bảng xếp hạng được tính **đến chặng đã chọn** (đề gốc: xem BXH "tính đến chặng X"). Khi chọn chặng cuối và 6/6 chặng có kết quả, tiêu đề hiển thị thêm `(6/6 chặng đã có kết quả)`.
-- **Bảng Xếp hạng cá nhân** (thuộc tính `-outsubXHCaNhan`) — 12 dòng, các cột `Hạng | Tên tay đua | Quốc tịch | Tên đội | Tổng điểm | Tổng thời gian`. Ba dòng đầu: `1 | Lando Norris | Anh | McLaren | 119 | 9:03:19.885`, `2 | Max Verstappen | Hà Lan | Red Bull | 119 | 9:03:12.418`, `3 | Oscar Piastri | Úc | McLaren | 95 | 9:04:01.207`. Hai dòng đầu bằng điểm nên được tô nền nhạt kèm chú thích `Phân định bằng countback (số lần về nhất)`. **Mỗi dòng là một liên kết click được** → mở màn Chi tiết theo chặng của tay đua đó.
-- **Bảng Xếp hạng đội** (thuộc tính `-outsubXHDoi`) — 6 dòng, các cột `Hạng | Tên đội | Hãng | Tổng điểm | Tổng thời gian`. Ba dòng đầu: `1 | McLaren | Mercedes | 214 | 18:07:21.092`, `2 | Ferrari | Ferrari | 132 | 18:10:03.757`, `3 | Red Bull | Honda RBPT | 121 | 18:12:45.433`. **Mỗi dòng là một liên kết click được** → mở màn Chi tiết theo chặng của đội đó.
-- **Chú thích dưới 2 bảng:** `Xếp hạng: tổng điểm giảm dần → countback → tổng thời gian tăng dần. Tổng thời gian luôn được hiển thị.`
-- **Nút [Tiếp tục]** (thuộc tính `-subTiepTuc`) ở góc dưới bên phải — **chỉ active khi chặng đang chọn là chặng cuối và mọi chặng đều có kết quả**. Click → **chuyển sang màn Trao giải** (`gdTraoGiai.jsp`).
-
-> Vẽ mockup màn này trong VP và export → `hinh/m4-giaodien-xephang.png`.
-
-### 5.2. Màn Chi tiết theo chặng — `gdChiTietXepHang.jsp` (lớp biên `GDChiTietXepHang`)
-
-Màn drill-down mở ra khi quản lý click 1 dòng trên bảng tổng sắp (đề gốc bắt buộc). Bố cục:
-
-- **Tiêu đề — tên đối tượng** (thuộc tính `-outTenDoiTuong`): ví dụ `Max Verstappen — Red Bull` (khi click 1 dòng tay đua) hoặc `McLaren — Mercedes` (khi click 1 dòng đội).
-- **Bảng chi tiết từng chặng** (thuộc tính `-outBangChiTiet`), mỗi chặng một dòng:
-  - Với **tay đua**: các cột `Tên chặng | Hạng về đích | Điểm | Thời gian về đích` — 6 dòng, dòng đầu `Australian Grand Prix | 2 | 18 | 1:28:06.334`.
-  - Với **đội**: các cột `Tên chặng | Tổng điểm | Tổng thời gian của 2 tay đua` — 6 dòng, dòng đầu (McLaren) `Australian Grand Prix | 35 | 2:56:36.414`.
-- **Nút [Quay lại]** (thuộc tính `-subQuayLai`) → trở về màn Bảng tổng sắp, giữ nguyên chặng đang chọn.
-
-> Vẽ mockup màn này trong VP và export → `hinh/m4-giaodien-chitietxephang.png`.
-
-### 5.3. Màn Trao giải — `gdTraoGiai.jsp` (lớp biên `GDTraoGiai`)
-
-- **Tiêu đề:** `Trao giải mùa giải FIA Formula One World Championship 2025`.
-- **Khu nhập mức thưởng** (thuộc tính `-inMucThuong`) — 6 ô nhập, xếp 2 cột: *Giải cá nhân* (Hạng 1, Hạng 2, Hạng 3) và *Giải đồng đội* (Hạng 1, Hạng 2, Hạng 3), đơn vị VNĐ; khi mới vào màn cả 6 ô đều rỗng.
-- **Nút [Tính thưởng]** (thuộc tính `-subTinhThuong`) ngay dưới khu nhập, đang active.
-- **Bảng Danh sách trao giải** (thuộc tính `-outDSTraoGiai`) — 6 dòng, các cột `Loại giải | Hạng | Tay đua/Đội | Tổng điểm | Tiền thưởng`. Khi mới vào màn, 4 cột đầu đã có dữ liệu (`Cá nhân | 1 | Lando Norris | 119`, `Cá nhân | 2 | Max Verstappen | 119`, `Cá nhân | 3 | Oscar Piastri | 95`, `Đội | 1 | McLaren | 214`, `Đội | 2 | Ferrari | 132`, `Đội | 3 | Red Bull | 121`) còn **cột Tiền thưởng rỗng**. Sau khi click [Tính thưởng], cột Tiền thưởng được điền lần lượt `5.000.000.000`, `3.000.000.000`, `2.000.000.000`, `20.000.000.000`, `12.000.000.000`, `8.000.000.000`.
-- **Nút [Lưu]** (thuộc tính `-subLuu`) ở góc dưới bên phải, **chưa active** khi cột Tiền thưởng còn rỗng; chuyển sang active sau khi tính thưởng xong. Click [Lưu] → gửi sang **trang xử lý** `doLuuTraoGiai.jsp`, trang này lưu 6 bản ghi trao giải, in danh sách và hiển thị thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025`; quản lý click OK → quay về trang chính `gdChinhQL.jsp`.
-
-> Vẽ mockup màn này trong VP và export → `hinh/m4-giaodien-traogiai.png`. Trong mockup, nối các màn bằng **mũi tên xám dày** `gdXepHang.jsp → gdChiTietXepHang.jsp` (drill-down, 2 chiều) và `gdXepHang.jsp → gdTraoGiai.jsp` để thể hiện luồng chuyển màn.
->
-> `doLuuTraoGiai.jsp` là **trang xử lý**, không phải màn hình tương tác ⇒ không sinh UC con, không sinh lớp biên, không cần mockup riêng.
-
-## 6. Biểu đồ lớp thiết kế (view / DAO / model)
+## 5. Biểu đồ lớp thiết kế (view / DAO / model)
 
 Kiến trúc phân tầng theo B3 và giáo trình chương 8: **view** = các trang `.jsp`, **dao** = các lớp truy xuất dữ liệu (chính là "tầng điều khiển" của MVC), **model** = các lớp thực thể. **Không có lớp `XxxController`.** Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** để dùng chung cơ chế kết nối CSDL.
 
@@ -393,9 +462,9 @@ TraoGiaiDAO -- TraoGiai
 
 > Lớp cha `DAO` chỉ giữ cơ chế dùng chung (`-con : Connection`, constructor `+DAO()`, `ketNoi()`, `dongKetNoi()`), không mang nghiệp vụ. Mỗi `XxxDAO` mang **đúng** các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở mục 4 (quy tắc ánh xạ giáo trình 4.3.1 bước 3), kèm chữ ký đầy đủ: kiểu trả về là mảng `KetQua[]` cho thao tác đọc danh sách, `boolean` cho thao tác ghi. Thuộc tính ẩn `-ql : QuanLy` là đối tượng phiên đăng nhập; `-listXHCaNhan`, `-listChiTiet`, `-listTraoGiai` là dữ liệu truyền giữa các trang; `-muaGiai : MuaGiai` và `-changDua : ChangDua` lưu mùa giải và **chặng đang chọn** (phạm vi "tính đến chặng X") — chặng này được truyền từ màn Bảng tổng sắp sang màn Chi tiết theo chặng và là tham số `changDuaId` của các phương thức tổng hợp/chi tiết ở `KetQuaDAO`. Thuộc tính `-tenDoiTuong : Text` của `gdChiTietXepHang.jsp` hiển thị tiêu đề tên tay đua/đội đang xem, ứng 1-1 với `-outTenDoiTuong` của lớp biên phân tích `GDChiTietXepHang`. Quan hệ giữa các lớp vẽ bằng **đường kẻ trơn**, không mũi tên định hướng.
 
-## 7. Biểu đồ hoạt động (pha thiết kế)
+## 6. Biểu đồ hoạt động (pha thiết kế)
 
-Vẽ theo phong cách **Hình 4.9 giáo trình PDF** (mục 4.3.2 bước 1): **mỗi hành động tương ứng một phương thức đã thiết kế** trong biểu đồ lớp ở mục 6; hoạt động nhóm theo khung `Xử lí tại gdXxx.jsp` cho **từng trang jsp** (kể cả trang xử lý `doLuuTraoGiai.jsp` và trang chính); lời gọi DAO ghi rõ `XxxDAO: tenHam()`; guard trên cung là hành động người dùng `[click …]`; các nhánh kiểm tra ràng buộc nghiệp vụ là decision node đặt trong khung của trang xử lý tương ứng.
+Vẽ theo phong cách **Hình 4.9 giáo trình PDF** (mục 4.3.2 bước 1): **mỗi hành động tương ứng một phương thức đã thiết kế** trong biểu đồ lớp ở mục 5; hoạt động nhóm theo khung `Xử lí tại gdXxx.jsp` cho **từng trang jsp** (kể cả trang xử lý `doLuuTraoGiai.jsp` và trang chính); lời gọi DAO ghi rõ `XxxDAO: tenHam()`; guard trên cung là hành động người dùng `[click …]`; các nhánh kiểm tra ràng buộc nghiệp vụ là decision node đặt trong khung của trang xử lý tương ứng.
 
 ```plantuml
 @startuml
@@ -473,9 +542,9 @@ stop
 
 > Export → `hinh/m4-hoatdong.png` — **vẽ lại toàn bộ** theo mẫu Hình 4.9 giáo trình PDF (bản flowchart nghiệp vụ cũ bị thay). Trong VP: mỗi khung là một partition mang tên trang jsp; node gọi DAO tách riêng ghi `XxxDAO: tenHam()`; khung `gdChinhQL.jsp` xuất hiện ở đầu (mở chức năng) và cuối (quay về sau khi click OK).
 
-## 8. Thuyết minh và biểu đồ tuần tự
+## 7. Thuyết minh và biểu đồ tuần tự
 
-### 8.1. Thuyết minh (kịch bản phiên bản 3)
+### 7.1. Thuyết minh (kịch bản phiên bản 3)
 
 1. Quản lý click chức năng "Quyết toán mùa giải" trên trang chính gdChinhQL.jsp.
 2. Trang gdChinhQL.jsp gọi trang gdXepHang.jsp.
@@ -556,9 +625,9 @@ stop
 77. Trang doLuuTraoGiai.jsp gọi lại trang chính gdChinhQL.jsp.
 78. Trang gdChinhQL.jsp hiển thị cho quản lý.
 
-### 8.2. Biểu đồ tuần tự (Sequence) — luồng chính
+### 7.2. Biểu đồ tuần tự (Sequence) — luồng chính
 
-> Chỉ vẽ **luồng chính** (mùa giải đã kết thúc và đủ kết quả tất cả các chặng), kèm nhánh drill-down xem chi tiết theo chặng. Các ngoại lệ còn lại đã mô tả ở đặc tả UC mục 2 và biểu đồ hoạt động mục 7, không đưa vào biểu đồ tuần tự. Số thứ tự message do `autonumber` sinh, khớp 1-1 với 78 dòng thuyết minh ở mục 8.1 (trong Visual Paradigm bật *Show sequence number*). **Luồng lưu dùng mẫu setter()** theo Hình 4.12 giáo trình PDF: Entity tự đóng gói dữ liệu nhập bằng `setter()` trước, rồi trang xử lý mới gọi DAO `luuTraoGiai()` — không gọi constructor Entity ở luồng lưu.
+> Chỉ vẽ **luồng chính** (mùa giải đã kết thúc và đủ kết quả tất cả các chặng), kèm nhánh drill-down xem chi tiết theo chặng. Các ngoại lệ còn lại đã mô tả ở đặc tả UC mục 2 và biểu đồ hoạt động mục 6, không đưa vào biểu đồ tuần tự. Số thứ tự message do `autonumber` sinh, khớp 1-1 với 78 dòng thuyết minh ở mục 7.1 (trong Visual Paradigm bật *Show sequence number*). **Luồng lưu dùng mẫu setter()** theo Hình 4.12 giáo trình PDF: Entity tự đóng gói dữ liệu nhập bằng `setter()` trước, rồi trang xử lý mới gọi DAO `luuTraoGiai()` — không gọi constructor Entity ở luồng lưu.
 
 ```plantuml
 @startuml
@@ -722,11 +791,11 @@ deactivate V0
 
 > Lifeline gồm **actor + trang chính + các trang .jsp + các DAO + các lớp thực thể**; **không có lifeline CSDL, không có câu lệnh SQL trong message, không có lớp Controller**. Trang chính `gdChinhQL.jsp` là lifeline **mở đầu** (message 1–2) và **kết thúc** (click OK → goi → hien thi) theo mẫu Hình 4.10. Nhãn message giữ cực ngắn (`goi`, `tra ve`, `hien thi`, `click …`, `nhap …`, `chon …`); chỉ **self-call** mới ghi tên hàm. Luồng lưu (message 67–78): Entity `TraoGiai` tự đóng gói bằng `setter()` trước, rồi `TraoGiaiDAO.luuTraoGiai()` ghi cả danh sách 6 bản ghi — đúng mẫu Hình 4.12. Mọi cặp `activate` / `deactivate` đều cân bằng.
 
-## 9. Test case
+## 8. Test case
 
 > **Xây dựng theo quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2** (bước 1: checklist theo 3 nhóm Giao diện / Chức năng / Luồng nghiệp vụ; bước 2: viết test case 4 cột; bước 3: chuẩn bị data test; bước 4: chạy và ghi pass/fail). Bảng "CSDL sau khi test" của format cũ được **rút gọn thành mô tả hiệu ứng CSDL trong cột Kết quả mong muốn** của ca tương ứng.
 
-### 9.1. Data test (bước 3 quy trình test)
+### 8.1. Data test (bước 3 quy trình test)
 
 Bộ dữ liệu nền dùng chung cho nhóm **Luồng nghiệp vụ** (và các ca Chức năng), lấy từ bộ dữ liệu mẫu mùa 2025 (`docs/03` mục 5). Hai ca `QTTG_15` (countback bằng → tổng thời gian) và `QTTG_18` (đổi đội giữa mùa) dùng **biến thể rút gọn** của bộ dữ liệu này — phần sửa đổi được mô tả ngay trong cột "Các bước thực hiện" của ca đó.
 
@@ -809,7 +878,7 @@ Bộ dữ liệu nền dùng chung cho nhóm **Luồng nghiệp vụ** (và các
 | 11 | 10 (STR) | 5398.775 | 58 | HoanThanh | 11 | 0 |
 | 12 | 4 (TSU) | 5412.043 | 58 | HoanThanh | 12 | 0 |
 
-> Cột `thoiGian` lưu **tổng số giây** (kiểu `float(10)` theo `docs/03` mục 4.4); giao diện mới hiển thị dạng `hh:mm:ss.xxx`. Ví dụ `5284.512` giây hiển thị là `1:28:04.512`. Cột `Tổng thời gian` trên hai bảng xếp hạng ở mục 5 cũng là giá trị cộng dồn từ cột này rồi định dạng lại khi hiển thị.
+> Cột `thoiGian` lưu **tổng số giây** (kiểu `float(10)` theo `docs/03` mục 4.4); giao diện mới hiển thị dạng `hh:mm:ss.xxx`. Ví dụ `5284.512` giây hiển thị là `1:28:04.512`. Cột `Tổng thời gian` trên hai bảng xếp hạng ở mục 2.2 cũng là giá trị cộng dồn từ cột này rồi định dạng lại khi hiển thị.
 
 Nội dung **đầy đủ** hai cột `hang` / `diem` của cả 72 dòng `tblKetQua`, trình bày dạng ma trận `hạng (điểm)` cho gọn:
 
@@ -832,7 +901,7 @@ Nội dung **đầy đủ** hai cột `hang` / `diem` của cả 72 dòng `tblKe
 
 > `tblTraoGiai` **không** lưu `tongDiem` và `tongThoiGian`: đây là thuộc tính dẫn xuất, tính lại được từ `tblKetQua` tại thời điểm hiển thị (B3 — thiết kế CSDL bước 5). Các cột `loai`, `hang`, `tienThuong` được giữ vì là **quyết định trao giải đã chốt sổ**, không phải giá trị tính lại được.
 
-### 9.2. Bảng test case (mẫu Bảng 6.7)
+### 8.2. Bảng test case (mẫu Bảng 6.7)
 
 | Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
 |---|---|---|---|
@@ -844,13 +913,13 @@ Nội dung **đầy đủ** hai cột `hang` / `diem` của cả 72 dòng `tblKe
 | QTTG_5 | Kiểm tra bố cục màn Trao giải | 1. Từ màn Bảng tổng sắp (chặng cuối, đủ kết quả) click [Tiếp tục]. | Title đúng `Trao giải mùa giải FIA Formula One World Championship 2025`; đủ 6 ô nhập mức thưởng (cá nhân hạng 1/2/3, đội hạng 1/2/3), nút [Tính thưởng] active, bảng Danh sách trao giải đủ 5 cột `Loại giải \| Hạng \| Tay đua/Đội \| Tổng điểm \| Tiền thưởng`, nút [Lưu] **chưa active**; focus đặt vào ô mức thưởng cá nhân hạng 1 |
 | QTTG_6 | Kiểm tra hành vi phím màn Trao giải | 1. Đang ở màn Trao giải.<br>2. Nhấn Tab lần lượt; nhập đủ 6 mức thưởng rồi nhấn Enter tại ô cuối. | Tab di chuyển đúng thứ tự 6 ô nhập (cá nhân 1→2→3, đội 1→2→3) → [Tính thưởng] → [Lưu]; Enter tại ô nhập cuối thực hiện [Tính thưởng] |
 | | **Nhóm 2 — Chức năng** | | |
-| QTTG_7 | Màn Bảng tổng sắp hiển thị đúng dữ liệu khi CSDL có dữ liệu | 1. CSDL như mục 9.1.<br>2. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`. | Bảng cá nhân đủ 12 dòng — danh sách **khớp** kết quả tổng hợp từ 72 bản ghi trong `tblKetQua` và 12 bản ghi trong `tblTayDua`; bảng đội đủ 6 dòng khớp 6 bản ghi trong `tblDoiDua`; tổng điểm 2 bảng đều bằng 606 = 101 điểm × 6 chặng |
+| QTTG_7 | Màn Bảng tổng sắp hiển thị đúng dữ liệu khi CSDL có dữ liệu | 1. CSDL như mục 8.1.<br>2. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`. | Bảng cá nhân đủ 12 dòng — danh sách **khớp** kết quả tổng hợp từ 72 bản ghi trong `tblKetQua` và 12 bản ghi trong `tblTayDua`; bảng đội đủ 6 dòng khớp 6 bản ghi trong `tblDoiDua`; tổng điểm 2 bảng đều bằng 606 = 101 điểm × 6 chặng |
 | QTTG_8 | Màn Bảng tổng sắp — ca không có dữ liệu | 1. Sửa data test: `tblKetQua` rỗng (mùa chưa đua chặng nào).<br>2. Mở màn Bảng tổng sắp. | Hai bảng xếp hạng không có dòng nào, hiển thị thông báo `Mùa giải chưa có kết quả chặng nào`; nút [Tiếp tục] **không active**; `tblTraoGiai` không phát sinh bản ghi |
-| QTTG_9 | Màn Chi tiết theo chặng hiển thị đúng dữ liệu tay đua | 1. CSDL như mục 9.1.<br>2. Chọn chặng `Abu Dhabi`, click dòng `Max Verstappen`. | Bảng chi tiết đủ 6 dòng — **khớp** 6 bản ghi của Verstappen trong `tblKetQua`; dòng đầu `Australian Grand Prix \| 2 \| 18 \| 1:28:06.334` (= 5286.334 giây); tổng cột Điểm của 6 dòng = 119 đúng bằng Tổng điểm trên bảng tổng sắp |
-| QTTG_10 | Màn Chi tiết theo chặng hiển thị đúng dữ liệu đội và phạm vi chặng | 1. CSDL như mục 9.1.<br>2. Chọn chặng `Abu Dhabi`, click dòng đội `McLaren`.<br>3. Quay lại, chọn chặng `R01 Melbourne`, click lại dòng `McLaren`. | Bước 2: bảng chi tiết đội đủ 6 dòng cột `Tên chặng \| Tổng điểm \| Tổng thời gian của 2 tay đua`, dòng đầu `Australian Grand Prix \| 35 \| 2:56:36.414` (NOR 25 + PIA 10; 5284.512 + 5311.902 giây), tổng điểm 6 dòng = 214. Bước 3: bảng chỉ còn **1 dòng** (phạm vi tính đến chặng R01); đối tượng không có kết quả trong phạm vi lọc hiển thị `Không có dữ liệu` |
-| QTTG_11 | Màn Trao giải hiển thị đúng danh sách top 3 | 1. CSDL như mục 9.1.<br>2. Chọn chặng cuối, click [Tiếp tục]. | Bảng Danh sách trao giải đúng 6 dòng khớp kết quả tổng hợp từ `tblKetQua`: `Cá nhân \| 1 \| Lando Norris \| 119`, `Cá nhân \| 2 \| Max Verstappen \| 119`, `Cá nhân \| 3 \| Oscar Piastri \| 95`, `Đội \| 1 \| McLaren \| 214`, `Đội \| 2 \| Ferrari \| 132`, `Đội \| 3 \| Red Bull \| 121`; từ hạng 4 trở xuống (`Charles Leclerc`, đội `Mercedes`) **không** xuất hiện |
-| QTTG_12 | Màn Trao giải — ca chưa có dữ liệu trao giải | 1. CSDL như mục 9.1 (`tblTraoGiai` rỗng).<br>2. Mở màn Trao giải. | Cột Tiền thưởng của cả 6 dòng **rỗng**, 6 ô nhập mức thưởng rỗng, nút [Lưu] **chưa active** (khớp `tblTraoGiai` chưa có bản ghi nào của mùa giải) |
-| | **Nhóm 3 — Luồng nghiệp vụ** — *Precond: CSDL đúng như mục 9.1 (Data test); đã đăng nhập tài khoản quyền Quản lý; mùa giải 2025 ở trạng thái `Đã kết thúc`* | | |
+| QTTG_9 | Màn Chi tiết theo chặng hiển thị đúng dữ liệu tay đua | 1. CSDL như mục 8.1.<br>2. Chọn chặng `Abu Dhabi`, click dòng `Max Verstappen`. | Bảng chi tiết đủ 6 dòng — **khớp** 6 bản ghi của Verstappen trong `tblKetQua`; dòng đầu `Australian Grand Prix \| 2 \| 18 \| 1:28:06.334` (= 5286.334 giây); tổng cột Điểm của 6 dòng = 119 đúng bằng Tổng điểm trên bảng tổng sắp |
+| QTTG_10 | Màn Chi tiết theo chặng hiển thị đúng dữ liệu đội và phạm vi chặng | 1. CSDL như mục 8.1.<br>2. Chọn chặng `Abu Dhabi`, click dòng đội `McLaren`.<br>3. Quay lại, chọn chặng `R01 Melbourne`, click lại dòng `McLaren`. | Bước 2: bảng chi tiết đội đủ 6 dòng cột `Tên chặng \| Tổng điểm \| Tổng thời gian của 2 tay đua`, dòng đầu `Australian Grand Prix \| 35 \| 2:56:36.414` (NOR 25 + PIA 10; 5284.512 + 5311.902 giây), tổng điểm 6 dòng = 214. Bước 3: bảng chỉ còn **1 dòng** (phạm vi tính đến chặng R01); đối tượng không có kết quả trong phạm vi lọc hiển thị `Không có dữ liệu` |
+| QTTG_11 | Màn Trao giải hiển thị đúng danh sách top 3 | 1. CSDL như mục 8.1.<br>2. Chọn chặng cuối, click [Tiếp tục]. | Bảng Danh sách trao giải đúng 6 dòng khớp kết quả tổng hợp từ `tblKetQua`: `Cá nhân \| 1 \| Lando Norris \| 119`, `Cá nhân \| 2 \| Max Verstappen \| 119`, `Cá nhân \| 3 \| Oscar Piastri \| 95`, `Đội \| 1 \| McLaren \| 214`, `Đội \| 2 \| Ferrari \| 132`, `Đội \| 3 \| Red Bull \| 121`; từ hạng 4 trở xuống (`Charles Leclerc`, đội `Mercedes`) **không** xuất hiện |
+| QTTG_12 | Màn Trao giải — ca chưa có dữ liệu trao giải | 1. CSDL như mục 8.1 (`tblTraoGiai` rỗng).<br>2. Mở màn Trao giải. | Cột Tiền thưởng của cả 6 dòng **rỗng**, 6 ô nhập mức thưởng rỗng, nút [Lưu] **chưa active** (khớp `tblTraoGiai` chưa có bản ghi nào của mùa giải) |
+| | **Nhóm 3 — Luồng nghiệp vụ** — *Precond: CSDL đúng như mục 8.1 (Data test); đã đăng nhập tài khoản quyền Quản lý; mùa giải 2025 ở trạng thái `Đã kết thúc`* | | |
 | QTTG_13 | Quyết toán mùa giải đủ kết quả — luồng chuẩn end-to-end | 1. Click "Quyết toán mùa giải" trên trang chính.<br>2. Chọn chặng `Abu Dhabi` (chặng cuối) từ danh sách.<br>3. Đối chiếu bảng cá nhân: `1 \| Lando Norris \| Anh \| McLaren \| 119 \| 9:03:19.885`; `2 \| Max Verstappen \| Hà Lan \| Red Bull \| 119 \| 9:03:12.418`; `3 \| Oscar Piastri \| 95`; `4 \| Charles Leclerc \| 76`; `5 \| George Russell \| 63`; `6 \| Lewis Hamilton \| 56`; `7 \| Antonelli \| 30`; `8 \| Albon \| 21`; `9 \| Alonso \| 20`; `10 \| Sainz \| 4`; `11 \| Tsunoda \| 2`; `12 \| Stroll \| 1`.<br>4. Đối chiếu bảng đội: `McLaren 214, Ferrari 132, Red Bull 121, Mercedes 93, Williams 25, Aston Martin 21`.<br>5. Click [Tiếp tục]; nhập mức thưởng cá nhân `5.000.000.000 / 3.000.000.000 / 2.000.000.000`, đội `20.000.000.000 / 12.000.000.000 / 8.000.000.000`; click [Tính thưởng].<br>6. Click [Lưu], click OK ở thông báo. | Hai bảng xếp hạng đúng thứ tự như bước 3–4; cột Tiền thưởng điền đúng 6 dòng, [Lưu] chuyển active; thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025` rồi quay về trang chính. **Hiệu ứng CSDL:** `tblTraoGiai` thêm đúng 6 bản ghi mới `(CaNhan, NOR, hang 1, 5.000.000.000)`, `(CaNhan, VER, 2, 3.000.000.000)`, `(CaNhan, PIA, 3, 2.000.000.000)`, `(Doi, MCL, 1, 20.000.000.000)`, `(Doi, FER, 2, 12.000.000.000)`, `(Doi, RBR, 3, 8.000.000.000)`; các bảng khác giữ nguyên |
 | QTTG_14 | Bằng tổng điểm → phân định bằng countback (tầng 2) | 1. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`.<br>2. Đối chiếu 2 dòng đầu bảng cá nhân: Norris và Verstappen cùng **119** điểm; theo `tblKetQua`, Norris có 3 lần hạng 1 (R01, R10, R16), Verstappen có 2 lần (R06, R24). | `1 \| Lando Norris \| 119 \| 9:03:19.885`; `2 \| Max Verstappen \| 119 \| 9:03:12.418` — Norris xếp trên nhờ countback (3 lần về nhất so với 2) **dù tổng thời gian của Norris lớn hơn** ⇒ tầng 3 tổng thời gian chưa được dùng khi countback đã phân định; kèm chú thích `Phân định bằng countback (số lần về nhất)`. CSDL không thay đổi |
 | QTTG_15 | Countback vẫn bằng → phân định bằng tổng thời gian tăng dần (tầng 3) | 1. Sửa data test: mùa rút gọn còn 2 chặng `R01 Melbourne`, `R02 Thượng Hải`; `tblKetQua` sửa chặng R02: Verstappen hạng 1 (`thoiGian = 5430.000` giây), Norris hạng 2 (`5433.906` giây); chặng R01 giữ nguyên: Norris hạng 1 (`5284.512`), Verstappen hạng 2 (`5286.334`).<br>2. Mở màn Bảng tổng sắp, chọn chặng `R02` (chặng cuối của mùa rút gọn).<br>3. Đối chiếu 2 dòng đầu bảng cá nhân. | Norris và Verstappen cùng **43** điểm (25 + 18), cùng 1 lần hạng 1 và 1 lần hạng 2 ⇒ countback không phân định ⇒ so **tổng thời gian tăng dần**: Verstappen 10716.334 giây (`2:58:36.334`) nhỏ hơn Norris 10718.418 giây (`2:58:38.418`) ⇒ `1 \| Max Verstappen \| 43 \| 2:58:36.334`; `2 \| Lando Norris \| 43 \| 2:58:38.418`. CSDL không thay đổi |

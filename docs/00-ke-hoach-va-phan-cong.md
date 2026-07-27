@@ -32,10 +32,12 @@ Mỗi người làm đủ 7 mục sau cho module của mình (chi tiết trong R
 1. Biểu đồ UC chi tiết
 2. Đặc tả UC (kịch bản chuẩn — theo mẫu bảng ở mục 4)
 3. **Biểu đồ trạng thái** (phân tích hoạt động — theo mẫu **Hình 3.9/3.11 giáo trình PDF**: mỗi trạng thái = một lần hệ thống hiển thị một giao diện chờ tương tác, nhãn cung là hành động người dùng `[…]`)
-4. Thiết kế giao diện
+4. **Giao diện phác thảo** (nằm trong mục Đặc tả UC, không xuất ảnh)
 5. Biểu đồ hoạt động (**pha thiết kế** — theo mẫu **Hình 4.9 giáo trình PDF**: khung `Xử lí tại gdXxx.jsp` cho từng trang, mỗi hành động ứng với một phương thức đã thiết kế, node DAO tách riêng; đặt **sau** biểu đồ lớp thiết kế, ngay trước thuyết minh)
 6. **Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự (sequence)**
 7. Test case
+
+> **Ghi chú mục 4:** nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo** — khung bố cục bằng ký tự (code fence thường) kèm bảng dữ liệu mẫu — và đặt **bên trong mục Đặc tả UC** (mục con `2.2. Giao diện phác thảo`, ngay sau `2.1. Bảng đặc tả`). Căn cứ: giáo trình PDF mục 3.2.1 nhúng thẳng bảng dữ liệu vào kịch bản, không có ảnh mockup rời.
 
 > **Ghi chú mục 6:** yêu cầu của giảng viên ghi rõ *"**Thuyết minh và** vẽ biểu đồ tuần tự cho UC"*. Thuyết minh chính là **kịch bản phiên bản 3** — danh sách đánh số 1, 2, 3… mô tả từng lượt gọi giữa trang `.jsp`, lớp `DAO` và lớp thực thể; **số dòng thuyết minh phải khớp số message trong biểu đồ tuần tự**. Không được để hình đứng trơ một mình với caption.
 
@@ -110,7 +112,9 @@ Ghép tất cả thành **01 file Word** theo đúng bố cục yêu cầu của
 
 Cấu trúc mỗi chương module (×4), theo đúng thứ tự:
 
-> **UC chi tiết → đặc tả UC → biểu đồ trạng thái (phân tích hoạt động) → biểu đồ lớp phân tích → thiết kế giao diện → biểu đồ lớp thiết kế (`.jsp` / `DAO` / `model`) → biểu đồ hoạt động (pha thiết kế) → thuyết minh (kịch bản v.3) + biểu đồ tuần tự → test case**
+> **UC chi tiết → đặc tả UC (bảng đặc tả + giao diện phác thảo) → biểu đồ trạng thái (phân tích hoạt động) → biểu đồ lớp phân tích → biểu đồ lớp thiết kế (`.jsp` / `DAO` / `model`) → biểu đồ hoạt động (pha thiết kế) → thuyết minh (kịch bản v.3) + biểu đồ tuần tự → test case**
+
+> **Đánh số mục trong mỗi chương module:** `1.` UC chi tiết · `2.` Đặc tả UC (`2.1.` Bảng đặc tả, `2.2.` Giao diện phác thảo) · `3.` Phân tích hoạt động — biểu đồ trạng thái · `4.` Biểu đồ lớp phân tích · `5.` Biểu đồ lớp thiết kế · `6.` Biểu đồ hoạt động (pha thiết kế) · `7.` Thuyết minh + biểu đồ tuần tự · `8.` Test case. **Không còn mục riêng "Thiết kế giao diện"** — nội dung giao diện nằm ở mục `2.2`.
 
 > Biểu đồ hoạt động đặt **sau** biểu đồ lớp thiết kế vì mỗi hành động trong biểu đồ hoạt động ứng với một phương thức đã thiết kế (giáo trình PDF mục 4.3.2 bước 1).
 
@@ -144,7 +148,9 @@ Module 4 - Thanh/
 Lectures/                         ← tài liệu giảng viên (tham khảo)
 ```
 
-## 7. Danh sách ảnh cần export từ Visual Paradigm
+## 7. Danh sách ảnh cần export từ Visual Paradigm (tổng **28 ảnh**)
+
+> **Giao diện không có ảnh:** nhóm không vẽ mockup, nên bảng dưới **không có dòng ảnh giao diện nào**. Tổng cộng **6 ảnh mỗi module × 4 module + 4 ảnh chung = 28 ảnh**.
 
 **Quy tắc tên file:** chữ thường, không dấu, ngăn cách bằng `-`, đuôi `.png`. Ảnh của module đặt tên `m<số module>-<tên biểu đồ>.png`. Tên file ở bảng dưới là **tên chốt**, phải trùng với bảng "Danh sách ảnh cần export" ở đầu `noi-dung.md` của từng module và với đường dẫn `![…](…)` trong `docs/BAO-CAO.md`.
 
@@ -159,7 +165,7 @@ Lectures/                         ← tài liệu giảng viên (tham khảo)
 
 > File cũ `docs/hinh/lop-thucthe.png` **bị thay bởi 2 file** `lop-thucthe-phantich.png` và `lop-thucthe-thietke.png` — xóa khỏi repo sau khi có 2 ảnh mới.
 
-### 7.2. Ảnh của từng module (M1–M3: 8 ảnh, M4: 9 ảnh)
+### 7.2. Ảnh của từng module (mỗi module đúng **6 ảnh**)
 
 > **Mẫu hình bắt buộc (giáo trình PDF `BG HP TTTN 2 CNPM`):** biểu đồ **trạng thái** vẽ theo mẫu **Hình 3.9/3.11**; biểu đồ **hoạt động** vẽ theo mẫu **Hình 4.9** (khung `Xử lí tại gdXxx.jsp` cho từng trang, node DAO tách riêng); biểu đồ **lớp thiết kế** vẽ theo mẫu **Hình 4.4** (3 tầng jsp/DAO/model, DAO kế thừa `DAO`, chữ ký đầy đủ); biểu đồ **tuần tự** vẽ theo mẫu **Hình 4.10/4.12** (đánh số message, trang chính mở đầu + kết thúc, luồng lưu có `setter()`). Mọi ảnh hoạt động / tuần tự / lớp thiết kế đã vẽ trước đây đều phải **vẽ lại** theo các mẫu này.
 
@@ -169,33 +175,24 @@ Lectures/                         ← tài liệu giảng viên (tham khảo)
 | M1 | `m1-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
 | M1 | `m1-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | đã vẽ — **VẼ LẠI** (theo mẫu Hình 4.9: khung theo từng trang jsp; tách từng ràng buộc thành một node quyết định riêng) |
 | M1 | `m1-lop-phantich.png` | Lớp phân tích (lớp biên + lớp thực thể) | chưa vẽ |
-| M1 | `m1-giaodien-timtaydua.png` | Giao diện tìm tay đua | chưa vẽ |
-| M1 | `m1-giaodien-nhaphopdong.png` | Giao diện nhập hợp đồng | chưa vẽ |
 | M1 | `m1-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | chưa vẽ |
 | M1 | `m1-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | chưa vẽ |
 | M2 | `m2-uc-chitiet.png` | UC chi tiết | đã vẽ — **VẼ LẠI** (giữ UC con `Đăng nhập` include theo giáo trình PDF; tách thành 2 UC con `Chọn chặng và đội` + `Chọn tay đua đăng ký`) |
 | M2 | `m2-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
 | M2 | `m2-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mẫu Hình 4.9) | chưa vẽ |
 | M2 | `m2-lop-phantich.png` | Lớp phân tích | chưa vẽ |
-| M2 | `m2-giaodien-chonchangdoi.png` | Giao diện chọn chặng và đội | chưa vẽ |
-| M2 | `m2-giaodien-dangkytaydua.png` | Giao diện đăng ký tay đua | chưa vẽ |
 | M2 | `m2-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | chưa vẽ |
 | M2 | `m2-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | chưa vẽ |
 | M3 | `m3-uc-chitiet.png` | UC chi tiết | chưa vẽ |
 | M3 | `m3-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
 | M3 | `m3-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mẫu Hình 4.9) | chưa vẽ |
 | M3 | `m3-lop-phantich.png` | Lớp phân tích | chưa vẽ |
-| M3 | `m3-giaodien-chonchang.png` | Giao diện chọn chặng | chưa vẽ |
-| M3 | `m3-giaodien-nhapketqua.png` | Giao diện nhập kết quả + đối soát | chưa vẽ |
 | M3 | `m3-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | chưa vẽ |
 | M3 | `m3-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | chưa vẽ |
 | M4 | `m4-uc-chitiet.png` | UC chi tiết | đã vẽ — **VẼ LẠI** (giữ UC con `Đăng nhập` include theo giáo trình PDF; đổi tên UC con thành `Xem bảng tổng sắp` + `Nhập thưởng và lưu`; thêm UC con `Xem chi tiết theo chặng` extend từ `Xem bảng tổng sắp`) |
 | M4 | `m4-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
 | M4 | `m4-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | đã vẽ — **VẼ LẠI** (theo mẫu Hình 4.9; biểu đồ cũ quá sơ sài: tách từng ràng buộc thành một node quyết định riêng, thêm nhánh countback + tổng thời gian) |
 | M4 | `m4-lop-phantich.png` | Lớp phân tích | chưa vẽ |
-| M4 | `m4-giaodien-xephang.png` | Giao diện bảng tổng sắp (có chọn chặng) | chưa vẽ |
-| M4 | `m4-giaodien-chitietxephang.png` | Giao diện chi tiết theo chặng (drill-down) | chưa vẽ |
-| M4 | `m4-giaodien-traogiai.png` | Giao diện trao giải | chưa vẽ |
 | M4 | `m4-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | đã vẽ — **VẼ LẠI** (bản cũ có lớp `QuyetToanController` — phải bỏ tầng Controller, thay bằng `.jsp` / `DAO` kế thừa lớp cha `DAO` / `model`) |
 | M4 | `m4-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | đã vẽ — **VẼ LẠI** (bản cũ có lifeline Controller và lifeline CSDL với câu lệnh SQL — phải bỏ cả hai, thay bằng lifeline `.jsp` + `DAO` + lớp thực thể, có đánh số message) |
 

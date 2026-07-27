@@ -5,6 +5,8 @@
 > Sắp theo thứ tự nên làm. P0 phải xong **trước khi vẽ tiếp** trong Visual Paradigm.
 >
 > **Cập nhật lần 2:** sau khi đọc PDF `BG HP TTTN 2 CNPM 2020 final.pdf` (235 trang, bản "final") và đề bài gốc `SE-list-of-project.pdf`, bổ sung **mục P4 (đối chiếu đề bài gốc)** và **mục P5 (đối chiếu giáo trình PDF — có 2 điểm LẬT lại kết luận cũ)** ở cuối file. Đọc P5 trước khi vẽ bất kỳ hình nào.
+>
+> **Cập nhật lần 3:** bổ sung **mục P6 — quyết định bỏ ảnh giao diện**, chuyển giao diện thành phác thảo đặt trong mục Đặc tả UC. P6 sửa đè phần giao diện của P0-7 và P5-D; số ảnh phải vẽ giảm từ 33 xuống 28.
 
 ---
 
@@ -460,8 +462,53 @@ Mỗi module: `m<N>-uc-chitiet` · `m<N>-trangthai` (MỚI) · `m<N>-hoatdong` (
 
 ---
 
+## P6 — Quyết định: bỏ ảnh giao diện, chuyển thành phác thảo trong Đặc tả UC
+
+> Quyết định của nhóm ở lần rà soát thứ 3. Mục này **sửa đè** phần giao diện của P0-7 và P5-D; mọi kết luận khác giữ nguyên.
+
+### P6-1. Nội dung quyết định
+
+Nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo**, gồm hai phần đi liền nhau cho mỗi màn hình: **khung bố cục** vẽ bằng ký tự trong code fence thường (thể hiện tiêu đề màn, ô nhập, nút bấm, vị trí bảng) và **bảng dữ liệu markdown** có dữ liệu mẫu thật từ bộ dữ liệu F1 2025 đã chốt, kèm một đoạn văn ngắn giải thích thuộc tính lớp biên tương ứng và trạng thái nút.
+
+Phần phác thảo này **đặt bên trong chương Đặc tả Use Case**, làm mục con `2.2. Giao diện phác thảo` ngay sau `2.1. Bảng đặc tả`, chứ không còn là một mục riêng ở giữa tài liệu.
+
+### P6-2. Căn cứ
+
+1. **Giáo trình PDF mục 3.2.1** — kịch bản mẫu của thầy **nhúng thẳng bảng dữ liệu** vào các bước hệ thống hiển thị (bảng `TT | Mã | Tên môn học | số tín chỉ | …` nằm ngay trong kịch bản đặc tả UC). Giáo trình **không có ảnh mockup rời** cho từng màn hình. Đặt phác thảo trong đặc tả UC là bám đúng cách trình bày này.
+2. **Yêu cầu bài tập nhóm** chỉ ghi *"Thiết kế giao diện cho UC"* — không quy định phải vẽ mockup bằng công cụ và không bắt buộc xuất ảnh. Khung bố cục + bảng dữ liệu mẫu đã đủ để đọc ra danh sách control của từng màn (phục vụ nhóm test case Giao diện) và đủ để ánh xạ sang lớp biên `GDxxx` cùng trang `.jsp`.
+3. Ràng buộc **"số UC con = số giao diện = số lớp biên = số trang `.jsp`"** ở P0-7 **vẫn giữ nguyên** — chỉ khác là "giao diện" nay được đếm theo số màn phác thảo, không đếm theo số file ảnh.
+
+### P6-3. Hệ quả
+
+**Về số ảnh** — giảm từ **33** xuống **28**:
+
+| | Trước | Sau |
+|---|---|---|
+| `docs/hinh/` (ảnh chung) | 4 | 4 |
+| Mỗi module | M1–M3: 8, M4: 9 | **6** (`uc-chitiet`, `trangthai`, `lop-phantich`, `lop-mvc`, `hoatdong`, `tuantu`) |
+| **Tổng** | **33** | **28** |
+
+9 ảnh bị bỏ: `m1-giaodien-timtaydua`, `m1-giaodien-nhaphopdong`, `m2-giaodien-chonchangdoi`, `m2-giaodien-dangkytaydua`, `m3-giaodien-chonchang`, `m3-giaodien-nhapketqua`, `m4-giaodien-xephang`, `m4-giaodien-chitietxephang`, `m4-giaodien-traogiai`.
+
+**Về đánh số mục** — mục `5. Thiết kế giao diện` bị xoá khỏi vị trí cũ, các mục sau dồn lên một số:
+
+| Cũ | Mới |
+|---|---|
+| 5. Thiết kế giao diện | *(bỏ — chuyển thành mục con 2.2)* |
+| 6. Biểu đồ lớp thiết kế | **5.** Biểu đồ lớp thiết kế |
+| 7. Biểu đồ hoạt động (pha thiết kế) | **6.** Biểu đồ hoạt động (pha thiết kế) |
+| 8. Thuyết minh + biểu đồ tuần tự (8.1, 8.2) | **7.** (7.1, 7.2) |
+| 9. Test case (9.1, 9.2, 9.3) | **8.** (8.1, 8.2, 8.3) |
+
+Mục 0–4 giữ nguyên số. Trong `docs/BAO-CAO.md`, mỗi chương module đổi tương ứng: `x.2` tách thành `x.2.1` (bảng đặc tả) + `x.2.2` (giao diện phác thảo), `x.5` bỏ, `x.6 → x.5`, `x.7 → x.6`, `x.8 → x.7`, `x.9 → x.8`, `x.10 → x.9`; mục lục cập nhật theo.
+
+**Về nội dung khác:** nghiệp vụ, kịch bản, test case (kể cả nhóm test case Giao diện), biểu đồ PlantUML và bộ dữ liệu mẫu F1 2025 **không đổi**.
+
+---
+
 ## Thứ tự làm đề xuất (cập nhật)
 
+0. **P6** — bỏ ảnh giao diện, dời phác thảo vào mục 2.2 của Đặc tả UC, đánh số lại các mục sau.
 1. **P0-1 → P0-6** (kiến trúc) — đã áp ở pass 1.
 2. **P5-B1, P5-C3** — khôi phục UC Đăng nhập + trang chính `gdChinhNV/QL.jsp` (lật lại P0-8 và một phần M1).
 3. **P4-1, P4-2, P4-3** — tie-break 3 tầng, M4 drill-down, giải trình ánh xạ đề gốc.

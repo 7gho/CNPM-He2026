@@ -541,7 +541,7 @@ Nói cách khác: dữ liệu **suy ra được và luôn suy ra đúng** thì b
 
 ## 5. Bộ dữ liệu mẫu (mùa giải 2025 thật)
 
-> Toàn nhóm dùng chung bộ dữ liệu này khi vẽ mockup giao diện và viết test case, để báo cáo mang tính thực tế (dựa trên mùa giải F1 2025 có thật). Không bắt buộc đầy đủ 24 chặng / 10 đội — chỉ cần trích một phần đủ minh họa.
+> Toàn nhóm dùng chung bộ dữ liệu này khi phác thảo giao diện và viết test case, để báo cáo mang tính thực tế (dựa trên mùa giải F1 2025 có thật). Không bắt buộc đầy đủ 24 chặng / 10 đội — chỉ cần trích một phần đủ minh họa.
 
 **MuaGiai:** `2025 — FIA Formula One World Championship` (24 chặng), `trangThai = Đang diễn ra` (chuyển sang `Đã kết thúc` rồi `Đã quyết toán` khi chạy Module 4).
 
@@ -556,7 +556,7 @@ Nói cách khác: dữ liệu **suy ra được và luôn suy ra đúng** thì b
 | AST | Aston Martin | Mercedes | Fernando Alonso (ALO) | Lance Stroll (STR) |
 | WIL | Williams | Mercedes | Alexander Albon (ALB) | Carlos Sainz (SAI) |
 
-> **Chốt giá trị dùng chung.** Hai cột `ten` và `hang` ở bảng trên là **bộ giá trị duy nhất** của lớp `DoiDua`, dùng y hệt trong mọi kịch bản, mockup giao diện và test case của cả 4 module cũng như trong `docs/01` và `docs/04`. Cụ thể: `ten` là tên ngắn (`Ferrari`, `Red Bull`, `Mercedes`, `McLaren`, `Aston Martin`, `Williams`), **không** dùng tên thương mại dài (`Scuderia Ferrari`, `McLaren F1 Team`, `Mercedes-AMG`…); `hang` là tên hãng động cơ ngắn (`Ferrari`, `Honda RBPT`, `Mercedes`), **không** ghép chuỗi kiểu `Red Bull Racing – Honda RBPT`. Tên thương mại dài chỉ được dùng ở cột `moTa`.
+> **Chốt giá trị dùng chung.** Hai cột `ten` và `hang` ở bảng trên là **bộ giá trị duy nhất** của lớp `DoiDua`, dùng y hệt trong mọi kịch bản, phác thảo giao diện và test case của cả 4 module cũng như trong `docs/01` và `docs/04`. Cụ thể: `ten` là tên ngắn (`Ferrari`, `Red Bull`, `Mercedes`, `McLaren`, `Aston Martin`, `Williams`), **không** dùng tên thương mại dài (`Scuderia Ferrari`, `McLaren F1 Team`, `Mercedes-AMG`…); `hang` là tên hãng động cơ ngắn (`Ferrari`, `Honda RBPT`, `Mercedes`), **không** ghép chuỗi kiểu `Red Bull Racing – Honda RBPT`. Tên thương mại dài chỉ được dùng ở cột `moTa`.
 
 **ChangDua (trích một số chặng, thoiGian tăng dần theo lịch mùa 2025):**
 
