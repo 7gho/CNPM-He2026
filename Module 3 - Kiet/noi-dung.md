@@ -15,7 +15,7 @@
 
 > **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
 >
-> Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo trong mục 2.2.
+> Giao diện **không cần vẽ và không cần xuất ảnh** — phác thảo giao diện được đặt xen ngay giữa các bước của Kịch bản chính trong mục 2 (theo mẫu giáo trình PDF mục 3.2.1); nhóm **không** có mục "Thiết kế giao diện" riêng.
 >
 > **Ghi chú cho người vẽ (mẫu hình trong giáo trình PDF `BG HP TTTN 2 CNPM 2020 final.pdf`):**
 > - Biểu đồ trạng thái: vẽ theo mẫu **Hình 3.9/3.11** (máy trạng thái đơn giản, nhãn cung `[hành động]`).
@@ -65,93 +65,114 @@ UC ..> NK : include
 
 ## 2. Đặc tả Use Case
 
-### 2.1. Bảng đặc tả
-
 | Mục | Nội dung |
 |---|---|
 | **Use case** | Cập nhật kết quả chặng đua |
 | **Actor** | Nhân viên |
 | **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; chặng đua cần cập nhật đã diễn ra và đã có danh sách tay đua đăng ký (do use case "Đăng ký tay đua tham gia chặng đua" sinh ra) |
 | **Hậu điều kiện** | Kết quả của từng tay đua trong chặng (thời gian về đích, số vòng hoàn thành, trạng thái, hạng, điểm) được lưu vào cơ sở dữ liệu. Nếu chặng đã có kết quả cũ thì kết quả cũ bị xóa và thay bằng kết quả mới |
-| **Kịch bản chính** | 1. Nhân viên chọn menu "Cập nhật kết quả chặng đua".<br>2. Hệ thống hiển thị màn hình **Chọn chặng**: ô chọn chặng đua liệt kê các chặng của mùa giải 2025 (`R01 - Australian Grand Prix`, `R02 - Chinese Grand Prix`, `R06 - Monaco Grand Prix`, `R10 - British Grand Prix`, `R16 - Italian Grand Prix`, `R24 - Abu Dhabi Grand Prix`); ô chọn đang rỗng; nút [Tiếp tục] **chưa được active**.<br>3. Nhân viên chọn chặng `R16 - Italian Grand Prix (Monza)`; nút [Tiếp tục] chuyển sang **active**; nhân viên click [Tiếp tục].<br>4. Hệ thống hiển thị màn hình **Nhập kết quả**: dòng thông tin chặng `R16 | Italian Grand Prix | Monza | 53 vòng | 07/09/2025`; bảng nhập kết quả gồm các cột **STT \| Mã \| Tên tay đua \| Đội đua \| Thời gian về đích (hh:mm:ss.xxx) \| Số vòng hoàn thành \| Trạng thái**, có 12 dòng ứng với 12 tay đua đã đăng ký chặng, dòng đầu là `1 \| LEC \| Charles Leclerc \| Ferrari \| (trống) \| (trống) \| (chưa chọn)`; ba cột cuối là ô nhập và ô chọn đang rỗng; bảng đối soát **chưa hiện**; nút [Lưu] **chưa được active**.<br>5. Nhân viên nhập Thời gian về đích, Số vòng hoàn thành và chọn Trạng thái cho từng tay đua, ví dụ dòng của Max Verstappen: `1:13:24.325 \| 53 \| Hoàn thành`, dòng của Lando Norris: `1:13:27.019 \| 53 \| Hoàn thành`. *(Lặp lại bước 5 cho đến khi nhập xong kết quả của cả 12 tay đua.)*<br>6. Nhân viên click [Tính kết quả].<br>7. Hệ thống tách danh sách thành nhóm Hoàn thành và nhóm DNF/DSQ, sắp xếp nhóm Hoàn thành tăng dần theo thời gian về đích, xếp nhóm DNF/DSQ xuống cuối, gán hạng theo vị trí, gán điểm cho hạng 1 đến 10 theo thang `25, 18, 15, 12, 10, 8, 6, 4, 2, 1` và gán 0 điểm cho tay đua DNF/DSQ dù nằm trong top 10; sau đó hiển thị **bảng đối soát** gồm các cột **Hạng \| Mã \| Tên tay đua \| Đội đua \| Thời gian \| Số vòng \| Trạng thái \| Điểm**, có 12 dòng, dòng đầu là `1 \| VER \| Max Verstappen \| Red Bull \| 1:13:24.325 \| 53 \| Hoàn thành \| 25`, dòng cuối là `12 \| STR \| Lance Stroll \| Aston Martin \| 1:14:25.310 \| 53 \| Hoàn thành \| 0`; nút [Lưu] chuyển sang **active**.<br>8. Nhân viên đối chiếu bảng đối soát với biên bản chính thức của Ban tổ chức rồi click [Lưu].<br>9. Hệ thống kiểm tra thấy chặng chưa có kết quả cũ, lưu 12 dòng kết quả vào cơ sở dữ liệu và hiển thị thông báo "Đã lưu kết quả chặng R16 - Italian Grand Prix".<br>10. Nhân viên click [OK]; hệ thống quay về trang chính của nhân viên. |
-| **Ngoại lệ** | **3a.** Chặng vừa chọn chưa có tay đua nào đăng ký → hệ thống báo "Chặng đua R24 - Abu Dhabi Grand Prix chưa có tay đua nào đăng ký, vui lòng chọn chặng khác", giữ nguyên màn hình Chọn chặng.<br>**6a.** Còn tay đua chưa chọn Trạng thái → hệ thống báo "Vui lòng chọn trạng thái cho tất cả 12 tay đua", không tính kết quả, giữ nguyên dữ liệu đã nhập.<br>**6b.** Tay đua có trạng thái Hoàn thành nhưng bỏ trống hoặc nhập sai định dạng Thời gian về đích (ví dụ dòng của Charles Leclerc để trống) → hệ thống báo "Vui lòng nhập thời gian hợp lệ theo định dạng hh:mm:ss.xxx cho tay đua đã hoàn thành", không tính kết quả. Tay đua DNF hoặc DSQ **không bắt buộc** nhập thời gian.<br>**6c.** Số vòng hoàn thành bỏ trống, nhỏ hơn 0 hoặc lớn hơn số vòng của chặng → hệ thống báo "Số vòng hoàn thành phải nằm trong khoảng 0 đến 53", không tính kết quả.<br>**6d.** Hai tay đua có trạng thái Hoàn thành nhập trùng thời gian về đích → hệ thống báo "Thời gian về đích của Lando Norris và Charles Leclerc trùng nhau, vui lòng kiểm tra lại", không tính kết quả.<br>**8a.** Chặng đã có kết quả từ trước → hệ thống hiển thị hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?". Nếu nhân viên chọn [Hủy] → không lưu, giữ nguyên kết quả cũ. Nếu chọn [Đồng ý] → hệ thống xóa toàn bộ kết quả cũ của chặng, lưu kết quả mới và tính lại điểm của toàn chặng. |
 
-### 2.2. Giao diện phác thảo
+Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh; khung phác thảo của mỗi màn được đặt **ngay dưới bước** mà hệ thống hiển thị màn đó trong Kịch bản chính. Module có **2 màn hình hiển thị** riêng, đúng bằng số use case con giao diện của module (không tính use case con `Đăng nhập` dùng chung toàn hệ thống); giao diện chính của nhân viên (`GDChinhNV` / `gdChinhNV.jsp`) là **trang chủ chung của hệ thống** nên không phác thảo trong module này. Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích.
 
-> Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh.
+**Kịch bản chính**
 
-Module có **2 màn hình hiển thị** riêng, đúng bằng số use case con giao diện của module (không tính use case con `Đăng nhập` dùng chung toàn hệ thống). Giao diện chính của nhân viên (`GDChinhNV` / `gdChinhNV.jsp`) là **trang chủ chung của hệ thống** nên không phác thảo riêng trong module này.
+1. Nhân viên (đã đăng nhập) chọn menu **Cập nhật kết quả chặng đua** trên trang chính `gdChinhNV.jsp`.
+2. Hệ thống hiển thị màn hình **Chọn chặng** (trang `gdChonChang.jsp`, lớp biên `GDChonChang`): nhãn mùa giải là **vùng chỉ đọc** ghi `2025 — FIA Formula One World Championship`, lấy từ `MuaGiai` đang hoạt động; ô chọn "Chặng đua" đang rỗng; nút [Tiếp tục] **chưa được active**.
 
-Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích.
+   ```
+   +----------------------------------------------------------------------+
+   |  CẬP NHẬT KẾT QUẢ CHẶNG ĐUA — Bước 1: Chọn chặng                     |
+   +----------------------------------------------------------------------+
+   |  Mùa giải: ( 2025 — FIA Formula One World Championship )             |
+   +----------------------------------------------------------------------+
+   |  Chặng đua: [ -- Chọn chặng đua --                     v ]           |
+   |                                                                      |
+   |                                            [ Tiếp tục ]              |
+   +----------------------------------------------------------------------+
+   |  Danh sách chặng đổ vào ô chọn:                                      |
+   |  ( bảng bên dưới )                                                   |
+   +----------------------------------------------------------------------+
+   ```
 
-**Màn 1 — Chọn chặng** (trang `gdChonChang.jsp`, lớp biên `GDChonChang`)
+   Ô chọn chặng đua đổ đủ **6 chặng** của mùa giải 2025 theo thứ tự thời gian, mỗi mục hiển thị dạng `Mã - Tên chặng (Địa điểm)`:
 
-```
-+----------------------------------------------------------------------+
-|  CẬP NHẬT KẾT QUẢ CHẶNG ĐUA — Bước 1: Chọn chặng                     |
-+----------------------------------------------------------------------+
-|  Mùa giải: ( 2025 — FIA Formula One World Championship )             |
-+----------------------------------------------------------------------+
-|  Chặng đua: [ -- Chọn chặng đua --                     v ]           |
-|                                                                      |
-|                                            [ Tiếp tục ]              |
-+----------------------------------------------------------------------+
-|  Danh sách chặng đổ vào ô chọn:                                      |
-|  ( bảng bên dưới )                                                   |
-+----------------------------------------------------------------------+
-```
+   | TT | Mã | Tên chặng | Địa điểm | Ngày đua | Hiển thị trong ô chọn |
+   |---|---|---|---|---|---|
+   | 1 | R01 | Australian Grand Prix | Melbourne | 16/03/2025 | R01 - Australian Grand Prix (Melbourne) |
+   | 2 | R02 | Chinese Grand Prix | Thượng Hải | 23/03/2025 | R02 - Chinese Grand Prix (Thượng Hải) |
+   | 3 | R06 | Monaco Grand Prix | Monte Carlo | 25/05/2025 | R06 - Monaco Grand Prix (Monte Carlo) |
+   | 4 | R10 | British Grand Prix | Silverstone | 06/07/2025 | R10 - British Grand Prix (Silverstone) |
+   | 5 | R16 | Italian Grand Prix | Monza | 07/09/2025 | R16 - Italian Grand Prix (Monza) |
+   | 6 | R24 | Abu Dhabi Grand Prix | Yas Marina | 07/12/2025 | R24 - Abu Dhabi Grand Prix (Yas Marina) |
 
-| TT | Mã | Tên chặng | Địa điểm | Ngày đua | Hiển thị trong ô chọn |
-|---|---|---|---|---|---|
-| 1 | R01 | Australian Grand Prix | Melbourne | 16/03/2025 | R01 - Australian Grand Prix (Melbourne) |
-| 5 | R16 | Italian Grand Prix | Monza | 07/09/2025 | R16 - Italian Grand Prix (Monza) |
-| … | … | … | … | … | … |
+3. Nhân viên chọn chặng `R16 - Italian Grand Prix (Monza)`; nút [Tiếp tục] **chuyển sang active**; nhân viên click [Tiếp tục].
+4. Hệ thống hiển thị màn hình **Nhập kết quả** (trang `gdNhapKetQua.jsp`, lớp biên `GDNhapKetQua`): dòng thông tin chặng là **vùng chỉ đọc** ghi `R16 | Italian Grand Prix | Monza | 53 vòng | 07/09/2025`, lấy từ `ChangDua` được chọn ở bước 3; bảng nhập kết quả gồm các cột **STT | Mã | Tên tay đua | Đội đua | Thời gian về đích (hh:mm:ss.xxx) | Số vòng hoàn thành | Trạng thái**, có 12 dòng ứng với 12 tay đua đã đăng ký chặng, ba cột đầu là dữ liệu chỉ đọc lấy từ đăng ký chặng, ba cột cuối là ô nhập và ô chọn đang rỗng — dòng đầu là `1 | LEC | Charles Leclerc | Ferrari | (trống) | (trống) | (chưa chọn)`; bảng đối soát **chưa hiện**; nút [Lưu] **chưa được active**.
 
-Ô chọn chặng đua ứng với thuộc tính `-inChangDua` của lớp biên `GDChonChang`, đổ đủ 6 chặng của mùa giải 2025 theo thứ tự thời gian, mỗi mục hiển thị dạng `Mã - Tên chặng (Địa điểm)`. Nhãn mùa giải là vùng chỉ đọc, hiển thị mùa giải đang hoạt động. Khi mới vào màn hình, ô chọn đang rỗng và nút [Tiếp tục] (thuộc tính `-subTiepTuc`) **chưa được active**; nút chỉ chuyển sang **active** khi nhân viên đã chọn một chặng. Click [Tiếp tục] chuyển sang màn **Nhập kết quả** của chặng vừa chọn; nếu chặng chưa có tay đua đăng ký, hệ thống hiện thông báo lỗi ngay trên màn này và không chuyển màn.
+   ```
+   +----------------------------------------------------------------------+
+   |  CẬP NHẬT KẾT QUẢ CHẶNG ĐUA — Bước 2: Nhập kết quả                   |
+   +----------------------------------------------------------------------+
+   |  Chặng: ( R16 - Italian Grand Prix - Monza - 53 vòng -               |
+   |           07/09/2025 )                                               |
+   +----------------------------------------------------------------------+
+   |  Bảng nhập kết quả:                                                  |
+   |  ( bảng bên dưới — 12 dòng, 3 cột cuối là ô nhập )                   |
+   |                                                                      |
+   |                                        [ Tính kết quả ]              |
+   +----------------------------------------------------------------------+
+   |  Bảng đối soát: ( chỉ hiện sau khi bấm [ Tính kết quả ] )            |
+   |  ( bảng bên dưới )                                                   |
+   |                                                                      |
+   |                                                 [ Lưu ]              |
+   +----------------------------------------------------------------------+
+   ```
 
-**Màn 2 — Nhập kết quả** (trang `gdNhapKetQua.jsp`, lớp biên `GDNhapKetQua`)
+5. Nhân viên nhập Thời gian về đích, Số vòng hoàn thành và chọn Trạng thái cho từng tay đua, ví dụ dòng của Max Verstappen: `1:13:24.325 | 53 | Hoàn thành`, dòng của Lando Norris: `1:13:27.019 | 53 | Hoàn thành`. Bảng nhập kết quả sau khi nhập:
 
-```
-+----------------------------------------------------------------------+
-|  CẬP NHẬT KẾT QUẢ CHẶNG ĐUA — Bước 2: Nhập kết quả                   |
-+----------------------------------------------------------------------+
-|  Chặng: ( R16 - Italian Grand Prix - Monza - 53 vòng -               |
-|           07/09/2025 )                                               |
-+----------------------------------------------------------------------+
-|  Bảng nhập kết quả:                                                  |
-|  ( bảng bên dưới — 12 dòng, 3 cột cuối là ô nhập )                   |
-|                                                                      |
-|                                        [ Tính kết quả ]              |
-+----------------------------------------------------------------------+
-|  Bảng đối soát: ( chỉ hiện sau khi bấm [ Tính kết quả ] )            |
-|  ( bảng bên dưới )                                                   |
-|                                                                      |
-|                                                 [ Lưu ]              |
-+----------------------------------------------------------------------+
-```
+   | STT | Mã | Tên tay đua | Đội đua | Thời gian về đích | Số vòng hoàn thành | Trạng thái |
+   |---|---|---|---|---|---|---|
+   | 1 | LEC | Charles Leclerc | Ferrari | `1:13:31.482` | `53` | [ Hoàn thành v ] |
+   | 2 | HAM | Lewis Hamilton | Ferrari | `1:13:41.663` | `53` | [ Hoàn thành v ] |
+   | 3 | VER | Max Verstappen | Red Bull | `1:13:24.325` | `53` | [ Hoàn thành v ] |
+   | … | … | … | … | … | … | … |
+   | 12 | SAI | Carlos Sainz | Williams | `1:13:58.520` | `53` | [ Hoàn thành v ] |
 
-Bảng nhập kết quả — ba cột đầu là dữ liệu lấy từ đăng ký chặng (chỉ đọc), ba cột cuối là ô nhập và ô chọn:
+   Ô chọn ở cột **Trạng thái** là danh sách thả xuống dùng chung cho mọi dòng, gồm đúng ba giá trị:
 
-| STT | Mã | Tên tay đua | Đội đua | Thời gian về đích | Số vòng hoàn thành | Trạng thái |
-|---|---|---|---|---|---|---|
-| 1 | LEC | Charles Leclerc | Ferrari | `1:13:31.482` | `53` | [ Hoàn thành v ] |
-| 2 | HAM | Lewis Hamilton | Ferrari | `1:13:41.663` | `53` | [ Hoàn thành v ] |
-| 3 | VER | Max Verstappen | Red Bull | `1:13:24.325` | `53` | [ Hoàn thành v ] |
-| … | … | … | … | … | … | … |
-| 12 | SAI | Carlos Sainz | Williams | `1:13:58.520` | `53` | [ Hoàn thành v ] |
+   | Giá trị hiển thị trong ô chọn | Thời gian về đích | Vị trí khi xếp hạng | Điểm |
+   |---|---|---|---|
+   | `Hoàn thành` | bắt buộc nhập, định dạng `hh:mm:ss.xxx` | xếp trước, theo thời gian về đích tăng dần | theo thang 25/18/15/12/10/8/6/4/2/1 cho hạng 1–10 |
+   | `DNF (bỏ cuộc, tai nạn)` | không bắt buộc, thường để trống | xếp xuống cuối bảng | 0 |
+   | `DSQ (bị loại)` | không bắt buộc, có thể vẫn có thời gian | xếp xuống cuối bảng | 0 |
 
-Bảng đối soát — chỉ hiển thị, không nhập, hiện ra sau khi bấm [Tính kết quả]:
+   Bộ dữ liệu mẫu ở trên minh hoạ **ca chuẩn** — cả 12 tay đua đều `Hoàn thành`, khớp kịch bản chính và test case CNKQ_9; hai ca `DNF` và `DSQ` được kiểm chứng riêng ở CNKQ_10 và CNKQ_11 (mục 8.2). *(Lặp lại bước 5 cho đến khi nhập xong kết quả của cả 12 tay đua.)*
 
-| Hạng | Mã | Tên tay đua | Đội đua | Thời gian | Số vòng | Trạng thái | Điểm |
-|---|---|---|---|---|---|---|---|
-| 1 | VER | Max Verstappen | Red Bull | 1:13:24.325 | 53 | Hoàn thành | 25 |
-| 2 | NOR | Lando Norris | McLaren | 1:13:27.019 | 53 | Hoàn thành | 18 |
-| 3 | LEC | Charles Leclerc | Ferrari | 1:13:31.482 | 53 | Hoàn thành | 15 |
-| … | … | … | … | … | … | … | … |
-| 11 | TSU | Yuki Tsunoda | Red Bull | 1:14:18.902 | 53 | Hoàn thành | 0 |
-| 12 | STR | Lance Stroll | Aston Martin | 1:14:25.310 | 53 | Hoàn thành | 0 |
+6. Nhân viên click [Tính kết quả].
+7. Hệ thống tách danh sách thành nhóm Hoàn thành và nhóm DNF/DSQ, sắp xếp nhóm Hoàn thành tăng dần theo thời gian về đích, xếp nhóm DNF/DSQ xuống cuối, gán hạng theo vị trí, gán điểm cho hạng 1 đến 10 theo thang `25, 18, 15, 12, 10, 8, 6, 4, 2, 1` và gán 0 điểm cho tay đua DNF/DSQ dù nằm trong top 10; sau đó hiển thị **bảng đối soát** (chỉ hiển thị, không nhập) gồm các cột **Hạng | Mã | Tên tay đua | Đội đua | Thời gian | Số vòng | Trạng thái | Điểm**, có 12 dòng, dòng đầu là `1 | VER | Max Verstappen | Red Bull | 1:13:24.325 | 53 | Hoàn thành | 25`, dòng cuối là `12 | STR | Lance Stroll | Aston Martin | 1:14:25.310 | 53 | Hoàn thành | 0`; nút [Lưu] chuyển sang **active**.
 
-Dòng thông tin chặng đang cập nhật là vùng chỉ đọc. Bảng nhập kết quả ứng với thuộc tính `-inoutBangKetQua` (vừa hiển thị danh sách tay đua đã đăng ký, vừa nhận dữ liệu nhập vào); cột **Trạng thái** là ô chọn ba giá trị **Hoàn thành / DNF (bỏ cuộc, tai nạn) / DSQ (bị loại)**, tay đua DNF hoặc DSQ không bắt buộc nhập Thời gian về đích. Bảng đối soát ứng với thuộc tính `-outBangDoiSoat`, ban đầu **chưa hiện**, chỉ hiện sau khi bấm nút [Tính kết quả] (thuộc tính `-subTinhKetQua`) và dữ liệu nhập hợp lệ. Nút [Lưu] (thuộc tính `-subLuu`) đặt dưới bảng đối soát, ban đầu **chưa được active**, chỉ active sau khi bảng đối soát đã hiện. Click [Lưu] gọi trang xử lý `doLuuKetQua.jsp` ghi dữ liệu; nếu chặng đã có kết quả cũ thì hộp thoại cảnh báo ghi đè hiện lên ngay trên màn này trước khi ghi, lưu xong hệ thống hiển thị thông báo thành công và nhân viên click [OK] để quay về trang chính `gdChinhNV.jsp`.
+   | Hạng | Mã | Tên tay đua | Đội đua | Thời gian | Số vòng | Trạng thái | Điểm |
+   |---|---|---|---|---|---|---|---|
+   | 1 | VER | Max Verstappen | Red Bull | 1:13:24.325 | 53 | Hoàn thành | 25 |
+   | 2 | NOR | Lando Norris | McLaren | 1:13:27.019 | 53 | Hoàn thành | 18 |
+   | 3 | LEC | Charles Leclerc | Ferrari | 1:13:31.482 | 53 | Hoàn thành | 15 |
+   | … | … | … | … | … | … | … | … |
+   | 11 | TSU | Yuki Tsunoda | Red Bull | 1:14:18.902 | 53 | Hoàn thành | 0 |
+   | 12 | STR | Lance Stroll | Aston Martin | 1:14:25.310 | 53 | Hoàn thành | 0 |
+
+8. Nhân viên đối chiếu bảng đối soát với biên bản chính thức của Ban tổ chức rồi click [Lưu]; hệ thống gọi trang xử lý `doLuuKetQua.jsp` ghi dữ liệu.
+9. Hệ thống kiểm tra thấy chặng chưa có kết quả cũ, lưu 12 dòng kết quả vào cơ sở dữ liệu và hiển thị thông báo "Đã lưu kết quả chặng R16 - Italian Grand Prix".
+10. Nhân viên click [OK]; hệ thống quay về trang chính của nhân viên `gdChinhNV.jsp`.
+
+**Ngoại lệ**
+
+- **3a.** Chặng vừa chọn chưa có tay đua nào đăng ký → hệ thống báo "Chặng đua R24 - Abu Dhabi Grand Prix chưa có tay đua nào đăng ký, vui lòng chọn chặng khác", giữ nguyên màn hình Chọn chặng và không chuyển màn.
+- **6a.** Còn tay đua chưa chọn Trạng thái → hệ thống báo "Vui lòng chọn trạng thái cho tất cả 12 tay đua", không tính kết quả, giữ nguyên dữ liệu đã nhập.
+- **6b.** Tay đua có trạng thái Hoàn thành nhưng bỏ trống hoặc nhập sai định dạng Thời gian về đích (ví dụ dòng của Charles Leclerc để trống) → hệ thống báo "Vui lòng nhập thời gian hợp lệ theo định dạng hh:mm:ss.xxx cho tay đua đã hoàn thành", không tính kết quả. Tay đua DNF hoặc DSQ **không bắt buộc** nhập thời gian.
+- **6c.** Số vòng hoàn thành bỏ trống, nhỏ hơn 0 hoặc lớn hơn số vòng của chặng → hệ thống báo "Số vòng hoàn thành phải nằm trong khoảng 0 đến 53", không tính kết quả.
+- **6d.** Hai tay đua có trạng thái Hoàn thành nhập trùng thời gian về đích → hệ thống báo "Thời gian về đích của Lando Norris và Charles Leclerc trùng nhau, vui lòng kiểm tra lại", không tính kết quả.
+- **8a.** Chặng đã có kết quả từ trước → hệ thống hiển thị hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?" ngay trên màn Nhập kết quả. Nếu nhân viên chọn [Hủy] → không lưu, giữ nguyên kết quả cũ. Nếu chọn [Đồng ý] → hệ thống xóa toàn bộ kết quả cũ của chặng, lưu kết quả mới và tính lại điểm của toàn chặng.
+
+> **Ánh xạ sang lớp biên:** màn *Chọn chặng* (`GDChonChang`) — nhãn mùa giải (vùng chỉ đọc) = `-outMuaGiai`, ô chọn "Chặng đua" = `-inChangDua`, nút [Tiếp tục] = `-subTiepTuc`. Màn *Nhập kết quả* (`GDNhapKetQua`) — dòng thông tin chặng (vùng chỉ đọc) = `-outChangDua`, bảng nhập kết quả = `-inoutBangKetQua` (vừa hiển thị danh sách tay đua đã đăng ký, vừa nhận dữ liệu nhập vào), nút [Tính kết quả] = `-subTinhKetQua`, bảng đối soát = `-outBangDoiSoat` (ban đầu chưa hiện, chỉ hiện sau khi bấm [Tính kết quả] và dữ liệu nhập hợp lệ), nút [Lưu] = `-subLuu` (ban đầu chưa active, chỉ active sau khi bảng đối soát đã hiện). Mọi vùng hiện dữ liệu ra màn hình đều có đúng một thuộc tính lớp biên tương ứng; trang xử lý `doLuuKetQua.jsp` không hiển thị nên không sinh lớp biên.
 
 > Luồng chuyển màn: **Trang chính → Chọn chặng → Nhập kết quả → (lưu) → Trang chính**.
 
@@ -203,11 +224,13 @@ class GDChinhNV {
 }
 
 class GDChonChang {
+  -outMuaGiai
   -inChangDua
   -subTiepTuc
 }
 
 class GDNhapKetQua {
+  -outChangDua
   -inoutBangKetQua
   -subTinhKetQua
   -outBangDoiSoat
@@ -333,11 +356,13 @@ package view {
     -nv : NhanVien
   }
   class "gdChonChang.jsp" as gdChonChang {
+    -muaGiai : Text
     -changDua : Select
     -btnTiepTuc : submit
     -nv : NhanVien
   }
   class "gdNhapKetQua.jsp" as gdNhapKetQua {
+    -thongTinChang : Text
     -changDua : ChangDua
     -listDangKy : DangKyChang[]
     -tblKetQua : Table

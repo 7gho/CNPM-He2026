@@ -13,7 +13,7 @@
 | `m1-hoatdong.png` | Biểu đồ hoạt động pha thiết kế (mục 6) — **vẽ lại** |
 | `m1-tuantu.png` | Biểu đồ tuần tự (mục 7) |
 
-> Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo trong mục 2.2.
+> Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo xen giữa các bước của Kịch bản chính ở mục 2.
 
 > Module 1 có **2 màn hình hiển thị riêng**, tương ứng 2 lớp biên `GDTimTayDua` / `GDNhapHopDong` và 2 trang `.jsp` hiển thị. Trang `doLuuHopDong.jsp` là trang xử lý, không phải màn hình hiển thị nên không sinh UC con và không sinh lớp biên. Trang chính `gdChinhNV.jsp` (lớp biên `GDChinhNV`) là trang chủ chung của hệ thống: có mặt trong biểu đồ lớp phân tích, lớp thiết kế và biểu đồ tuần tự nhưng **không sinh UC con**. UC con `Đăng nhập` dùng giao diện đăng nhập chung của toàn hệ thống nên cũng không được phác thảo riêng trong module.
 
@@ -57,80 +57,97 @@ NV -- UC
 
 ## 2. Đặc tả Use Case
 
-### 2.1. Bảng đặc tả
-
 | Mục | Nội dung |
 |---|---|
 | **Use case** | Ký hợp đồng tay đua với đội đua |
 | **Actor** | Nhân viên |
 | **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; danh mục đội đua của mùa giải 2025 đã được khai báo |
 | **Hậu điều kiện** | Một hợp đồng mới hợp lệ được lưu vào hệ thống với ngày kết thúc để trống (đang hiệu lực); hợp đồng cũ đang hiệu lực của tay đua (nếu có) được đóng lại; hợp đồng mới được in ra |
-| **Kịch bản chính** | 1. Nhân viên chọn menu "Ký hợp đồng".<br>2. Hệ thống hiển thị màn hình **Tìm tay đua**: ô nhập "Tên tay đua" đang rỗng, nút [Tìm], nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng.<br>3. Nhân viên nhập tên `Hamilton` và click [Tìm].<br>4. Hệ thống hiển thị bảng kết quả gồm các cột **Mã \| Tên \| Ngày sinh \| Quốc tịch \| Đội hiện tại**, có 1 dòng: `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; mỗi dòng có nút [Chọn].<br>5. Nhân viên click [Chọn] ở dòng `HAM`.<br>6. Hệ thống hiển thị màn hình **Nhập hợp đồng**: vùng thông tin tay đua ghi `HAM — Lewis Hamilton — 07/01/1985 — Anh`; bảng "Hợp đồng cũ" gồm các cột **Đội đua \| Ngày bắt đầu \| Ngày kết thúc**, có 1 dòng: `Mercedes \| 01/01/2013 \| (trống)` — dòng có ngày kết thúc trống là hợp đồng đang hiệu lực; ô chọn "Đội đua" và ô "Ngày bắt đầu" đang rỗng; nút [Lưu] **chưa được active**.<br>7. Nhân viên chọn `Ferrari` trong ô "Đội đua" (danh sách gồm Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) và nhập "Ngày bắt đầu" = `01/01/2025`; nút [Lưu] **chuyển sang active**.<br>8. Nhân viên click [Lưu].<br>9. Hệ thống kiểm tra ngày `01/01/2025` không rơi vào khoảng thời gian của bất kỳ hợp đồng đã đóng nào của Lewis Hamilton.<br>10. Hệ thống tự động đóng hợp đồng đang hiệu lực với Mercedes: đặt ngày kết thúc = `31/12/2024` (ngày liền trước ngày bắt đầu mới).<br>11. Hệ thống lưu hợp đồng mới: `Lewis Hamilton — Ferrari — 01/01/2025 — ngày kết thúc để trống`.<br>12. Hệ thống hiển thị thông báo "Lưu hợp đồng thành công" và in hợp đồng; bảng "Hợp đồng cũ" cập nhật thành 2 dòng: `Mercedes \| 01/01/2013 \| 31/12/2024` và `Ferrari \| 01/01/2025 \| (trống)`.<br>13. Nhân viên click [OK]; hệ thống quay về trang chính của nhân viên.<br><br>*(Lặp lại từ bước 1 cho từng tay đua cần ký hợp đồng, cho đến khi nhân viên ký xong toàn bộ.)* |
-| **Ngoại lệ** | **4a.** Không tìm thấy tay đua nào khớp từ khóa (ví dụ nhập `Antonelli`) → hệ thống hiển thị dòng "Không tìm thấy tay đua nào"; nhân viên click [+ Thêm tay đua mới], nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử rồi click [Lưu tay đua]; hệ thống lưu tay đua mới và quay lại bước 4 với bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`.<br>**7a.** Nhân viên chưa chọn đội đua hoặc chưa nhập ngày bắt đầu → nút [Lưu] vẫn **chưa được active**, không thể chuyển sang bước 8.<br>**9a.** Ngày bắt đầu rơi vào khoảng thời gian của một hợp đồng **đã đóng** (ví dụ Carlos Sainz có hợp đồng Ferrari `01/01/2021–31/12/2024`, nhân viên nhập ngày bắt đầu `01/06/2023`) → hệ thống hiện thông báo lỗi màu đỏ dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này", không lưu, quay lại bước 7.<br>**9b.** Ngày bắt đầu mới nhỏ hơn hoặc bằng ngày bắt đầu của hợp đồng đang hiệu lực (ví dụ nhập `01/01/2010` trong khi hợp đồng Mercedes bắt đầu `01/01/2013`) → hệ thống báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu của hợp đồng đang hiệu lực", không lưu, quay lại bước 7.<br>**10a.** Tay đua chưa có hợp đồng nào đang hiệu lực (ví dụ Oscar Piastri) → hệ thống bỏ qua bước 10 và chuyển thẳng sang bước 11. |
 
-### 2.2. Giao diện phác thảo
+> Phác thảo giao diện được đặt **xen ngay dưới bước hiển thị tương ứng** của Kịch bản chính (theo mẫu giáo trình PDF mục 3.2.1), không tách thành mục riêng và không xuất ảnh. Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ ... v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích. Module có **2 màn hình hiển thị riêng** (`gdTimTayDua.jsp`, `gdNhapHopDong.jsp`); trang chính của nhân viên `gdChinhNV.jsp` và giao diện đăng nhập là giao diện dùng chung của toàn hệ thống nên không phác thảo trong module.
 
-> Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh.
+**Kịch bản chính**
 
-Module có **2 màn hình hiển thị riêng**, tương ứng 2 lớp biên `GDTimTayDua` / `GDNhapHopDong` và 2 trang `.jsp` hiển thị. Điểm vào của luồng là **trang chính của nhân viên** `gdChinhNV.jsp` — trang chủ chung của hệ thống chứa liên kết [Ký hợp đồng] — nên không phác thảo riêng; giao diện đăng nhập (UC con `Đăng nhập`) cũng là giao diện dùng chung toàn hệ thống, không phác thảo trong module.
+1. Nhân viên (đã đăng nhập) chọn menu **Ký hợp đồng** trên trang chính `gdChinhNV.jsp`.
+2. Hệ thống hiển thị màn hình **Tìm tay đua** (`gdTimTayDua.jsp`): ô nhập "Tên tay đua" đang rỗng, nút [Tìm] luôn active, nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng và form thêm tay đua chưa hiện.
 
-Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ ... v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích.
+   ```
+   +----------------------------------------------------------------------+
+   |  KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA — Bước 1: Tìm tay đua               |
+   +----------------------------------------------------------------------+
+   |  Tên tay đua: [                 ]  [ Tìm ]  [+ Thêm tay đua mới]     |
+   +----------------------------------------------------------------------+
+   |  Kết quả tìm kiếm:                                                   |
+   |  ( đang rỗng — kết quả hiện ở bước 4, mỗi dòng có nút [Chọn] )       |
+   +----------------------------------------------------------------------+
+   |  Form thêm tay đua mới ( chỉ hiện khi click [+ Thêm tay đua mới] )   |
+   |    Mã:        [ ANT                     ]                            |
+   |    Tên:       [ Andrea Kimi Antonelli   ]                            |
+   |    Ngày sinh: [ 25/08/2006              ]                            |
+   |    Quốc tịch: [ Ý                       ]                            |
+   |    Tiểu sử:   [                         ]                            |
+   |                                            [ Lưu tay đua ]           |
+   +----------------------------------------------------------------------+
+   ```
 
-**Màn 1 — Tìm tay đua** (trang `gdTimTayDua.jsp`, lớp biên `GDTimTayDua`)
+3. Nhân viên nhập tên `Hamilton` và click [Tìm].
+4. Hệ thống hiển thị bảng kết quả tìm kiếm, mỗi dòng có nút [Chọn]; cột "Đội hiện tại" lấy từ hợp đồng có ngày kết thúc trống của tay đua:
 
-```
-+----------------------------------------------------------------------+
-|  KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA — Bước 1: Tìm tay đua               |
-+----------------------------------------------------------------------+
-|  Tên tay đua: [ Hamilton            ]  [ Tìm ]  [+ Thêm tay đua ]    |
-+----------------------------------------------------------------------+
-|  Kết quả tìm kiếm:                                                   |
-|  ( bảng danh sách tay đua — xem bảng bên dưới, mỗi dòng có [Chọn] )  |
-+----------------------------------------------------------------------+
-|  Form thêm tay đua mới ( chỉ hiện khi click [+ Thêm tay đua ] )      |
-|    Mã:        [ ANT                     ]                            |
-|    Tên:       [ Andrea Kimi Antonelli   ]                            |
-|    Ngày sinh: [ 25/08/2006              ]                            |
-|    Quốc tịch: [ Ý                       ]                            |
-|    Tiểu sử:   [                         ]                            |
-|                                            [ Lưu tay đua ]           |
-+----------------------------------------------------------------------+
-```
+   | TT | Mã | Tên | Ngày sinh | Quốc tịch | Đội hiện tại | Thao tác |
+   |---|---|---|---|---|---|---|
+   | 1 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Mercedes | [Chọn] |
 
-Bảng kết quả tìm kiếm khi nhân viên nhập `Hamilton` và click [Tìm]:
+5. Nhân viên click [Chọn] ở dòng `HAM`.
+6. Hệ thống hiển thị màn hình **Nhập hợp đồng** (`gdNhapHopDong.jsp`): vùng chỉ đọc ghi `HAM — Lewis Hamilton — 07/01/1985 — Anh`; ô chọn "Đội đua" (danh sách thả xuống gồm Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) và ô "Ngày bắt đầu" đang rỗng; màn hình **không có ô nhập Ngày kết thúc** — hợp đồng mới luôn được lưu ở trạng thái mở, hệ thống tự đóng khi tay đua ký hợp đồng tiếp theo; nút [Lưu] **chưa được active**.
 
-| TT | Mã | Tên | Ngày sinh | Quốc tịch | Đội hiện tại | Thao tác |
-|---|---|---|---|---|---|---|
-| 1 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Mercedes | [Chọn] |
+   ```
+   +----------------------------------------------------------------------+
+   |  KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA — Bước 2: Nhập thông tin hợp đồng   |
+   +----------------------------------------------------------------------+
+   |  Tay đua: ( HAM — Lewis Hamilton — 07/01/1985 — Anh )                |
+   +----------------------------------------------------------------------+
+   |  Hợp đồng cũ:                                                        |
+   |  ( bảng hợp đồng cũ — xem bảng ngay dưới )                           |
+   +----------------------------------------------------------------------+
+   |  Đội đua:      [ -- chọn đội đua --   v ]                            |
+   |  Ngày bắt đầu: [                        ]                            |
+   |  ( không có ô nhập Ngày kết thúc )                                   |
+   |  ( nút [ Lưu ] chưa active cho tới khi chọn đủ đội đua + ngày )      |
+   |                                                  [ Lưu ]             |
+   +----------------------------------------------------------------------+
+   ```
 
-Ô nhập "Tên tay đua" ứng với thuộc tính `-inTenTayDua`, nút [Tìm] ứng với `-subTim`, bảng kết quả vừa hiện vừa cho chọn ứng với `-outsubDSTayDua`, nút [+ Thêm tay đua] ứng với `-subThemTayDua`; các ô của form thêm tay đua ứng với `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu` và nút [Lưu tay đua] ứng với `-subLuuTayDua`. Khi mới vào màn hình, ô nhập rỗng, bảng kết quả rỗng và form thêm tay đua chưa hiện; nút [Tìm] luôn active. Nếu không có kết quả, bảng hiện dòng "Không tìm thấy tay đua nào" và nhân viên click [+ Thêm tay đua] để mở form thêm ngay trên màn hình này; nút [Lưu tay đua] **chỉ chuyển sang active** khi đã nhập đủ mã, tên, ngày sinh và quốc tịch, lưu xong thì form đóng lại và bảng kết quả nạp lại dòng tay đua vừa thêm. Click [Chọn] ở một dòng của bảng kết quả sẽ **chuyển sang màn 2 — Nhập hợp đồng**.
+   Bảng "Hợp đồng cũ" của tay đua `HAM — Lewis Hamilton` lúc mới mở màn hình — **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**:
 
-**Màn 2 — Nhập hợp đồng** (trang `gdNhapHopDong.jsp`, lớp biên `GDNhapHopDong`)
+   | TT | Đội đua | Ngày bắt đầu | Ngày kết thúc |
+   |---|---|---|---|
+   | 1 | Mercedes | 01/01/2013 | (trống) |
 
-```
-+----------------------------------------------------------------------+
-|  KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA — Bước 2: Nhập thông tin hợp đồng   |
-+----------------------------------------------------------------------+
-|  Tay đua: ( HAM — Lewis Hamilton — 07/01/1985 — Anh )                |
-+----------------------------------------------------------------------+
-|  Hợp đồng cũ:                                                        |
-|  ( bảng hợp đồng cũ — xem bảng bên dưới )                            |
-+----------------------------------------------------------------------+
-|  Đội đua:      [ Ferrari              v ]                            |
-|  Ngày bắt đầu: [ 01/01/2025             ]                            |
-|  ( không có ô nhập Ngày kết thúc )                                   |
-|                                                                      |
-|                                                  [ Lưu ]             |
-+----------------------------------------------------------------------+
-```
+7. Nhân viên chọn `Ferrari` trong ô "Đội đua" và nhập "Ngày bắt đầu" = `01/01/2025`; nút [Lưu] **chuyển sang active**.
+8. Nhân viên click [Lưu]; màn hình gửi dữ liệu sang trang xử lý `doLuuHopDong.jsp`.
+9. Hệ thống kiểm tra ngày `01/01/2025` không rơi vào khoảng thời gian của bất kỳ hợp đồng đã đóng nào của Lewis Hamilton.
+10. Hệ thống tự động đóng hợp đồng đang hiệu lực với Mercedes: đặt ngày kết thúc = `31/12/2024` (ngày liền trước ngày bắt đầu mới).
+11. Hệ thống lưu hợp đồng mới: `Lewis Hamilton — Ferrari — 01/01/2025 — ngày kết thúc để trống`.
+12. Hệ thống hiển thị thông báo màu xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng; bảng "Hợp đồng cũ" nạp lại thành 2 dòng:
 
-Bảng "Hợp đồng cũ" của tay đua `HAM — Lewis Hamilton` lúc mới mở màn hình:
+    | TT | Đội đua | Ngày bắt đầu | Ngày kết thúc |
+    |---|---|---|---|
+    | 1 | Mercedes | 01/01/2013 | 31/12/2024 |
+    | 2 | Ferrari | 01/01/2025 | (trống) |
 
-| TT | Đội đua | Ngày bắt đầu | Ngày kết thúc |
-|---|---|---|---|
-| 1 | Mercedes | 01/01/2013 | (trống) |
+13. Nhân viên click [OK]; hệ thống quay về trang chính của nhân viên.
 
-Vùng chỉ đọc hiển thị tay đua đã chọn ứng với thuộc tính `-outTayDua`, bảng "Hợp đồng cũ" ứng với `-outDSHopDongCu` — **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**; ô chọn "Đội đua" dạng danh sách thả xuống ứng với `-inDoiDua` (chứa Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams), ô "Ngày bắt đầu" ứng với `-inNgayBatDau` và nút [Lưu] ứng với `-subLuu`. Màn hình **không có ô nhập ngày kết thúc**: hợp đồng mới luôn được lưu ở trạng thái mở, hệ thống tự đóng khi tay đua ký hợp đồng tiếp theo. Khi mới mở màn hình, hai ô nhập đều rỗng và nút [Lưu] **chưa được active**; nút chỉ chuyển sang active khi cả đội đua lẫn ngày bắt đầu đã có giá trị. Click [Lưu] gửi dữ liệu sang trang xử lý `doLuuHopDong.jsp`; nếu hợp lệ, màn hình hiện thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng và bảng "Hợp đồng cũ" nạp lại thành 2 dòng `1 | Mercedes | 01/01/2013 | 31/12/2024` và `2 | Ferrari | 01/01/2025 | (trống)`, nhân viên click [OK] để quay về trang chính; nếu không hợp lệ, màn hình giữ nguyên dữ liệu đã nhập và hiện thông báo lỗi màu đỏ ngay dưới form, ví dụ "Tay đua đã có hợp đồng trong khoảng thời gian này".
+*(Lặp lại từ bước 1 cho từng tay đua cần ký hợp đồng, cho đến khi nhân viên ký xong toàn bộ.)*
+
+**Ngoại lệ**
+
+- **4a.** Không tìm thấy tay đua nào khớp từ khóa (ví dụ nhập `Antonelli`) → hệ thống hiển thị dòng "Không tìm thấy tay đua nào", nút [+ Thêm tay đua mới] vẫn hiển thị; nhân viên click [+ Thêm tay đua mới] để mở form thêm ngay trên màn hình này, nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử rồi click [Lưu tay đua] — nút [Lưu tay đua] **chỉ chuyển sang active** khi đã nhập đủ mã, tên, ngày sinh và quốc tịch; lưu xong form đóng lại và hệ thống quay lại bước 4 với bảng kết quả có 1 dòng `ANT`, `Andrea Kimi Antonelli`, `25/08/2006`, `Ý`, `(chưa có)`.
+- **7a.** Nhân viên chưa chọn đội đua hoặc chưa nhập ngày bắt đầu → nút [Lưu] vẫn **chưa được active**, không thể chuyển sang bước 8.
+- **9a.** Ngày bắt đầu rơi vào khoảng thời gian của một hợp đồng **đã đóng** (ví dụ Carlos Sainz có hợp đồng Ferrari `01/01/2021–31/12/2024`, nhân viên nhập ngày bắt đầu `01/06/2023`) → hệ thống hiện thông báo lỗi màu đỏ ngay dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này", không lưu, màn hình giữ nguyên dữ liệu đã nhập và quay lại bước 7.
+- **9b.** Ngày bắt đầu mới nhỏ hơn hoặc bằng ngày bắt đầu của hợp đồng đang hiệu lực (ví dụ nhập `01/01/2010` trong khi hợp đồng Mercedes bắt đầu `01/01/2013`) → hệ thống báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu của hợp đồng đang hiệu lực", không lưu, quay lại bước 7.
+- **10a.** Tay đua chưa có hợp đồng nào đang hiệu lực (ví dụ Oscar Piastri) → bảng "Hợp đồng cũ" ở bước 6 rỗng; hệ thống bỏ qua bước 10 và chuyển thẳng sang bước 11.
+
+> **Ánh xạ sang lớp biên:** màn *Tìm tay đua* (`GDTimTayDua`) — ô "Tên tay đua" = `-inTenTayDua`, nút [Tìm] = `-subTim`, bảng kết quả vừa hiện vừa cho chọn = `-outsubDSTayDua`, nút [+ Thêm tay đua mới] = `-subThemTayDua`; các ô của form thêm tay đua = `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu` và nút [Lưu tay đua] = `-subLuuTayDua`. Màn *Nhập hợp đồng* (`GDNhapHopDong`) — vùng thông tin tay đua đã chọn = `-outTayDua`, bảng "Hợp đồng cũ" = `-outDSHopDongCu`, ô chọn "Đội đua" = `-inDoiDua`, ô "Ngày bắt đầu" = `-inNgayBatDau`, nút [Lưu] = `-subLuu`.
 
 > Luồng chuyển màn: **Trang chính → Tìm tay đua → Nhập hợp đồng → (lưu) → Trang chính**.
 

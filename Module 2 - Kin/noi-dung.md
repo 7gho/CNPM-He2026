@@ -15,7 +15,7 @@
 
 > **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
 >
-> Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo trong mục 2.2.
+> Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo xen giữa các bước của Kịch bản chính ở mục 2.
 >
 > **Ghi chú cho người vẽ (mẫu hình trong giáo trình BG HP TTTN 2 CNPM — PDF):**
 > - Biểu đồ trạng thái: vẽ theo mẫu **Hình 3.9/3.11** (máy trạng thái đơn giản, nhãn cung `[hành động]`).
@@ -68,97 +68,112 @@ NV -- UC
 
 ## 2. Đặc tả Use Case
 
-### 2.1. Bảng đặc tả
-
 | Mục | Nội dung |
 |---|---|
 | **Use case** | Đăng ký tay đua tham gia chặng đua |
 | **Actor** | Nhân viên |
 | **Tiền điều kiện** | Nhân viên đã đăng nhập hệ thống. Mùa giải 2025 đang ở trạng thái "Đang diễn ra". Chặng đua và đội đua đã có trong danh mục. Hợp đồng giữa tay đua và đội đua đã được nhập ở module "Ký hợp đồng tay đua với đội đua". |
 | **Hậu điều kiện** | Danh sách đăng ký (tối đa 2 tay đua) của đội cho chặng đua được lưu vào CSDL; hệ thống hiển thị lại danh sách xuất phát của chặng để nhân viên đối soát và in cho ban tổ chức. |
-| **Kịch bản chính** | 1. Nhân viên (sau khi đăng nhập) đang ở trang chính của hệ thống, click chức năng "Đăng ký thi đấu".<br>2. Hệ thống hiển thị màn hình **Chọn chặng và đội**: ô chọn "Chặng đua" đang rỗng, danh sách thả xuống gồm các dòng `R01 - Australian Grand Prix - Melbourne - 16/03/2025`, `R02 - Chinese Grand Prix - Thượng Hải - 23/03/2025`, `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, `R10 - British Grand Prix - Silverstone - 06/07/2025`, `R16 - Italian Grand Prix - Monza - 07/09/2025`, `R24 - Abu Dhabi Grand Prix - Yas Marina - 07/12/2025`; ô chọn "Đội đua" đang rỗng, danh sách thả xuống gồm `Ferrari`, `Red Bull`, `Mercedes`, `McLaren`, `Aston Martin`, `Williams`; nút [Tiếp tục] **chưa được active**.<br>3. Nhân viên chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025` và chọn đội `Red Bull`; nút [Tiếp tục] **chuyển sang active**.<br>4. Nhân viên click [Tiếp tục].<br>5. Hệ thống hiển thị màn hình **Đăng ký tay đua** với tiêu đề `Chặng R06 - Monaco Grand Prix - 25/05/2025 | Đội Red Bull`; bảng tay đua có các cột **Chọn \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Trạng thái đăng ký**, chỉ liệt kê tay đua đang có hợp đồng hiệu lực với Red Bull tại ngày 25/05/2025 và **sắp xếp tăng dần theo alphabet của cột Tên**, có 2 dòng: `☐ \| VER \| Max Verstappen \| 30/09/1997 \| Hà Lan \| Chưa đăng ký` và `☐ \| TSU \| Yuki Tsunoda \| 11/05/2000 \| Nhật Bản \| Chưa đăng ký`; nút [Lưu] **chưa được active**, nút [Sửa] **chưa được active**.<br>6. Nhân viên tick chọn dòng `VER - Max Verstappen`; nút [Lưu] **chuyển sang active**.<br>7. Nhân viên tick chọn dòng `TSU - Yuki Tsunoda`.<br>*(Lặp lại bước 6–7 cho đến khi tick xong các tay đua mà đội yêu cầu, nhiều nhất 2 tay đua.)*<br>8. Nhân viên click [Lưu].<br>9. Hệ thống kiểm tra lần lượt: số tay đua được tick là 2 (≤ 2 — hợp lệ); `Max Verstappen` và `Yuki Tsunoda` đều chưa đăng ký chặng R06 cho đội nào khác (hợp lệ); ngày hiện tại 20/05/2025 vẫn trước thời gian diễn ra chặng 25/05/2025 (hợp lệ).<br>10. Hệ thống lưu 2 dòng đăng ký vào CSDL, hiển thị lại màn hình Đăng ký tay đua: cột **Trạng thái đăng ký** của 2 dòng vừa lưu đổi thành `Đã đăng ký (Red Bull)`; phía dưới hiện bảng **danh sách xuất phát** của chặng R06 với các cột **Đội \| Tay đua 1 \| Tay đua 2**, có 1 dòng `Red Bull \| Max Verstappen \| Yuki Tsunoda`; nút [Sửa] **chuyển sang active**.<br>11. Nhân viên đối soát danh sách xuất phát, in gửi ban tổ chức rồi click [OK]; hệ thống quay về trang chính. |
-| **Ngoại lệ** | **5a.** Đội được chọn không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng (ví dụ chọn `R06 - Monaco Grand Prix` và đội `Aston Martin` khi chưa nhập hợp đồng nào cho đội này) → bảng tay đua rỗng, hệ thống hiển thị thông báo "Đội Aston Martin không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng R06", nút [Lưu] vẫn chưa được active; nhân viên quay lại màn hình Chọn chặng và đội.<br>**5b.** Chặng và đội được chọn đã có đăng ký từ trước (ví dụ `R06` + `Red Bull` đã đăng ký `Max Verstappen`, `Yuki Tsunoda`) → hệ thống hiển thị bảng tay đua với các tay đua đang đăng ký **được tick sẵn**, cột Trạng thái đăng ký ghi `Đã đăng ký (Red Bull)`; nút [Sửa] **đang active**. Nhân viên click [Sửa], bỏ tick `Yuki Tsunoda` (chấn thương), rồi click [Lưu] để lưu lại danh sách mới — đây là luồng thay tay đua trước ngày đua.<br>**9a.** Số tay đua được tick lớn hơn 2 (ví dụ tại chặng `R10 - British Grand Prix - 06/07/2025`, đội `Ferrari` có 3 tay đua hợp đồng hiệu lực là `Charles Leclerc`, `Lewis Hamilton` và `Carlos Sainz` — Sainz vừa ký hợp đồng mới với Ferrari giữa mùa — nhân viên tick cả 3) → hệ thống báo lỗi "Mỗi đội chỉ được đăng ký tối đa 2 tay đua trong một chặng", không lưu, giữ nguyên màn hình để nhân viên bỏ bớt tick rồi lưu lại.<br>**9b.** Một tay đua được tick đã được đăng ký chặng này cho đội khác (ví dụ `Carlos Sainz` đã được đăng ký chặng `R10` cho `Williams` trước khi chuyển sang `Ferrari`, nhân viên vẫn tick `Carlos Sainz` ở màn đăng ký của đội `Ferrari`) → hệ thống báo lỗi "Tay đua Carlos Sainz đã được đăng ký cho đội Williams ở chặng R10", không lưu dòng nào.<br>**9c.** Ngày hiện tại đã qua thời gian diễn ra chặng (ví dụ sửa đăng ký chặng `R01 - 16/03/2025` vào ngày 20/05/2025) → hệ thống báo lỗi "Chặng đã diễn ra, không được thay đổi danh sách đăng ký", không lưu. |
 
-### 2.2. Giao diện phác thảo
-
-> Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh.
-
-Module có **2 màn hình hiển thị**, nối tiếp nhau theo luồng: **Chọn chặng và đội → Đăng ký tay đua**. Điểm vào của luồng là **trang chính** `gdChinhNV.jsp` (lớp biên `GDChinhNV`) — trang chủ chung của hệ thống chứa liên kết "Đăng ký thi đấu"; trang này dùng chung cho mọi module nên không phác thảo lại ở đây.
+Module có **2 màn hình hiển thị**, nối tiếp nhau theo luồng **Chọn chặng và đội → Đăng ký tay đua**; phác thảo của mỗi màn được đặt **ngay dưới bước hệ thống hiển thị màn đó** trong Kịch bản chính. Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh. Điểm vào của luồng là **trang chính** `gdChinhNV.jsp` (lớp biên `GDChinhNV`) — trang chủ chung của hệ thống chứa liên kết "Đăng ký thi đấu"; trang này dùng chung cho mọi module nên không phác thảo lại ở đây.
 
 Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ v ]` = danh sách thả xuống; `[x]` / `[ ]` = ô tick; `( ... )` = vùng chỉ đọc hoặc chú thích.
 
-**Màn 1 — Chọn chặng và đội** (trang `gdChonChangDoi.jsp`, lớp biên `GDChonChangDoi`)
+**Kịch bản chính**
 
-```
-+----------------------------------------------------------------------+
-|  ĐĂNG KÝ TAY ĐUA THAM GIA CHẶNG ĐUA — Bước 1: Chọn chặng và đội       |
-+----------------------------------------------------------------------+
-|  Chặng đua: [ R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025  v ] |
-|  Đội đua:   [ Red Bull (Honda RBPT)                              v ] |
-+----------------------------------------------------------------------+
-|  ( nội dung hai danh sách thả xuống: xem bảng bên dưới )              |
-+----------------------------------------------------------------------+
-|                                                        [ Tiếp tục ]  |
-+----------------------------------------------------------------------+
-```
+1. Nhân viên (sau khi đăng nhập) đang ở trang chính `gdChinhNV.jsp` của hệ thống, click chức năng "Đăng ký thi đấu".
+2. Hệ thống hiển thị màn hình **Chọn chặng và đội** (trang `gdChonChangDoi.jsp`): ô chọn "Chặng đua" đang rỗng, ô chọn "Đội đua" đang rỗng, nút [Tiếp tục] **chưa được active** — nút chỉ chuyển sang active khi cả hai ô chọn đã có giá trị.
 
-Nội dung danh sách thả xuống **Chặng đua** — chỉ lấy chặng của mùa giải đang diễn ra (2025), sắp xếp tăng dần theo thời gian, mỗi dòng hiển thị dạng `Mã - Tên chặng - Địa điểm - Thời gian`:
+   ```
+   +----------------------------------------------------------------------+
+   |  ĐĂNG KÝ TAY ĐUA THAM GIA CHẶNG ĐUA — Bước 1: Chọn chặng và đội      |
+   +----------------------------------------------------------------------+
+   |  Chặng đua: [ R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025 v ] |
+   |  Đội đua:   [ Red Bull (Honda RBPT)                              v ] |
+   +----------------------------------------------------------------------+
+   |  ( nội dung hai danh sách thả xuống: xem bảng bên dưới )             |
+   +----------------------------------------------------------------------+
+   |                                                        [ Tiếp tục ]  |
+   +----------------------------------------------------------------------+
+   ```
 
-| TT | Mã | Tên chặng | Địa điểm | Thời gian |
-|---|---|---|---|---|
-| 1 | R01 | Australian Grand Prix | Melbourne | 16/03/2025 |
-| 2 | R02 | Chinese Grand Prix | Thượng Hải | 23/03/2025 |
-| 3 | R06 | Monaco Grand Prix | Monte Carlo | 25/05/2025 |
-| 4 | R10 | British Grand Prix | Silverstone | 06/07/2025 |
-| 5 | R16 | Italian Grand Prix | Monza | 07/09/2025 |
-| 6 | R24 | Abu Dhabi Grand Prix | Yas Marina | 07/12/2025 |
+   Nội dung danh sách thả xuống **Chặng đua** — chỉ lấy chặng của mùa giải đang diễn ra (2025), sắp xếp tăng dần theo thời gian, mỗi dòng hiển thị dạng `Mã - Tên chặng - Địa điểm - Thời gian`:
 
-Nội dung danh sách thả xuống **Đội đua** — mỗi dòng hiển thị dạng `Tên đội (Hãng)`:
+   | TT | Mã | Tên chặng | Địa điểm | Thời gian |
+   |---|---|---|---|---|
+   | 1 | R01 | Australian Grand Prix | Melbourne | 16/03/2025 |
+   | 2 | R02 | Chinese Grand Prix | Thượng Hải | 23/03/2025 |
+   | 3 | R06 | Monaco Grand Prix | Monte Carlo | 25/05/2025 |
+   | 4 | R10 | British Grand Prix | Silverstone | 06/07/2025 |
+   | 5 | R16 | Italian Grand Prix | Monza | 07/09/2025 |
+   | 6 | R24 | Abu Dhabi Grand Prix | Yas Marina | 07/12/2025 |
 
-| TT | Tên đội | Hãng | Dòng hiển thị |
-|---|---|---|---|
-| 1 | Ferrari | Ferrari | Ferrari (Ferrari) |
-| 2 | Red Bull | Honda RBPT | Red Bull (Honda RBPT) |
-| 3 | Mercedes | Mercedes | Mercedes (Mercedes) |
-| 4 | McLaren | Mercedes | McLaren (Mercedes) |
-| 5 | Aston Martin | Mercedes | Aston Martin (Mercedes) |
-| 6 | Williams | Mercedes | Williams (Mercedes) |
+   Nội dung danh sách thả xuống **Đội đua** — liệt kê theo đúng thứ tự `id` của `tblDoiDua`, mỗi dòng hiển thị dạng `Tên đội (Hãng)`:
 
-Ô chọn "Chặng đua" ứng với thuộc tính `-inChangDua`, ô chọn "Đội đua" ứng với `-inDoiDua`, nút [Tiếp tục] ứng với `-subTiepTuc` của lớp biên `GDChonChangDoi`. Lúc mới vào màn, cả hai ô chọn đều rỗng và nút [Tiếp tục] **chưa được active**. Nút chỉ chuyển sang **active** khi cả hai ô chọn đã có giá trị. Click [Tiếp tục] → hệ thống chuyển sang **Màn 2 — Đăng ký tay đua**, mang theo chặng và đội vừa chọn.
+   | TT | Tên đội | Hãng | Dòng hiển thị |
+   |---|---|---|---|
+   | 1 | Ferrari | Ferrari | Ferrari (Ferrari) |
+   | 2 | Red Bull | Honda RBPT | Red Bull (Honda RBPT) |
+   | 3 | McLaren | Mercedes | McLaren (Mercedes) |
+   | 4 | Mercedes | Mercedes | Mercedes (Mercedes) |
+   | 5 | Aston Martin | Mercedes | Aston Martin (Mercedes) |
+   | 6 | Williams | Mercedes | Williams (Mercedes) |
 
-**Màn 2 — Đăng ký tay đua** (trang `gdDangKyTayDua.jsp`, lớp biên `GDDangKyTayDua`)
+3. Nhân viên chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025` và chọn đội `Red Bull (Honda RBPT)`; nút [Tiếp tục] **chuyển sang active**.
+4. Nhân viên click [Tiếp tục]; hệ thống chuyển sang màn hình tiếp theo, mang theo chặng và đội vừa chọn.
+5. Hệ thống hiển thị màn hình **Đăng ký tay đua** (trang `gdDangKyTayDua.jsp`) với tiêu đề `Chặng R06 - Monaco Grand Prix - 25/05/2025 — Đội Red Bull`; bảng tay đua gồm 6 cột **Chọn**, **Mã**, **Tên**, **Ngày sinh**, **Quốc tịch**, **Trạng thái đăng ký**, chỉ liệt kê tay đua đang có hợp đồng hiệu lực với Red Bull tại ngày 25/05/2025 và **sắp xếp tăng dần theo alphabet của cột Tên** (`Max Verstappen` trước `Yuki Tsunoda`); lúc mới vào màn mọi ô tick đều trống, cột Trạng thái đăng ký ghi `Chưa đăng ký`, bảng danh sách xuất phát chưa hiện, nút [Lưu] và nút [Sửa] đều **chưa được active**, nút [OK] **chưa hiện**.
 
-```
-+----------------------------------------------------------------------+
-|  ĐĂNG KÝ TAY ĐUA — Bước 2: Chặng R06 - Monaco Grand Prix - 25/05/2025 |
-|  Đội Red Bull (Honda RBPT)                                           |
-+----------------------------------------------------------------------+
-|  Danh sách tay đua có hợp đồng hiệu lực — sắp xếp A → Z theo cột Tên: |
-|  ( bảng 1 bên dưới — cột [x] cho phép tick tối đa 2 tay đua )         |
-+----------------------------------------------------------------------+
-|  Danh sách xuất phát của chặng (chỉ hiện sau khi lưu thành công):     |
-|  ( bảng 2 bên dưới )                                                 |
-+----------------------------------------------------------------------+
-|  [ Quay lại ]                                         [ Sửa ] [ Lưu ] |
-+----------------------------------------------------------------------+
-```
+   ```
+   +----------------------------------------------------------------------+
+   |  ĐĂNG KÝ TAY ĐUA THAM GIA CHẶNG ĐUA — Bước 2: Đăng ký tay đua        |
+   |  Chặng R06 - Monaco Grand Prix - 25/05/2025 — Đội Red Bull           |
+   +----------------------------------------------------------------------+
+   |  Danh sách tay đua có hợp đồng hiệu lực, sắp xếp A → Z theo cột Tên: |
+   |  ( bảng 1 bên dưới — cột [x] cho phép tick tối đa 2 tay đua )        |
+   +----------------------------------------------------------------------+
+   |  Danh sách xuất phát của chặng (chỉ hiện sau khi lưu thành công):    |
+   |  ( bảng 2 bên dưới )                                                 |
+   |  ( thông báo "Đã lưu đăng ký cho đội Red Bull ở chặng R06" )         |
+   +----------------------------------------------------------------------+
+   |  [ Quay lại ]                                [ Sửa ] [ Lưu ] [ OK ]  |
+   +----------------------------------------------------------------------+
+   ```
 
-Bảng 1 — **Danh sách tay đua** của đội Red Bull có hợp đồng hiệu lực tại ngày 25/05/2025, **sắp xếp tăng dần theo alphabet của cột Tên** (`Max Verstappen` trước `Yuki Tsunoda`); minh hoạ trạng thái sau khi nhân viên đã tick chọn 2 tay đua — đây cũng là **số lượng tối đa** được phép tick:
+   Bảng 1 — **Danh sách tay đua** của đội Red Bull có hợp đồng hiệu lực tại ngày 25/05/2025, sắp xếp A → Z theo cột Tên; minh hoạ trạng thái sau khi nhân viên đã tick chọn 2 tay đua ở bước 6–7 — đây cũng là **số lượng tối đa** được phép tick:
 
-| Chọn | Mã | Tên | Ngày sinh | Quốc tịch | Trạng thái đăng ký |
-|---|---|---|---|---|---|
-| [x] | VER | Max Verstappen | 30/09/1997 | Hà Lan | Chưa đăng ký |
-| [x] | TSU | Yuki Tsunoda | 11/05/2000 | Nhật Bản | Chưa đăng ký |
+   | Chọn | Mã | Tên | Ngày sinh | Quốc tịch | Trạng thái đăng ký |
+   |---|---|---|---|---|---|
+   | [x] | VER | Max Verstappen | 30/09/1997 | Hà Lan | Chưa đăng ký |
+   | [x] | TSU | Yuki Tsunoda | 11/05/2000 | Nhật Bản | Chưa đăng ký |
 
-Bảng 2 — **Danh sách xuất phát** của chặng R06, hiện ra sau khi lưu thành công:
+   Cột **Trạng thái đăng ký** nhận một trong ba giá trị `Chưa đăng ký`, `Đã đăng ký (<tên đội đang xem>)` hoặc `Đã đăng ký (<tên đội khác>)` — giá trị cuối là cảnh báo trực quan cho ràng buộc trùng đăng ký.
 
-| Đội | Tay đua 1 | Tay đua 2 |
-|---|---|---|
-| Red Bull | Max Verstappen | Yuki Tsunoda |
+6. Nhân viên tick chọn dòng `VER - Max Verstappen`; nút [Lưu] **chuyển sang active** (nút [Lưu] active ngay khi có ít nhất một dòng được tick).
+7. Nhân viên tick chọn dòng `TSU - Yuki Tsunoda`.
 
-Bảng 1 ứng với thuộc tính `-outsubDSTayDua` (vừa hiển thị dữ liệu vừa nhận tick chọn), bảng 2 ứng với `-outDSXuatPhat`, ba nút ứng với `-subLuu`, `-subSua`, `-subQuayLai` của lớp biên `GDDangKyTayDua`. Lúc mới vào màn, mọi ô tick đều trống, cột **Trạng thái đăng ký** ghi `Chưa đăng ký`, bảng 2 chưa hiện, nút [Lưu] và nút [Sửa] đều **chưa được active**; nút [Lưu] chuyển sang **active** ngay khi có ít nhất một dòng được tick, còn nút [Sửa] chỉ **active** khi chặng và đội đang xem đã có đăng ký trong CSDL (khi đó các dòng đang đăng ký được **tick sẵn** và cột Trạng thái đăng ký ghi `Đã đăng ký (<tên đội>)`). Cột Trạng thái đăng ký nhận một trong ba giá trị `Chưa đăng ký`, `Đã đăng ký (<tên đội đang xem>)` hoặc `Đã đăng ký (<tên đội khác>)` — giá trị cuối là cảnh báo trực quan cho ràng buộc trùng đăng ký. Số ô được tick bị giới hạn **tối đa 2**: nếu bảng có nhiều hơn hai dòng (ví dụ đội Ferrari tại chặng R10 có 3 tay đua hợp đồng hiệu lực) mà nhân viên tick quá 2 thì trang xử lý `doLuuDangKy.jsp` báo lỗi và không ghi dòng nào. Click [Lưu] → dữ liệu gửi sang `doLuuDangKy.jsp`, kiểm tra ba ràng buộc rồi ghi CSDL và **quay lại chính màn này** với cột Trạng thái đăng ký đã cập nhật và bảng 2 hiện ra; click [Sửa] → mở khoá các ô tick để thay tay đua trước ngày đua rồi lưu lại; click [Quay lại] → trở về Màn 1, giữ nguyên chặng đang chọn để nhân viên chọn đội khác.
+   *(Lặp lại bước 6–7 cho đến khi tick xong các tay đua mà đội yêu cầu, nhiều nhất 2 tay đua.)*
 
-> Luồng chuyển màn: **Trang chính → Chọn chặng và đội → Đăng ký tay đua → (lưu) → Đăng ký tay đua (hiển thị lại kèm danh sách xuất phát) → Trang chính**.
+8. Nhân viên click [Lưu]; dữ liệu được gửi sang trang xử lý `doLuuDangKy.jsp`.
+9. Hệ thống kiểm tra lần lượt: số tay đua được tick là 2 (≤ 2 — hợp lệ); `Max Verstappen` và `Yuki Tsunoda` đều chưa đăng ký chặng R06 cho đội nào khác (hợp lệ); ngày hiện tại 20/05/2025 vẫn trước thời gian diễn ra chặng 25/05/2025 (hợp lệ).
+10. Hệ thống lưu 2 dòng đăng ký vào CSDL rồi **quay lại chính màn hình Đăng ký tay đua**: cột **Trạng thái đăng ký** của 2 dòng vừa lưu đổi thành `Đã đăng ký (Red Bull)`; phía dưới hiện bảng 2 — **danh sách xuất phát** của chặng R06 gồm 3 cột **Đội**, **Tay đua 1**, **Tay đua 2** — kèm thông báo "Đã lưu đăng ký cho đội Red Bull ở chặng R06"; nút [Sửa] **chuyển sang active**, nút [OK] **hiện ra** cùng thông báo.
+
+    | Đội | Tay đua 1 | Tay đua 2 |
+    |---|---|---|
+    | Red Bull | Max Verstappen | Yuki Tsunoda |
+
+11. Nhân viên đối soát danh sách xuất phát, in gửi ban tổ chức rồi click [OK]; hệ thống quay về trang chính `gdChinhNV.jsp`.
+
+**Ngoại lệ**
+
+- **5a.** Đội được chọn không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng (ví dụ chọn `R06 - Monaco Grand Prix` và đội `Aston Martin` khi chưa nhập hợp đồng nào cho đội này) → bảng tay đua rỗng, hệ thống hiển thị thông báo "Đội Aston Martin không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng R06", nút [Lưu] vẫn chưa được active; nhân viên click [Quay lại] để trở về màn hình Chọn chặng và đội, hệ thống giữ nguyên chặng đang chọn để nhân viên chọn đội khác.
+- **5b.** Chặng và đội được chọn đã có đăng ký từ trước (ví dụ `R06` + `Red Bull` đã đăng ký `Max Verstappen`, `Yuki Tsunoda`) → hệ thống hiển thị bảng tay đua với các tay đua đang đăng ký **được tick sẵn**, cột Trạng thái đăng ký ghi `Đã đăng ký (Red Bull)`; nút [Sửa] **đang active** (nút [Sửa] chỉ active khi chặng và đội đang xem đã có đăng ký trong CSDL). Nhân viên click [Sửa] để mở khoá các ô tick, bỏ tick `Yuki Tsunoda` (chấn thương), rồi click [Lưu] để lưu lại danh sách mới — đây là luồng thay tay đua trước ngày đua.
+- **9a.** Số tay đua được tick lớn hơn 2 (ví dụ tại chặng `R10 - British Grand Prix - 06/07/2025`, đội `Ferrari` có 3 tay đua hợp đồng hiệu lực là `Charles Leclerc`, `Lewis Hamilton` và `Carlos Sainz` — Sainz vừa ký hợp đồng mới với Ferrari giữa mùa — nhân viên tick cả 3) → trang xử lý `doLuuDangKy.jsp` báo lỗi "Mỗi đội chỉ được đăng ký tối đa 2 tay đua trong một chặng", không ghi dòng nào, giữ nguyên màn hình để nhân viên bỏ bớt tick rồi lưu lại.
+- **9b.** Một tay đua được tick đã được đăng ký chặng này cho đội khác (ví dụ `Carlos Sainz` đã được đăng ký chặng `R10` cho `Williams` trước khi chuyển sang `Ferrari`, nhân viên vẫn tick `Carlos Sainz` ở màn đăng ký của đội `Ferrari`) → hệ thống báo lỗi "Tay đua Carlos Sainz đã được đăng ký cho đội Williams ở chặng R10", không lưu dòng nào.
+- **9c.** Ngày hiện tại đã qua thời gian diễn ra chặng (ví dụ sửa đăng ký chặng `R01 - 16/03/2025` vào ngày 20/05/2025) → hệ thống báo lỗi "Chặng đã diễn ra, không được thay đổi danh sách đăng ký", không lưu.
+
+> **Ánh xạ sang lớp biên:** trang chính `gdChinhNV.jsp` (`GDChinhNV`) — liên kết "Đăng ký thi đấu" = `-subDangKyChang`. Màn *Chọn chặng và đội* (`GDChonChangDoi`) — ô chọn "Chặng đua" = `-inChangDua`, ô chọn "Đội đua" = `-inDoiDua`, nút [Tiếp tục] = `-subTiepTuc`. Màn *Đăng ký tay đua* (`GDDangKyTayDua`) — bảng 1 danh sách tay đua (vừa hiển thị dữ liệu vừa nhận tick chọn) = `-outsubDSTayDua`, bảng 2 danh sách xuất phát = `-outDSXuatPhat`, nút [Lưu] = `-subLuu`, nút [Sửa] = `-subSua`, nút [Quay lại] = `-subQuayLai`, nút [OK] của thông báo lưu thành công = `-subOK`.
+
+> Luồng chuyển màn: **Trang chính → Chọn chặng và đội → Đăng ký tay đua → (lưu qua `doLuuDangKy.jsp`) → Đăng ký tay đua (hiển thị lại kèm danh sách xuất phát) → Trang chính**.
 
 ---
 
@@ -198,11 +213,11 @@ Biểu đồ chỉ gồm **hai tầng**: lớp biên và lớp thực thể. Kh�
 |---|---|---|
 | `GDChinhNV` | Trang chính của nhân viên (trang chủ chung hệ thống) | `-subDangKyChang` |
 | `GDChonChangDoi` | Chọn chặng và đội | `-inChangDua`, `-inDoiDua`, `-subTiepTuc` |
-| `GDDangKyTayDua` | Đăng ký tay đua | `-outsubDSTayDua`, `-subLuu`, `-subSua`, `-outDSXuatPhat`, `-subQuayLai` |
+| `GDDangKyTayDua` | Đăng ký tay đua | `-outsubDSTayDua`, `-subLuu`, `-subSua`, `-outDSXuatPhat`, `-subQuayLai`, `-subOK` |
 
 Lớp biên `GDChinhNV` là **giao diện chính** của actor Nhân viên (theo mẫu `GDChinhSV{-subDangki}` của giáo trình): chỉ có nút/liên kết `-subDangKyChang` dẫn vào chức năng của module, nối `--` sang lớp biên đầu tiên `GDChonChangDoi`. Trang chính là trang chủ chung của hệ thống nên không sinh UC con và không phác thảo lại trong module này.
 
-Hai thuộc tính `-outDSXuatPhat` và `-subQuayLai` tương ứng với bảng **danh sách xuất phát** (hiện ra sau khi lưu, các cột Đội | Tay đua 1 | Tay đua 2) và nút **[Quay lại]** trên màn hình Đăng ký tay đua — mọi thành phần hiện dữ liệu ra hoặc submit trên màn hình đều phải có đúng một thuộc tính tương ứng ở lớp biên (xem phác thảo ở mục 2.2).
+Ba thuộc tính `-outDSXuatPhat`, `-subQuayLai` và `-subOK` tương ứng với bảng **danh sách xuất phát** (hiện ra sau khi lưu, các cột Đội | Tay đua 1 | Tay đua 2), nút **[Quay lại]** và nút **[OK]** của thông báo lưu thành công trên màn hình Đăng ký tay đua — mọi thành phần hiện dữ liệu ra hoặc submit trên màn hình đều phải có đúng một thuộc tính tương ứng ở lớp biên (xem phác thảo ở mục 2).
 
 **Phương thức nghiệp vụ gán cho lớp thực thể:**
 
@@ -236,6 +251,7 @@ class GDDangKyTayDua {
   -subSua
   -outDSXuatPhat
   -subQuayLai
+  -subOK
 }
 
 class MuaGiai {
@@ -371,6 +387,7 @@ package view {
     -btnSua : submit
     -tblXuatPhat : Table
     -btnQuayLai : submit
+    -btnOK : submit
     -nv : NhanVien
   }
   class doLuuDangKy {
@@ -579,7 +596,7 @@ Kịch bản dưới đây chỉ mô tả **luồng chính**; các ngoại lệ 
 
 ### 7.2. Biểu đồ tuần tự (Sequence) — luồng chính
 
-> Lifeline gồm: actor Nhân viên + trang chính `gdChinhNV.jsp` (mở đầu và kết thúc, theo mẫu Hình 4.10) + 3 trang jsp của module + 4 lớp DAO + 4 lớp thực thể. Không có lifeline CSDL, không có lifeline điều khiển, không có câu lệnh SQL trong nhãn message. Dùng `autonumber` để đánh số message tự động. Luồng **đọc** là chuỗi 7 message (`goi` → self-call tên hàm ở DAO → `goi` → self-call hàm khởi tạo ở lớp thực thể → `tra ve` → `tra ve` → `hien thi`); luồng **lưu** theo mẫu `setter()` (Hình 4.12): Entity self-call `setter()` đóng gói trước, rồi DAO self-call `luuDangKy()` — không gọi lại Entity. Kết thúc: thông báo thành công kèm danh sách xuất phát hiển thị trên `gdDangKyTayDua.jsp` để nhân viên đối soát (mục 2.2), click OK → gọi trang chính → hiển thị.
+> Lifeline gồm: actor Nhân viên + trang chính `gdChinhNV.jsp` (mở đầu và kết thúc, theo mẫu Hình 4.10) + 3 trang jsp của module + 4 lớp DAO + 4 lớp thực thể. Không có lifeline CSDL, không có lifeline điều khiển, không có câu lệnh SQL trong nhãn message. Dùng `autonumber` để đánh số message tự động. Luồng **đọc** là chuỗi 7 message (`goi` → self-call tên hàm ở DAO → `goi` → self-call hàm khởi tạo ở lớp thực thể → `tra ve` → `tra ve` → `hien thi`); luồng **lưu** theo mẫu `setter()` (Hình 4.12): Entity self-call `setter()` đóng gói trước, rồi DAO self-call `luuDangKy()` — không gọi lại Entity. Kết thúc: thông báo thành công kèm danh sách xuất phát hiển thị trên `gdDangKyTayDua.jsp` để nhân viên đối soát (mục 2), click OK → gọi trang chính → hiển thị.
 
 ```plantuml
 @startuml
@@ -809,7 +826,7 @@ Ngày hệ thống mặc định khi chạy test: **20/05/2025** (ca nào dùng 
 | **Nhóm Giao diện** | | | |
 | DKC_1 | Bố cục tổng thể màn Chọn chặng và đội | 1. Đăng nhập bằng tài khoản nhân viên.<br>2. Tại trang chính click "Đăng ký thi đấu". | Màn hình hiện đúng title "Đăng ký tay đua tham gia chặng đua — Bước 1: Chọn chặng và đội"; hiển thị đầy đủ 2 danh sách thả xuống "Chặng đua", "Đội đua" (đang rỗng) và nút [Tiếp tục] (chưa active); con trỏ focus vào ô "Chặng đua" |
 | DKC_2 | Hành vi phím màn Chọn chặng và đội | 1. Mở màn Chọn chặng và đội.<br>2. Nhấn Tab lần lượt qua các control.<br>3. Chọn chặng `R06`, chọn đội `Red Bull`, nhấn Enter. | Tab di chuyển đúng thứ tự: ô "Chặng đua" → ô "Đội đua" → nút [Tiếp tục]; khi cả hai ô đã có giá trị, Enter thực hiện nút [Tiếp tục] và chuyển sang màn Đăng ký tay đua |
-| DKC_3 | Bố cục tổng thể màn Đăng ký tay đua | 1. Từ màn 1 chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, đội `Red Bull (Honda RBPT)`, click [Tiếp tục]. | Title hiện `Chặng R06 - Monaco Grand Prix - 25/05/2025 \| Đội Red Bull`; bảng tay đua đủ 6 cột **Chọn \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Trạng thái đăng ký**; hiển thị đầy đủ nút [Lưu], [Sửa], [Quay lại]; focus vào ô tick của dòng đầu; [Lưu] và [Sửa] chưa active |
+| DKC_3 | Bố cục tổng thể màn Đăng ký tay đua | 1. Từ màn 1 chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, đội `Red Bull (Honda RBPT)`, click [Tiếp tục]. | Title hiện `Chặng R06 - Monaco Grand Prix - 25/05/2025 \| Đội Red Bull`; bảng tay đua đủ 6 cột **Chọn \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Trạng thái đăng ký**; hiển thị đầy đủ nút [Lưu], [Sửa], [Quay lại]; focus vào ô tick của dòng đầu; [Lưu] và [Sửa] chưa active; nút [OK] **chưa hiện** (chỉ hiện kèm thông báo sau khi lưu thành công) |
 | DKC_4 | Hành vi phím màn Đăng ký tay đua | 1. Tại màn Đăng ký tay đua (R06, Red Bull), nhấn Space tại dòng đang focus.<br>2. Nhấn Enter. | Space tick được ô Chọn của dòng đang focus, nút [Lưu] chuyển sang active; Enter thực hiện nút [Lưu] (nút chính của màn) |
 | **Nhóm Chức năng** | | | |
 | DKC_5 | Màn Chọn chặng và đội hiển thị đúng dữ liệu | 1. Mở màn Chọn chặng và đội.<br>2. Mở lần lượt hai danh sách thả xuống. | Danh sách "Chặng đua" có 6 dòng **khớp các bản ghi trong `tblChangDua`** thuộc mùa 2025, sắp xếp tăng dần theo `thoiGian` (R01 → R24); danh sách "Đội đua" có 6 dòng **khớp các bản ghi trong `tblDoiDua`** (hiển thị dạng `Tên đội (Hãng)`) |

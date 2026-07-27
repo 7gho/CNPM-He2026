@@ -7,6 +7,8 @@
 > **Cập nhật lần 2:** sau khi đọc PDF `BG HP TTTN 2 CNPM 2020 final.pdf` (235 trang, bản "final") và đề bài gốc `SE-list-of-project.pdf`, bổ sung **mục P4 (đối chiếu đề bài gốc)** và **mục P5 (đối chiếu giáo trình PDF — có 2 điểm LẬT lại kết luận cũ)** ở cuối file. Đọc P5 trước khi vẽ bất kỳ hình nào.
 >
 > **Cập nhật lần 3:** bổ sung **mục P6 — quyết định bỏ ảnh giao diện**, chuyển giao diện thành phác thảo đặt trong mục Đặc tả UC. P6 sửa đè phần giao diện của P0-7 và P5-D; số ảnh phải vẽ giảm từ 33 xuống 28.
+>
+> **Cập nhật lần 4:** **P6 được viết lại** — bỏ luôn mục con `2.2. Giao diện phác thảo`; phác thảo giao diện nay **nhúng xen giữa các bước của Kịch bản chính** (đúng mẫu giáo trình PDF mục 3.2.1), **không có mục "Thiết kế giao diện" ở bất kỳ cấp nào**. Bổ sung P6-2b về cách script `docs/build-baocao-docx.py` ghép lại thành bảng 6 dòng có bảng lồng khi xuất Word.
 
 ---
 
@@ -462,21 +464,45 @@ Mỗi module: `m<N>-uc-chitiet` · `m<N>-trangthai` (MỚI) · `m<N>-hoatdong` (
 
 ---
 
-## P6 — Quyết định: bỏ ảnh giao diện, chuyển thành phác thảo trong Đặc tả UC
+## P6 — Quyết định: bỏ ảnh giao diện, nhúng phác thảo VÀO GIỮA các bước Kịch bản chính
 
-> Quyết định của nhóm ở lần rà soát thứ 3. Mục này **sửa đè** phần giao diện của P0-7 và P5-D; mọi kết luận khác giữ nguyên.
+> Quyết định của nhóm, **cập nhật ở lần rà soát thứ 4**. Mục này **sửa đè** phần giao diện của P0-7 và P5-D; mọi kết luận khác giữ nguyên.
+>
+> ⚠️ **Điều chỉnh so với lần ghi P6 trước:** bản P6 cũ vẫn giữ một mục con `2.2. Giao diện phác thảo` (đặt sau `2.1. Bảng đặc tả`). Nay nhóm chốt lại: **thầy không có mục "Thiết kế giao diện" nào cả, kể cả ở dạng mục con**. Toàn bộ phác thảo giao diện được **nhúng xen giữa các bước của Kịch bản chính**; các heading `2.1` / `2.2` bị **xoá hẳn**, mục 2 trở lại là một mục phẳng `## 2. Đặc tả Use Case`. Nội dung phác thảo **không bị mất** — chỉ đổi vị trí.
 
 ### P6-1. Nội dung quyết định
 
-Nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo**, gồm hai phần đi liền nhau cho mỗi màn hình: **khung bố cục** vẽ bằng ký tự trong code fence thường (thể hiện tiêu đề màn, ô nhập, nút bấm, vị trí bảng) và **bảng dữ liệu markdown** có dữ liệu mẫu thật từ bộ dữ liệu F1 2025 đã chốt, kèm một đoạn văn ngắn giải thích thuộc tính lớp biên tương ứng và trạng thái nút.
+Nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo**: **khung bố cục** vẽ bằng ký tự trong code fence thường (tiêu đề màn, ô nhập, nút bấm, vị trí bảng, trạng thái active/chưa active) và **bảng dữ liệu markdown** có dữ liệu mẫu thật từ bộ dữ liệu F1 2025 đã chốt.
 
-Phần phác thảo này **đặt bên trong chương Đặc tả Use Case**, làm mục con `2.2. Giao diện phác thảo` ngay sau `2.1. Bảng đặc tả`, chứ không còn là một mục riêng ở giữa tài liệu.
+Vị trí đặt: **xen giữa các bước của Kịch bản chính** trong Đặc tả Use Case. Cụ thể — mỗi khi một bước là *"hệ thống hiển thị màn hình X"* thì **ngay dưới bước đó** chèn khung phác thảo và/hoặc bảng dữ liệu (thụt vào 3 dấu cách để nằm trong item danh sách), rồi viết tiếp bước kế. **Không có mục "Thiết kế giao diện" riêng ở bất kỳ cấp nào.**
+
+Phần **ánh xạ thuộc tính lớp biên** (`-inTenTayDua`, `-subTim`, `-outsubDSTayDua`…) gom thành **một đoạn ghi chú ngắn đặt sau khối Ngoại lệ**, không rải rác trong từng bước.
+
+Mỗi màn hình hiển thị của module xuất hiện **đúng một lần** dưới dạng khung phác thảo trong kịch bản. Số màn: **M1 = 2, M2 = 2, M3 = 2, M4 = 3**.
 
 ### P6-2. Căn cứ
 
-1. **Giáo trình PDF mục 3.2.1** — kịch bản mẫu của thầy **nhúng thẳng bảng dữ liệu** vào các bước hệ thống hiển thị (bảng `TT | Mã | Tên môn học | số tín chỉ | …` nằm ngay trong kịch bản đặc tả UC). Giáo trình **không có ảnh mockup rời** cho từng màn hình. Đặt phác thảo trong đặc tả UC là bám đúng cách trình bày này.
+1. **Giáo trình PDF mục 3.2.1 (căn cứ chính)** — kịch bản mẫu của thầy **nhúng thẳng bảng dữ liệu vào từng bước** hệ thống hiển thị:
+
+   ```
+   6. Giao diện hiện lên danh sách các môn học mà sinh viên có thể đăng kí trong học kì:
+
+      TT | Mã    | Tên môn học    | số tín chỉ | mô tả | Chọn
+      1  | INT17 | Toán rời rạc 1 | 3          |       | chọn
+
+   7. Sinh viên click chọn môn Lập trình hướng đối tượng
+   8. Giao diện các lớp học phần hiện ra: …
+   ```
+
+   Bảng nằm **ngay trong kịch bản**, giữa bước 6 và bước 7. Giáo trình **không có mục riêng nào tên "giao diện"** và **không có ảnh mockup rời** cho từng màn hình.
 2. **Yêu cầu bài tập nhóm** chỉ ghi *"Thiết kế giao diện cho UC"* — không quy định phải vẽ mockup bằng công cụ và không bắt buộc xuất ảnh. Khung bố cục + bảng dữ liệu mẫu đã đủ để đọc ra danh sách control của từng màn (phục vụ nhóm test case Giao diện) và đủ để ánh xạ sang lớp biên `GDxxx` cùng trang `.jsp`.
-3. Ràng buộc **"số UC con = số giao diện = số lớp biên = số trang `.jsp`"** ở P0-7 **vẫn giữ nguyên** — chỉ khác là "giao diện" nay được đếm theo số màn phác thảo, không đếm theo số file ảnh.
+3. Ràng buộc **"số UC con = số giao diện = số lớp biên = số trang `.jsp`"** ở P0-7 **vẫn giữ nguyên** — chỉ khác là "giao diện" nay được đếm theo số màn phác thảo trong kịch bản, không đếm theo số file ảnh.
+
+### P6-2b. Cách trình bày trong markdown và trong bản Word
+
+Markdown **không lồng được bảng vào ô của một bảng khác**, nên trong `noi-dung.md` và `docs/BAO-CAO.md` đặc tả UC được viết **phẳng thành 3 khối liên tiếp**: (a) bảng 4 dòng `Use case / Actor / Tiền điều kiện / Hậu điều kiện` → (b) khối `**Kịch bản chính**` (danh sách đánh số, có khung phác thảo + bảng dữ liệu chèn xen giữa các bước) → (c) khối `**Ngoại lệ**` (đánh số theo bước), rồi tới dòng ghi chú ánh xạ lớp biên.
+
+Khi sinh bản Word bằng `python docs/build-baocao-docx.py`, script **tự ghép 3 khối này lại thành đúng bảng 6 dòng như mẫu của thầy** (`Use case | Actor | Tiền điều kiện | Hậu điều kiện | Kịch bản chính | Ngoại lệ`), với **bảng dữ liệu và khung phác thảo lồng trong ô "Kịch bản chính"**. ⇒ Bản nộp cho thầy vẫn đúng mẫu 6 dòng; việc tách khối chỉ là hạn chế kỹ thuật của markdown. Điều kiện để script nhận diện: giữ nguyên thứ tự 3 khối và giữ đúng hai nhãn `**Kịch bản chính**` / `**Ngoại lệ**`.
 
 ### P6-3. Hệ quả
 
@@ -494,13 +520,14 @@ Phần phác thảo này **đặt bên trong chương Đặc tả Use Case**, l�
 
 | Cũ | Mới |
 |---|---|
-| 5. Thiết kế giao diện | *(bỏ — chuyển thành mục con 2.2)* |
+| 2. Đặc tả Use Case (2.1 Bảng đặc tả, 2.2 Giao diện phác thảo) | **2.** Đặc tả Use Case — **mục phẳng, không có mục con**; phác thảo nhúng giữa các bước Kịch bản chính |
+| 5. Thiết kế giao diện | *(bỏ hẳn — không còn mục giao diện ở bất kỳ cấp nào)* |
 | 6. Biểu đồ lớp thiết kế | **5.** Biểu đồ lớp thiết kế |
 | 7. Biểu đồ hoạt động (pha thiết kế) | **6.** Biểu đồ hoạt động (pha thiết kế) |
 | 8. Thuyết minh + biểu đồ tuần tự (8.1, 8.2) | **7.** (7.1, 7.2) |
 | 9. Test case (9.1, 9.2, 9.3) | **8.** (8.1, 8.2, 8.3) |
 
-Mục 0–4 giữ nguyên số. Trong `docs/BAO-CAO.md`, mỗi chương module đổi tương ứng: `x.2` tách thành `x.2.1` (bảng đặc tả) + `x.2.2` (giao diện phác thảo), `x.5` bỏ, `x.6 → x.5`, `x.7 → x.6`, `x.8 → x.7`, `x.9 → x.8`, `x.10 → x.9`; mục lục cập nhật theo.
+Mục 0–4 giữ nguyên số. Trong `docs/BAO-CAO.md`, mỗi chương module đổi tương ứng: `x.2` giữ là **một mục phẳng** (bỏ `x.2.1` / `x.2.2` đã lỡ tạo ở lần trước), `x.5` bỏ, `x.6 → x.5`, `x.7 → x.6`, `x.8 → x.7`, `x.9 → x.8`, `x.10 → x.9`; mục lục cập nhật theo.
 
 **Về nội dung khác:** nghiệp vụ, kịch bản, test case (kể cả nhóm test case Giao diện), biểu đồ PlantUML và bộ dữ liệu mẫu F1 2025 **không đổi**.
 
@@ -508,7 +535,7 @@ Mục 0–4 giữ nguyên số. Trong `docs/BAO-CAO.md`, mỗi chương module �
 
 ## Thứ tự làm đề xuất (cập nhật)
 
-0. **P6** — bỏ ảnh giao diện, dời phác thảo vào mục 2.2 của Đặc tả UC, đánh số lại các mục sau.
+0. **P6** — bỏ ảnh giao diện, nhúng phác thảo xen giữa các bước Kịch bản chính của Đặc tả UC (không có mục giao diện riêng), đánh số lại các mục sau.
 1. **P0-1 → P0-6** (kiến trúc) — đã áp ở pass 1.
 2. **P5-B1, P5-C3** — khôi phục UC Đăng nhập + trang chính `gdChinhNV/QL.jsp` (lật lại P0-8 và một phần M1).
 3. **P4-1, P4-2, P4-3** — tie-break 3 tầng, M4 drill-down, giải trình ánh xạ đề gốc.

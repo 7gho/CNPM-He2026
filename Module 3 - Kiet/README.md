@@ -12,9 +12,9 @@
 ## Checklist sản phẩm (nộp cho module này)
 - [ ] Biểu đồ UC chi tiết
 - [ ] Đặc tả UC (kịch bản chuẩn + ngoại lệ)
-- [ ] Biểu đồ hoạt động (activity)
+- [ ] Biểu đồ trạng thái (phân tích hoạt động) + biểu đồ hoạt động pha thiết kế (khung "Xử lí tại gdXxx.jsp")
 - [ ] Biểu đồ lớp phân tích (lớp biên `GDxxx` chỉ có thuộc tính + lớp thực thể mang phương thức nghiệp vụ; **không có lớp Control**)
-- [ ] Thiết kế giao diện (2 màn)
+- [x] Giao diện phác thảo (trong mục 2.2 Đặc tả UC — không vẽ, không xuất ảnh)
 - [ ] Biểu đồ lớp thiết kế view (.jsp) / DAO / model — **không có Controller**, các `XxxDAO` kế thừa lớp cha `DAO`
 - [ ] Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự
 - [ ] Test case (kế hoạch kiểm thử + từng test case có CSDL trước/sau)

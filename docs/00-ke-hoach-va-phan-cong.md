@@ -25,25 +25,26 @@
 
 > **Tài liệu nội bộ (không nộp):** `docs/05-doi-chieu-chuan-thay.md` — bảng đối chiếu toàn bộ tài liệu với chuẩn của thầy (slide B1/B2/B3 + giáo trình), dùng để rà soát trước khi ghép báo cáo.
 
-> **Ghi chú phạm vi:** các UC danh mục (quản lý mùa giải, tay đua, đội, chặng, đăng ký đội tham gia mùa) và Đăng nhập/Đổi mật khẩu là **chức năng hỗ trợ** — chỉ cần đặc tả UC gọn ở `docs/04`, **không** thuộc 4 module được phân công (mỗi module vẫn làm đủ 6 mục). Không phát sinh module thứ 5.
+> **Ghi chú phạm vi:** các UC danh mục (quản lý mùa giải, tay đua, đội, chặng, đăng ký đội tham gia mùa) và Đăng nhập/Đổi mật khẩu là **chức năng hỗ trợ** — chỉ cần đặc tả UC gọn ở `docs/04`, **không** thuộc 4 module được phân công (mỗi module vẫn làm đủ 8 mục ở phần 2.2 bên dưới). Không phát sinh module thứ 5.
 
 ### 2.2. Phần mỗi thành viên tự làm (cho 1 module = 1 Use Case)
-Mỗi người làm đủ 7 mục sau cho module của mình (chi tiết trong README thư mục riêng):
+Mỗi người làm đủ 8 mục sau cho module của mình, **đánh số đúng theo bố cục chương module ở mục 5** (chi tiết trong README thư mục riêng):
 1. Biểu đồ UC chi tiết
-2. Đặc tả UC (kịch bản chuẩn — theo mẫu bảng ở mục 4)
+2. Đặc tả UC (kịch bản chuẩn — theo mẫu ở mục 4) — **phác thảo giao diện nhúng ngay giữa các bước của Kịch bản chính**, không có mục "Thiết kế giao diện" riêng
 3. **Biểu đồ trạng thái** (phân tích hoạt động — theo mẫu **Hình 3.9/3.11 giáo trình PDF**: mỗi trạng thái = một lần hệ thống hiển thị một giao diện chờ tương tác, nhãn cung là hành động người dùng `[…]`)
-4. **Giao diện phác thảo** (nằm trong mục Đặc tả UC, không xuất ảnh)
-5. Biểu đồ hoạt động (**pha thiết kế** — theo mẫu **Hình 4.9 giáo trình PDF**: khung `Xử lí tại gdXxx.jsp` cho từng trang, mỗi hành động ứng với một phương thức đã thiết kế, node DAO tách riêng; đặt **sau** biểu đồ lớp thiết kế, ngay trước thuyết minh)
-6. **Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự (sequence)**
-7. Test case
+4. **Biểu đồ lớp phân tích** của module (lớp biên `GDxxx` + lớp thực thể — chi tiết ở ghi chú mục 4 và 5 bên dưới)
+5. **Biểu đồ lớp thiết kế** của module (trang `.jsp` / lớp `XxxDAO` / lớp `model` — chi tiết ở ghi chú mục 4 và 5 bên dưới)
+6. Biểu đồ hoạt động (**pha thiết kế** — theo mẫu **Hình 4.9 giáo trình PDF**: khung `Xử lí tại gdXxx.jsp` cho từng trang, mỗi hành động ứng với một phương thức đã thiết kế, node DAO tách riêng; đặt **sau** biểu đồ lớp thiết kế, ngay trước thuyết minh)
+7. **Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự (sequence)**
+8. Test case
 
-> **Ghi chú mục 4:** nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo** — khung bố cục bằng ký tự (code fence thường) kèm bảng dữ liệu mẫu — và đặt **bên trong mục Đặc tả UC** (mục con `2.2. Giao diện phác thảo`, ngay sau `2.1. Bảng đặc tả`). Căn cứ: giáo trình PDF mục 3.2.1 nhúng thẳng bảng dữ liệu vào kịch bản, không có ảnh mockup rời.
+> **Ghi chú mục 2:** nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo** — khung bố cục bằng ký tự (code fence thường) kèm bảng dữ liệu mẫu — và đặt **xen giữa các bước của Kịch bản chính**: mỗi khi hệ thống hiển thị một màn hình thì chèn khung phác thảo và/hoặc bảng dữ liệu **ngay dưới bước đó**, rồi viết tiếp bước kế. **Không có mục "Thiết kế giao diện" riêng ở bất kỳ cấp nào** (kể cả mục con). Căn cứ: giáo trình PDF mục 3.2.1 — kịch bản mẫu của thầy nhúng thẳng bảng dữ liệu vào từng bước, không có mục giao diện riêng và không có ảnh mockup rời.
 
-> **Ghi chú mục 6:** yêu cầu của giảng viên ghi rõ *"**Thuyết minh và** vẽ biểu đồ tuần tự cho UC"*. Thuyết minh chính là **kịch bản phiên bản 3** — danh sách đánh số 1, 2, 3… mô tả từng lượt gọi giữa trang `.jsp`, lớp `DAO` và lớp thực thể; **số dòng thuyết minh phải khớp số message trong biểu đồ tuần tự**. Không được để hình đứng trơ một mình với caption.
+> **Ghi chú mục 7:** yêu cầu của giảng viên ghi rõ *"**Thuyết minh và** vẽ biểu đồ tuần tự cho UC"*. Thuyết minh chính là **kịch bản phiên bản 3** — danh sách đánh số 1, 2, 3… mô tả từng lượt gọi giữa trang `.jsp`, lớp `DAO` và lớp thực thể; **số dòng thuyết minh phải khớp số message trong biểu đồ tuần tự**. Không được để hình đứng trơ một mình với caption.
 
 > **Tuỳ chọn (chỉ làm nếu dư thời gian):** kịch bản phiên bản 2 + biểu đồ giao tiếp (communication) của pha phân tích (giáo trình PDF mục 3.2.4) — **không bắt buộc** theo yêu cầu bài tập; nhóm đã có thuyết minh v.3 + biểu đồ tuần tự pha thiết kế thay thế.
 
-> **Bổ sung theo pipeline lecture** (nên có để báo cáo đầy đủ, điểm cao hơn) — 2 biểu đồ lớp cho mỗi module:
+> **Ghi chú mục 4 và 5** (2 biểu đồ lớp của mỗi module, theo pipeline lecture):
 > - **Biểu đồ lớp phân tích của module** = **lớp biên `GDxxx`** (chỉ có **thuộc tính**, không có phương thức; tên thuộc tính theo prefix `in` / `out` / `inout` / `sub` / `outsub`) + **lớp thực thể** (mang các **phương thức nghiệp vụ**). Chỉ đúng **2 tầng này**, **không có lớp Control/Controller**, **không có stereotype** `<<boundary>>` / `<<control>>` / `<<entity>>` (hộp lớp để trơn, phân biệt tầng bằng tiền tố tên `GD…`).
 > - **Biểu đồ lớp thiết kế của module** = **trang `.jsp`** (tầng giao diện) + **lớp `XxxDAO`** (tầng truy xuất dữ liệu, đều kế thừa lớp cha `DAO`) + **lớp `model`** (chính là các lớp thực thể). Vẽ theo mẫu **Hình 4.4 giáo trình PDF**: thuộc tính view kèm kiểu control (`Text`/`Select`/`Table`/`link`/`submit`/`Reset`), DAO có constructor + phương thức đầy đủ chữ ký. Vẫn gọi được là mô hình MVC với **M** = model, **V** = `.jsp`, **C** = các `DAO`, nhưng **tuyệt đối không có lớp `XxxController`**.
 > - Quan hệ trong cả hai biểu đồ vẽ bằng **đường kẻ trơn / hình thoi rỗng ◇ / hình thoi đặc ♦ / tam giác rỗng ▷**, **không dùng mũi tên định hướng**.
@@ -59,17 +60,52 @@ Sau khi vẽ xong trong VP → **export PNG/hình** vào thư mục của thành
 ## 4. Mẫu chuẩn dùng chung
 
 ### 4.1. Mẫu đặc tả Use Case (kịch bản)
+
+Đặc tả UC gồm **3 khối viết liền nhau** trong file markdown, theo đúng thứ tự dưới đây.
+
+**(a) Bảng 4 dòng — thông tin đầu use case**
+
 | Mục | Nội dung |
 |---|---|
 | **Use case** | Tên use case |
 | **Actor** | Ai thực hiện |
 | **Tiền điều kiện** | Điều kiện trước khi chạy |
 | **Hậu điều kiện** | Kết quả sau khi chạy thành công |
-| **Kịch bản chính** | Các bước 1,2,3… (người dùng ↔ hệ thống) |
-| **Ngoại lệ** | Đánh số theo bước bị lỗi (vd: 4. dữ liệu vi phạm ràng buộc → báo lỗi) |
 
-> Bảng đặc tả **đúng 6 dòng, đúng thứ tự trên**. Không thêm dòng "Luồng phụ", "Thuộc tính", "Ràng buộc" — nội dung đó chuyển thành ngoại lệ đánh số theo bước, hoặc ghi chú dưới bảng.
-> Kịch bản phải **có dữ liệu thật và trạng thái nút** (dùng bộ dữ liệu mẫu ở `docs/03` mục 5), ví dụ: *"Nhân viên nhập `Hamilton` và click Tìm"*, *"nút [Lưu] chưa được active"*.
+**(b) Khối `**Kịch bản chính**`** — danh sách đánh số 1., 2., 3.… mỗi bước một dòng (người dùng ↔ hệ thống). Khi một bước là *"hệ thống hiển thị màn hình X"* thì **ngay dưới bước đó** chèn **khung phác thảo** màn hình (code fence thường, **thụt vào 3 dấu cách** để nằm trong item danh sách) và/hoặc **bảng markdown** chứa dữ liệu mẫu thật, rồi viết tiếp bước kế. Ví dụ:
+
+```
+**Kịch bản chính**
+
+1. Nhân viên (đã đăng nhập) chọn menu **Ký hợp đồng** trên trang chính.
+2. Hệ thống hiển thị màn hình **Tìm tay đua** (`gdTimTayDua.jsp`): ô nhập "Tên tay đua" đang rỗng, nút [Tìm], nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng.
+
+   +--------------------------------------------------------------+
+   |  KÝ HỢP ĐỒNG — Bước 1: Tìm tay đua                           |
+   |  Tên tay đua: [                  ]  [ Tìm ]  [+ Thêm mới ]   |
+   |  ( bảng kết quả — đang rỗng )                                |
+   +--------------------------------------------------------------+
+
+3. Nhân viên nhập `Hamilton` và click [Tìm].
+4. Hệ thống hiển thị bảng kết quả tìm kiếm:
+
+   | TT | Mã | Tên | Ngày sinh | Quốc tịch | Đội hiện tại | Thao tác |
+   |---|---|---|---|---|---|---|
+   | 1 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Mercedes | [Chọn] |
+
+5. Nhân viên click [Chọn] ở dòng `HAM`.
+```
+
+**(c) Khối `**Ngoại lệ**`** — danh sách đánh số **theo bước bị lỗi** (`4a.`, `7a.`, `9b.`…), ví dụ: *"9a. Ngày bắt đầu vi phạm ràng buộc → báo lỗi, quay lại bước 7"*.
+
+Sau khối Ngoại lệ đặt **một dòng ghi chú ánh xạ lớp biên** (gom một chỗ, không rải rác trong từng bước):
+
+> **Ánh xạ sang lớp biên:** màn *Tìm tay đua* (`GDTimTayDua`) — ô "Tên tay đua" = `-inTenTayDua`, nút [Tìm] = `-subTim`, bảng kết quả = `-outsubDSTayDua`. Màn *Nhập hợp đồng* (`GDNhapHopDong`) — …
+
+**Vì sao tách 3 khối?** Markdown **không lồng được bảng vào ô của một bảng khác**, nên không thể viết thẳng bảng dữ liệu bên trong ô "Kịch bản chính" của bảng đặc tả. Khi sinh file Word bằng `docs/build-baocao-docx.py` (mục 4.3), script **tự ghép 3 khối lại thành đúng bảng 6 dòng như mẫu của thầy**, với bảng dữ liệu và khung phác thảo **lồng trong ô "Kịch bản chính"**. Vì vậy phải giữ đúng thứ tự và đúng tên hai nhãn `**Kịch bản chính**` / `**Ngoại lệ**` để script nhận diện.
+
+> Bản Word sinh ra phải là bảng **đúng 6 dòng, đúng thứ tự** `Use case | Actor | Tiền điều kiện | Hậu điều kiện | Kịch bản chính | Ngoại lệ`. Không thêm dòng "Luồng phụ", "Thuộc tính", "Ràng buộc" vào bảng 4 dòng — nội dung đó chuyển thành ngoại lệ đánh số theo bước, hoặc ghi chú sau khối Ngoại lệ.
+> Kịch bản chính phải **có dữ liệu thật và trạng thái nút** (dùng bộ dữ liệu mẫu ở `docs/03` mục 5), ví dụ: *"Nhân viên nhập `Hamilton` và click Tìm"*, *"nút [Lưu] chưa được active"*; khung phác thảo và bảng chèn kèm cũng dùng chính bộ dữ liệu đó.
 
 ### 4.2. Mẫu Test case (theo Bảng 6.7 giáo trình PDF — 4 cột, 3 nhóm)
 
@@ -97,6 +133,24 @@ chia thành **3 nhóm** bằng dòng tiêu đề nhóm in đậm chen giữa b�
 
 **Số lượng:** nhóm Giao diện + Chức năng mỗi module ~8–10 ca, nhóm Luồng nghiệp vụ 4–6 ca ⇒ **~14–16 ca/module**.
 
+### 4.3. Script sinh bản Word — `docs/build-baocao-docx.py`
+
+Không convert `docs/BAO-CAO.md` bằng tay; nhóm dùng script có sẵn:
+
+```
+pip install python-docx
+python docs/build-baocao-docx.py
+```
+
+Script đọc `docs/BAO-CAO.md` và sinh ra **`docs/BAO-CAO.docx`** với:
+
+- **Times New Roman cỡ 13, giãn dòng 1.5** cho toàn bộ văn bản (đúng quy định trình bày báo cáo).
+- **Heading đúng cấp** (`#` → Heading 1, `##` → Heading 2…) để Word **tự sinh mục lục** (References → Table of Contents); mỗi chương cấp 1 tự sang trang mới.
+- **Ghép đặc tả Use Case thành bảng 6 dòng**: bảng 4 dòng + khối `**Kịch bản chính**` + khối `**Ngoại lệ**` được gộp lại thành một bảng đúng mẫu thầy, **bảng dữ liệu và khung phác thảo nằm lồng trong ô "Kịch bản chính"** (xem mục 4.1).
+- **Tự chèn ảnh** từ mọi cú pháp `![…](đường-dẫn)`, căn giữa, kèm caption in nghiêng. Ảnh chưa vẽ **không làm hỏng file**: script in một dòng **chữ đỏ `[ CHƯA CÓ HÌNH: <tên-file> ]`** đúng vị trí đó, và cuối lượt chạy báo số ảnh đã chèn / số ảnh còn thiếu — dùng con số này để biết còn phải export bao nhiêu hình từ Visual Paradigm.
+
+⇒ Sau mỗi lần sửa `docs/BAO-CAO.md` hoặc thêm ảnh mới, chỉ cần chạy lại script; **không sửa trực tiếp file `.docx`** (sẽ bị ghi đè).
+
 ## 5. Cấu trúc báo cáo cuối kỳ
 
 Ghép tất cả thành **01 file Word** theo đúng bố cục yêu cầu của giảng viên (2 phần):
@@ -112,9 +166,9 @@ Ghép tất cả thành **01 file Word** theo đúng bố cục yêu cầu của
 
 Cấu trúc mỗi chương module (×4), theo đúng thứ tự:
 
-> **UC chi tiết → đặc tả UC (bảng đặc tả + giao diện phác thảo) → biểu đồ trạng thái (phân tích hoạt động) → biểu đồ lớp phân tích → biểu đồ lớp thiết kế (`.jsp` / `DAO` / `model`) → biểu đồ hoạt động (pha thiết kế) → thuyết minh (kịch bản v.3) + biểu đồ tuần tự → test case**
+> **UC chi tiết → đặc tả UC (kịch bản chính có phác thảo giao diện nhúng xen giữa các bước) → biểu đồ trạng thái (phân tích hoạt động) → biểu đồ lớp phân tích → biểu đồ lớp thiết kế (`.jsp` / `DAO` / `model`) → biểu đồ hoạt động (pha thiết kế) → thuyết minh (kịch bản v.3) + biểu đồ tuần tự → test case**
 
-> **Đánh số mục trong mỗi chương module:** `1.` UC chi tiết · `2.` Đặc tả UC (`2.1.` Bảng đặc tả, `2.2.` Giao diện phác thảo) · `3.` Phân tích hoạt động — biểu đồ trạng thái · `4.` Biểu đồ lớp phân tích · `5.` Biểu đồ lớp thiết kế · `6.` Biểu đồ hoạt động (pha thiết kế) · `7.` Thuyết minh + biểu đồ tuần tự · `8.` Test case. **Không còn mục riêng "Thiết kế giao diện"** — nội dung giao diện nằm ở mục `2.2`.
+> **Đánh số mục trong mỗi chương module:** `1.` UC chi tiết · `2.` Đặc tả UC (mục phẳng, **không có mục con**) · `3.` Phân tích hoạt động — biểu đồ trạng thái · `4.` Biểu đồ lớp phân tích · `5.` Biểu đồ lớp thiết kế · `6.` Biểu đồ hoạt động (pha thiết kế) · `7.` Thuyết minh + biểu đồ tuần tự · `8.` Test case. **Không có mục "Thiết kế giao diện" ở bất kỳ cấp nào** — phác thảo giao diện nằm xen giữa các bước của Kịch bản chính trong mục `2`.
 
 > Biểu đồ hoạt động đặt **sau** biểu đồ lớp thiết kế vì mỗi hành động trong biểu đồ hoạt động ứng với một phương thức đã thiết kế (giáo trình PDF mục 4.3.2 bước 1).
 
