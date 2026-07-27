@@ -4,7 +4,7 @@
 
 ## 0. Ba bước xây dựng biểu đồ UC tổng quan
 
-Theo B1, biểu đồ UC tổng quan được xây theo đúng 3 bước: **đề xuất actor → đề xuất use case → mịn hóa**. Dưới đây là lập luận của nhóm ở từng bước; kết quả chốt lại của từng bước nằm ở các mục 1, 2, 3.
+Theo B1, biểu đồ UC tổng quan được xây theo 3 bước: **đề xuất actor → đề xuất use case → mịn hóa**. Dưới đây là lập luận của nhóm ở từng bước; kết quả chốt lại của từng bước nằm ở các mục 1, 2, 3.
 
 ### Bước 1 — Đề xuất actor
 
@@ -105,7 +105,7 @@ B1 yêu cầu xét cả actor gián tiếp. Nhóm rà soát các bên liên quan
 
 ⇒ Đây là kết quả của bước mịn hóa (mục 0, bước 3a).
 
-**Liên kết actor – use case:** vẽ bằng **đường kẻ trơn `--`, không có đầu mũi tên**, đúng như hình mẫu của thầy. (Bản trước dùng `-->` là sai.)
+**Liên kết actor – use case:** vẽ bằng **đường kẻ trơn `--`, không có đầu mũi tên**, theo hình mẫu.
 
 **Không có quan hệ `include` và `extend` ở mức tổng quát:**
 - 4 quan hệ `include` tới `Đăng nhập` đã bị bỏ khỏi biểu đồ **tổng quát** — lý do đầy đủ ở mục 0, bước 3d (`Đăng nhập` đã nối trực tiếp với actor `ThanhVien`).
@@ -115,7 +115,7 @@ B1 yêu cầu xét cả actor gián tiếp. Nhóm rà soát các bên liên quan
 
 ## 4. Blueprint PlantUML
 
-> Trong Visual Paradigm: nếu hỗ trợ PlantUML thì import; nếu không, vẽ lại theo đúng các phần tử và quan hệ ở mục 1–3.
+> Trong Visual Paradigm: nếu hỗ trợ PlantUML thì import; nếu không, vẽ lại theo các phần tử và quan hệ ở mục 1–3.
 
 ```plantuml
 @startuml

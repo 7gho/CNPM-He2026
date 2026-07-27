@@ -1,6 +1,6 @@
 # Module 4 — Quyết toán và trao giải cuối mùa — Nội dung chi tiết
 
-> Nội dung chữ đã chuẩn hoá theo chuẩn của thầy (B1/B2/B3) và giáo trình `BG HP TTTN 2 CNPM 2020` (PDF). Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
+> Nội dung chữ đã dựng theo slide bài giảng (B1/B2/B3) và giáo trình `BG HP TTTN 2 CNPM 2020` (PDF). Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
 
 ## 0. Danh sách ảnh cần export (đặt vào `hinh/`)
 
@@ -83,7 +83,7 @@ CT ..> XH : <<extend>>
 | **Tiền điều kiện** | Quản lý đã đăng nhập vào hệ thống; mùa giải `FIA Formula One World Championship 2025` đang ở trạng thái `Đã kết thúc` |
 | **Hậu điều kiện** | Quyết định trao giải của mùa giải (giải cá nhân hạng 1–3, giải đồng đội hạng 1–3 kèm tiền thưởng) được lưu vào CSDL; danh sách trao giải được in ra |
 
-> Phác thảo giao diện đặt ngay dưới bước mà hệ thống hiển thị màn hình tương ứng. Module có **3 màn hình hiển thị**, khớp 1-1 với 3 lớp biên ở mục 4; trang chính `gdChinhQL.jsp` dùng chung cho toàn hệ thống và trang xử lý `doLuuTraoGiai.jsp` không hiển thị tương tác nên không phác thảo. Nhãn chặng dùng thống nhất một dạng `Mã - Tên chặng (Địa điểm)`.
+> Phác thảo giao diện đặt ngay dưới bước mà hệ thống hiển thị màn hình tương ứng. Module có **3 màn hình hiển thị**, tương ứng 3 lớp biên ở mục 4; trang chính `gdChinhQL.jsp` dùng chung cho toàn hệ thống và trang xử lý `doLuuTraoGiai.jsp` không hiển thị tương tác nên không phác thảo. Nhãn chặng dùng thống nhất một dạng `Mã - Tên chặng (Địa điểm)`.
 
 **Kịch bản chính**
 
@@ -658,7 +658,7 @@ stop
 
 ### 7.2. Biểu đồ tuần tự (Sequence) — luồng chính
 
-> Chỉ vẽ **luồng chính** (mùa giải đã kết thúc và đủ kết quả tất cả các chặng), kèm nhánh drill-down xem chi tiết theo chặng. Các ngoại lệ còn lại đã mô tả ở đặc tả UC mục 2 và biểu đồ hoạt động mục 6, không đưa vào biểu đồ tuần tự. Số thứ tự message do `autonumber` sinh, khớp 1-1 với 78 dòng thuyết minh ở mục 7.1 (trong Visual Paradigm bật *Show sequence number*). **Luồng lưu dùng mẫu setter()** theo Hình 4.12 giáo trình PDF: Entity tự đóng gói dữ liệu nhập bằng `setter()` trước, rồi trang xử lý mới gọi DAO `luuTraoGiai()` — không gọi constructor Entity ở luồng lưu.
+> Chỉ vẽ **luồng chính** (mùa giải đã kết thúc và đủ kết quả tất cả các chặng), kèm nhánh drill-down xem chi tiết theo chặng. Các ngoại lệ còn lại đã mô tả ở đặc tả UC mục 2 và biểu đồ hoạt động mục 6, không đưa vào biểu đồ tuần tự. Số thứ tự message do `autonumber` sinh, ứng với 78 dòng thuyết minh ở mục 7.1 (trong Visual Paradigm bật *Show sequence number*). **Luồng lưu dùng mẫu setter()** theo Hình 4.12 giáo trình PDF: Entity tự đóng gói dữ liệu nhập bằng `setter()` trước, rồi trang xử lý mới gọi DAO `luuTraoGiai()` — không gọi constructor Entity ở luồng lưu.
 
 ```plantuml
 @startuml
@@ -820,7 +820,7 @@ deactivate V0
 @enduml
 ```
 
-> Lifeline gồm **actor + trang chính + các trang .jsp + các DAO + các lớp thực thể**; **không có lifeline CSDL, không có câu lệnh SQL trong message, không có lớp Controller**. Trang chính `gdChinhQL.jsp` là lifeline **mở đầu** (message 1–2) và **kết thúc** (click OK → goi → hien thi) theo mẫu Hình 4.10. Nhãn message giữ cực ngắn (`goi`, `tra ve`, `hien thi`, `click …`, `nhap …`, `chon …`); chỉ **self-call** mới ghi tên hàm. Luồng lưu (message 67–78): Entity `TraoGiai` tự đóng gói bằng `setter()` trước, rồi `TraoGiaiDAO.luuTraoGiai()` ghi cả danh sách 6 bản ghi — đúng mẫu Hình 4.12. Mọi cặp `activate` / `deactivate` đều cân bằng.
+> Lifeline gồm **actor + trang chính + các trang .jsp + các DAO + các lớp thực thể**; **không có lifeline CSDL, không có câu lệnh SQL trong message, không có lớp Controller**. Trang chính `gdChinhQL.jsp` là lifeline **mở đầu** (message 1–2) và **kết thúc** (click OK → goi → hien thi) theo mẫu Hình 4.10. Nhãn message giữ cực ngắn (`goi`, `tra ve`, `hien thi`, `click …`, `nhap …`, `chon …`); chỉ **self-call** mới ghi tên hàm. Luồng lưu (message 67–78): Entity `TraoGiai` tự đóng gói bằng `setter()` trước, rồi `TraoGiaiDAO.luuTraoGiai()` ghi cả danh sách 6 bản ghi (mẫu Hình 4.12). Mọi cặp `activate` / `deactivate` đều cân bằng.
 
 ## 8. Test case
 

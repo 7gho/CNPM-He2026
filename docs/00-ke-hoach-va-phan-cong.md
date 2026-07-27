@@ -23,7 +23,7 @@
 | 4 | Biểu đồ lớp thực thể (**pha phân tích** + **pha thiết kế**) + Thiết kế CSDL + Thiết kế triển khai (package) | `docs/03-lop-thuc-the-va-csdl.md` | ✅ blueprint, ⬜ vẽ VP |
 | 5 | Đặc tả UC gọn — danh mục & xác thực | `docs/04-dac-ta-danh-muc-va-auth.md` | ✅ xong |
 
-> **Tài liệu nội bộ (không nộp):** `docs/05-doi-chieu-chuan-thay.md` — bảng đối chiếu toàn bộ tài liệu với chuẩn của thầy (slide B1/B2/B3 + giáo trình), dùng để rà soát trước khi ghép báo cáo.
+> **Tài liệu nội bộ (không nộp):** `docs/05-doi-chieu-chuan-thay.md` — bảng đối chiếu toàn bộ tài liệu với slide bài giảng B1/B2/B3 và giáo trình, dùng để rà soát trước khi ghép báo cáo.
 
 > **Ghi chú phạm vi:** các UC danh mục (quản lý mùa giải, tay đua, đội, chặng, đăng ký đội tham gia mùa) và Đăng nhập/Đổi mật khẩu là **chức năng hỗ trợ** — chỉ cần đặc tả UC gọn ở `docs/04`, **không** thuộc 4 module được phân công (mỗi module vẫn làm đủ 8 mục ở phần 2.2 bên dưới). Không phát sinh module thứ 5.
 
@@ -61,7 +61,7 @@ Sau khi vẽ xong trong VP → **export PNG/hình** vào thư mục của thành
 
 ### 4.1. Mẫu đặc tả Use Case (kịch bản)
 
-Đặc tả UC gồm **3 khối viết liền nhau** trong file markdown, theo đúng thứ tự dưới đây.
+Đặc tả UC gồm **3 khối viết liền nhau** trong file markdown, theo thứ tự dưới đây.
 
 **(a) Bảng 4 dòng — thông tin đầu use case**
 
@@ -121,7 +121,7 @@ Mỗi module viết **MỘT bảng 4 cột**:
 | Mã trường hợp kiểm thử | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
 |---|---|---|---|
 
-chia thành **3 nhóm** bằng dòng tiêu đề nhóm in đậm chen giữa bảng (đúng như Bảng 6.7):
+chia thành **3 nhóm** bằng dòng tiêu đề nhóm in đậm chen giữa bảng (theo Bảng 6.7):
 
 1. **Nhóm Giao diện** — theo từng màn, mỗi màn 2 ca: (a) bố cục tổng thể (title đúng, hiển thị đầy đủ các trường/nút — liệt kê đúng danh sách control của màn, focus vào trường đầu tiên); (b) một ca hành vi phím (Tab đúng thứ tự hoặc Enter thực hiện nút chính).
 2. **Nhóm Chức năng** — theo từng màn, 2 ca: hiển thị đúng dữ liệu khi CSDL có dữ liệu (kết quả mong muốn **đối chiếu bảng CSDL**, ví dụ *"danh sách khớp các bản ghi trong tblTayDua"*) và ca không có dữ liệu.
@@ -151,14 +151,14 @@ Script đọc `docs/BAO-CAO.md` và sinh ra **`docs/BAO-CAO.docx`** với:
 
 - **Times New Roman cỡ 13, giãn dòng 1.5** cho toàn bộ văn bản (đúng quy định trình bày báo cáo).
 - **Heading đúng cấp** (`#` → Heading 1, `##` → Heading 2…) để Word **tự sinh mục lục** (References → Table of Contents); mỗi chương cấp 1 tự sang trang mới.
-- **Ghép đặc tả Use Case thành bảng 6 dòng**: bảng 4 dòng + khối `**Kịch bản chính**` + khối `**Ngoại lệ**` được gộp lại thành một bảng đúng mẫu thầy, **bảng dữ liệu và khung phác thảo nằm lồng trong ô "Kịch bản chính"** (xem mục 4.1).
+- **Ghép đặc tả Use Case thành bảng 6 dòng**: bảng 4 dòng + khối `**Kịch bản chính**` + khối `**Ngoại lệ**` được gộp lại thành một bảng 6 dòng, **bảng dữ liệu và khung phác thảo nằm lồng trong ô "Kịch bản chính"** (xem mục 4.1).
 - **Tự chèn ảnh** từ mọi cú pháp `![…](đường-dẫn)`, căn giữa, kèm caption in nghiêng. Ảnh chưa vẽ **không làm hỏng file**: script in một dòng **chữ đỏ `[ CHƯA CÓ HÌNH: <tên-file> ]`** đúng vị trí đó, và cuối lượt chạy báo số ảnh đã chèn / số ảnh còn thiếu — dùng con số này để biết còn phải export bao nhiêu hình từ Visual Paradigm.
 
 ⇒ Sau mỗi lần sửa `docs/BAO-CAO.md` hoặc thêm ảnh mới, chỉ cần chạy lại script; **không sửa trực tiếp file `.docx`** (sẽ bị ghi đè).
 
 ## 5. Cấu trúc báo cáo cuối kỳ
 
-Ghép tất cả thành **01 file Word** theo đúng bố cục yêu cầu của giảng viên (2 phần):
+Ghép tất cả thành **01 file Word** theo bố cục yêu cầu của giảng viên (2 phần):
 
 **Trang bìa** — tên đề tài, danh sách thành viên **ghi rõ ai làm Use Case nào**.
 
@@ -193,7 +193,7 @@ docs/                             ← tài liệu chung + kế hoạch
   02-usecase-tong-quat.md
   03-lop-thuc-the-va-csdl.md
   04-dac-ta-danh-muc-va-auth.md
-  05-doi-chieu-chuan-thay.md      ← nội bộ: đối chiếu với chuẩn của thầy
+  05-doi-chieu-chuan-thay.md      ← nội bộ: đối chiếu với giáo trình
   BAO-CAO.md                      ← bản thảo báo cáo cuối kỳ (ghép để xuất Word)
   bao-cao-xem-truoc.md            ← bản xem trước
   hinh/                           ← ảnh biểu đồ phần chung

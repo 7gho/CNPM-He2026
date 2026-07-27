@@ -1,6 +1,6 @@
 # Biểu đồ lớp thực thể & Thiết kế CSDL — Quản lý giải đua xe F1
 
-> Sản phẩm chung của nhóm (Phần 1 của báo cáo). Xây dựng theo đúng quy trình trong lecture:
+> Sản phẩm chung của nhóm (Phần 1 của báo cáo). Xây dựng theo quy trình trong lecture:
 > **B2 — Lớp thực thể pha phân tích, 5 bước** (tổng hợp đoạn văn mô tả → trích danh từ → đánh giá danh từ → quan hệ số lượng → quan hệ đối tượng) và
 > **B3 — Thiết kế, 4 bước lớp thực thể + 5 bước CSDL**.
 >
@@ -113,7 +113,7 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra �
 | `TayDua` | `tieuSu` | Khớp mô tả "Tay đua (mã, tên, ngày sinh, quốc tịch, tiểu sử)"; hiển thị ở màn hình tìm và hồ sơ tay đua của Module 1 |
 | `ChangDua` | `diaDiem`, `moTa` | Khớp mô tả "Chặng đua (mã chặng đua, tên, số vòng đua, địa điểm, thời gian, mô tả)"; `diaDiem` dùng ở màn chọn chặng của Module 2, Module 3 |
 
-**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống (`docs/01`) thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Theo bước 3 của phương pháp trích danh từ, một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
+**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống (`docs/01`) thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Theo bước 3 của phương pháp trích danh từ, một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**.
 
 ---
 
@@ -138,11 +138,11 @@ Theo lưu ý của thầy ở B2: *"thuộc tính chưa cần kiểu dữ liệu
 | `NhanVien` | (kế thừa `ThanhVien`) | Thực hiện Module 1, 2, 3 |
 | `QuanLy` | (kế thừa `ThanhVien`) | Thực hiện Module 4 và các chức năng danh mục |
 
-**Tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Theo B2 bước 5 (quan hệ kế thừa) và đúng mẫu của thầy (`Thanhvien` là cha của `Sinhvien` / `Nhanvien`), nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` kế thừa. Cách này bỏ được thuộc tính `vaiTro` kiểu chuỗi (vốn là cách mô phỏng kế thừa bằng dữ liệu) và tạo ra quan hệ generalization mà biểu đồ trước đây còn thiếu. Theo B3 bước 1, **hai lớp con kế thừa không được bổ sung thuộc tính `id`**.
+**Tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Theo B2 bước 5 (quan hệ kế thừa), nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` kế thừa. Cách này bỏ được thuộc tính `vaiTro` kiểu chuỗi (vốn là cách mô phỏng kế thừa bằng dữ liệu) và tạo ra quan hệ generalization mà biểu đồ trước đây còn thiếu. Theo B3 bước 1, **hai lớp con kế thừa không được bổ sung thuộc tính `id`**.
 
 ### 1.2. Phương thức nghiệp vụ gán cho lớp thực thể
 
-B2 bước 3 yêu cầu: mỗi chức năng phải thực hiện ở tầng dưới tầng giao diện thì đề xuất một phương thức, xác định tham số vào/ra và **gán hành động đó cho một lớp thực thể**. Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở lớp thực thể, đúng như mẫu của thầy (`Dangkihoc{+getDangKiCuaSV(), +luuDangKi()}`).
+B2 bước 3 yêu cầu: mỗi chức năng phải thực hiện ở tầng dưới tầng giao diện thì đề xuất một phương thức, xác định tham số vào/ra và **gán hành động đó cho một lớp thực thể**. Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở lớp thực thể, (mẫu `Dangkihoc{+getDangKiCuaSV(), +luuDangKi()}`).
 
 | Lớp | Phương thức | Module dùng |
 |---|---|---|
@@ -233,7 +233,7 @@ ThanhVien <|-- QuanLy
 
 **Giữ `KetQua` tách khỏi `DangKyChang`.**
 
-B3 (thiết kế CSDL, bước 3) nói quan hệ **1-1 thì nên gộp** hai bảng thành một. Tuy nhiên `DangKyChang` – `KetQua` **không phải 1-1 thật**, mà là **1 – 0..1**:
+B3 (thiết kế CSDL, bước 3) nói quan hệ **1-1 thì nên gộp** hai bảng thành một. Bội số thật giữa `DangKyChang` và `KetQua` là **1 – 0..1**:
 
 1. **Hai thời điểm khác nhau.** Bản ghi `DangKyChang` được tạo **trước** ngày đua (Module 2), còn `KetQua` chỉ ra đời **sau** khi chặng đua kết thúc (Module 3). Trong suốt khoảng thời gian giữa hai mốc đó, mọi bản đăng ký đều **chưa có kết quả**. Nếu gộp bảng thì tất cả các cột `thoiGian`, `soVongHoanThanh`, `trangThai`, `hang`, `diem` đều phải để NULL — đúng kiểu dư thừa mà bước 5 muốn tránh.
 2. **Hai nghiệp vụ, hai chủ thể ghi khác nhau.** Đăng ký do Module 2 ghi và có thể **sửa lại trước ngày đua** (thay tay đua); kết quả do Module 3 ghi, có thể bị **ghi đè và tính lại toàn chặng**. Tách bảng cho phép `KetQua.xoaKetQuaCu(changDuaId)` xoá và nhập lại kết quả mà **không đụng tới danh sách đăng ký** — nếu gộp bảng thì thao tác này biến thành cập nhật một loạt cột về NULL, dễ sai sót.
@@ -507,7 +507,7 @@ Quy ước: khoá chính là cột `id`; với quan hệ 1 `tblA` – n `tblB` t
 | `tblQuanLy` | `tblThanhVienid integer(10)` | PK đồng thời là FK: `tblThanhVienid` → `tblThanhVien.id` |
 
 > **Ghi chú ràng buộc:**
-> - `tblDangKyChang` có `UNIQUE(tblChangDuaid, tblTayDuaid)` để đảm bảo ở tầng CSDL rằng "mỗi tay đua chỉ đăng ký một lần trong một chặng" (đề bài Module 2).
+> - `tblDangKyChang` có `UNIQUE(tblChangDuaid, tblTayDuaid)`: mỗi tay đua chỉ đăng ký một lần trong một chặng (đề bài Module 2).
 > - Ràng buộc "tối đa 2 tay đua/đội/chặng" là **ràng buộc nghiệp vụ**, không thể hiện được bằng khoá. Hệ thống kiểm ràng buộc này trong **phương thức `demSoTayDua(changDuaId, doiDuaId)` của lớp thực thể `DangKyChang`** (hệ thống không có lớp Control — theo B2, hành động nghiệp vụ được gán cho lớp thực thể). Tương tự, `daDangKy(changDuaId, tayDuaId)` kiểm tra trùng đăng ký trước khi lưu để báo lỗi thân thiện thay vì để CSDL ném lỗi UNIQUE.
 > - `tblHopDong.ngayKetThuc` để NULL nghĩa là hợp đồng đang hiệu lực (đề bài Module 1: "dòng có ngày kết thúc trống là hợp đồng đang hiệu lực"). Ràng buộc "một tay đua tại một thời điểm chỉ thuộc một đội" được kiểm bằng `HopDong.kiemTraChongLan(tayDuaId, ngayBatDau)`.
 > - `tblKetQua.trangThai` nhận một trong ba giá trị `HoanThanh`, `DNF`, `DSQ`; hai giá trị sau kéo theo `hang` xếp cuối và `diem` = 0.
@@ -655,7 +655,7 @@ DAO <|-- TraoGiaiDAO
 2. **Lớp `XxxDAO` có constructor `+XxxDAO()` và mọi phương thức ghi đầy đủ chữ ký** (tên tham số : kiểu, kiểu trả về): `+getTayDuaTheoTen(ten : String) : TayDua[]`, `+luuHopDong(hd : HopDong) : boolean`… Kiểu trả về là mảng `Xxx[]` với thao tác đọc danh sách và `boolean` với thao tác ghi. Mọi `XxxDAO` kế thừa lớp cha `DAO` ở trên.
 3. **Luồng lưu trong biểu đồ tuần tự dùng mẫu `setter()`:** trang xử lý `doLuuXxx.jsp` gọi lớp thực thể, lớp thực thể self-call `setter()` để **đóng gói dữ liệu nhập** rồi trả về; sau đó `doLuuXxx.jsp` mới gọi `XxxDAO`, DAO self-call `luuXxx()` ghi xuống CSDL rồi trả về; kết thúc bằng thông báo thành công → actor click OK → quay về trang chính của actor. Luồng **đọc** giữ nguyên chuỗi 7 message (DAO self-call hàm nghiệp vụ, lớp thực thể self-call constructor để đóng gói thông tin).
 
-**Ánh xạ sang mô hình MVC.** Kiến trúc trên vẫn là MVC, với cách phân vai đúng như giáo trình:
+**Ánh xạ sang mô hình MVC.** Kiến trúc trên vẫn là MVC, với cách phân vai:
 
 | Thành phần MVC | Trong hệ thống | Giải thích |
 |---|---|---|
