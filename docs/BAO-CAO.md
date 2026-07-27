@@ -10,82 +10,227 @@
 |---|---|---|---|
 | Khuất Anh Quân | B22DCVT421 | Trưởng nhóm | Module 1 — Ký hợp đồng tay đua với đội đua |
 | Trần Xuân Kiên | B22DCVT269 | Thành viên | Module 2 — Đăng ký tay đua tham gia chặng đua |
-| Nguyễn Minh Kiệt | B22DCCVT270 | Thành viên | Module 3 — Cập nhật kết quả và tính điểm chặng đua |
+| Nguyễn Minh Kiệt | B22DCVT270 | Thành viên | Module 3 — Cập nhật kết quả chặng đua |
 | Phùng Tuấn Thành | B22DCVT517 | Thành viên | Module 4 — Quyết toán và trao giải cuối mùa |
 
 ---
 
 ## Mục lục
 
-- CHƯƠNG 1: Mô tả bài toán
-- CHƯƠNG 2: Đặc tả yêu cầu phần mềm
-- CHƯƠNG 3: Biểu đồ Use Case tổng quát
-- CHƯƠNG 4: Biểu đồ lớp thực thể và thiết kế cơ sở dữ liệu
-- CHƯƠNG 5: Module 1 — Ký hợp đồng tay đua với đội đua (Khuất Anh Quân)
-- CHƯƠNG 6: Module 2 — Đăng ký tay đua tham gia chặng đua (Trần Xuân Kiên)
-- CHƯƠNG 7: Module 3 — Cập nhật kết quả và tính điểm chặng đua (Nguyễn Minh Kiệt)
-- CHƯƠNG 8: Module 4 — Quyết toán và trao giải cuối mùa (Phùng Tuấn Thành)
-- CHƯƠNG 9: Kết luận
+**PHẦN 1 — CÔNG VIỆC CHUNG CỦA NHÓM**
+
+- **CHƯƠNG 1: Mô tả yêu cầu bài toán, yêu cầu người dùng**
+  - 1.1. Giới thiệu — mục đích hệ thống (kèm Ánh xạ với đề bài gốc)
+  - 1.2. Phạm vi hệ thống
+  - 1.3. Mô tả chi tiết hoạt động nghiệp vụ của từng chức năng
+  - 1.4. Các đối tượng được quản lý và thuộc tính
+  - 1.5. Quan hệ số lượng giữa các đối tượng
+  - 1.6. Các ràng buộc nghiệp vụ
+- **CHƯƠNG 2: Mô tả yêu cầu phần mềm**
+  - 2.1. Phân tích và xác định actor
+  - 2.2. Yêu cầu chức năng — danh sách use case
+  - 2.3. Yêu cầu phi chức năng
+  - 2.4. Biểu đồ Use Case tổng quát
+- **CHƯƠNG 3: Xây dựng biểu đồ lớp thực thể**
+  - 3.1. Phân tích và xác định các thực thể (trích danh từ)
+  - 3.2. Mô tả thực thể (thuộc tính, phương thức)
+  - 3.3. Quan hệ giữa các lớp thực thể
+  - 3.4. Biểu đồ lớp thực thể — pha phân tích
+  - 3.5. Biểu đồ lớp thực thể — pha thiết kế
+  - 3.6. Thiết kế cơ sở dữ liệu
+  - 3.7. Thiết kế triển khai (package view / dao / model)
+
+**PHẦN 2 — KẾT QUẢ TỪNG THÀNH VIÊN**
+
+- **CHƯƠNG 4: Module 1 — Ký hợp đồng tay đua với đội đua (Khuất Anh Quân)**
+  - 4.1. Biểu đồ Use Case chi tiết · 4.2. Đặc tả Use Case · 4.3. Biểu đồ trạng thái (phân tích hoạt động) · 4.4. Biểu đồ lớp phân tích · 4.5. Thiết kế giao diện · 4.6. Biểu đồ lớp thiết kế · 4.7. Biểu đồ hoạt động (pha thiết kế) · 4.8. Thuyết minh (kịch bản phiên bản 3) · 4.9. Biểu đồ tuần tự · 4.10. Test case
+- **CHƯƠNG 5: Module 2 — Đăng ký tay đua tham gia chặng đua (Trần Xuân Kiên)**
+  - 5.1. Biểu đồ Use Case chi tiết · 5.2. Đặc tả Use Case · 5.3. Biểu đồ trạng thái (phân tích hoạt động) · 5.4. Biểu đồ lớp phân tích · 5.5. Thiết kế giao diện · 5.6. Biểu đồ lớp thiết kế · 5.7. Biểu đồ hoạt động (pha thiết kế) · 5.8. Thuyết minh (kịch bản phiên bản 3) · 5.9. Biểu đồ tuần tự · 5.10. Test case
+- **CHƯƠNG 6: Module 3 — Cập nhật kết quả chặng đua (Nguyễn Minh Kiệt)**
+  - 6.1. Biểu đồ Use Case chi tiết · 6.2. Đặc tả Use Case · 6.3. Biểu đồ trạng thái (phân tích hoạt động) · 6.4. Biểu đồ lớp phân tích · 6.5. Thiết kế giao diện · 6.6. Biểu đồ lớp thiết kế · 6.7. Biểu đồ hoạt động (pha thiết kế) · 6.8. Thuyết minh (kịch bản phiên bản 3) · 6.9. Biểu đồ tuần tự · 6.10. Test case
+- **CHƯƠNG 7: Module 4 — Quyết toán và trao giải cuối mùa (Phùng Tuấn Thành)**
+  - 7.1. Biểu đồ Use Case chi tiết · 7.2. Đặc tả Use Case · 7.3. Biểu đồ trạng thái (phân tích hoạt động) · 7.4. Biểu đồ lớp phân tích · 7.5. Thiết kế giao diện (3 màn: Bảng tổng sắp · Chi tiết theo chặng · Trao giải) · 7.6. Biểu đồ lớp thiết kế · 7.7. Biểu đồ hoạt động (pha thiết kế) · 7.8. Thuyết minh (kịch bản phiên bản 3) · 7.9. Biểu đồ tuần tự · 7.10. Test case
+- **CHƯƠNG 8: Kết luận**
 
 ---
 
-## CHƯƠNG 1: MÔ TẢ BÀI TOÁN
+# PHẦN 1 — CÔNG VIỆC CHUNG CỦA NHÓM
 
-### 1.1. Bối cảnh và yêu cầu tổng quan
+## CHƯƠNG 1: MÔ TẢ YÊU CẦU BÀI TOÁN, YÊU CẦU NGƯỜI DÙNG
 
-Giải đua xe Công thức 1 (Formula 1 — F1) là giải đấu thể thao tốc độ thường niên quy mô toàn cầu: mỗi năm có một giải vô địch, mỗi giải gồm nhiều chặng đua diễn ra khắp thế giới với nhiều đội đua tham gia, mỗi đội đua có nhiều tay đua. Hệ thống **Quản lý giải đua xe F1** được xây dựng nhằm quản lý tập trung và chính xác toàn bộ dữ liệu của mùa giải, bao gồm: danh mục chặng đua / đội đua / tay đua, việc ký kết hợp đồng giữa tay đua và đội đua, đăng ký thi đấu từng chặng, và tự động hóa quy trình tính điểm — xếp hạng ở từng chặng đua cũng như quyết toán, trao giải khi kết thúc mùa giải.
+### 1.1. Giới thiệu — mục đích hệ thống
 
-Hệ thống gồm 4 phân hệ (module) nghiệp vụ chính, mỗi thành viên phụ trách một phân hệ: (1) Ký hợp đồng tay đua với đội đua, (2) Đăng ký tay đua tham gia chặng đua, (3) Cập nhật kết quả và tính điểm chặng đua, (4) Quyết toán và trao giải cuối mùa.
+Giải đua xe Công thức 1 (Formula 1 — F1) là giải đấu thể thao tốc độ thường niên quy mô toàn cầu: mỗi năm có một giải vô địch, mỗi giải gồm nhiều chặng đua diễn ra khắp thế giới với nhiều đội đua tham gia, mỗi đội đua có nhiều tay đua.
 
-### 1.2. Mô tả chi tiết yêu cầu nghiệp vụ theo từng phân hệ (module)
+Mục đích của hệ thống **Quản lý giải đua xe F1** là hỗ trợ ban tổ chức giải quản lý toàn bộ vòng đời một mùa giải: khai báo danh mục nền (mùa giải, chặng đua, đội đua, tay đua), ghi nhận việc các đội đăng ký tham gia mùa giải, quản lý hợp đồng giữa tay đua và đội đua, đăng ký tay đua tham gia từng chặng đua, cập nhật kết quả và tính điểm sau mỗi chặng, và cuối cùng là quyết toán, xếp hạng, trao giải cá nhân và đồng đội khi mùa giải kết thúc.
 
-**a. Module 1 — Ký hợp đồng tay đua với đội đua**
+Trước khi có phần mềm, các công việc trên được làm thủ công trên giấy tờ và bảng tính, dẫn tới ba khó khăn chính: (a) khó kiểm soát ràng buộc "tại một thời điểm một tay đua chỉ thuộc một đội" khi tay đua chuyển đội giữa mùa; (b) dễ sai sót khi cộng dồn điểm của hàng chục tay đua qua hàng chục chặng; (c) khó phân định thứ hạng khi hai tay đua hoặc hai đội bằng điểm. Hệ thống được xây dựng để tự động hóa và kiểm soát chặt ba điểm này.
+
+Hệ thống gồm 4 phân hệ (module) nghiệp vụ chính, mỗi thành viên phụ trách một phân hệ: (1) Ký hợp đồng tay đua với đội đua, (2) Đăng ký tay đua tham gia chặng đua, (3) Cập nhật kết quả chặng đua, (4) Quyết toán và trao giải cuối mùa.
+
+#### Ánh xạ với đề bài gốc
+
+Bốn module của nhóm được ánh xạ với 4 module của đề bài gốc (project 10 — *F1 Formula Championship Management*) như sau:
+
+| Module của nhóm | Module đề gốc | Ghi chú ánh xạ |
+|---|---|---|
+| M1 — Ký hợp đồng tay đua với đội đua | *(không có module riêng)* | Hiện thực hoá ràng buộc "tại một thời điểm chỉ thi đấu cho 1 đội"; không có M1 thì M2/M3/M4 không xác định được tay đua thuộc đội nào tại thời điểm chặng |
+| M2 — Đăng ký tay đua tham gia chặng đua | Register to racing | Giữ nguyên phạm vi |
+| M3 — Cập nhật kết quả chặng đua | Update results | Giữ nguyên phạm vi |
+| M4 — Quyết toán và trao giải cuối mùa | View racers' standings + View team rankings | Gộp hai module xếp hạng (use case thuần hiển thị là use case yếu) và bổ sung nghiệp vụ chốt sổ, trao giải cuối mùa |
+
+Ngoài ra, nhóm có hai tinh chỉnh nghiệp vụ **có chủ đích** so với mô tả gốc:
+
+- **Countback chèn vào tầng 2 của quy tắc xếp hạng.** Đề gốc ghi "sắp giảm dần theo tổng điểm, sau đó tăng dần theo tổng thời gian". Nhóm chèn thêm tầng countback theo đúng luật FIA thật (mùa 2021, Verstappen và Hamilton bằng điểm được phân định bằng số lần thắng chặng); **tổng thời gian vẫn là tiêu chí phân định cuối cùng đúng nguyên văn đề** và luôn hiển thị trên bảng xếp hạng.
+- **Bổ sung trạng thái DSQ.** Đề gốc chỉ có DNF (bỏ cuộc hoặc tai nạn); nhóm thêm DSQ (bị loại vì vi phạm kỹ thuật) — cùng nhận 0 điểm nhưng khác bản chất nghiệp vụ, giúp dữ liệu lịch sử phản ánh đúng và Module 3 có thêm một nhánh kiểm thử.
+
+Hai tinh chỉnh này không làm thay đổi phạm vi, số lượng module hay khối lượng công việc của đề bài.
+
+### 1.2. Phạm vi hệ thống
+
+Hệ thống có hai nhóm người dùng, đều là thành viên có tài khoản đăng nhập: **Nhân viên** (ban tổ chức) và **Quản lý**. Mỗi vai trò được thực hiện các chức năng sau:
+
+| Người dùng (actor) | Được thực hiện các chức năng |
+|---|---|
+| **Thành viên** (vai trò trừu tượng, cha của hai vai trò dưới) | 1. Đăng nhập<br>2. Đổi mật khẩu |
+| **Nhân viên** (kế thừa Thành viên) | 3. Quản lý mùa giải<br>4. Quản lý tay đua<br>5. Quản lý đội đua<br>6. Quản lý chặng đua<br>7. Đăng ký đội tham gia mùa giải<br>8. Ký hợp đồng tay đua với đội đua *(Module 1)*<br>9. Đăng ký tay đua tham gia chặng đua *(Module 2)*<br>10. Cập nhật kết quả chặng đua *(Module 3)* |
+| **Quản lý** (kế thừa Thành viên) | 11. Quyết toán và trao giải cuối mùa *(Module 4)* |
+
+Bốn chức năng 3–6 đều có cùng dạng thao tác (tìm / thêm / sửa / xóa trên một danh mục) nên khi mô hình hóa được gộp lại bằng một use case trừu tượng **Quản lý danh mục** làm cha.
+
+Ngoài hai vai trò trên, hệ thống không phục vụ trực tiếp đối tượng nào khác. Đội đua và tay đua chỉ **tham gia gián tiếp**: họ gửi yêu cầu (yêu cầu ký hợp đồng, yêu cầu đăng ký thi đấu) cho nhân viên, còn thao tác trên phần mềm do nhân viên thực hiện. Khán giả và báo chí không có tài khoản, không xem được dữ liệu qua hệ thống này.
+
+> **Những chức năng không đề cập đến thì mặc định là không thuộc phạm vi của hệ thống.**
+
+Cụ thể, các nội dung sau **không** thuộc phạm vi: bán vé và quản lý khán giả; quản lý hãng sản xuất xe và thông số kỹ thuật xe; quản lý nhân sự kỹ thuật của đội đua; tính toán thời gian vòng chạy trực tuyến trong lúc đua; xử phạt và khiếu nại của ban trọng tài; thanh toán tiền thưởng thực tế qua ngân hàng (hệ thống chỉ lưu quyết định trao giải và số tiền thưởng).
+
+### 1.3. Mô tả chi tiết hoạt động nghiệp vụ của từng chức năng
+
+#### 1.3.1. Đăng nhập
+
+Thành viên mở phần mềm → hệ thống hiển thị màn hình đăng nhập gồm ô nhập **Tên đăng nhập**, ô nhập **Mật khẩu** (hiển thị dạng dấu chấm) và nút **Đăng nhập**; các ô đang rỗng → thành viên nhập tên đăng nhập (ví dụ `nv01`) và mật khẩu, click **Đăng nhập** → hệ thống **kiểm tra tên đăng nhập có tồn tại không và mật khẩu có khớp không** → nếu sai, hệ thống báo lỗi "Tên đăng nhập hoặc mật khẩu không đúng", giữ nguyên màn hình đăng nhập và xóa ô mật khẩu, yêu cầu nhập lại → nếu đúng, hệ thống tạo phiên đăng nhập, đọc vai trò của tài khoản → nếu vai trò là **Nhân viên**, hệ thống hiển thị màn hình chính với các menu: Quản lý mùa giải, Quản lý tay đua, Quản lý đội đua, Quản lý chặng đua, Đăng ký đội tham gia mùa giải, Ký hợp đồng, Đăng ký chặng, Nhập kết quả chặng, Đổi mật khẩu, Đăng xuất → nếu vai trò là **Quản lý**, hệ thống hiển thị màn hình chính với các menu: Quyết toán và trao giải, Đổi mật khẩu, Đăng xuất.
+
+#### 1.3.2. Đổi mật khẩu
+
+Thành viên đã đăng nhập chọn menu **Đổi mật khẩu** → hệ thống hiển thị màn hình đổi mật khẩu gồm dòng chữ hiển thị họ tên và tên đăng nhập của người đang đăng nhập, ba ô nhập **Mật khẩu cũ**, **Mật khẩu mới**, **Nhập lại mật khẩu mới** và nút **Lưu**; ba ô đang rỗng → thành viên nhập mật khẩu cũ, nhập mật khẩu mới, nhập lại mật khẩu mới rồi click **Lưu** → hệ thống **kiểm tra mật khẩu cũ có khớp với mật khẩu đang lưu không** → nếu không khớp, báo lỗi "Mật khẩu cũ không đúng", xóa ba ô và yêu cầu nhập lại → hệ thống **kiểm tra hai ô mật khẩu mới có giống nhau không** → nếu khác nhau, báo lỗi "Nhập lại mật khẩu mới không khớp" → nếu hợp lệ, hệ thống lưu mật khẩu mới cho tài khoản, hiển thị thông báo "Đổi mật khẩu thành công" và quay về màn hình chính; lần đăng nhập sau thành viên phải dùng mật khẩu mới.
+
+#### 1.3.3. Quản lý mùa giải
+
+Nhân viên chọn menu **Quản lý mùa giải** → hệ thống hiển thị màn hình danh mục mùa giải gồm ô nhập **Năm** hoặc **Tên giải** để tìm, nút **Tìm**, nút **Thêm mới**, và bảng danh sách mùa giải với các cột: Năm, Tên giải, Trạng thái, Số chặng, kèm hai nút **Sửa** và **Xóa** trên mỗi dòng; ban đầu bảng hiển thị toàn bộ mùa giải đang có, ví dụ một dòng `2025 | FIA Formula One World Championship | Đang diễn ra | 24` → nhân viên nhập từ khóa và click **Tìm** → hệ thống hiển thị các mùa giải có năm hoặc tên chứa từ khóa.
+
+- **Thêm mới:** nhân viên click **Thêm mới** → hệ thống hiển thị biểu mẫu nhập gồm các ô: Tên giải, Năm, Trạng thái và nút **Lưu**; các ô đang rỗng → nhân viên nhập `FIA Formula One World Championship`, `2026`, `Đang diễn ra` rồi click **Lưu** → hệ thống **kiểm tra năm đã tồn tại chưa và các ô bắt buộc đã nhập chưa** → nếu năm đã có, báo lỗi "Mùa giải năm 2026 đã tồn tại" → nếu hợp lệ, hệ thống lưu mùa giải mới và hiển thị lại bảng danh sách có thêm dòng vừa nhập.
+- **Sửa:** nhân viên click **Sửa** trên một dòng → hệ thống hiển thị biểu mẫu đã điền sẵn dữ liệu của dòng đó → nhân viên sửa và click **Lưu** → hệ thống kiểm tra như khi thêm mới rồi cập nhật, hiển thị lại bảng danh sách.
+- **Xóa:** nhân viên click **Xóa** trên một dòng → hệ thống hiển thị hộp xác nhận "Bạn có chắc muốn xóa mùa giải 2026?" với nút **Đồng ý** và **Hủy** → nhân viên click **Đồng ý** → hệ thống **kiểm tra mùa giải có chặng đua, có đội tham gia hoặc đã có bản ghi trao giải hay không** → nếu có, hệ thống từ chối và báo lỗi "Không thể xóa: mùa giải đang có 24 chặng đua" → nếu không, hệ thống xóa và hiển thị lại bảng danh sách.
+
+#### 1.3.4. Quản lý tay đua
+
+Nhân viên chọn menu **Quản lý tay đua** → hệ thống hiển thị màn hình danh mục tay đua gồm ô nhập **Tên tay đua**, nút **Tìm**, nút **Thêm mới**, và bảng danh sách với các cột: Mã, Tên, Ngày sinh, Quốc tịch, Tiểu sử, kèm nút **Sửa** và **Xóa** trên mỗi dòng → nhân viên nhập `Hamilton` và click **Tìm** → hệ thống hiển thị các tay đua có tên chứa từ khóa, ví dụ một dòng `HAM | Lewis Hamilton | 07/01/1985 | Anh | Bảy lần vô địch thế giới`.
+
+- **Thêm mới:** nhân viên click **Thêm mới** → hệ thống hiển thị biểu mẫu gồm các ô: Mã, Tên, Ngày sinh, Quốc tịch, Tiểu sử và nút **Lưu** → nhân viên nhập `ANT`, `Andrea Kimi Antonelli`, `25/08/2006`, `Ý`, tiểu sử rồi click **Lưu** → hệ thống **kiểm tra mã tay đua đã tồn tại chưa và các ô bắt buộc (mã, tên) đã nhập chưa** → nếu mã trùng, báo lỗi "Mã tay đua ANT đã tồn tại" → nếu hợp lệ, hệ thống lưu và hiển thị lại bảng danh sách.
+- **Sửa:** nhân viên click **Sửa** trên một dòng → hệ thống hiển thị biểu mẫu điền sẵn dữ liệu → nhân viên sửa (ví dụ bổ sung tiểu sử) và click **Lưu** → hệ thống cập nhật và hiển thị lại bảng.
+- **Xóa:** nhân viên click **Xóa** → hệ thống hỏi xác nhận → nhân viên đồng ý → hệ thống **kiểm tra tay đua đã có hợp đồng, đã đăng ký chặng hoặc đã được trao giải hay chưa** → nếu có, từ chối và báo lỗi "Không thể xóa: tay đua đang có hợp đồng với Ferrari" → nếu không, hệ thống xóa và hiển thị lại bảng.
+
+#### 1.3.5. Quản lý đội đua
+
+Nhân viên chọn menu **Quản lý đội đua** → hệ thống hiển thị màn hình danh mục đội đua gồm ô nhập **Tên đội**, nút **Tìm**, nút **Thêm mới**, và bảng danh sách với các cột: Mã, Tên, Hãng, Mô tả, kèm nút **Sửa** và **Xóa** trên mỗi dòng → nhân viên nhập `Ferrari` và click **Tìm** → hệ thống hiển thị dòng `FER | Ferrari | Ferrari | Đội đua lâu đời nhất F1`.
+
+- **Thêm mới:** nhân viên click **Thêm mới** → hệ thống hiển thị biểu mẫu gồm các ô: Mã, Tên, Hãng, Mô tả và nút **Lưu** → nhân viên nhập `MCL`, `McLaren`, `Mercedes`, mô tả rồi click **Lưu** → hệ thống **kiểm tra mã đội đã tồn tại chưa và các ô bắt buộc đã nhập chưa** → nếu hợp lệ, hệ thống lưu và hiển thị lại bảng danh sách.
+- **Sửa:** nhân viên click **Sửa**, hệ thống hiển thị biểu mẫu điền sẵn → nhân viên sửa hãng hoặc mô tả rồi click **Lưu** → hệ thống cập nhật.
+- **Xóa:** nhân viên click **Xóa**, xác nhận → hệ thống **kiểm tra đội đã tham gia mùa giải nào, đã có hợp đồng với tay đua nào hoặc đã đăng ký chặng nào chưa** → nếu có, từ chối và báo lỗi cụ thể → nếu không, hệ thống xóa.
+
+#### 1.3.6. Quản lý chặng đua
+
+Nhân viên chọn menu **Quản lý chặng đua** → hệ thống hiển thị màn hình danh mục chặng đua gồm ô chọn **Mùa giải** (danh sách thả xuống, mặc định chọn mùa giải hiện tại `2025`), ô nhập **Tên chặng**, nút **Tìm**, nút **Thêm mới**, và bảng danh sách với các cột: Mã, Tên chặng, Số vòng, Địa điểm, Thời gian, Mô tả, kèm nút **Sửa** và **Xóa** trên mỗi dòng → hệ thống hiển thị các chặng của mùa giải đang chọn, sắp xếp tăng dần theo thời gian, ví dụ `R01 | Australian Grand Prix | 58 | Melbourne | 16/03/2025 | ...`.
+
+- **Thêm mới:** nhân viên click **Thêm mới** → hệ thống hiển thị biểu mẫu gồm ô chọn Mùa giải và các ô: Mã, Tên chặng, Số vòng, Địa điểm, Thời gian, Mô tả và nút **Lưu** → nhân viên nhập `R02`, `Chinese Grand Prix`, `56`, `Thượng Hải`, `23/03/2025`, mô tả rồi click **Lưu** → hệ thống **kiểm tra mã chặng đã tồn tại chưa, số vòng có phải số nguyên dương không, thời gian chặng có nằm trong mùa giải đã chọn không** → nếu vi phạm, báo lỗi tương ứng và yêu cầu nhập lại → nếu hợp lệ, hệ thống lưu chặng đua thuộc mùa giải đã chọn và hiển thị lại bảng danh sách.
+- **Sửa:** nhân viên click **Sửa** → hệ thống hiển thị biểu mẫu điền sẵn → nhân viên sửa (ví dụ đổi thời gian chặng) rồi click **Lưu** → hệ thống kiểm tra như trên rồi cập nhật.
+- **Xóa:** nhân viên click **Xóa**, xác nhận → hệ thống **kiểm tra chặng đã có tay đua đăng ký hoặc đã có kết quả hay chưa** → nếu có, từ chối và báo lỗi "Không thể xóa: chặng đã có kết quả thi đấu" → nếu không, hệ thống xóa.
+
+#### 1.3.7. Đăng ký đội tham gia mùa giải
+
+Nhân viên chọn menu **Đăng ký đội tham gia mùa giải** → hệ thống hiển thị màn hình đăng ký gồm ô chọn **Mùa giải** (danh sách thả xuống) và một bảng rỗng, nút **Lưu** chưa được active → nhân viên chọn mùa giải `2025` → hệ thống hiển thị bảng danh sách toàn bộ đội đua trong danh mục, mỗi dòng gồm ô tick, Mã, Tên đội, Hãng và cột **Trạng thái** ghi "đã tham gia" hoặc "chưa tham gia" mùa giải đang chọn; các đội đã tham gia được tick sẵn và không cho bỏ tick; nút **Lưu** được active → nhân viên tick chọn các đội đăng ký tham gia mùa giải (ví dụ tick `Ferrari`, `Red Bull`, `Mercedes`, `McLaren`, `Aston Martin`, `Williams`) → nhân viên click **Lưu** → hệ thống **kiểm tra ràng buộc: một đội chỉ được tham gia một mùa giải một lần** (bỏ qua các đội đã có bản ghi tham gia, không tạo bản ghi trùng) → hệ thống sinh bản ghi tham gia cho từng đội mới được tick, lưu vào cơ sở dữ liệu → hệ thống hiển thị lại bảng danh sách với cột Trạng thái đã cập nhật và thông báo "Đã đăng ký 6 đội tham gia mùa giải 2025"; danh sách này là nguồn dữ liệu cho ô chọn đội đua ở các chức năng ký hợp đồng và đăng ký chặng.
+
+#### 1.3.8. Ký hợp đồng tay đua với đội đua (Module 1)
 
 *Mô tả nghiệp vụ:* Nhân viên quản lý giải ghi nhận việc ký hợp đồng mới hoặc chuyển đội của tay đua với các đội đua, bảo đảm ràng buộc "tại một thời điểm tay đua chỉ thuộc một đội".
 
-*Yêu cầu chi tiết:*
-- Hệ thống cho phép tìm tay đua theo tên; kết quả tìm kiếm hiển thị mã, tên, ngày sinh, quốc tịch, đội hiện tại. Nếu tay đua chưa có trong hệ thống thì cho phép thêm mới (tên, ngày sinh, quốc tịch, tiểu sử).
-- Hệ thống hiển thị lịch sử thi đấu (chuyển nhượng) của tay đua: mỗi dòng một giai đoạn gồm tên đội, ngày bắt đầu, ngày kết thúc; **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**.
-- Khi ký mới / chuyển đội, nhân viên chọn đội từ danh sách và **chỉ nhập ngày bắt đầu hiệu lực** (hợp đồng mở — ngày kết thúc để trống).
-- Hệ thống kiểm tra ràng buộc: nếu tay đua còn hợp đồng đang hiệu lực thì **tự động đóng hợp đồng cũ** (ngày kết thúc = ngày liền trước ngày bắt đầu mới); nếu ngày bắt đầu chồng lấn khoảng thời gian của một hợp đồng **đã đóng** trong lịch sử thì báo lỗi và yêu cầu nhập lại.
-- Sau khi lưu, hệ thống in phiếu xác nhận hợp đồng và hiển thị lại lịch sử thi đấu đã cập nhật.
+*Luồng nghiệp vụ:* Nhân viên chọn chức năng **Ký hợp đồng** → hệ thống hiển thị màn hình tìm tay đua theo tên → nhân viên nhập tên và click **Tìm** → hệ thống hiển thị danh sách tay đua có tên chứa từ khóa, mỗi dòng gồm mã, tên, ngày sinh, quốc tịch, đội hiện tại; nếu tay đua chưa có trong hệ thống thì nhân viên thêm mới tay đua ngay tại màn hình này (mã, tên, ngày sinh, quốc tịch, tiểu sử) → nhân viên click chọn đúng tay đua → hệ thống hiển thị màn hình nhập hợp đồng kèm lịch sử thi đấu của tay đua, mỗi dòng một giai đoạn gồm tên đội, ngày bắt đầu, ngày kết thúc (**dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**) → nhân viên chọn đội đua từ danh sách thả xuống và **chỉ nhập ngày bắt đầu hiệu lực** (hợp đồng mở, ngày kết thúc để trống), rồi click **Lưu** → hệ thống **kiểm tra ràng buộc: tại một thời điểm tay đua chỉ thuộc một đội** — nếu tay đua còn hợp đồng đang hiệu lực thì **tự động đóng hợp đồng cũ** bằng ngày liền trước ngày bắt đầu mới; nếu ngày bắt đầu chồng lấn khoảng thời gian của một hợp đồng **đã đóng** trong lịch sử thì báo lỗi và yêu cầu nhập lại → hệ thống lưu hợp đồng mới vào cơ sở dữ liệu, in phiếu xác nhận hợp đồng và hiển thị lại lịch sử thi đấu đã cập nhật.
 
-**b. Module 2 — Đăng ký tay đua tham gia chặng đua**
+#### 1.3.9. Đăng ký tay đua tham gia chặng đua (Module 2)
 
 *Mô tả nghiệp vụ:* Trước mỗi chặng đua, nhân viên chốt danh sách tay đua thi đấu của từng đội theo yêu cầu của đội đua.
 
-*Yêu cầu chi tiết:*
-- Nhân viên chọn chặng đua và đội đua từ danh sách thả xuống.
-- Hệ thống hiển thị danh sách các tay đua **đang có hợp đồng hiệu lực với đội tại thời điểm diễn ra chặng** (dữ liệu kế thừa từ Module 1), sắp xếp theo thứ tự alphabet của tên, kèm cột trạng thái "đã đăng ký chặng này cho đội khác hay chưa".
-- Nhân viên tick chọn tay đua; hệ thống kiểm tra ràng buộc: **tối đa 2 tay đua/đội/chặng** và **mỗi tay đua chỉ được đăng ký 1 lần trong một chặng** (vi phạm thì báo lỗi ngay, không cho lưu).
-- Sau khi lưu, hệ thống hiển thị danh sách xuất phát (start list) của chặng — mỗi dòng gồm tên đội và các tay đua đã đăng ký — và cho phép in cho ban tổ chức.
-- Trước ngày đua, nhân viên có thể mở lại chặng + đội để thay tay đua; hệ thống kiểm tra lại các ràng buộc như trên.
+*Luồng nghiệp vụ:* Nhân viên chọn chức năng **Đăng ký thi đấu** → hệ thống hiển thị màn hình chọn chặng và đội → nhân viên chọn chặng đua từ danh sách thả xuống và chọn đội đua từ danh sách thả xuống, rồi click **Tiếp tục** → hệ thống hiển thị danh sách các tay đua **đang có hợp đồng hiệu lực với đội tại thời điểm diễn ra chặng** (dữ liệu kế thừa từ Module 1), **sắp xếp theo thứ tự alphabet của tên**, kèm cột trạng thái "đã đăng ký chặng này cho đội khác hay chưa" → nhân viên tick chọn tay đua theo yêu cầu của đội → nhân viên click **Lưu** → hệ thống **kiểm tra ràng buộc: tối đa 2 tay đua/đội/chặng và mỗi tay đua chỉ được đăng ký 1 lần trong một chặng** (vi phạm thì báo lỗi ngay, không cho lưu) → hệ thống lưu danh sách đăng ký và hiển thị danh sách xuất phát (start list) của chặng, mỗi dòng gồm tên đội và các tay đua đã đăng ký, cho phép in gửi ban tổ chức → trước ngày đua, nhân viên có thể mở lại chặng và đội để thay tay đua; hệ thống kiểm tra lại các ràng buộc như trên.
 
-**c. Module 3 — Cập nhật kết quả và tính điểm chặng đua**
+#### 1.3.10. Cập nhật kết quả chặng đua (Module 3)
 
 *Mô tả nghiệp vụ:* Sau khi chặng đua kết thúc, nhân viên nhập kết quả thi đấu thực tế để hệ thống tự động xếp hạng và tính điểm.
 
-*Yêu cầu chi tiết:*
-- Nhân viên chọn chặng đua; hệ thống hiển thị bảng các tay đua đã đăng ký chặng (dữ liệu từ Module 2), mỗi dòng có ô nhập: thời gian hoàn thành, số vòng chạy được, đánh dấu "bỏ cuộc / tai nạn (DNF)".
-- Hệ thống **tự động xếp hạng theo thời gian về đích** (tay đua DNF xếp cuối) và gán điểm cho top 10 theo bảng điểm chuẩn; tay đua trong top 10 nhưng DNF nhận 0 điểm.
-- Hệ thống hiển thị bảng kết quả chặng để đối soát (hạng, tên tay đua, tên đội, thời gian, số vòng, điểm) trước khi nhân viên xác nhận lưu.
-- Nếu chặng đã có kết quả cũ, hệ thống **cảnh báo ghi đè** và tính lại điểm toàn bộ chặng.
+*Luồng nghiệp vụ:* Nhân viên chọn chức năng **Cập nhật kết quả chặng đua** → hệ thống hiển thị màn hình chọn chặng → nhân viên chọn chặng đua từ danh sách thả xuống và click **Tiếp tục** → hệ thống hiển thị bảng các tay đua đã đăng ký chặng (dữ liệu từ Module 2), mỗi dòng có ô nhập: thời gian về đích, số vòng hoàn thành và ô chọn trạng thái "Hoàn thành / Bỏ cuộc–tai nạn (DNF) / Bị loại (DSQ)" → nhân viên nhập đủ kết quả cho tất cả tay đua rồi click **Tính kết quả** → hệ thống **tự động xếp hạng theo thời gian về đích** (tay đua DNF hoặc DSQ xếp cuối) và **gán điểm cho top 10 theo thứ tự 25, 18, 15, 12, 10, 8, 6, 4, 2, 1**; tay đua nằm trong top 10 nhưng DNF hoặc DSQ nhận 0 điểm → hệ thống hiển thị bảng kết quả chặng để đối soát (hạng, tên tay đua, tên đội, thời gian, số vòng, trạng thái, điểm) → nhân viên kiểm tra và click **Lưu** → nếu chặng đã có kết quả cũ, hệ thống **cảnh báo ghi đè**, xóa kết quả cũ và tính lại điểm toàn bộ chặng; hệ thống lưu kết quả và điểm của từng tay đua vào cơ sở dữ liệu rồi in bảng kết quả chặng.
 
-**d. Module 4 — Quyết toán và trao giải cuối mùa**
+#### 1.3.11. Quyết toán và trao giải cuối mùa (Module 4)
 
-*Mô tả nghiệp vụ:* Khi mùa giải kết thúc, quản lý thực hiện quyết toán: cộng dồn dữ liệu qua tất cả các chặng để lập bảng tổng sắp, xác định thứ hạng chung cuộc và tính tiền thưởng trao giải.
+*Mô tả nghiệp vụ:* Quản lý xem bảng xếp hạng cá nhân và bảng xếp hạng đội tính đến chặng bất kỳ, xem chi tiết kết quả từng chặng của một tay đua/đội (drill-down); khi mùa giải kết thúc và đủ kết quả, quản lý thực hiện quyết toán: chốt bảng tổng sắp cuối mùa, nhập mức thưởng, tính tiền thưởng và lưu quyết định trao giải.
 
-*Yêu cầu chi tiết:*
-- Hệ thống kiểm tra điều kiện quyết toán: **tất cả các chặng trong mùa phải đã có kết quả**; còn chặng chưa nhập kết quả thì báo lỗi, từ chối quyết toán.
-- Bảng tổng sắp cá nhân (Driver Standings): cộng dồn điểm số và tổng thời gian của từng tay đua qua tất cả các chặng trong mùa.
-- Bảng tổng sắp đội đua (Constructor Standings): cộng dồn điểm số các tay đua ghi được cho đội qua các chặng.
-- Cả hai bảng **sắp xếp giảm dần theo tổng điểm; nếu bằng điểm thì xếp tăng dần theo tổng thời gian**.
-- Quản lý nhập mức tiền thưởng cho từng hạng (hạng 1, 2, 3 cá nhân và hạng 1, 2, 3 đội); hệ thống tự động tính số tiền thưởng tương ứng cho từng tay đua / đội theo hạng đạt được.
-- Sau khi lưu quyết định trao giải, hệ thống in danh sách trao giải mùa giải: hạng, tên tay đua / đội, tổng điểm, tiền thưởng.
+*Luồng nghiệp vụ:* Quản lý chọn chức năng **Quyết toán mùa giải** → hệ thống lấy mùa giải hiện tại và hiển thị màn hình **Bảng tổng sắp** gồm ô chọn **Chặng đua** (danh sách thả xuống các chặng của mùa, mặc định là chặng gần nhất đã có kết quả), hai bảng xếp hạng và nút **Tiếp tục** chưa được active → quản lý chọn một chặng (ví dụ chọn Abu Dhabi Grand Prix — chặng cuối — để xem bảng cuối mùa) → hệ thống **cộng dồn tổng điểm, tổng thời gian và số lần đạt từng thứ hạng của mỗi tay đua và mỗi đội tính từ chặng đầu mùa đến hết chặng được chọn**, trong đó điểm của tay đua ở mỗi chặng được cộng cho **đội mà tay đua đã đăng ký tại chặng đó** (xử lý đúng trường hợp đổi đội giữa mùa) → hệ thống sắp xếp theo **ba tầng tiêu chí: giảm dần tổng điểm; nếu bằng điểm thì countback — so số lần về nhất, vẫn bằng thì số lần về nhì, rồi về ba…; nếu countback vẫn bằng thì tăng dần tổng thời gian** → hệ thống hiển thị bảng xếp hạng cá nhân (Hạng, Tên tay đua, Quốc tịch, Tên đội, Tổng điểm, Tổng thời gian) và bảng xếp hạng đội (Hạng, Tên đội, Hãng, Tổng điểm, Tổng thời gian) → quản lý có thể **click vào một dòng tay đua hoặc một dòng đội** → hệ thống hiển thị màn hình **Chi tiết theo chặng**: với tay đua là bảng (Tên chặng, Hạng về đích, Điểm, Thời gian về đích), với đội là bảng (Tên chặng, Tổng điểm, Tổng thời gian của 2 tay đua), kèm nút **Quay lại** để trở về bảng tổng sắp → khi mùa giải ở trạng thái "Đã kết thúc", chặng được chọn là chặng cuối và hệ thống **kiểm tra tất cả các chặng đã có kết quả** (còn chặng chưa nhập kết quả thì báo lỗi kèm tên chặng và từ chối quyết toán), nút **Tiếp tục** được active → quản lý click **Tiếp tục** → hệ thống hiển thị màn hình **Trao giải**: sáu ô nhập mức thưởng (cá nhân hạng 1, 2, 3 và đội hạng 1, 2, 3) đang rỗng, bảng Danh sách trao giải 6 dòng với **cột Tiền thưởng rỗng**, nút **Tính thưởng** active và nút **Lưu** chưa active → quản lý nhập mức thưởng cho từng hạng rồi click **Tính thưởng** → hệ thống **kiểm tra mức thưởng là số không âm** → nếu vi phạm, báo lỗi và giữ nguyên màn hình → hợp lệ thì hệ thống **tính tiền thưởng tương ứng cho từng tay đua/đội theo hạng đạt được**, điền cột Tiền thưởng và bật nút **Lưu** (quản lý có thể lặp lại bước nhập – tính thưởng nhiều lần) → quản lý click **Lưu** → nếu mùa giải đã có quyết định trao giải trước đó, hệ thống cảnh báo và hỏi xác nhận ghi đè → hệ thống lưu các bản ghi trao giải vào cơ sở dữ liệu và in danh sách trao giải mùa giải (hạng, tên tay đua/đội, tổng điểm, tiền thưởng).
 
-### 1.3. Các ràng buộc nghiệp vụ (business rules)
+### 1.4. Các đối tượng được quản lý và thuộc tính
 
-**a. Ràng buộc mùa giải & chặng đua:**
+**a. Nhóm con người**
+
+| Đối tượng | Thuộc tính |
+|---|---|
+| **Tay đua** | mã, tên, ngày sinh, quốc tịch, tiểu sử |
+| **Thành viên** (tài khoản người dùng) | tên đăng nhập, mật khẩu, họ tên |
+| **Nhân viên** | kế thừa Thành viên |
+| **Quản lý** | kế thừa Thành viên |
+
+**b. Nhóm đơn vị tổ chức**
+
+| Đối tượng | Thuộc tính |
+|---|---|
+| **Đội đua** | mã, tên, hãng, mô tả |
+
+> Đề bài có nhắc tới **hãng** xe của đội đua. Vì hệ thống không có chức năng quản lý hãng đua (không thuộc phạm vi ở mục 1.2), hãng được giữ làm **thuộc tính** của đội đua chứ không tách thành đối tượng riêng.
+
+**c. Nhóm chuyên môn vận hành**
+
+| Đối tượng | Thuộc tính |
+|---|---|
+| **Mùa giải** | tên, năm, trạng thái |
+| **Chặng đua** | mã, tên, số vòng, địa điểm, thời gian, mô tả |
+| **Hợp đồng** | ngày bắt đầu, ngày kết thúc (để trống = đang hiệu lực) |
+| **Tham gia** (đội tham gia mùa giải) | không có thuộc tính riêng, chỉ nối mùa giải với đội đua |
+| **Đăng ký chặng** | không có thuộc tính riêng, chỉ nối chặng đua với tay đua và đội đua |
+
+**d. Nhóm kết quả**
+
+| Đối tượng | Thuộc tính |
+|---|---|
+| **Kết quả** | thời gian, số vòng hoàn thành, trạng thái (Hoàn thành / DNF / DSQ), hạng, điểm |
+| **Trao giải** | loại (cá nhân / đồng đội), hạng, tiền thưởng |
+
+### 1.5. Quan hệ số lượng giữa các đối tượng
+
+- Một **mùa giải** có nhiều **chặng đua**; một chặng đua chỉ thuộc về một mùa giải.
+- Một **mùa giải** có nhiều bản ghi **tham gia**; một bản ghi tham gia chỉ thuộc về một mùa giải.
+- Một **đội đua** có nhiều bản ghi **tham gia** (tham gia nhiều mùa giải khác nhau); một bản ghi tham gia chỉ ứng với một đội đua.
+- Một **tay đua** có nhiều **hợp đồng** (qua các thời kỳ khác nhau); một hợp đồng chỉ của một tay đua.
+- Một **đội đua** có nhiều **hợp đồng**; một hợp đồng chỉ với một đội đua.
+- Một **chặng đua** có nhiều bản ghi **đăng ký chặng**; một bản ghi đăng ký chặng chỉ thuộc về một chặng đua.
+- Một **tay đua** có nhiều bản ghi **đăng ký chặng** (đăng ký nhiều chặng trong mùa); một bản ghi đăng ký chặng chỉ ứng với một tay đua.
+- Một **đội đua** có nhiều bản ghi **đăng ký chặng**; một bản ghi đăng ký chặng chỉ ứng với một đội đua. Trong cùng một chặng, một đội có **tối đa 2** bản ghi đăng ký.
+- Một bản ghi **đăng ký chặng** có **nhiều nhất một** **kết quả** (chưa có kết quả khi chặng chưa diễn ra); một kết quả chỉ thuộc về một bản ghi đăng ký chặng.
+- Một **mùa giải** có nhiều bản ghi **trao giải**; một bản ghi trao giải chỉ thuộc về một mùa giải.
+- Một **tay đua** có nhiều bản ghi **trao giải** (qua các mùa giải); một bản ghi trao giải cá nhân chỉ ứng với một tay đua.
+- Một **đội đua** có nhiều bản ghi **trao giải**; một bản ghi trao giải đồng đội chỉ ứng với một đội đua.
+- **Thành viên** là đối tượng cha; **nhân viên** và **quản lý** kế thừa thành viên.
+
+Ba quan hệ nhiều–nhiều được tách bằng đối tượng trung gian: mùa giải – đội đua tách bằng **tham gia**; tay đua – đội đua (theo thời gian) tách bằng **hợp đồng**; chặng đua – tay đua tách bằng **đăng ký chặng**.
+
+### 1.6. Các ràng buộc nghiệp vụ (business rules)
+
+**a. Ràng buộc mùa giải và chặng đua:**
 - Mỗi năm chỉ có đúng một giải vô địch (mùa giải). Một mùa giải gồm nhiều chặng đua diễn ra khắp thế giới (mã chặng đua, tên, số vòng đua, địa điểm, thời gian, mô tả).
 - Mỗi mùa giải có nhiều đội đua tham gia (mã, tên, hãng, mô tả); mỗi đội đua có nhiều tay đua (mã, tên, ngày sinh, quốc tịch, tiểu sử).
 
@@ -100,298 +245,1859 @@ Hệ thống gồm 4 phân hệ (module) nghiệp vụ chính, mỗi thành viê
 - Tay đua được đăng ký phải đang có hợp đồng hiệu lực với đội đua tại thời điểm diễn ra chặng.
 
 **d. Ràng buộc tính điểm chặng đua:**
-- Kết quả chặng xếp hạng theo thứ tự về đích (thời gian hoàn thành tăng dần); tay đua DNF xếp cuối.
+- Kết quả chặng xếp hạng theo thứ tự về đích (thời gian hoàn thành tăng dần); tay đua DNF hoặc DSQ xếp cuối.
 - Điểm chỉ tính cho **top 10**, lần lượt theo thứ tự về đích: 25 — 18 — 15 — 12 — 10 — 8 — 6 — 4 — 2 — 1; từ vị trí 11 trở đi không có điểm.
-- Tay đua nằm trong top 10 nhưng không hoàn thành chặng đua (DNF do bỏ cuộc hoặc tai nạn) nhận **0 điểm** tại chặng đó.
+- Tay đua nằm trong top 10 nhưng không hoàn thành chặng đua (DNF do bỏ cuộc hoặc tai nạn) hoặc bị loại vì vi phạm kỹ thuật (DSQ) nhận **0 điểm** tại chặng đó.
 
 **e. Ràng buộc tính điểm tổng kết mùa giải:**
 - Điểm mùa giải cá nhân = tổng điểm tích lũy của tay đua qua tất cả các chặng trong mùa (tay đua chuyển đội giữa mùa vẫn bảo lưu điểm cá nhân).
 - Điểm mùa giải của đội = tổng điểm các tay đua ghi được **khi đại diện cho đội đó tại từng chặng** (tay đua chuyển đội giữa mùa thì điểm ở mỗi chặng tính cho đội mà tay đua đăng ký ở chặng đó).
-- Xếp hạng chung cuộc (cá nhân và đội): giảm dần theo tổng điểm; bằng điểm thì tăng dần theo tổng thời gian.
+- Xếp hạng chung cuộc (cá nhân và đội) theo **ba tầng tiêu chí**: (1) giảm dần tổng điểm; (2) nếu bằng điểm thì phân định bằng **countback** — so số lần về nhất, rồi số lần về nhì, rồi về ba… cho đến khi phân định được (tầng bổ sung theo luật FIA); (3) nếu countback vẫn bằng thì xếp theo **tăng dần tổng thời gian** (theo mô tả bài toán). Tổng thời gian luôn được hiển thị trên bảng xếp hạng.
 
 ---
 
-## CHƯƠNG 2: ĐẶC TẢ YÊU CẦU PHẦN MỀM
+## CHƯƠNG 2: MÔ TẢ YÊU CẦU PHẦN MỀM
 
-### 2.1. Người dùng
+### 2.1. Phân tích và xác định actor
 
-| Người dùng (actor) | Được thực hiện |
-|---|---|
-| Thành viên (chung) | Đăng nhập, đổi mật khẩu |
-| Nhân viên | Ký hợp đồng (M1), đăng ký tay đua vào chặng (M2), cập nhật kết quả chặng (M3); quản lý danh mục (mùa giải, tay đua, đội, chặng); đăng ký đội tham gia mùa giải |
-| Quản lý | Quyết toán và trao giải cuối mùa (M4) |
+Hệ thống chỉ được dùng bởi hai vai người dùng thật: người vận hành giải hằng ngày (ký hợp đồng, đăng ký chặng, nhập kết quả) và người quản lý giải (quyết toán, trao giải cuối mùa). Hai vai này có **đặc điểm chung**: đều phải có tài khoản trong hệ thống, đều đăng nhập và đổi mật khẩu. Vì vậy nhóm tách phần chung thành một **actor trừu tượng `ThanhVien`** làm cha, còn `NhanVien` và `QuanLy` kế thừa `ThanhVien`.
 
-### 2.2. Yêu cầu chức năng
+| Actor | Loại | Mô tả | Kế thừa |
+|---|---|---|---|
+| `ThanhVien` | **trừu tượng** | Người dùng đã có tài khoản trong hệ thống. Không có người dùng thật nào chỉ là `ThanhVien` — lớp actor này chỉ giữ phần chung (đăng nhập, đổi mật khẩu). | — |
+| `NhanVien` | cụ thể | Nhân viên vận hành giải: ký hợp đồng, đăng ký tay đua vào chặng, cập nhật kết quả chặng, quản lý các danh mục. | `ThanhVien` |
+| `QuanLy` | cụ thể | Quản lý giải: quyết toán và trao giải cuối mùa. | `ThanhVien` |
 
-- **FR0 — Xác thực & tài khoản:** đăng nhập, đổi mật khẩu, phân quyền theo vai trò.
-- **FR1 — Quản lý danh mục:** thêm/sửa/xóa tay đua, đội đua, chặng đua; quản lý mùa giải; đăng ký đội tham gia mùa giải.
-- **FR2 — Ký hợp đồng (M1):** tìm tay đua theo tên; ký hợp đồng chỉ nhập ngày bắt đầu; nếu tay đua còn hợp đồng hiệu lực thì hệ thống tự động đóng hợp đồng cũ (ngày kết thúc = ngày liền trước ngày bắt đầu mới); nếu chồng lấn khoảng đã đóng thì báo lỗi; lưu và in hợp đồng.
-- **FR3 — Đăng ký chặng (M2):** chọn chặng và đội, hiển thị tay đua có hợp đồng hiệu lực, tick chọn; ràng buộc: mỗi đội tối đa 2 tay đua/chặng, không trùng; lưu và in phiếu đăng ký.
-- **FR4 — Cập nhật kết quả (M3):** nhập thời gian/số vòng/DNF; tính điểm top 10 (25→1), DNF = 0; lưu và in bảng kết quả.
-- **FR5 — Quyết toán (M4):** kiểm tra đủ kết quả tất cả chặng, cộng dồn điểm/thời gian, xếp hạng cá nhân và đội, nhập mức thưởng và tính tiền thưởng; lưu và in danh sách trao giải.
+**Actor gián tiếp.** Nhóm rà soát các bên liên quan xuất hiện trong mô tả bài toán và kết luận như sau:
+
+| Bên liên quan | Tham gia gián tiếp vào use case nào | Kết luận |
+|---|---|---|
+| **Đội đua** | `Ký hợp đồng tay đua với đội đua`, `Đăng ký tay đua tham gia chặng đua`, `Quyết toán và trao giải cuối mùa` | Là **actor gián tiếp**. Đội đua không có tài khoản, không có màn hình nào trong hệ thống — mọi thao tác đều do `NhanVien` nhập hộ theo văn bản đội gửi. ⇒ Ghi nhận trong tài liệu, **không vẽ vào biểu đồ**. |
+| **Ban tổ chức** | `Đăng ký tay đua tham gia chặng đua`, `Cập nhật kết quả chặng đua`, `Xem bảng tổng sắp` | "Ban tổ chức" chính là **tên gọi nghiệp vụ của vai `NhanVien`**. ⇒ **Không tách thành actor riêng** vì sẽ trùng vai. |
+| **Tay đua** | `Ký hợp đồng tay đua với đội đua`, `Quyết toán và trao giải cuối mùa` | Là **actor gián tiếp**. Tay đua là **đối tượng được quản lý** (lớp thực thể `TayDua`), không đăng nhập, không thao tác trên hệ thống. ⇒ Ghi nhận trong tài liệu, **không vẽ vào biểu đồ**. |
+
+### 2.2. Yêu cầu chức năng — danh sách use case
+
+Nguyên tắc: **mỗi chức năng nằm trong phạm vi hệ thống → một use case**. Tên use case luôn là **động từ chỉ hành động của actor**, không phải hành động của hệ thống.
+
+| Use case | Actor | Mô tả ngắn |
+|---|---|---|
+| Đăng nhập | Thành viên | Đăng nhập vào hệ thống bằng tên đăng nhập và mật khẩu, được phân quyền theo vai trò |
+| Đổi mật khẩu | Thành viên | Đổi mật khẩu của tài khoản đang đăng nhập |
+| **Quản lý danh mục** *(use case trừu tượng)* | Nhân viên | Use case cha, gộp bốn use case danh mục có cùng dạng thao tác tìm / thêm / sửa / xóa |
+| Quản lý mùa giải | Nhân viên | Kế thừa *Quản lý danh mục*, áp cho mùa giải |
+| Quản lý tay đua | Nhân viên | Kế thừa *Quản lý danh mục*, áp cho tay đua |
+| Quản lý đội đua | Nhân viên | Kế thừa *Quản lý danh mục*, áp cho đội đua |
+| Quản lý chặng đua | Nhân viên | Kế thừa *Quản lý danh mục*, áp cho chặng đua |
+| Đăng ký đội tham gia mùa giải | Nhân viên | Chọn mùa giải, tick các đội đua tham gia, lưu bản ghi tham gia |
+| **Ký hợp đồng tay đua với đội đua** *(Module 1)* | Nhân viên | Tìm tay đua, xem lịch sử hợp đồng, ký hợp đồng mới với một đội đua |
+| **Đăng ký tay đua tham gia chặng đua** *(Module 2)* | Nhân viên | Chọn chặng và đội, tick tay đua đang có hợp đồng hiệu lực để đăng ký thi đấu |
+| **Cập nhật kết quả chặng đua** *(Module 3)* | Nhân viên | Nhập thời gian, số vòng, trạng thái của từng tay đua; hệ thống xếp hạng và tính điểm |
+| **Quyết toán và trao giải cuối mùa** *(Module 4)* | Quản lý | Xem bảng tổng sắp tính đến chặng bất kỳ, xem chi tiết theo chặng của một tay đua/đội, nhập mức thưởng, lưu quyết định trao giải |
+
+#### 2.2.1. Chi tiết yêu cầu chức năng
+
+**FR0 — Xác thực và tài khoản (chung)**
+- FR0.1 Đăng nhập bằng tài khoản (tên đăng nhập, mật khẩu).
+- FR0.2 Đổi mật khẩu cá nhân (kiểm tra mật khẩu cũ, xác nhận mật khẩu mới hai lần).
+- FR0.3 Phân quyền theo vai trò: **Nhân viên** (danh mục + Module 1/2/3), **Quản lý** (Module 4).
+
+**FR1 — Quản lý danh mục (chung, hỗ trợ)**
+- FR1.1 Tìm/thêm/sửa/xóa **tay đua** (mã, tên, ngày sinh, quốc tịch, tiểu sử).
+- FR1.2 Tìm/thêm/sửa/xóa **đội đua** (mã, tên, hãng, mô tả).
+- FR1.3 Tìm/thêm/sửa/xóa **chặng đua** (mã, tên, số vòng, địa điểm, thời gian, mô tả) thuộc một mùa giải.
+- FR1.4 Tìm/thêm/sửa/xóa **mùa giải** (tên, năm, trạng thái).
+- FR1.5 **Đăng ký đội tham gia mùa giải**: chọn mùa giải, tick chọn các đội đua tham gia, hệ thống sinh bản ghi tham gia (một đội chỉ tham gia một mùa giải một lần).
+- FR1.6 **Ràng buộc xóa:** không cho xóa đối tượng đang được đối tượng khác tham chiếu (mùa giải đã có chặng, tay đua đã có hợp đồng, đội đã tham gia mùa giải, chặng đã có đăng ký hoặc kết quả).
+
+**FR2 — Ký hợp đồng tay đua với đội đua (Module 1)**
+- FR2.1 Tìm tay đua theo tên; hiển thị danh sách hợp đồng cũ của tay đua được chọn.
+- FR2.1b **Thêm mới tay đua ngay trong luồng ký hợp đồng:** nếu tìm không thấy tay đua trong hệ thống, nhân viên được phép thêm mới tay đua (mã, tên, ngày sinh, quốc tịch, tiểu sử) ngay tại màn hình tìm kiếm, sau đó tiếp tục ký hợp đồng cho tay đua vừa thêm mà không phải rời khỏi chức năng.
+- FR2.2 Ký hợp đồng mới: chọn đội, **chỉ nhập ngày bắt đầu hiệu lực** (ngày kết thúc để trống = hợp đồng đang hiệu lực).
+- FR2.3 **Ràng buộc (tại một thời điểm tay đua chỉ thuộc 1 đội):** (a) nếu tay đua còn hợp đồng đang hiệu lực → hệ thống **tự động đóng** hợp đồng cũ (đặt ngày kết thúc = ngày liền trước ngày bắt đầu mới), không báo lỗi; (b) nếu ngày bắt đầu mới **chồng lấn khoảng thời gian của hợp đồng đã đóng** (lịch sử) → báo lỗi, yêu cầu nhập lại.
+- FR2.4 Lưu và in hợp đồng; hiển thị lại lịch sử hợp đồng đã cập nhật.
+
+**FR3 — Đăng ký tay đua tham gia chặng đua (Module 2)**
+- FR3.1 Chọn chặng đua và đội đua.
+- FR3.2 Hiển thị danh sách tay đua đang có hợp đồng hiệu lực với đội tại thời điểm chặng, **sắp xếp theo alphabet của tên**, kèm **cột trạng thái** "đã đăng ký chặng này cho đội khác hay chưa".
+- FR3.3 Tick chọn tay đua đăng ký.
+- FR3.4 **Ràng buộc:** mỗi đội tối đa 2 tay đua trong một chặng; mỗi tay đua chỉ đăng ký 1 lần trong chặng.
+- FR3.5 Lưu và in phiếu đăng ký (danh sách xuất phát).
+- FR3.6 **Chỉnh sửa đăng ký trước ngày đua**: mở lại chặng + đội, hệ thống hiển thị lại danh sách với các tay đua đang đăng ký được tick sẵn; nhân viên thay tay đua (bỏ tick / tick lại), hệ thống kiểm tra lại ràng buộc FR3.4 rồi lưu.
+
+**FR4 — Cập nhật kết quả chặng đua (Module 3)**
+- FR4.1 Chọn chặng; hiển thị bảng tay đua đã đăng ký để nhập **thời gian về đích**, **số vòng hoàn thành** và **trạng thái**. Trạng thái nhận một trong ba giá trị: **Hoàn thành**, **DNF** (bỏ cuộc hoặc tai nạn), **DSQ** (bị loại vì vi phạm kỹ thuật).
+- FR4.2 **Tính điểm:** xếp hạng các tay đua trạng thái *Hoàn thành* theo thứ tự tăng dần thời gian về đích; tay đua **DNF hoặc DSQ xếp cuối bảng và nhận 0 điểm**. Gán điểm cho top 10 theo thứ tự 25/18/15/12/10/8/6/4/2/1; tay đua nằm trong top 10 nhưng DNF hoặc DSQ vẫn nhận 0 điểm.
+- FR4.3 Hiển thị bảng kết quả chặng để đối soát (hạng, tên tay đua, tên đội, thời gian, số vòng, trạng thái, điểm); lưu kết quả + điểm và in bảng kết quả chặng.
+- FR4.4 **Ghi đè kết quả cũ:** nếu chặng được chọn **đã có kết quả** từ lần nhập trước, hệ thống phải **cảnh báo ghi đè** trước khi lưu; nếu nhân viên xác nhận, hệ thống xóa toàn bộ kết quả cũ của chặng và **tính lại điểm cho toàn bộ chặng** theo dữ liệu mới.
+
+**FR5 — Quyết toán và trao giải cuối mùa (Module 4)**
+- FR5.1 **Ràng buộc:** chỉ quyết toán khi tất cả chặng trong mùa đã có kết quả; nếu còn chặng chưa nhập kết quả thì báo lỗi và từ chối quyết toán.
+- FR5.2 Cộng dồn điểm và thời gian của từng tay đua và từng đội qua các chặng; xếp hạng cá nhân và xếp hạng đội theo **ba tầng tiêu chí**: (1) **giảm dần tổng điểm**; (2) nếu **bằng điểm** thì phân định bằng **countback** — so sánh **số lần về nhất**, nếu vẫn bằng thì **số lần về nhì**, rồi **số lần về ba**… cho đến khi phân định được; (3) nếu countback vẫn bằng thì xếp theo **tăng dần tổng thời gian**. Trong đó countback là tầng bổ sung theo luật FIA thật, còn tổng thời gian là quy tắc gốc của đề bài, được giữ làm tiêu chí phân định cuối cùng. **Tổng thời gian luôn được hiển thị trên bảng xếp hạng.**
+- FR5.2b **Xem bảng xếp hạng tính đến chặng bất kỳ:** quản lý chọn một chặng từ danh sách thả xuống; hệ thống tổng hợp bảng xếp hạng cá nhân và bảng xếp hạng đội **tính từ chặng đầu mùa đến hết chặng được chọn** (không chỉ xem được khi mùa giải kết thúc). Chức năng trao giải chỉ được kích hoạt khi chặng được chọn là chặng cuối và mọi chặng đã có kết quả (FR5.1).
+- FR5.2c **Xem chi tiết theo chặng (drill-down):** quản lý click vào một dòng trên bảng xếp hạng; hệ thống hiển thị bảng chi tiết kết quả từng chặng của tay đua đó (Tên chặng | Hạng về đích | Điểm | Thời gian về đích) hoặc của đội đó (Tên chặng | Tổng điểm | Tổng thời gian của 2 tay đua), kèm nút quay lại bảng xếp hạng.
+- FR5.3 Điểm của tay đua được cộng cho **đội mà tay đua đăng ký thi đấu tại chặng đó**, không phải đội hiện tại của tay đua (xử lý đúng trường hợp tay đua đổi đội giữa mùa).
+- FR5.4 Nhập mức thưởng theo hạng (hạng 1, 2, 3 cá nhân và hạng 1, 2, 3 đội); hệ thống tính tiền thưởng tương ứng cho từng tay đua/đội theo hạng đạt được.
+- FR5.5 Lưu quyết định trao giải và in danh sách trao giải (hạng, tên tay đua/đội, tổng điểm, tiền thưởng).
 
 ### 2.3. Yêu cầu phi chức năng
 
 | # | Loại | Yêu cầu |
 |---|---|---|
-| NFR1 | Bảo mật | Đăng nhập; phân quyền theo vai trò (Nhân viên/Quản lý). |
-| NFR2 | Tính đúng đắn | Phép tính điểm, xếp hạng, tiền thưởng chính xác theo luật F1. |
-| NFR3 | Toàn vẹn dữ liệu | Kiểm tra ràng buộc trước khi lưu (chồng lấn hợp đồng, ≤2 tay đua/chặng, đủ kết quả trước quyết toán). |
-| NFR4 | Khả dụng | Giao diện tiếng Việt; thông báo lỗi rõ ràng khi vi phạm ràng buộc. |
-| NFR5 | Hiệu năng | Danh sách hiển thị < 2 giây với quy mô một mùa giải. |
-| NFR6 | Khả bảo trì | Kiến trúc phân tầng MVC. |
+| NFR1 | Bảo mật | Đăng nhập bằng tài khoản; phân quyền theo vai trò (Nhân viên/Quản lý). |
+| NFR2 | Tính đúng đắn | Các phép tính điểm, xếp hạng (kể cả countback), tiền thưởng phải chính xác theo luật F1 trong đề bài. |
+| NFR3 | Toàn vẹn dữ liệu | Kiểm tra ràng buộc (chồng lấn hợp đồng, ≤2 tay đua/đội/chặng, cảnh báo ghi đè kết quả, đủ kết quả trước khi quyết toán) trước khi lưu. |
+| NFR4 | Khả dụng | Giao diện tiếng Việt, thao tác tìm kiếm → chọn → lưu rõ ràng; thông báo lỗi cụ thể khi vi phạm ràng buộc. |
+| NFR5 | Hiệu năng | Danh sách (tay đua, kết quả, xếp hạng) hiển thị < 2 giây với quy mô một mùa giải. |
+| NFR6 | Khả bảo trì | **Kiến trúc phân tầng view (.jsp) / dao / model**: tầng `view` là các trang `.jsp` hiển thị và nhận dữ liệu, tầng `dao` là các lớp truy xuất dữ liệu, tầng `model` là các lớp thực thể. Mỗi tầng chỉ gọi tầng ngay dưới nó, giúp dễ sửa và mở rộng. |
 | NFR7 | Khả chuyển | Chạy trên trình duyệt web thông dụng. |
 
+### 2.4. Biểu đồ Use Case tổng quát
+
+Biểu đồ tổng quát đặt toàn bộ use case trong khung hệ thống `Hệ thống quản lý giải đua F1`, các actor nằm ngoài khung.
+
+**Actor:** actor trừu tượng `ThanhVien` (in nghiêng) là cha của `NhanVien` và `QuanLy`; nhờ quan hệ kế thừa, hai actor con dùng được `Đăng nhập` và `Đổi mật khẩu` mà không phải vẽ liên kết riêng.
+
+**Use case:** `Đăng nhập`, `Đổi mật khẩu` (actor `ThanhVien`); use case trừu tượng `Quản lý danh mục` là cha (generalization) của `Quản lý mùa giải`, `Quản lý tay đua`, `Quản lý đội đua`, `Quản lý chặng đua`; `Đăng ký đội tham gia mùa giải`, `Ký hợp đồng tay đua với đội đua` (M1), `Đăng ký tay đua tham gia chặng đua` (M2), `Cập nhật kết quả chặng đua` (M3) — actor `NhanVien`; `Quyết toán và trao giải cuối mùa` (M4) — actor `QuanLy`.
+
+**Quan hệ:** liên kết actor – use case vẽ bằng **đường kẻ trơn** (association, không có đầu mũi tên); quan hệ kế thừa vẽ bằng **tam giác rỗng ▷** trỏ về phía cha. Biểu đồ tổng quát **không có quan hệ `include` hay `extend`**: `Đăng nhập` đã nối trực tiếp với actor `ThanhVien`, vẽ thêm các đường include từ 4 use case nghiệp vụ chỉ làm biểu đồ rối mà không thêm thông tin. Các quan hệ `include` / `extend` chỉ xuất hiện ở **biểu đồ use case chi tiết của từng module**: theo giáo trình (mục 3.1.3), use case chính của mỗi module `include` use case con `Đăng nhập` (giao diện dùng chung toàn hệ thống, không sinh lớp biên hay trang `.jsp` riêng trong module); ngoài ra Module 1 có `Thêm tay đua` extend `Tìm tay đua`, Module 4 có `Xem chi tiết theo chặng` extend `Xem bảng tổng sắp`.
+
+![Biểu đồ Use Case tổng quát](<hinh/uc-tongquat.png>)
+
+*Hình 2.1 — Biểu đồ Use Case tổng quát*
+
 ---
 
-## CHƯƠNG 3: BIỂU ĐỒ USE CASE TỔNG QUÁT
+## CHƯƠNG 3: XÂY DỰNG BIỂU ĐỒ LỚP THỰC THỂ
 
-**Actor:** Thành viên (trừu tượng); Nhân viên và Quản lý kế thừa Thành viên.
+### 3.1. Phân tích và xác định các thực thể (phương pháp trích danh từ)
 
-**Use case:** Đăng nhập, Đổi mật khẩu, Quản lý tay đua / đội đua / chặng đua, Quản lý mùa giải, Đăng ký đội tham gia mùa giải (nhóm danh mục — actor Nhân viên); Ký hợp đồng tay đua với đội đua (M1), Đăng ký tay đua tham gia chặng đua (M2), Cập nhật kết quả và tính điểm chặng đua (M3) — actor Nhân viên; Quyết toán và trao giải cuối mùa (M4) — actor Quản lý. Các use case nghiệp vụ đều **include** use case "Đăng nhập".
+#### 3.1.1. Đoạn văn mô tả hệ thống
 
-(Hình 3.1 — Biểu đồ Use Case tổng quát)
+Mỗi **năm** có một **mùa giải** (giải vô địch) mang một **tên giải** riêng và có **trạng thái** cho biết mùa giải đang diễn ra, đã kết thúc hay đã quyết toán. Một mùa giải gồm nhiều **chặng đua** diễn ra khắp **thế giới**; mỗi chặng đua có **mã chặng đua**, **tên chặng**, **số vòng đua**, **địa điểm**, **thời gian** diễn ra và **mô tả**. Mỗi mùa giải có nhiều **đội đua** đăng ký **tham gia**; mỗi đội đua có **mã đội**, **tên đội**, **hãng** và **mô tả**.
 
----
+Mỗi đội đua có nhiều **tay đua**; mỗi tay đua có **mã**, **tên**, **ngày sinh**, **quốc tịch** và **tiểu sử**. Một tay đua có thể thi đấu cho nhiều đội đua ở các **thời điểm** khác nhau nhưng tại một thời điểm chỉ thi đấu cho một đội; mỗi giai đoạn thi đấu được ghi nhận bằng một **hợp đồng** có **ngày bắt đầu** và **ngày kết thúc** (bỏ trống nghĩa là đang hiệu lực). Toàn bộ hợp đồng của một tay đua tạo thành **lịch sử thi đấu** của tay đua đó. Sau khi ký, hệ thống in **phiếu xác nhận hợp đồng**.
 
-## CHƯƠNG 4: BIỂU ĐỒ LỚP THỰC THỂ VÀ THIẾT KẾ CƠ SỞ DỮ LIỆU
+Trước mỗi chặng đua, **nhân viên** thực hiện **đăng ký** tay đua tham gia chặng theo **yêu cầu của đội đua**; mỗi đội chỉ được cho tối đa hai tay đua tham gia một chặng và mỗi tay đua chỉ được đăng ký một lần trong một chặng — đây là các **ràng buộc** nghiệp vụ. Hệ thống hiển thị **trạng thái đăng ký** của từng tay đua và in **danh sách xuất phát** gửi **ban tổ chức**.
 
-### 4.1. Các lớp thực thể
+Sau khi chặng đua kết thúc, nhân viên nhập **kết quả** của chặng: **thời gian hoàn thành**, **số vòng chạy được** và **trạng thái** (hoàn thành, **bỏ cuộc**/**tai nạn** — DNF, hoặc bị loại do **vi phạm kỹ thuật** — DSQ). Hệ thống xếp **thứ hạng** theo thời gian về đích và gán **điểm** cho **top 10** theo thứ tự 25, 18, 15, 12, 10, 8, 6, 4, 2, 1.
 
-Các lớp thực thể được rút ra từ đề bài bằng phương pháp trích danh từ: MuaGiai, ChangDua, DoiDua, TayDua, HopDong (trung gian TayDua–DoiDua), DangKyChang (trung gian ChangDua–TayDua–DoiDua), KetQua, TraoGiai, ThamGia (trung gian MuaGiai–DoiDua), ThanhVien (tài khoản người dùng).
+Cuối mùa, **quản lý** quyết toán mùa giải: hệ thống cộng dồn **tổng điểm** và **tổng thời gian** của từng tay đua, từng đội qua tất cả các chặng để lập **bảng xếp hạng cuối mùa** gồm **xếp hạng cá nhân** và **xếp hạng đội**; khi bằng điểm thì phân định bằng **countback**, nếu countback vẫn bằng thì theo **tổng thời gian** tăng dần. Quản lý nhập **mức tiền thưởng** cho từng hạng, hệ thống tính **tiền thưởng** và lưu **quyết định trao giải** cho **giải cá nhân** và **giải đồng đội**, sau đó in **danh sách trao giải**.
 
-Các quan hệ nhiều–nhiều được tách bằng lớp trung gian: HopDong, DangKyChang, ThamGia. ThanhVien là lớp độc lập (tài khoản đăng nhập); thuộc tính vaiTro phân biệt Nhân viên / Quản lý, tương ứng hai actor của hệ thống.
+Người sử dụng **hệ thống** là các **thành viên** có **tên đăng nhập**, **mật khẩu** và **họ tên**; thành viên gồm hai loại là nhân viên và quản lý.
 
-(Hình 4.1 — Biểu đồ lớp thực thể, pha thiết kế)
+#### 3.1.2. Bảng trích danh từ và đánh giá
 
-### 4.2. Thiết kế cơ sở dữ liệu
+Mỗi danh từ chỉ tính một lần. Cột "Nhóm" phân loại theo người / vật / thông tin. Cột "Kết luận" cho biết danh từ trở thành lớp thực thể, trở thành thuộc tính của một lớp, hay bị loại.
 
-| Bảng | Cột chính | Khóa |
+| Danh từ | Nhóm (người / vật / thông tin) | Kết luận |
 |---|---|---|
-| tblMuaGiai | id, nam, tenGiai, moTa | PK: id |
-| tblDoiDua | id, ma, ten, hang, moTa | PK: id |
-| tblTayDua | id, ma, ten, ngaySinh, quocTich, tieuSu | PK: id |
-| tblChangDua | id, ma, ten, soVong, diaDiem, thoiGian, moTa, muaGiaiId | PK: id · FK: muaGiaiId |
-| tblThamGia | id, muaGiaiId, doiDuaId | PK: id · FK: muaGiaiId, doiDuaId |
-| tblHopDong | id, tayDuaId, doiDuaId, ngayBatDau, ngayKetThuc | PK: id · FK: tayDuaId, doiDuaId |
-| tblDangKyChang | id, changDuaId, tayDuaId, doiDuaId | PK: id · FK: changDuaId, tayDuaId, doiDuaId |
-| tblKetQua | id, dangKyChangId, thoiGian, soVong, dnf, hang, diem | PK: id · FK: dangKyChangId |
-| tblTraoGiai | id, muaGiaiId, loai, tayDuaId, doiDuaId, hang, tongDiem, tongThoiGian, tienThuong | PK: id · FK: muaGiaiId, tayDuaId, doiDuaId |
-| tblThanhVien | id, tenDangNhap, matKhau, hoTen, vaiTro | PK: id |
+| mùa giải (giải vô địch) | Vật (sự kiện) | → lớp thực thể `MuaGiai` |
+| giải đấu | Vật (sự kiện) | Loại vì trùng nghĩa với "mùa giải" — mỗi danh từ chỉ tính một lần |
+| năm | Thông tin | → thuộc tính `nam` của `MuaGiai` |
+| tên giải | Thông tin | → thuộc tính `ten` của `MuaGiai` |
+| trạng thái mùa giải | Thông tin | → thuộc tính `trangThai` của `MuaGiai` (đang diễn ra / đã kết thúc / đã quyết toán) |
+| chặng đua | Vật (sự kiện) | → lớp thực thể `ChangDua` |
+| mã chặng đua | Thông tin | → thuộc tính `ma` của `ChangDua` |
+| tên chặng | Thông tin | → thuộc tính `ten` của `ChangDua` |
+| số vòng đua | Thông tin | → thuộc tính `soVong` của `ChangDua` |
+| địa điểm | Thông tin | → thuộc tính `diaDiem` của `ChangDua` |
+| thời gian diễn ra chặng | Thông tin | → thuộc tính `thoiGian` của `ChangDua` |
+| mô tả chặng | Thông tin | → thuộc tính `moTa` của `ChangDua` |
+| thế giới | Vật | Loại vì ngoài phạm vi — hệ thống không quản lý thông tin địa lý |
+| đội đua | Vật (đơn vị tổ chức) | → lớp thực thể `DoiDua` |
+| mã đội | Thông tin | → thuộc tính `ma` của `DoiDua` |
+| tên đội | Thông tin | → thuộc tính `ten` của `DoiDua` |
+| hãng | Vật (đơn vị tổ chức) | → thuộc tính `hang` của `DoiDua` (biện luận ở mục 3.1.4) |
+| mô tả đội | Thông tin | → thuộc tính `moTa` của `DoiDua` |
+| tay đua | Người | → lớp thực thể `TayDua` |
+| mã tay đua | Thông tin | → thuộc tính `ma` của `TayDua` |
+| tên tay đua | Thông tin | → thuộc tính `ten` của `TayDua` |
+| ngày sinh | Thông tin | → thuộc tính `ngaySinh` của `TayDua` |
+| quốc tịch | Thông tin | → thuộc tính `quocTich` của `TayDua` |
+| tiểu sử | Thông tin | → thuộc tính `tieuSu` của `TayDua` |
+| tham gia (đội tham gia mùa giải) | Thông tin | → lớp thực thể trung gian `ThamGia` (tách quan hệ n-n `MuaGiai` – `DoiDua`) |
+| hợp đồng | Thông tin | → lớp thực thể `HopDong` (tách quan hệ n-n theo thời gian `TayDua` – `DoiDua`) |
+| ngày bắt đầu | Thông tin | → thuộc tính `ngayBatDau` của `HopDong` |
+| ngày kết thúc | Thông tin | → thuộc tính `ngayKetThuc` của `HopDong` (để trống = đang hiệu lực) |
+| thời điểm | Thông tin | Loại vì trừu tượng — đã được cụ thể hoá bằng `ngayBatDau` / `ngayKetThuc` |
+| lịch sử thi đấu | Thông tin | Loại — chính là tập các `HopDong` của một tay đua, không sinh thực thể mới |
+| phiếu xác nhận hợp đồng | Thông tin | Loại — là bản in kết xuất từ `HopDong`, không lưu trữ riêng |
+| đăng ký (tham gia chặng) | Thông tin | → lớp thực thể trung gian `DangKyChang` (tách quan hệ n-n `ChangDua` – `TayDua`) |
+| yêu cầu của đội đua | Thông tin | Loại vì trừu tượng — là lý do nghiệp vụ, không lưu trữ |
+| ràng buộc | Thông tin | Loại vì trừu tượng — cài đặt bằng phương thức kiểm tra của lớp thực thể |
+| trạng thái đăng ký | Thông tin | Loại — dẫn xuất, tra cứu trực tiếp trên `DangKyChang` khi hiển thị |
+| danh sách xuất phát (start list) | Thông tin | Loại — bản in kết xuất từ `DangKyChang` |
+| ban tổ chức | Người | Loại vì ngoài phạm vi — actor gián tiếp nhận bản in, hệ thống không quản lý hồ sơ ban tổ chức |
+| kết quả | Thông tin | → lớp thực thể `KetQua` |
+| thời gian hoàn thành | Thông tin | → thuộc tính `thoiGian` của `KetQua` |
+| số vòng chạy được | Thông tin | → thuộc tính `soVongHoanThanh` của `KetQua` |
+| trạng thái kết quả (bỏ cuộc, tai nạn, vi phạm kỹ thuật) | Thông tin | → thuộc tính `trangThai` của `KetQua` (HoanThanh / DNF / DSQ) |
+| thứ hạng về đích | Thông tin | → thuộc tính `hang` của `KetQua` |
+| điểm | Thông tin | → thuộc tính `diem` của `KetQua` |
+| top 10 | Thông tin | Loại vì trừu tượng — là luật tính điểm 25…1, cài trong `KetQua.xepHangVaTinhDiem()` |
+| tổng điểm | Thông tin | Loại — thuộc tính dẫn xuất, cộng dồn từ `KetQua` (xem mục 3.6.5) |
+| tổng thời gian | Thông tin | Loại — thuộc tính dẫn xuất, cộng dồn từ `KetQua` (xem mục 3.6.5) |
+| bảng xếp hạng cuối mùa (xếp hạng cá nhân, xếp hạng đội) | Thông tin | Loại — bảng tổng hợp dẫn xuất, tính lúc chạy từ `KetQua` |
+| countback | Thông tin | Loại vì trừu tượng — là tầng 2 của quy tắc xếp hạng ba tầng, cài trong `KetQua.sapXepBangXepHang()` |
+| trao giải (quyết định trao giải) | Thông tin | → lớp thực thể `TraoGiai` |
+| giải cá nhân / giải đồng đội | Thông tin | → thuộc tính `loai` của `TraoGiai` |
+| hạng được trao giải | Thông tin | → thuộc tính `hang` của `TraoGiai` |
+| mức tiền thưởng / tiền thưởng | Thông tin | → thuộc tính `tienThuong` của `TraoGiai` |
+| danh sách trao giải | Thông tin | Loại — bản in kết xuất từ `TraoGiai` |
+| thành viên | Người | → lớp thực thể trừu tượng `ThanhVien` |
+| tên đăng nhập | Thông tin | → thuộc tính `tenDangNhap` của `ThanhVien` |
+| mật khẩu | Thông tin | → thuộc tính `matKhau` của `ThanhVien` |
+| họ tên | Thông tin | → thuộc tính `hoTen` của `ThanhVien` |
+| nhân viên | Người | → lớp thực thể `NhanVien`, kế thừa `ThanhVien` |
+| quản lý | Người | → lớp thực thể `QuanLy`, kế thừa `ThanhVien` |
+| hệ thống, giao diện, danh sách thả xuống, cơ sở dữ liệu | Vật | Loại vì ngoài phạm vi — thuộc về phần mềm/kỹ thuật, không phải đối tượng nghiệp vụ |
 
-Ghi chú ràng buộc ở tầng cơ sở dữ liệu:
-- tblDangKyChang có ràng buộc UNIQUE(changDuaId, tayDuaId) — mỗi tay đua chỉ đăng ký 1 lần trong một chặng. Ràng buộc "tối đa 2 tay đua/đội/chặng" là ràng buộc nghiệp vụ, kiểm tra ở tầng xử lý.
-- tblHopDong.ngayKetThuc cho phép NULL — NULL nghĩa là hợp đồng đang hiệu lực.
+#### 3.1.3. Danh sách lớp thực thể
+
+Sau khi đánh giá, hệ thống có **12 lớp thực thể**, trong đó 9 lớp nghiệp vụ, 1 lớp trừu tượng và 2 lớp kế thừa:
+
+`MuaGiai` · `ChangDua` · `DoiDua` · `TayDua` · `ThamGia` · `HopDong` · `DangKyChang` · `KetQua` · `TraoGiai` · `ThanhVien` (trừu tượng) · `NhanVien` · `QuanLy`.
+
+Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra để tách quan hệ nhiều–nhiều (xem mục 3.3).
+
+#### 3.1.4. Hai quyết định cần biện luận
+
+**(a) Bổ sung thuộc tính theo đề gốc.** Mô tả đối tượng trong đề gốc ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung `hang`, `moTa` cho `DoiDua`; `tieuSu` cho `TayDua`; `diaDiem`, `moTa` cho `ChangDua`.
+
+**(b) Vì sao KHÔNG tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
+
+### 3.2. Mô tả thực thể (thuộc tính, phương thức)
+
+#### 3.2.1. Thuộc tính — pha phân tích
+
+Ở pha phân tích, thuộc tính **chưa cần kiểu dữ liệu** và các lớp thực thể **chưa có thuộc tính `id`**. Bảng dưới đây là đầu vào của pha thiết kế (mục 3.5).
+
+| Lớp | Thuộc tính (pha phân tích) | Ý nghĩa |
+|---|---|---|
+| `MuaGiai` | `ten`, `nam`, `trangThai` | Một mùa giải ứng với một năm. `trangThai`: đang diễn ra / đã kết thúc / đã quyết toán |
+| `ChangDua` | `ma`, `ten`, `soVong`, `diaDiem`, `thoiGian`, `moTa` | Một chặng đua thuộc đúng một mùa giải |
+| `DoiDua` | `ma`, `ten`, `hang`, `moTa` | Đội đua tham gia giải |
+| `TayDua` | `ma`, `ten`, `ngaySinh`, `quocTich`, `tieuSu` | Tay đua, tồn tại độc lập với đội |
+| `ThamGia` | (không có thuộc tính riêng) | Lớp trung gian `MuaGiai` – `DoiDua`: một đội tham gia một mùa giải |
+| `HopDong` | `ngayBatDau`, `ngayKetThuc` | Lớp trung gian `TayDua` – `DoiDua` (Module 1). `ngayKetThuc` để trống = hợp đồng đang hiệu lực |
+| `DangKyChang` | (không có thuộc tính riêng) | Lớp trung gian `ChangDua` – `TayDua` – `DoiDua` (Module 2) |
+| `KetQua` | `thoiGian`, `soVongHoanThanh`, `trangThai`, `hang`, `diem` | Kết quả của một lượt đăng ký sau khi chặng đua kết thúc (Module 3). `trangThai` khác `HoanThanh` (DNF/DSQ) thì xếp cuối và nhận 0 điểm |
+| `TraoGiai` | `loai`, `hang`, `tienThuong` | Quyết định trao giải cuối mùa (Module 4). `loai`: giải cá nhân hoặc giải đồng đội |
+| `ThanhVien` | `tenDangNhap`, `matKhau`, `hoTen` | **Lớp trừu tượng** — tài khoản đăng nhập chung |
+| `NhanVien` | (kế thừa `ThanhVien`) | Thực hiện Module 1, 2, 3 |
+| `QuanLy` | (kế thừa `ThanhVien`) | Thực hiện Module 4 |
+
+**Vì sao tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` **kế thừa** (`ThanhVien <|-- NhanVien`, `ThanhVien <|-- QuanLy`). Cách này **bỏ được thuộc tính `vaiTro` kiểu chuỗi** — vốn là cách mô phỏng kế thừa bằng dữ liệu — và tạo ra quan hệ generalization mà biểu đồ trước đây còn thiếu. Theo quy tắc thiết kế, **hai lớp con kế thừa không được bổ sung thuộc tính `id`** mà dùng chung định danh của lớp cha.
+
+#### 3.2.2. Phương thức nghiệp vụ gán cho lớp thực thể
+
+Mỗi chức năng phải thực hiện ở tầng dưới tầng giao diện được đề xuất thành một phương thức, xác định tham số vào/ra và **gán cho một lớp thực thể**. Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở lớp thực thể.
+
+| Lớp | Phương thức | Module dùng |
+|---|---|---|
+| `TayDua` | `getTayDuaTheoTen(ten)`, `themTayDua()` | M1 |
+| `DoiDua` | `getDSDoiDua()` | M1, M2 |
+| `HopDong` | `getHopDongCuaTayDua(tayDuaId)`, `kiemTraChongLan(tayDuaId, ngayBatDau)`, `dongHopDongCu(tayDuaId, ngayBatDau)`, `luuHopDong()`, `getTayDuaHieuLuc(doiDuaId, thoiGianChang)` | M1, M2 |
+| `ChangDua` | `getDSChangDua()` | M2, M3 |
+| `DangKyChang` | `demSoTayDua(changDuaId, doiDuaId)`, `daDangKy(changDuaId, tayDuaId)`, `luuDangKy()`, `getDangKyCuaChang(changDuaId)` | M2, M3 |
+| `KetQua` | `kiemTraKetQuaCu(changDuaId)`, `xoaKetQuaCu(changDuaId)`, `xepHangVaTinhDiem(changDuaId)`, `luuKetQua()`, `tongHopCaNhan(muaGiaiId)`, `tongHopDoi(muaGiaiId)`, `sapXepBangXepHang(ds)`, `getChiTietTheoTayDua(muaGiaiId, tayDuaId)`, `getChiTietTheoDoi(muaGiaiId, doiDuaId)` | M3, M4 |
+| `MuaGiai` | `getMuaGiaiHienTai()` | M4 |
+| `TraoGiai` | `tinhTienThuong(hang, mucThuong)`, `luuTraoGiai()` | M4 |
+
+**Quy tắc gán phương thức cho lớp thực thể** (giáo trình, mục 3.2.3 bước 3): xét **tham số đầu ra** trước — đầu ra thuộc lớp thực thể nào thì gán phương thức cho lớp đó; nếu đầu ra không gắn với thực thể nào thì xét **tham số đầu vào** — chỉ liên quan một thực thể thì gán cho thực thể đó; liên quan nhiều thực thể thì chọn **thực thể nhỏ nhất chứa được nhiều tham số nhất**. Sang pha thiết kế, lớp thực thể pha phân tích cần phương thức nào thì lớp `XxxDAO` tương ứng nhận đúng phương thức đó (giáo trình, mục 4.3.1 bước 3). Ví dụ biện luận theo quy tắc:
+
+- `xepHangVaTinhDiem(changDuaId)` — đầu ra là danh sách kết quả đã xếp hạng và gán điểm, thuộc `KetQua` ⇒ gán cho `KetQua`.
+- `getChiTietTheoTayDua(muaGiaiId, tayDuaId)` và `getChiTietTheoDoi(muaGiaiId, doiDuaId)` (bảng chi tiết theo chặng ở Module 4) — đầu ra là danh sách bản ghi `KetQua` của từng chặng ⇒ gán cho `KetQua`, dù tham số vào là mùa giải và tay đua/đội.
+- `getTayDuaHieuLuc(doiDuaId, thoiGianChang)` — đầu ra là danh sách tay đua nhưng được lọc theo điều kiện hợp đồng; cả hai tham số vào đều so khớp trên dữ liệu của hợp đồng (`doiDua`, `ngayBatDau`/`ngayKetThuc`) ⇒ gán cho `HopDong`, thực thể nhỏ nhất chứa được nhiều tham số nhất.
+
+**Ghi chú `sapXepBangXepHang(ds)` — quy tắc xếp hạng ba tầng:** (1) tổng điểm giảm dần; (2) nếu bằng điểm → **countback**: so số lần về nhất, rồi về nhì, về ba… cho đến khi phân định được (tầng bổ sung theo luật FIA thật); (3) nếu countback vẫn bằng → **tổng thời gian tăng dần** (quy tắc gốc theo mô tả bài toán, giữ làm tiêu chí cuối cùng). Tổng thời gian luôn được hiển thị trên bảng xếp hạng.
+
+> Hai biểu đồ lớp thực thể ở mục 3.4 và 3.5 **không vẽ phương thức** (hộp lớp thực thể chỉ có thuộc tính). Phương thức chỉ xuất hiện ở **biểu đồ lớp phân tích của từng module** trong Phần 2, và mỗi module chỉ vẽ những phương thức mà module đó sử dụng.
+
+### 3.3. Quan hệ giữa các lớp thực thể
+
+#### 3.3.1. Quan hệ số lượng và ba lớp trung gian
+
+Ba quan hệ nhiều–nhiều phải tách bằng lớp trung gian để mỗi quan hệ trở thành ít nhất hai quan hệ 1-n:
+
+| Quan hệ n-n | Lớp trung gian | Tách thành | Ý nghĩa của một bản ghi |
+|---|---|---|---|
+| `MuaGiai` – `DoiDua` | **`ThamGia`** | `MuaGiai "1" – "n" ThamGia` và `DoiDua "1" – "n" ThamGia` | Một đội đua đăng ký tham gia một mùa giải |
+| `TayDua` – `DoiDua` | **`HopDong`** | `TayDua "1" – "n" HopDong` và `DoiDua "1" – "n" HopDong` | Một giai đoạn tay đua thi đấu cho một đội, có `ngayBatDau` và `ngayKetThuc` (Module 1) |
+| `ChangDua` – `TayDua` | **`DangKyChang`** | `ChangDua "1" – "n" DangKyChang`, `TayDua "1" – "n" DangKyChang` và `DoiDua "1" – "n" DangKyChang` | Một tay đua được một đội đăng ký thi đấu ở một chặng (Module 2) |
+
+> `DangKyChang` thực chất tách một quan hệ **ba ngôi** `ChangDua` – `TayDua` – `DoiDua` thành ba quan hệ 1-n. Phải giữ `DoiDua` ở đây (chứ không tra ngược qua `HopDong`) vì tay đua có thể **đổi đội giữa mùa**: điểm của chặng phải cộng cho đội tại **thời điểm diễn ra chặng**, tức đội ghi trong `DangKyChang`, không phải đội hiện tại.
+
+Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực thể.
+
+#### 3.3.2. Quan hệ đối tượng
+
+Các liên kết được chuyển thành quan hệ đối tượng: **hợp thành (composition, `*--`, hình thoi đặc)**, **thành phần (aggregation, `o--`, hình thoi rỗng)** và **kế thừa (`<|--`, tam giác rỗng)**. Biểu đồ **không dùng mũi tên định hướng**.
+
+```plantuml
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua  "1" o-- "n" ThamGia
+TayDua  "1" o-- "n" HopDong
+DoiDua  "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua  "1" o-- "n" DangKyChang
+DoiDua  "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua  "1" o-- "n" TraoGiai
+DoiDua  "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+```
+
+**Biện luận từng quan hệ:**
+
+| Quan hệ | Loại | Lý do |
+|---|---|---|
+| `MuaGiai` – `ChangDua` | **Hợp thành `*--`** | Một chặng đua **không tồn tại độc lập**: chặng "Australian Grand Prix 2025" chỉ có nghĩa bên trong mùa giải 2025. Xoá mùa giải thì toàn bộ chặng của mùa đó mất theo |
+| `ChangDua` – `DangKyChang` | **Hợp thành `*--`** | Một bản đăng ký chỉ tồn tại gắn với đúng một chặng; xoá chặng thì các bản đăng ký của chặng đó vô nghĩa và bị xoá theo |
+| `DangKyChang` – `KetQua` | **Hợp thành `*--`, bội số 1 – 0..1** | Kết quả là kết quả **của một lượt đăng ký**; không có đăng ký thì không thể có kết quả |
+| `MuaGiai` – `TraoGiai` | **Hợp thành `*--`** | Quyết định trao giải là kết quả quyết toán **của một mùa giải cụ thể**, không có ý nghĩa tách rời mùa giải đó |
+| `MuaGiai` – `ThamGia`, `DoiDua` – `ThamGia` | **Thành phần `o--`** | `ThamGia` là bản ghi ghép nối; **đội đua vẫn tồn tại độc lập** dù chưa đăng ký tham gia mùa giải nào |
+| `TayDua` – `HopDong`, `DoiDua` – `HopDong` | **Thành phần `o--`** | **Tay đua và đội đua tồn tại độc lập** với hợp đồng: một tay đua mới thêm vào hệ thống chưa có hợp đồng nào vẫn là thực thể hợp lệ |
+| `TayDua` – `DangKyChang`, `DoiDua` – `DangKyChang` | **Thành phần `o--`** | Tay đua/đội đua không "chứa" bản đăng ký, chúng chỉ tham chiếu vào bản đăng ký |
+| `TayDua` – `TraoGiai`, `DoiDua` – `TraoGiai` | **Thành phần `o--`** | Bản ghi trao giải thuộc về mùa giải (đã là `*--`), tay đua/đội đua chỉ là bên nhận giải và vẫn tồn tại độc lập |
+| `ThanhVien` – `NhanVien`, `ThanhVien` – `QuanLy` | **Kế thừa `<\|--`** | Hai lớp con dùng chung toàn bộ thuộc tính và use case đăng nhập/đổi mật khẩu của lớp cha, chỉ khác quyền thực hiện chức năng |
+
+**Vì sao KHÔNG gộp `KetQua` vào `DangKyChang` dù bội số là 1-1?** Quy tắc thiết kế cơ sở dữ liệu nói quan hệ **1-1 thì nên gộp** hai bảng. Tuy nhiên `DangKyChang` – `KetQua` **không phải 1-1 thật**, mà là **1 – 0..1**:
+
+1. **Hai thời điểm khác nhau.** Bản ghi `DangKyChang` được tạo **trước** ngày đua (Module 2), còn `KetQua` chỉ ra đời **sau** khi chặng đua kết thúc (Module 3). Nếu gộp bảng thì trong suốt khoảng thời gian giữa hai mốc, mọi cột `thoiGian`, `soVongHoanThanh`, `trangThai`, `hang`, `diem` đều phải để NULL — đúng kiểu dư thừa cần tránh.
+2. **Hai nghiệp vụ, hai chủ thể ghi khác nhau.** Đăng ký do Module 2 ghi và có thể **sửa lại trước ngày đua**; kết quả do Module 3 ghi, có thể bị **ghi đè và tính lại toàn chặng**. Tách bảng cho phép `KetQua.xoaKetQuaCu(changDuaId)` xoá và nhập lại kết quả mà **không đụng tới danh sách đăng ký**.
+3. **Truy vấn tổng hợp của Module 4** chỉ đọc `tblKetQua`; giữ riêng bảng giúp câu lệnh cộng dồn điểm và countback gọn hơn.
+
+Vì vậy nhóm **giữ hai lớp và hai bảng riêng**, thể hiện bằng bội số `"1" *-- "0..1"`. Đây là quyết định có chủ đích, không phải bỏ sót bước gộp bảng.
+
+### 3.4. Biểu đồ lớp thực thể — pha phân tích
+
+Biểu đồ pha phân tích **không có `id`**, **không có kiểu dữ liệu**, **không có phương thức**; quan hệ đã có hình thoi rỗng ◇ (thành phần), hình thoi đặc ♦ (hợp thành) và tam giác rỗng ▷ (kế thừa), **không có mũi tên định hướng**. Đây là bản mô hình hóa "thuần nghiệp vụ", dùng để thống nhất cách hiểu bài toán trước khi đi vào thiết kế.
+
+```plantuml
+@startuml
+hide circle
+class MuaGiai {
+  -ten
+  -nam
+  -trangThai
+}
+class ChangDua {
+  -ma
+  -ten
+  -soVong
+  -diaDiem
+  -thoiGian
+  -moTa
+}
+class DoiDua {
+  -ma
+  -ten
+  -hang
+  -moTa
+}
+class TayDua {
+  -ma
+  -ten
+  -ngaySinh
+  -quocTich
+  -tieuSu
+}
+class ThamGia {
+}
+class HopDong {
+  -ngayBatDau
+  -ngayKetThuc
+}
+class DangKyChang {
+}
+class KetQua {
+  -thoiGian
+  -soVongHoanThanh
+  -trangThai
+  -hang
+  -diem
+}
+class TraoGiai {
+  -loai
+  -hang
+  -tienThuong
+}
+abstract class ThanhVien {
+  -tenDangNhap
+  -matKhau
+  -hoTen
+}
+class NhanVien {
+}
+class QuanLy {
+}
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+@enduml
+```
+
+![Biểu đồ lớp thực thể pha phân tích](<hinh/lop-thucthe-phantich.png>)
+
+*Hình 3.1 — Biểu đồ lớp thực thể, pha phân tích*
+
+### 3.5. Biểu đồ lớp thực thể — pha thiết kế
+
+Đầu vào là biểu đồ pha phân tích ở mục 3.4. Ngôn ngữ lập trình đã chọn: **Java**. Bốn bước bổ sung:
+
+**Bước 1 — Bổ sung thuộc tính `id`** cho 10 lớp: `MuaGiai`, `ChangDua`, `DoiDua`, `TayDua`, `ThamGia`, `HopDong`, `DangKyChang`, `KetQua`, `TraoGiai`, `ThanhVien`. **Không thêm `id` cho `NhanVien` và `QuanLy`** vì hai lớp này kế thừa `ThanhVien` và dùng chung định danh của lớp cha.
+
+**Bước 2 — Bổ sung kiểu dữ liệu** theo kiểu của Java: `integer`, `String`, `float`, `Date`.
+
+| Thuộc tính | Kiểu | Ghi chú |
+|---|---|---|
+| mọi `id` | `integer` | khoá chính |
+| `ten`, `ma`, `trangThai`, `moTa`, `hang` (hãng của `DoiDua`), `quocTich`, `tieuSu`, `loai`, `tenDangNhap`, `matKhau`, `hoTen` | `String` | |
+| `nam`, `soVong`, `soVongHoanThanh`, `hang` (thứ hạng của `KetQua` và `TraoGiai`), `diem` | `integer` | Hai thuộc tính cùng tên `hang` khác nghĩa và khác kiểu: `DoiDua.hang` là hãng xe, `KetQua.hang` / `TraoGiai.hang` là thứ hạng |
+| `thoiGian` của `KetQua`, `tienThuong` | `float` | thời gian hoàn thành tính bằng giây, có phần thập phân |
+| `ngaySinh`, `ngayBatDau`, `ngayKetThuc` | `Date` | |
+| `thoiGian` của `ChangDua` | `Date` | ngày giờ diễn ra chặng |
+
+**Bước 3 — Chuyển association thành aggregation/composition.** Đã làm ở mục 3.3.2; biểu đồ thiết kế dùng đúng bộ quan hệ đó.
+
+**Bước 4 — Bổ sung thuộc tính kiểu đối tượng.** Lớp nào chứa lớp kia thì khai báo tường minh thuộc tính có kiểu là lớp kia; kiểu mảng `[]` nếu phía bên kia là "n", số ít nếu là "1" hoặc "0..1".
+
+| Lớp | Thuộc tính kiểu đối tượng |
+|---|---|
+| `MuaGiai` | `dsChangDua : ChangDua[]`, `dsThamGia : ThamGia[]`, `dsTraoGiai : TraoGiai[]` |
+| `ThamGia` | `muaGiai : MuaGiai`, `doiDua : DoiDua` |
+| `HopDong` | `tayDua : TayDua`, `doiDua : DoiDua` |
+| `ChangDua` | `muaGiai : MuaGiai`, `dsDangKy : DangKyChang[]` |
+| `DangKyChang` | `changDua : ChangDua`, `tayDua : TayDua`, `doiDua : DoiDua`, `ketQua : KetQua` |
+| `KetQua` | `dangKyChang : DangKyChang` |
+| `TraoGiai` | `muaGiai : MuaGiai`, `tayDua : TayDua`, `doiDua : DoiDua` |
+
+Biểu đồ thiết kế **vẫn không vẽ phương thức**.
+
+```plantuml
+@startuml
+hide circle
+class MuaGiai {
+  -id : integer
+  -ten : String
+  -nam : integer
+  -trangThai : String
+  -dsChangDua : ChangDua[]
+  -dsThamGia : ThamGia[]
+  -dsTraoGiai : TraoGiai[]
+}
+class ChangDua {
+  -id : integer
+  -ma : String
+  -ten : String
+  -soVong : integer
+  -diaDiem : String
+  -thoiGian : Date
+  -moTa : String
+  -muaGiai : MuaGiai
+  -dsDangKy : DangKyChang[]
+}
+class DoiDua {
+  -id : integer
+  -ma : String
+  -ten : String
+  -hang : String
+  -moTa : String
+}
+class TayDua {
+  -id : integer
+  -ma : String
+  -ten : String
+  -ngaySinh : Date
+  -quocTich : String
+  -tieuSu : String
+}
+class ThamGia {
+  -id : integer
+  -muaGiai : MuaGiai
+  -doiDua : DoiDua
+}
+class HopDong {
+  -id : integer
+  -ngayBatDau : Date
+  -ngayKetThuc : Date
+  -tayDua : TayDua
+  -doiDua : DoiDua
+}
+class DangKyChang {
+  -id : integer
+  -changDua : ChangDua
+  -tayDua : TayDua
+  -doiDua : DoiDua
+  -ketQua : KetQua
+}
+class KetQua {
+  -id : integer
+  -thoiGian : float
+  -soVongHoanThanh : integer
+  -trangThai : String
+  -hang : integer
+  -diem : integer
+  -dangKyChang : DangKyChang
+}
+class TraoGiai {
+  -id : integer
+  -loai : String
+  -hang : integer
+  -tienThuong : float
+  -muaGiai : MuaGiai
+  -tayDua : TayDua
+  -doiDua : DoiDua
+}
+abstract class ThanhVien {
+  -id : integer
+  -tenDangNhap : String
+  -matKhau : String
+  -hoTen : String
+}
+class NhanVien {
+}
+class QuanLy {
+}
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+@enduml
+```
+
+![Biểu đồ lớp thực thể pha thiết kế](<hinh/lop-thucthe-thietke.png>)
+
+*Hình 3.2 — Biểu đồ lớp thực thể, pha thiết kế*
+
+### 3.6. Thiết kế cơ sở dữ liệu
+
+#### 3.6.1. Bước 1 — Mỗi lớp thực thể thành một bảng
+
+Đặt tên bảng theo quy ước `tblXxx`: `tblMuaGiai`, `tblChangDua`, `tblDoiDua`, `tblTayDua`, `tblThamGia`, `tblHopDong`, `tblDangKyChang`, `tblKetQua`, `tblTraoGiai`, `tblThanhVien`, `tblNhanVien`, `tblQuanLy`.
+
+Cây kế thừa `ThanhVien` được ánh xạ thành **bảng cha + hai bảng con**: `tblNhanVien` và `tblQuanLy` không có `id` riêng mà dùng khoá ngoại `tblThanhVienid` vừa làm khoá chính vừa tham chiếu `tblThanhVien`.
+
+#### 3.6.2. Bước 2 — Bỏ qua thuộc tính kiểu đối tượng
+
+Các thuộc tính kiểu đối tượng thêm ở mục 3.5 **không trở thành cột**: `dsChangDua`, `dsThamGia`, `dsTraoGiai`, `dsDangKy`, `muaGiai`, `doiDua`, `tayDua`, `changDua`, `dangKyChang`, `ketQua`. Chúng được thay bằng **khoá ngoại** ở bước 4.
+
+#### 3.6.3. Bước 3 — Đối chiếu quan hệ số lượng
+
+- Toàn bộ quan hệ **1-n** được giữ nguyên thành cặp bảng cha – bảng con.
+- **Không còn quan hệ n-n** nào (đã tách bằng `ThamGia`, `HopDong`, `DangKyChang` ngay từ pha phân tích).
+- Quan hệ **1 – 0..1** giữa `tblDangKyChang` và `tblKetQua`: **giữ hai bảng riêng**, biện luận ở mục 3.3.2.
+
+#### 3.6.4. Bước 4 — Bổ sung khoá chính và khoá ngoại
+
+Quy ước: khoá chính là cột `id`; với quan hệ 1 `tblA` – n `tblB` thì `tblB` có khoá ngoại **`tblAid`** tham chiếu tới `tblA.id` (khi vẽ thì in nghiêng tên khoá ngoại).
+
+| Bảng | Cột và kiểu dữ liệu | Khoá |
+|---|---|---|
+| `tblMuaGiai` | `id integer(10)`, `ten varchar(255)`, `nam integer(10)`, `trangThai varchar(255)` | PK: `id` |
+| `tblDoiDua` | `id integer(10)`, `ma varchar(255)`, `ten varchar(255)`, `hang varchar(255)`, `moTa varchar(255)` | PK: `id` |
+| `tblTayDua` | `id integer(10)`, `ma varchar(255)`, `ten varchar(255)`, `ngaySinh date`, `quocTich varchar(255)`, `tieuSu varchar(255)` | PK: `id` |
+| `tblChangDua` | `id integer(10)`, `ma varchar(255)`, `ten varchar(255)`, `soVong integer(10)`, `diaDiem varchar(255)`, `thoiGian datetime`, `moTa varchar(255)`, `tblMuaGiaiid integer(10)` | PK: `id` · FK: `tblMuaGiaiid` → `tblMuaGiai.id` |
+| `tblThamGia` | `id integer(10)`, `tblMuaGiaiid integer(10)`, `tblDoiDuaid integer(10)` | PK: `id` · FK: `tblMuaGiaiid` → `tblMuaGiai.id`, `tblDoiDuaid` → `tblDoiDua.id` |
+| `tblHopDong` | `id integer(10)`, `ngayBatDau date`, `ngayKetThuc date` (cho phép NULL), `tblTayDuaid integer(10)`, `tblDoiDuaid integer(10)` | PK: `id` · FK: `tblTayDuaid` → `tblTayDua.id`, `tblDoiDuaid` → `tblDoiDua.id` |
+| `tblDangKyChang` | `id integer(10)`, `tblChangDuaid integer(10)`, `tblTayDuaid integer(10)`, `tblDoiDuaid integer(10)` | PK: `id` · FK: `tblChangDuaid` → `tblChangDua.id`, `tblTayDuaid` → `tblTayDua.id`, `tblDoiDuaid` → `tblDoiDua.id` · UNIQUE (`tblChangDuaid`, `tblTayDuaid`) |
+| `tblKetQua` | `id integer(10)`, `thoiGian float(10)`, `soVongHoanThanh integer(10)`, `trangThai varchar(255)`, `hang integer(10)`, `diem integer(10)`, `tblDangKyChangid integer(10)` | PK: `id` · FK: `tblDangKyChangid` → `tblDangKyChang.id` |
+| `tblTraoGiai` | `id integer(10)`, `loai varchar(255)`, `hang integer(10)`, `tienThuong float(10)`, `tblMuaGiaiid integer(10)`, `tblTayDuaid integer(10)` (NULL nếu là giải đồng đội), `tblDoiDuaid integer(10)` (NULL nếu là giải cá nhân) | PK: `id` · FK: `tblMuaGiaiid` → `tblMuaGiai.id`, `tblTayDuaid` → `tblTayDua.id`, `tblDoiDuaid` → `tblDoiDua.id` |
+| `tblThanhVien` | `id integer(10)`, `tenDangNhap varchar(255)`, `matKhau varchar(255)`, `hoTen varchar(255)` | PK: `id` · UNIQUE (`tenDangNhap`) |
+| `tblNhanVien` | `tblThanhVienid integer(10)` | PK đồng thời là FK: `tblThanhVienid` → `tblThanhVien.id` |
+| `tblQuanLy` | `tblThanhVienid integer(10)` | PK đồng thời là FK: `tblThanhVienid` → `tblThanhVien.id` |
+
+> **Ghi chú ràng buộc:**
+> - `tblDangKyChang` có `UNIQUE(tblChangDuaid, tblTayDuaid)` để đảm bảo ở tầng cơ sở dữ liệu rằng "mỗi tay đua chỉ đăng ký một lần trong một chặng".
+> - Ràng buộc "tối đa 2 tay đua/đội/chặng" là **ràng buộc nghiệp vụ**, không thể hiện được bằng khoá. Hệ thống kiểm ràng buộc này trong **phương thức `demSoTayDua(changDuaId, doiDuaId)` của lớp thực thể `DangKyChang`**. Tương tự, `daDangKy(changDuaId, tayDuaId)` kiểm tra trùng đăng ký trước khi lưu.
+> - `tblHopDong.ngayKetThuc` để NULL nghĩa là hợp đồng đang hiệu lực. Ràng buộc "một tay đua tại một thời điểm chỉ thuộc một đội" được kiểm bằng `HopDong.kiemTraChongLan(tayDuaId, ngayBatDau)`.
+> - `tblKetQua.trangThai` nhận một trong ba giá trị `HoanThanh`, `DNF`, `DSQ`; hai giá trị sau kéo theo `hang` xếp cuối và `diem` = 0.
+> - `tblTraoGiai.loai` nhận `CaNhan` hoặc `Doi`; đúng một trong hai cột `tblTayDuaid` / `tblDoiDuaid` có giá trị, cột còn lại để NULL.
+> - Bảng `tblThanhVien` **không có cột `vaiTro`**: vai trò được thể hiện bằng quan hệ kế thừa, tức bằng sự có mặt của bản ghi tương ứng trong `tblNhanVien` hoặc `tblQuanLy`.
+
+#### 3.6.5. Bước 5 — Loại bỏ thuộc tính gây dư thừa dữ liệu (thuộc tính dẫn xuất)
+
+**Đã loại bỏ:**
+
+| Thuộc tính bỏ đi | Bảng | Lý do |
+|---|---|---|
+| `tongDiem` | `tblTraoGiai` | Thuần dẫn xuất — bằng tổng `tblKetQua.diem` của tay đua (hoặc của đội) trong mùa. Nếu lưu lại thì mỗi lần sửa kết quả một chặng (Module 3 có luồng ghi đè kết quả cũ) là số liệu này sai ngay |
+| `tongThoiGian` | `tblTraoGiai` | Thuần dẫn xuất — bằng tổng `tblKetQua.thoiGian`. Tổng thời gian **luôn hiển thị trên bảng xếp hạng** và là tiêu chí phân định **cuối cùng (tầng 3)** khi countback vẫn bằng, nhưng luôn tính lại được từ `tblKetQua` nên không lưu |
+| Bảng xếp hạng cá nhân, bảng xếp hạng đội | — | Không tạo bảng nào cho hai bảng xếp hạng cuối mùa; chúng được tổng hợp lúc chạy bằng `KetQua.tongHopCaNhan(muaGiaiId)` và `KetQua.tongHopDoi(muaGiaiId)`; bảng chi tiết theo chặng của một tay đua/đội (drill-down ở Module 4) cũng tổng hợp lúc chạy bằng `KetQua.getChiTietTheoTayDua(muaGiaiId, tayDuaId)` / `KetQua.getChiTietTheoDoi(muaGiaiId, doiDuaId)` |
+
+Cách tính lúc chạy: tổng điểm cá nhân = `SUM(tblKetQua.diem)` gộp theo `tblDangKyChang.tblTayDuaid`; tổng điểm đội = `SUM(tblKetQua.diem)` gộp theo `tblDangKyChang.tblDoiDuaid` (gộp theo đội ghi trong bản đăng ký nên tay đua đổi đội giữa mùa vẫn cộng đúng cho đội tại thời điểm chặng). Tie-break cũng tính lúc chạy, không lưu cột nào — theo **quy tắc xếp hạng ba tầng**: bằng điểm thì **countback** (đếm `COUNT(tblKetQua.hang = 1)`, nếu bằng nhau thì `COUNT(tblKetQua.hang = 2)`, rồi `COUNT(tblKetQua.hang = 3)`…); nếu countback vẫn bằng thì so `SUM(tblKetQua.thoiGian)` tăng dần.
+
+**Cố ý GIỮ lại, có biện luận:**
+
+| Thuộc tính giữ | Bảng | Lý do giữ |
+|---|---|---|
+| `hang`, `diem` | `tblKetQua` | Đây là **kết quả chính thức đã công bố** của chặng đua, mang giá trị pháp lý — ban tổ chức căn cứ vào nó để trao cúp chặng. Nếu tính lại lúc chạy thì một thay đổi luật tính điểm trong tương lai sẽ **làm sai lệch lịch sử các mùa cũ**. Việc tính lại chỉ được phép xảy ra có kiểm soát, qua chức năng ghi đè kết quả của Module 3 |
+| `hang`, `tienThuong`, `loai` | `tblTraoGiai` | Đây là **quyết định trao giải đã chốt sổ** của mùa giải, không phải giá trị tính lại được: `tienThuong` phụ thuộc mức thưởng do quản lý nhập tại thời điểm quyết toán (mỗi mùa một mức khác nhau), còn `hang` và `loai` là nội dung của quyết định đó |
+
+Nói cách khác: dữ liệu **suy ra được và luôn suy ra đúng** thì bỏ (`tongDiem`, `tongThoiGian`, các bảng xếp hạng); dữ liệu là **bản chốt tại một thời điểm** thì giữ (`tblKetQua.hang/diem`, `tblTraoGiai.hang/tienThuong/loai`).
+
+### 3.7. Thiết kế triển khai (package view / dao / model)
+
+Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gói **`dao`**, trang jsp vào gói **`view`** (chia nhỏ theo nhóm người dùng). Ba gói nối với nhau bằng **đường kẻ trơn**, không dùng mũi tên.
+
+```plantuml
+@startuml
+package view {
+  package "view.thanhvien" {
+  }
+  package "view.nhanvien" {
+  }
+  package "view.quanly" {
+  }
+}
+package dao {
+}
+package model {
+}
+
+view -- dao
+dao -- model
+@enduml
+```
+
+| Gói | Thành phần |
+|---|---|
+| `view.thanhvien` | `gdDangNhap.jsp`, `gdDoiMatKhau.jsp` (các trang dùng chung) |
+| `view.nhanvien` | `gdChinhNV.jsp` (trang chính của nhân viên) · `gdTimTayDua.jsp`, `gdNhapHopDong.jsp`, `doLuuHopDong.jsp` (M1) · `gdChonChangDoi.jsp`, `gdDangKyTayDua.jsp`, `doLuuDangKy.jsp` (M2) · `gdChonChang.jsp`, `gdNhapKetQua.jsp`, `doLuuKetQua.jsp` (M3) |
+| `view.quanly` | `gdChinhQL.jsp` (trang chính của quản lý) · `gdXepHang.jsp`, `gdChiTietXepHang.jsp`, `gdTraoGiai.jsp`, `doLuuTraoGiai.jsp` (M4) · các trang quản lý danh mục |
+| `dao` | `DAO` (lớp cha) · `TayDuaDAO`, `DoiDuaDAO`, `HopDongDAO`, `ChangDuaDAO`, `DangKyChangDAO`, `KetQuaDAO`, `MuaGiaiDAO`, `TraoGiaiDAO` |
+| `model` | `MuaGiai`, `ChangDua`, `DoiDua`, `TayDua`, `ThamGia`, `HopDong`, `DangKyChang`, `KetQua`, `TraoGiai`, `ThanhVien`, `NhanVien`, `QuanLy` |
+
+**Lớp cha `DAO`.** Mọi lớp `XxxDAO` đều kế thừa lớp `DAO`; lớp cha này giữ **cơ chế kết nối cơ sở dữ liệu dùng chung** (mở kết nối, đóng kết nối, thực thi câu lệnh) để các lớp con không phải lặp lại đoạn mã kết nối.
+
+**Ánh xạ sang mô hình MVC.** Kiến trúc trên vẫn là MVC, với cách phân vai:
+
+| Thành phần MVC | Trong hệ thống | Giải thích |
+|---|---|---|
+| **M** — Model | Các lớp thực thể trong gói `model` | Mang dữ liệu và các phương thức nghiệp vụ ở mục 3.2.2; đóng gói thông tin lấy từ cơ sở dữ liệu |
+| **V** — View | Các trang `.jsp` trong gói `view` | Nhận dữ liệu người dùng nhập và hiển thị kết quả. Trang `gdXxx.jsp` là **màn hình hiển thị**; trang `doXxx.jsp` chỉ **xử lý** rồi chuyển tiếp, không phải màn hình |
+| **C** — Control | Các lớp `XxxDAO` trong gói `dao` | Là *các lớp tầng điều khiển*: nhận yêu cầu từ trang jsp, gọi phương thức nghiệp vụ, truy xuất cơ sở dữ liệu rồi trả kết quả về cho jsp |
+
+**Hệ thống không có lớp `XxxController` riêng.** Vai trò điều khiển do các lớp `XxxDAO` đảm nhiệm. Vì vậy trong toàn bộ tài liệu: biểu đồ lớp phân tích chỉ có hai tầng (lớp biên `GDxxx` và lớp thực thể), biểu đồ lớp thiết kế có ba tầng (`jsp` – `DAO` – `model`), và biểu đồ tuần tự **không có lifeline Controller, không có lifeline cơ sở dữ liệu**.
+
+![Biểu đồ package thiết kế triển khai](<hinh/package-trienkhai.png>)
+
+*Hình 3.3 — Thiết kế triển khai: package `view` → `dao` → `model`*
 
 ---
 
-## CHƯƠNG 5: MODULE 1 — KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA (Khuất Anh Quân)
+# PHẦN 2 — KẾT QUẢ TỪNG THÀNH VIÊN
+
+## CHƯƠNG 4: MODULE 1 — KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA
+
+**Thành viên thực hiện:** Khuất Anh Quân — **Use case:** Ký hợp đồng tay đua với đội đua
+
+### 4.1. Biểu đồ Use Case chi tiết
+
+Module 1 có **2 màn hình hiển thị**, mỗi màn hình được đề xuất thành một use case con quan hệ `include`: màn hình **Tìm tay đua** → use case con `Tìm tay đua`; màn hình **Nhập hợp đồng** → use case con `Nhập thông tin hợp đồng`.
+
+Ngoài ra có một use case mở rộng: khi nhân viên tìm mà không thấy tay đua trong hệ thống, nhân viên được phép thêm tay đua mới ngay trên **màn hình Tìm tay đua**. Vì vậy `Thêm tay đua` là quan hệ **extend của `Tìm tay đua`** (không phải của `Nhập thông tin hợp đồng`), và nó dùng lại chính lớp biên `GDTimTayDua` chứ không sinh thêm màn hình mới.
+
+Ngoài các màn hình riêng của module, luồng nghiệp vụ nào cũng phải đi qua bước đăng nhập. **Giao diện đăng nhập là giao diện dùng chung của toàn hệ thống** (không thuộc riêng module nào); theo giáo trình (mục 3.1.3), nó vẫn được phân rã thành use case con `Đăng nhập` và use case chính **include** use case này. Module không tạo lớp biên, trang `.jsp` hay lifeline riêng cho đăng nhập; kịch bản vẫn mở đầu "sau khi đăng nhập" và dòng **Tiền điều kiện** của bảng đặc tả giữ nguyên "nhân viên đã đăng nhập". Trang chính của nhân viên (`gdChinhNV.jsp`) là trang chủ chung của hệ thống nên **không sinh use case con**; trang `doLuuHopDong.jsp` là trang xử lý, không phải màn hình hiển thị nên cũng không sinh use case con.
+
+![Biểu đồ Use Case chi tiết Module 1](<../Module 1 - Quan/hinh/m1-uc-chitiet.png>)
+
+*Hình 4.1 — Biểu đồ Use Case chi tiết Module 1*
+
+### 4.2. Đặc tả Use Case
+
+| Mục | Nội dung |
+|---|---|
+| **Use case** | Ký hợp đồng tay đua với đội đua |
+| **Actor** | Nhân viên |
+| **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; danh mục đội đua của mùa giải 2025 đã được khai báo |
+| **Hậu điều kiện** | Một hợp đồng mới hợp lệ được lưu vào hệ thống với ngày kết thúc để trống (đang hiệu lực); hợp đồng cũ đang hiệu lực của tay đua (nếu có) được đóng lại; hợp đồng mới được in ra |
+| **Kịch bản chính** | 1. Nhân viên chọn menu "Ký hợp đồng".<br>2. Hệ thống hiển thị màn hình **Tìm tay đua**: ô nhập "Tên tay đua" đang rỗng, nút [Tìm], nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng.<br>3. Nhân viên nhập tên `Hamilton` và click [Tìm].<br>4. Hệ thống hiển thị bảng kết quả gồm các cột **Mã \| Tên \| Ngày sinh \| Quốc tịch \| Đội hiện tại**, có 1 dòng: `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; mỗi dòng có nút [Chọn].<br>5. Nhân viên click [Chọn] ở dòng `HAM`.<br>6. Hệ thống hiển thị màn hình **Nhập hợp đồng**: vùng thông tin tay đua ghi `HAM — Lewis Hamilton — 07/01/1985 — Anh`; bảng "Hợp đồng cũ" gồm các cột **Đội đua \| Ngày bắt đầu \| Ngày kết thúc**, có 1 dòng: `Mercedes \| 01/01/2013 \| (trống)` — dòng có ngày kết thúc trống là hợp đồng đang hiệu lực; ô chọn "Đội đua" và ô "Ngày bắt đầu" đang rỗng; nút [Lưu] **chưa được active**.<br>7. Nhân viên chọn `Ferrari` trong ô "Đội đua" (danh sách gồm Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) và nhập "Ngày bắt đầu" = `01/01/2025`; nút [Lưu] **chuyển sang active**.<br>8. Nhân viên click [Lưu].<br>9. Hệ thống kiểm tra ngày `01/01/2025` không rơi vào khoảng thời gian của bất kỳ hợp đồng đã đóng nào của Lewis Hamilton.<br>10. Hệ thống tự động đóng hợp đồng đang hiệu lực với Mercedes: đặt ngày kết thúc = `31/12/2024` (ngày liền trước ngày bắt đầu mới).<br>11. Hệ thống lưu hợp đồng mới: `Lewis Hamilton — Ferrari — 01/01/2025 — ngày kết thúc để trống`.<br>12. Hệ thống hiển thị thông báo "Lưu hợp đồng thành công" và in hợp đồng; bảng "Hợp đồng cũ" cập nhật thành 2 dòng: `Mercedes \| 01/01/2013 \| 31/12/2024` và `Ferrari \| 01/01/2025 \| (trống)`.<br><br>*(Lặp lại các bước 3–12 cho từng tay đua cần ký hợp đồng, cho đến khi nhân viên ký xong toàn bộ.)* |
+| **Ngoại lệ** | **4a.** Không tìm thấy tay đua nào khớp từ khóa (ví dụ nhập `Antonelli`) → hệ thống hiển thị dòng "Không tìm thấy tay đua nào"; nhân viên click [+ Thêm tay đua mới], nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử rồi click [Lưu tay đua]; hệ thống lưu tay đua mới và quay lại bước 4 với bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`.<br>**7a.** Nhân viên chưa chọn đội đua hoặc chưa nhập ngày bắt đầu → nút [Lưu] vẫn **chưa được active**, không thể chuyển sang bước 8.<br>**9a.** Ngày bắt đầu rơi vào khoảng thời gian của một hợp đồng **đã đóng** (ví dụ Carlos Sainz có hợp đồng Ferrari `01/01/2021–31/12/2024`, nhân viên nhập ngày bắt đầu `01/06/2023`) → hệ thống hiện thông báo lỗi màu đỏ dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này", không lưu, quay lại bước 7.<br>**9b.** Ngày bắt đầu mới nhỏ hơn hoặc bằng ngày bắt đầu của hợp đồng đang hiệu lực (ví dụ nhập `01/01/2010` trong khi hợp đồng Mercedes bắt đầu `01/01/2013`) → hệ thống báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu của hợp đồng đang hiệu lực", không lưu, quay lại bước 7.<br>**10a.** Tay đua chưa có hợp đồng nào đang hiệu lực (ví dụ Oscar Piastri) → hệ thống bỏ qua bước 10 và chuyển thẳng sang bước 11. |
+
+### 4.3. Biểu đồ trạng thái (phân tích hoạt động)
+
+Theo quy tắc của giáo trình (mục 3.2.4): **mỗi trạng thái ứng với một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác**; cung chuyển trạng thái là hành động của người dùng, nhãn viết trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công:
+
+- `Hiển thị GD chính NV` —`[click Ký hợp đồng]`→ `Hiển thị GD tìm tay đua`
+- `Hiển thị GD tìm tay đua` có **cung tự quay** `[click Tìm]` (nhân viên tìm nhiều lần đến khi thấy tay đua cần ký)
+- `Hiển thị GD tìm tay đua` —`[chọn 1 tay đua]`→ `Hiển thị GD nhập hợp đồng`
+- `Hiển thị GD nhập hợp đồng` —`[click Lưu, dữ liệu hợp lệ]`→ `Hiển thị thông báo và in hợp đồng`
+- `Hiển thị thông báo và in hợp đồng` —`[click OK]`→ Kết thúc
+
+Biểu đồ hoạt động dạng flowchart nghiệp vụ trước đây được thay bằng biểu đồ trạng thái ở vị trí này. Luồng xử lý chi tiết theo từng trang (kèm các node quyết định cho từng ràng buộc nghiệp vụ `4a`, `9a`, `9b`, `10a` ở mục 4.2) được thể hiện ở **biểu đồ hoạt động pha thiết kế** (mục 4.7).
+
+![Biểu đồ trạng thái Module 1](<../Module 1 - Quan/hinh/m1-trangthai.png>)
+
+*Hình 4.2 — Biểu đồ trạng thái Module 1 (phân tích hoạt động)*
+
+### 4.4. Biểu đồ lớp phân tích
+
+Biểu đồ lớp phân tích của module chỉ có **2 tầng**: lớp biên và lớp thực thể. **Không có lớp Control** — mọi hành động nghiệp vụ được gán thẳng cho lớp thực thể phù hợp. Hộp lớp để trơn, không dùng stereotype; quan hệ chỉ dùng đường kẻ trơn, hình thoi rỗng ◇, hình thoi đặc ♦ và tam giác rỗng ▷.
+
+**Lớp biên** (mỗi màn hình → 1 lớp biên, chỉ có thuộc tính, không có phương thức): ngoài 2 lớp biên của 2 màn hình riêng, module có thêm lớp biên **trang chính của nhân viên** `GDChinhNV` — trang chủ chung của hệ thống, không sinh use case con — nối bằng đường kẻ trơn sang lớp biên đầu tiên của module (`GDTimTayDua`).
+
+| Lớp biên | Thuộc tính | Ý nghĩa |
+|---|---|---|
+| `GDChinhNV` | `-subKyHopDong` | liên kết "Ký hợp đồng" trên trang chính (trang chủ chung của hệ thống) |
+| `GDTimTayDua` | `-inTenTayDua` | ô nhập tên tay đua |
+| | `-subTim` | nút [Tìm] |
+| | `-outsubDSTayDua` | bảng kết quả vừa hiện vừa cho chọn |
+| | `-subThemTayDua` | nút [+ Thêm tay đua mới] |
+| | `-inMaTayDua` | ô nhập mã tay đua mới (form thêm tay đua) |
+| | `-inTenTayDuaMoi` | ô nhập tên tay đua mới (form thêm tay đua) |
+| | `-inNgaySinh` | ô nhập ngày sinh (form thêm tay đua) |
+| | `-inQuocTich` | ô nhập quốc tịch (form thêm tay đua) |
+| | `-inTieuSu` | ô nhập tiểu sử (form thêm tay đua) |
+| | `-subLuuTayDua` | nút [Lưu tay đua] (form thêm tay đua) |
+| `GDNhapHopDong` | `-outTayDua` | vùng hiện thông tin tay đua đã chọn |
+| | `-outDSHopDongCu` | bảng hiện danh sách hợp đồng cũ |
+| | `-inDoiDua` | ô chọn đội đua |
+| | `-inNgayBatDau` | ô nhập ngày bắt đầu |
+| | `-subLuu` | nút [Lưu] |
+
+**Phương thức nghiệp vụ gán cho lớp thực thể:**
+
+| Chức năng ở tầng dưới giao diện | Gán cho lớp thực thể | Phương thức |
+|---|---|---|
+| Tìm tay đua theo tên | `TayDua` | `getTayDuaTheoTen(ten)` |
+| Thêm tay đua mới | `TayDua` | `themTayDua()` |
+| Lấy danh sách đội đua để chọn | `DoiDua` | `getDSDoiDua()` |
+| Lấy hợp đồng cũ của tay đua | `HopDong` | `getHopDongCuaTayDua(tayDuaId)` |
+| Kiểm tra chồng lấn thời gian | `HopDong` | `kiemTraChongLan(tayDuaId, ngayBatDau)` |
+| Đóng hợp đồng cũ đang hiệu lực | `HopDong` | `dongHopDongCu(tayDuaId, ngayBatDau)` |
+| Lưu hợp đồng mới | `HopDong` | `luuHopDong()` |
+
+Sáu thuộc tính `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu`, `-subLuuTayDua` thuộc **form thêm tay đua** — form này nằm ngay trên màn hình **Tìm tay đua** (use case mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải một màn hình riêng, nên các thành phần của nó là thuộc tính của chính lớp biên `GDTimTayDua`. Nguyên tắc áp dụng: mỗi thành phần nhận dữ liệu vào / hiện dữ liệu ra / submit trên một màn hình đều phải có đúng một thuộc tính tương ứng ở lớp biên của màn hình đó.
+
+Ở pha phân tích, lớp thực thể **chưa có thuộc tính `id`** và **chưa khai báo kiểu dữ liệu**. Toàn bộ quan hệ giữa các lớp thực thể được giữ **thống nhất với biểu đồ lớp thực thể chung** ở Chương 3, kể cả những lớp không tham gia trực tiếp vào Module 1. Về phương thức, biểu đồ **chỉ vẽ những phương thức nghiệp vụ mà Module 1 sử dụng**; các phương thức khác của cùng những lớp thực thể này (ví dụ `HopDong.getTayDuaHieuLuc()` của Module 2, `KetQua.xepHangVaTinhDiem()` của Module 3, `KetQua.tongHopCaNhan()` của Module 4) được vẽ ở biểu đồ của module tương ứng — danh sách đầy đủ xem mục 3.2.2. Quy ước này dùng chung cho cả 4 module.
+
+![Biểu đồ lớp phân tích Module 1](<../Module 1 - Quan/hinh/m1-lop-phantich.png>)
+
+*Hình 4.3 — Biểu đồ lớp phân tích Module 1*
+
+### 4.5. Thiết kế giao diện
+
+Module có **2 màn hình hiển thị**, đúng bằng số use case con giao diện và số lớp biên màn hình. Hai màn hình nối nhau bằng luồng chuyển màn: **Tìm tay đua → Nhập hợp đồng**. Điểm vào của luồng là **trang chính của nhân viên** `gdChinhNV.jsp` — trang chủ chung của hệ thống chứa liên kết [Ký hợp đồng] — nên **không cần mockup riêng**; giao diện đăng nhập (use case con `Đăng nhập`) cũng là giao diện dùng chung toàn hệ thống, không vẽ trong module.
+
+**Màn 1 — Tìm tay đua** (`gdTimTayDua.jsp`, lớp biên `GDTimTayDua`). Tiêu đề màn hình "Ký hợp đồng tay đua với đội đua — Bước 1: Tìm tay đua". Phần trên là thanh tìm kiếm gồm nhãn "Tên tay đua", một ô nhập văn bản (`-inTenTayDua`) và nút [Tìm] (`-subTim`); bên phải đặt nút [+ Thêm tay đua mới] (`-subThemTayDua`). Phần dưới là bảng kết quả (`-outsubDSTayDua`) gồm các cột **TT | Mã | Tên | Ngày sinh | Quốc tịch | Đội hiện tại | (thao tác)**, cột cuối mỗi dòng có nút [Chọn]. Khi mới vào màn hình, ô nhập rỗng và bảng kết quả rỗng. Khi nhân viên nhập `Hamilton` và click [Tìm], bảng hiện 1 dòng `1 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Mercedes | [Chọn]`. Nếu không có kết quả, bảng hiện dòng chữ "Không tìm thấy tay đua nào" và nhân viên click nút [+ Thêm tay đua mới] để mở **form thêm tay đua** ngay trên màn hình này (khối nằm dưới bảng kết quả): ô "Mã" (`-inMaTayDua`), ô "Tên" (`-inTenTayDuaMoi`), ô "Ngày sinh" (`-inNgaySinh`), ô "Quốc tịch" (`-inQuocTich`), ô "Tiểu sử" (`-inTieuSu`) và nút [Lưu tay đua] (`-subLuuTayDua`) — nút này chỉ active khi đã nhập đủ mã, tên, ngày sinh và quốc tịch. Lưu xong, form đóng lại và bảng kết quả nạp lại dòng tay đua vừa thêm. Click [Chọn] ở một dòng sẽ chuyển sang màn 2 — Nhập hợp đồng.
+
+![Giao diện tìm tay đua](<../Module 1 - Quan/hinh/m1-giaodien-timtaydua.png>)
+
+*Hình 4.4 — Giao diện Tìm tay đua (Module 1)*
+
+**Màn 2 — Nhập hợp đồng** (`gdNhapHopDong.jsp`, lớp biên `GDNhapHopDong`). Tiêu đề "Ký hợp đồng tay đua với đội đua — Bước 2: Nhập thông tin hợp đồng". Khối thứ nhất là vùng chỉ đọc hiển thị tay đua đã chọn (`-outTayDua`), ví dụ `HAM — Lewis Hamilton — 07/01/1985 — Anh`. Khối thứ hai là bảng "Hợp đồng cũ" (`-outDSHopDongCu`) gồm các cột **TT | Đội đua | Ngày bắt đầu | Ngày kết thúc**; ví dụ với Lewis Hamilton bảng hiện 1 dòng `1 | Mercedes | 01/01/2013 | (trống)` — **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**. Khối thứ ba là form nhập gồm ô chọn "Đội đua" dạng danh sách thả xuống (`-inDoiDua`, chứa Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams), ô chọn ngày "Ngày bắt đầu" (`-inNgayBatDau`) và nút [Lưu] (`-subLuu`). **Màn hình không có ô nhập ngày kết thúc**: hợp đồng mới luôn được lưu ở trạng thái mở (ngày kết thúc trống), hệ thống sẽ tự đóng khi tay đua ký hợp đồng tiếp theo. Khi mới mở màn hình, hai ô nhập đều rỗng và nút [Lưu] **chưa được active**; nút chỉ chuyển sang active khi cả đội đua lẫn ngày bắt đầu đã có giá trị. Click [Lưu] sẽ gửi dữ liệu sang trang xử lý `doLuuHopDong.jsp`; nếu hợp lệ, màn hình hiện thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng, đồng thời bảng "Hợp đồng cũ" được nạp lại thành 2 dòng `1 | Mercedes | 01/01/2013 | 31/12/2024` và `2 | Ferrari | 01/01/2025 | (trống)`; nếu không hợp lệ, màn hình giữ nguyên dữ liệu đã nhập và hiện thông báo lỗi màu đỏ ngay dưới form, ví dụ "Tay đua đã có hợp đồng trong khoảng thời gian này".
+
+![Giao diện nhập hợp đồng](<../Module 1 - Quan/hinh/m1-giaodien-nhaphopdong.png>)
+
+*Hình 4.5 — Giao diện Nhập hợp đồng (Module 1)*
+
+### 4.6. Biểu đồ lớp thiết kế (view `.jsp` / `DAO` / `model`)
+
+Kiến trúc phân tầng: **model** là các lớp thực thể, **view** là các trang `.jsp`, **tầng điều khiển / truy xuất dữ liệu** là **các lớp `XxxDAO`**. **Không có lớp `XxxController` riêng.** Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** để dùng chung cơ chế kết nối cơ sở dữ liệu.
+
+- **View (jsp):** `gdChinhNV` (trang chính của nhân viên), `gdTimTayDua` (màn hình hiển thị), `gdNhapHopDong` (màn hình hiển thị), `doLuuHopDong` (trang xử lý, không hiển thị)
+- **DAO:** lớp cha `DAO`; các lớp con `TayDuaDAO`, `DoiDuaDAO`, `HopDongDAO`
+- **Model:** `TayDua`, `DoiDua`, `HopDong`
+
+Theo mẫu Hình 4.4 của giáo trình, mỗi lớp view có **thuộc tính kèm kiểu control** (`Select` — danh sách thả xuống, `Table` — bảng, `link` — liên kết/click dòng, `submit` — nút, `Text` — ô nhập, `Reset` — nút xóa nhập) và **thuộc tính ẩn**: đối tượng phiên (`-nv : NhanVien`) và dữ liệu truyền giữa các trang (`-tayDua : TayDua`, `-hopDong : HopDong`). Mỗi lớp `XxxDAO` có **constructor** và các phương thức với **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về — mảng `Xxx[]` cho thao tác đọc, `boolean` cho thao tác ghi), ví dụ `+getTayDuaTheoTen(ten : String) : TayDua[]`, `+luuHopDong(hd : HopDong) : boolean`.
+
+Mỗi `XxxDAO` **chỉ vẽ những phương thức mà Module 1 sử dụng**, đúng quy ước dùng chung của cả 4 module: ví dụ `HopDongDAO.getTayDuaHieuLuc(doiDuaId, thoiGianChang)` do Module 2 sử dụng nên được vẽ ở biểu đồ lớp thiết kế của Module 2, không vẽ lại ở đây; danh sách đầy đủ phương thức của từng lớp xem mục 3.2.2. Các thuộc tính `-maTayDua` … `-btnLuuTayDua` của `gdTimTayDua.jsp` thuộc **form thêm tay đua** đặt ngay trên trang tìm (use case mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải trang riêng.
+
+![Biểu đồ lớp thiết kế Module 1](<../Module 1 - Quan/hinh/m1-lop-mvc.png>)
+
+*Hình 4.6 — Biểu đồ lớp thiết kế Module 1 (view `.jsp` / `DAO` / `model`)*
+
+### 4.7. Biểu đồ hoạt động (pha thiết kế)
+
+Theo quy tắc của giáo trình (mục 4.3.2 bước 1): **mỗi hành động trong biểu đồ hoạt động tương ứng một phương thức đã thiết kế trong biểu đồ lớp** (mục 4.6). Các hành động được gom thành từng khung (partition) **"Xử lí tại gdXxx.jsp"** theo đúng trang thực hiện — kể cả trang chính `gdChinhNV.jsp` và trang xử lý `doLuuHopDong.jsp`; lời gọi tầng dưới ghi rõ dạng `XxxDAO: tenHam()`; điều kiện chuyển ghi trong ngoặc vuông (`[click Lưu]`, `[lấy xong dữ liệu]`, `[lưu xong]`); các ràng buộc nghiệp vụ (`9a`, `9b`, `10a` ở mục 4.2) được kiểm tra bằng **node quyết định** trong khung của trang xử lý `doLuuHopDong.jsp`; ràng buộc `4a` (không tìm thấy tay đua → thêm mới) là node quyết định trong khung `gdTimTayDua.jsp`. Biểu đồ có node Bắt đầu và Kết thúc.
+
+![Biểu đồ hoạt động Module 1](<../Module 1 - Quan/hinh/m1-hoatdong.png>)
+
+*Hình 4.7 — Biểu đồ hoạt động Module 1 (pha thiết kế)*
+
+### 4.8. Thuyết minh (kịch bản phiên bản 3)
+
+Kịch bản dưới đây là luồng chính (thành công) của trường hợp tay đua chuyển đội: Lewis Hamilton đang có hợp đồng hiệu lực với Mercedes, ký hợp đồng mới với Ferrari từ `01/01/2025`. Luồng mở đầu và kết thúc tại **trang chính của nhân viên** `gdChinhNV.jsp`; **luồng lưu** theo mẫu Hình 4.12 của giáo trình: lớp thực thể `HopDong` tự gọi `setter()` đóng gói dữ liệu nhập **trước**, sau đó trang xử lý mới gọi các hàm của `HopDongDAO` (không gọi constructor thực thể ở luồng lưu). Mỗi dòng thuyết minh tương ứng đúng một message trong biểu đồ tuần tự ở mục 4.9.
+
+1. Nhân viên click [Ký hợp đồng] trên trang chính `gdChinhNV.jsp`.
+2. Trang `gdChinhNV.jsp` gọi trang `gdTimTayDua.jsp`.
+3. Trang `gdTimTayDua.jsp` hiển thị màn hình tìm tay đua cho nhân viên.
+4. Nhân viên nhập tên `Hamilton` và click [Tìm] trên trang `gdTimTayDua.jsp`.
+5. Trang `gdTimTayDua.jsp` gọi lớp `TayDuaDAO` yêu cầu tìm tay đua theo tên.
+6. Lớp `TayDuaDAO` gọi hàm `getTayDuaTheoTen()`.
+7. Hàm `getTayDuaTheoTen()` gọi lớp `TayDua` để đóng gói thông tin.
+8. Lớp `TayDua` đóng gói thông tin thực thể.
+9. Lớp `TayDua` trả kết quả về cho hàm `getTayDuaTheoTen()`.
+10. Hàm `getTayDuaTheoTen()` trả kết quả cho trang `gdTimTayDua.jsp`.
+11. Trang `gdTimTayDua.jsp` hiển thị danh sách tay đua tìm được cho nhân viên.
+12. Nhân viên chọn tay đua `Lewis Hamilton` trên trang `gdTimTayDua.jsp`.
+13. Trang `gdTimTayDua.jsp` gọi trang `gdNhapHopDong.jsp`.
+14. Trang `gdNhapHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu tìm danh sách hợp đồng cũ của tay đua.
+15. Lớp `HopDongDAO` gọi hàm `getHopDongCuaTayDua()`.
+16. Hàm `getHopDongCuaTayDua()` gọi lớp `HopDong` để đóng gói thông tin.
+17. Lớp `HopDong` đóng gói thông tin thực thể.
+18. Lớp `HopDong` trả kết quả về cho hàm `getHopDongCuaTayDua()`.
+19. Hàm `getHopDongCuaTayDua()` trả kết quả cho trang `gdNhapHopDong.jsp`.
+20. Trang `gdNhapHopDong.jsp` gọi lớp `DoiDuaDAO` yêu cầu tìm danh sách đội đua.
+21. Lớp `DoiDuaDAO` gọi hàm `getDSDoiDua()`.
+22. Hàm `getDSDoiDua()` gọi lớp `DoiDua` để đóng gói thông tin.
+23. Lớp `DoiDua` đóng gói thông tin thực thể.
+24. Lớp `DoiDua` trả kết quả về cho hàm `getDSDoiDua()`.
+25. Hàm `getDSDoiDua()` trả kết quả cho trang `gdNhapHopDong.jsp`.
+26. Trang `gdNhapHopDong.jsp` hiển thị màn hình nhập hợp đồng cho nhân viên.
+27. Nhân viên chọn đội đua `Ferrari` trên trang `gdNhapHopDong.jsp`.
+28. Nhân viên nhập ngày bắt đầu `01/01/2025` trên trang `gdNhapHopDong.jsp`.
+29. Nhân viên click [Lưu] trên trang `gdNhapHopDong.jsp`.
+30. Trang `gdNhapHopDong.jsp` gọi trang `doLuuHopDong.jsp`.
+31. Trang `doLuuHopDong.jsp` gọi lớp `HopDong` để đóng gói dữ liệu hợp đồng vừa nhập.
+32. Lớp `HopDong` gọi hàm `setter()` tự đóng gói dữ liệu (tay đua, đội đua, ngày bắt đầu).
+33. Lớp `HopDong` trả đối tượng đã đóng gói về cho trang `doLuuHopDong.jsp`.
+34. Trang `doLuuHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu kiểm tra chồng lấn thời gian hợp đồng.
+35. Lớp `HopDongDAO` gọi hàm `kiemTraChongLan()`.
+36. Hàm `kiemTraChongLan()` trả kết quả kiểm tra cho trang `doLuuHopDong.jsp`.
+37. Trang `doLuuHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu đóng hợp đồng cũ đang hiệu lực.
+38. Lớp `HopDongDAO` gọi hàm `dongHopDongCu()`.
+39. Hàm `dongHopDongCu()` trả kết quả cho trang `doLuuHopDong.jsp`.
+40. Trang `doLuuHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu lưu hợp đồng mới.
+41. Lớp `HopDongDAO` gọi hàm `luuHopDong()` lưu đối tượng hợp đồng đã đóng gói.
+42. Hàm `luuHopDong()` trả kết quả cho trang `doLuuHopDong.jsp`.
+43. Trang `doLuuHopDong.jsp` thông báo lưu hợp đồng thành công (kèm bản in hợp đồng) cho nhân viên.
+44. Nhân viên click [OK] trên thông báo của trang `doLuuHopDong.jsp`.
+45. Trang `doLuuHopDong.jsp` gọi trang chính `gdChinhNV.jsp`.
+46. Trang `gdChinhNV.jsp` hiển thị trang chính cho nhân viên.
+
+*(Lặp lại các bước 1–46 cho đến khi nhân viên ký xong hợp đồng cho tất cả tay đua cần ký.)*
+
+### 4.9. Biểu đồ tuần tự
+
+Lifeline gồm: actor **Nhân viên** + 4 trang `.jsp` (kể cả trang chính `gdChinhNV.jsp` — lifeline **đầu và cuối** của biểu đồ) + 3 lớp `XxxDAO` + 3 lớp thực thể. **Không có lifeline cơ sở dữ liệu, không có lifeline Controller, không có câu lệnh SQL trong message.** Nhãn message để cực ngắn (`goi`, `tra ve`, `hien thi`, `chon …`, `click …`); chỉ **self-call** mới ghi tên hàm; message được đánh số tự động (trong Visual Paradigm bật *Show sequence number*). **Luồng đọc** giữ chuỗi 7 message (DAO self-call hàm nghiệp vụ + lớp thực thể self-call constructor); **luồng lưu** theo mẫu Hình 4.12: lớp thực thể self-call `setter()` đóng gói trước, sau đó DAO self-call `kiemTraChongLan()` / `dongHopDongCu()` / `luuHopDong()` — không gọi constructor thực thể. Kết thúc theo mẫu trang chính: `thong bao thanh cong` → `click OK` → `goi` → `hien thi`. Biểu đồ chỉ vẽ luồng chính; các ngoại lệ đã mô tả ở mục 4.2 và 4.7, không đưa vào biểu đồ tuần tự. Số thứ tự 46 message khớp 1-1 với 46 dòng thuyết minh ở mục 4.8.
+
+![Biểu đồ tuần tự Module 1](<../Module 1 - Quan/hinh/m1-tuantu.png>)
+
+*Hình 4.8 — Biểu đồ tuần tự Module 1*
+
+### 4.10. Test case
+
+Test case xây dựng theo **quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2**. Toàn bộ test case gom trong **một bảng 4 cột** `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm bằng dòng tiêu đề nhóm in đậm giữa bảng: **Giao diện** (2 ca/màn hình), **Chức năng** (2 ca/màn hình — kết quả mong muốn đối chiếu trực tiếp các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, dữ liệu thật F1 2025, kết quả mong muốn ghi cả hiệu ứng lên CSDL). Mã test case: `KHD_n` (Ký hợp đồng).
+
+#### 4.10.1. Data test (bước 3 quy trình test)
+
+Dữ liệu được nạp sẵn vào CSDL trước khi chạy test, là **tiền đề chung cho nhóm Luồng nghiệp vụ** ở bảng 4.10.2.
+
+`tblTayDua`
+
+| id | ma | ten | ngaySinh | quocTich | tieuSu |
+|---|---|---|---|---|---|
+| 1 | LEC | Charles Leclerc | 16/10/1997 | Monaco | Trưởng thành từ học viện Ferrari |
+| 2 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Bảy lần vô địch thế giới |
+| 5 | NOR | Lando Norris | 13/11/1999 | Anh | Lên F1 từ mùa 2019 |
+| 6 | PIA | Oscar Piastri | 06/04/2001 | Úc | Vô địch F2 mùa 2021 |
+| 12 | SAI | Carlos Sainz | 01/09/1994 | Tây Ban Nha | Từng thi đấu cho Ferrari |
+
+> Bảng chỉ trích các dòng liên quan tới test case; số `id` giữ đúng bộ dữ liệu mẫu dùng chung của nhóm nên có khoảng trống giữa các giá trị.
+
+`tblDoiDua`
+
+| id | ma | ten | hang | moTa |
+|---|---|---|---|---|
+| 1 | FER | Ferrari | Ferrari | Đội đua lâu đời nhất |
+| 2 | RBR | Red Bull | Honda RBPT | Trụ sở tại Milton Keynes |
+| 3 | MCL | McLaren | Mercedes | Trụ sở tại Woking |
+| 4 | MER | Mercedes | Mercedes | Nhà vô địch giai đoạn 2014-2021 |
+| 5 | AST | Aston Martin | Mercedes | Đội đua của hãng xe Anh |
+| 6 | WIL | Williams | Mercedes | Đội đua tư nhân của Anh |
+
+`tblHopDong`
+
+| id | tblTayDuaid | tblDoiDuaid | ngayBatDau | ngayKetThuc |
+|---|---|---|---|---|
+| 1 | 2 (HAM) | 4 (Mercedes) | 01/01/2013 | (trống) |
+| 2 | 1 (LEC) | 1 (Ferrari) | 01/01/2019 | (trống) |
+| 3 | 5 (NOR) | 3 (McLaren) | 01/01/2019 | (trống) |
+| 4 | 12 (SAI) | 1 (Ferrari) | 01/01/2021 | 31/12/2024 |
+
+> Tay đua `PIA — Oscar Piastri` (id = 6) chưa có dòng nào trong `tblHopDong`; trong `tblTayDua` không có tay đua nào tên chứa `Antonelli`.
+
+#### 4.10.2. Bảng test case
+
+| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|---|---|---|---|
+| | **Nhóm 1 — Giao diện** | | |
+| KHD_1 | Bố cục màn Tìm tay đua | 1. Đăng nhập với vai trò nhân viên.<br>2. Tại trang chính click [Ký hợp đồng]. | Màn hình hiện đúng title "Ký hợp đồng tay đua với đội đua — Bước 1: Tìm tay đua"; hiển thị đầy đủ: ô nhập "Tên tay đua", nút [Tìm], nút [+ Thêm tay đua mới], bảng kết quả (TT \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Đội hiện tại \| thao tác) đang rỗng; con trỏ focus vào ô "Tên tay đua" |
+| KHD_2 | Hành vi phím Enter màn Tìm tay đua | 1. Mở màn Tìm tay đua.<br>2. Nhập `Hamilton` vào ô "Tên tay đua".<br>3. Nhấn phím Enter. | Phím Enter thực hiện đúng chức năng nút [Tìm]: bảng kết quả hiện danh sách tay đua có tên chứa `Hamilton` |
+| KHD_3 | Bố cục màn Nhập hợp đồng | 1. Từ màn Tìm tay đua, tìm `Hamilton`.<br>2. Click [Chọn] ở dòng `HAM`. | Màn hình hiện đúng title "Ký hợp đồng tay đua với đội đua — Bước 2: Nhập thông tin hợp đồng"; hiển thị đầy đủ: vùng thông tin tay đua, bảng "Hợp đồng cũ" (TT \| Đội đua \| Ngày bắt đầu \| Ngày kết thúc), ô chọn "Đội đua", ô "Ngày bắt đầu", nút [Lưu]; không có ô nhập ngày kết thúc; focus vào ô "Đội đua"; nút [Lưu] **chưa được active** |
+| KHD_4 | Thứ tự phím Tab màn Nhập hợp đồng | 1. Mở màn Nhập hợp đồng với tay đua `HAM`.<br>2. Nhấn Tab liên tiếp. | Focus di chuyển đúng thứ tự: ô "Đội đua" → ô "Ngày bắt đầu" → nút [Lưu] |
+| | **Nhóm 2 — Chức năng** | | |
+| KHD_5 | Màn Tìm tay đua hiển thị đúng khi CSDL có dữ liệu | 1. Nhập `Hamilton`, click [Tìm]. | Danh sách khớp các bản ghi trong `tblTayDua` có tên chứa `Hamilton`: 1 dòng `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; cột "Đội hiện tại" đối chiếu đúng dòng `tblHopDong` có `ngayKetThuc` trống của tay đua |
+| KHD_6 | Màn Tìm tay đua khi không có dữ liệu khớp | 1. Nhập `Schumacher`, click [Tìm]. | Bảng kết quả hiện dòng "Không tìm thấy tay đua nào" (trong `tblTayDua` không có bản ghi tên chứa `Schumacher`); nút [+ Thêm tay đua mới] vẫn hiển thị |
+| KHD_7 | Màn Nhập hợp đồng hiển thị đúng dữ liệu tay đua có hợp đồng | 1. Tìm và chọn `HAM`. | Bảng "Hợp đồng cũ" khớp các bản ghi trong `tblHopDong` của tay đua id = 2: 1 dòng `Mercedes \| 01/01/2013 \| (trống)`; ô chọn "Đội đua" chứa đủ 6 đội khớp `tblDoiDua` (Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) |
+| KHD_8 | Màn Nhập hợp đồng khi tay đua chưa có hợp đồng | 1. Tìm và chọn `PIA`. | Bảng "Hợp đồng cũ" **rỗng** (trong `tblHopDong` không có bản ghi nào của tay đua id = 6); hai ô nhập rỗng; nút [Lưu] chưa được active |
+| | **Nhóm 3 — Luồng nghiệp vụ** — *Precond: nhân viên đã đăng nhập thành công; CSDL đúng như mục Data test (4.10.1)* | | |
+| KHD_9 | Ký hợp đồng mới cho tay đua tự do — chưa có hợp đồng nào (ca chuẩn) | 1. Tại trang chính click [Ký hợp đồng].<br>2. Nhập `Piastri`, click [Tìm] — bảng hiện 1 dòng `PIA \| Oscar Piastri \| 06/04/2001 \| Úc \| (chưa có)`.<br>3. Click [Chọn] ở dòng `PIA` — bảng "Hợp đồng cũ" rỗng, nút [Lưu] chưa active.<br>4. Chọn đội đua `McLaren`, nhập ngày bắt đầu `01/01/2025` — nút [Lưu] chuyển sang active.<br>5. Click [Lưu]. | Thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng `Oscar Piastri — McLaren — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 1 dòng `McLaren \| 01/01/2025 \| (trống)`. **CSDL:** `tblHopDong` thêm bản ghi mới `id = 5 \| 6 (PIA) \| 3 (McLaren) \| 01/01/2025 \| (trống)`; `tblTayDua`, `tblDoiDua` không thay đổi |
+| KHD_10 | Ký hợp đồng khi tay đua đang có hợp đồng hiệu lực — hệ thống tự đóng hợp đồng cũ | 1. Nhập `Hamilton`, click [Tìm], click [Chọn] ở dòng `HAM` — bảng "Hợp đồng cũ" có 1 dòng `Mercedes \| 01/01/2013 \| (trống)`.<br>2. Chọn đội đua `Ferrari`, nhập ngày bắt đầu `01/01/2025`.<br>3. Click [Lưu]. | Thông báo "Lưu hợp đồng thành công" kèm bản in `Lewis Hamilton — Ferrari — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 2 dòng. **CSDL:** `tblHopDong`: hợp đồng cũ id = 1 (HAM — Mercedes) được tự động đóng với `ngayKetThuc = 31/12/2024`; thêm bản ghi mới `HAM — Ferrari — 01/01/2025 — (trống)` |
+| KHD_11 | Ngày bắt đầu chồng lấn hợp đồng đã đóng — báo lỗi, không lưu | 1. Nhập `Sainz`, click [Tìm], click [Chọn] ở dòng `SAI` — bảng "Hợp đồng cũ" có 1 dòng `Ferrari \| 01/01/2021 \| 31/12/2024`.<br>2. Chọn đội đua `Williams`, nhập ngày bắt đầu `01/06/2023`.<br>3. Click [Lưu]. | Thông báo lỗi màu đỏ ngay dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này"; dữ liệu đã nhập giữ nguyên trên form để sửa lại. **CSDL: không bảng nào thay đổi** — `tblHopDong` vẫn giữ đúng 4 bản ghi như Data test |
+| KHD_12 | Không tìm thấy tay đua — thêm tay đua mới rồi ký hợp đồng | 1. Nhập `Antonelli`, click [Tìm] — hiện "Không tìm thấy tay đua nào".<br>2. Click [+ Thêm tay đua mới] — form thêm tay đua hiện ra, nút [Lưu tay đua] chưa active.<br>3. Nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử `Tay đua trẻ của học viện Mercedes`, click [Lưu tay đua].<br>4. Bảng kết quả nạp lại dòng `ANT`; click [Chọn].<br>5. Chọn đội đua `Mercedes`, nhập ngày bắt đầu `01/01/2025`, click [Lưu]. | Sau bước 3: tay đua mới được lưu, bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`. Sau bước 5: thông báo "Lưu hợp đồng thành công" kèm bản in `Andrea Kimi Antonelli — Mercedes — từ 01/01/2025`. **CSDL:** `tblTayDua` thêm bản ghi mới `ANT — Andrea Kimi Antonelli — 25/08/2006 — Ý`; `tblHopDong` thêm bản ghi mới `ANT — Mercedes — 01/01/2025 — (trống)` |
+
+---
+
+## CHƯƠNG 5: MODULE 2 — ĐĂNG KÝ TAY ĐUA THAM GIA CHẶNG ĐUA
+
+**Thành viên thực hiện:** Trần Xuân Kiên — **Use case:** Đăng ký tay đua tham gia chặng đua
 
 ### 5.1. Biểu đồ Use Case chi tiết
 
-Use case "Ký hợp đồng" include các use case con: Đăng nhập, Tìm tay đua, Nhập thông tin hợp đồng. Use case "Nhập thông tin hợp đồng" được extend bởi "Thêm tay đua" (chỉ xảy ra khi tay đua chưa có trong hệ thống).
+Use case chính của module là **`Đăng ký tay đua tham gia chặng đua`**, do actor **Nhân viên** thực hiện. Trước khi thực hiện chức năng, nhân viên phải đăng nhập thành công, nên use case chính **include** use case dùng chung `Đăng nhập` (giáo trình mục 3.1.3: phân rã "Đăng nhập → đề xuất UC đăng nhập… UC chính include UC này"). Đăng nhập là giao diện dùng chung của toàn hệ thống, không phải màn hình riêng của module.
 
-(Hình 5.1 — Biểu đồ Use Case chi tiết Module 1)
+Theo quy tắc "mỗi giao diện tương tác với người dùng đề xuất thành một use case con", module có 2 màn hình hiển thị nên tách thành 2 use case con giao diện:
+
+| Màn hình | Use case con | Quan hệ với UC chính |
+|---|---|---|
+| (dùng chung hệ thống) | `Đăng nhập` | include |
+| Chọn chặng và đội | `Chọn chặng và đội` | include |
+| Đăng ký tay đua | `Chọn tay đua đăng ký` | include |
+
+Ghi chú:
+- Use case `Đăng nhập` là use case con dùng chung toàn hệ thống nên **không** tạo lớp biên / trang `.jsp` / lifeline riêng trong module này; đặc tả vẫn giữ "đã đăng nhập" ở Tiền điều kiện và kịch bản mở đầu sau khi đăng nhập.
+- Trang chính `gdChinhNV.jsp` là trang chủ chung của hệ thống, **không** sinh use case con (hình mẫu UC chi tiết của giáo trình không có UC "trang chủ").
+- Trang xử lý `doLuuDangKy.jsp` không hiển thị giao diện cho người dùng nên **không** sinh use case con.
+- Số use case con giao diện của module (2) = số màn hình (2) = số lớp biên màn hình (2) = số trang `.jsp` hiển thị của module (2).
+
+![Biểu đồ Use Case chi tiết Module 2](<../Module 2 - Kin/hinh/m2-uc-chitiet.png>)
+
+*Hình 5.1 — Biểu đồ Use Case chi tiết Module 2*
 
 ### 5.2. Đặc tả Use Case
 
 | Mục | Nội dung |
 |---|---|
-| Use case | Ký hợp đồng tay đua với đội đua |
-| Actor | Nhân viên |
-| Tiền điều kiện | Nhân viên đã đăng nhập |
-| Hậu điều kiện | Một hợp đồng mới hợp lệ được lưu và in ra |
-| Kịch bản chính | 1. Chọn menu Ký hợp đồng. 2. Hệ thống hiện giao diện tìm tay đua. 3. Nhập tên, click Tìm. 4. Hệ thống hiện danh sách tay đua. 5. Chọn tay đua. 6. Hệ thống hiện chi tiết + hợp đồng cũ. 7. Chọn đội, chỉ nhập ngày bắt đầu hiệu lực, click Lưu. 8. Hệ thống: nếu tay đua còn hợp đồng hiệu lực → tự động đóng hợp đồng cũ (ngày kết thúc = ngày bắt đầu mới − 1); lưu hợp đồng mới (ngày kết thúc để trống) và in hợp đồng. |
-| Ngoại lệ | 4a. Không tìm thấy → thêm tay đua mới. 8a. Ngày bắt đầu chồng lấn khoảng thời gian của hợp đồng đã đóng (lịch sử) → báo lỗi, yêu cầu nhập lại. |
+| **Use case** | Đăng ký tay đua tham gia chặng đua |
+| **Actor** | Nhân viên |
+| **Tiền điều kiện** | Nhân viên đã đăng nhập hệ thống. Mùa giải 2025 đang ở trạng thái "Đang diễn ra". Chặng đua và đội đua đã có trong danh mục. Hợp đồng giữa tay đua và đội đua đã được nhập ở module "Ký hợp đồng tay đua với đội đua". |
+| **Hậu điều kiện** | Danh sách đăng ký (tối đa 2 tay đua) của đội cho chặng đua được lưu vào CSDL; hệ thống hiển thị lại danh sách xuất phát của chặng để nhân viên đối soát và in cho ban tổ chức. |
+| **Kịch bản chính** | 1. Nhân viên (sau khi đăng nhập) đang ở trang chính của hệ thống, click chức năng "Đăng ký thi đấu".<br>2. Hệ thống hiển thị màn hình **Chọn chặng và đội**: ô chọn "Chặng đua" đang rỗng, danh sách thả xuống gồm các dòng `R01 - Australian Grand Prix - Melbourne - 16/03/2025`, `R02 - Chinese Grand Prix - Thượng Hải - 23/03/2025`, `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, `R10 - British Grand Prix - Silverstone - 06/07/2025`, `R16 - Italian Grand Prix - Monza - 07/09/2025`, `R24 - Abu Dhabi Grand Prix - Yas Marina - 07/12/2025`; ô chọn "Đội đua" đang rỗng, danh sách thả xuống gồm `Ferrari`, `Red Bull`, `Mercedes`, `McLaren`, `Aston Martin`, `Williams`; nút [Tiếp tục] **chưa được active**.<br>3. Nhân viên chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025` và chọn đội `Red Bull`; nút [Tiếp tục] **chuyển sang active**.<br>4. Nhân viên click [Tiếp tục].<br>5. Hệ thống hiển thị màn hình **Đăng ký tay đua** với tiêu đề `Chặng R06 - Monaco Grand Prix - 25/05/2025 \| Đội Red Bull`; bảng tay đua có các cột **Chọn \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Trạng thái đăng ký**, chỉ liệt kê tay đua đang có hợp đồng hiệu lực với Red Bull tại ngày 25/05/2025 và **sắp xếp tăng dần theo alphabet của cột Tên**, có 2 dòng: `☐ \| VER \| Max Verstappen \| 30/09/1997 \| Hà Lan \| Chưa đăng ký` và `☐ \| TSU \| Yuki Tsunoda \| 11/05/2000 \| Nhật Bản \| Chưa đăng ký`; nút [Lưu] **chưa được active**, nút [Sửa] **chưa được active**.<br>6. Nhân viên tick chọn dòng `VER - Max Verstappen`; nút [Lưu] **chuyển sang active**.<br>7. Nhân viên tick chọn dòng `TSU - Yuki Tsunoda`.<br>*(Lặp lại bước 6–7 cho đến khi tick xong các tay đua mà đội yêu cầu, nhiều nhất 2 tay đua.)*<br>8. Nhân viên click [Lưu].<br>9. Hệ thống kiểm tra lần lượt: số tay đua được tick là 2 (≤ 2 — hợp lệ); `Max Verstappen` và `Yuki Tsunoda` đều chưa đăng ký chặng R06 cho đội nào khác (hợp lệ); ngày hiện tại 20/05/2025 vẫn trước thời gian diễn ra chặng 25/05/2025 (hợp lệ).<br>10. Hệ thống lưu 2 dòng đăng ký vào CSDL, hiển thị lại màn hình Đăng ký tay đua: cột **Trạng thái đăng ký** của 2 dòng vừa lưu đổi thành `Đã đăng ký (Red Bull)`; phía dưới hiện bảng **danh sách xuất phát** của chặng R06 với các cột **Đội \| Tay đua 1 \| Tay đua 2**, có 1 dòng `Red Bull \| Max Verstappen \| Yuki Tsunoda`; nút [Sửa] **chuyển sang active**.<br>11. Nhân viên đối soát danh sách xuất phát, in gửi ban tổ chức rồi click [OK]; hệ thống quay về trang chính. |
+| **Ngoại lệ** | **5a.** Đội được chọn không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng (ví dụ chọn `R06 - Monaco Grand Prix` và đội `Aston Martin` khi chưa nhập hợp đồng nào cho đội này) → bảng tay đua rỗng, hệ thống hiển thị thông báo "Đội Aston Martin không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng R06", nút [Lưu] vẫn chưa được active; nhân viên quay lại màn hình Chọn chặng và đội.<br>**5b.** Chặng và đội được chọn đã có đăng ký từ trước (ví dụ `R06` + `Red Bull` đã đăng ký `Max Verstappen`, `Yuki Tsunoda`) → hệ thống hiển thị bảng tay đua với các tay đua đang đăng ký **được tick sẵn**, cột Trạng thái đăng ký ghi `Đã đăng ký (Red Bull)`; nút [Sửa] **đang active**. Nhân viên click [Sửa], bỏ tick `Yuki Tsunoda` (chấn thương), rồi click [Lưu] để lưu lại danh sách mới — đây là luồng thay tay đua trước ngày đua.<br>**8a.** Số tay đua được tick lớn hơn 2 (ví dụ tại chặng `R10 - British Grand Prix - 06/07/2025`, đội `Ferrari` có 3 tay đua hợp đồng hiệu lực là `Charles Leclerc`, `Lewis Hamilton` và `Carlos Sainz` — Sainz vừa ký hợp đồng mới với Ferrari giữa mùa — nhân viên tick cả 3) → hệ thống báo lỗi "Mỗi đội chỉ được đăng ký tối đa 2 tay đua trong một chặng", không lưu, giữ nguyên màn hình để nhân viên bỏ bớt tick rồi lưu lại.<br>**8b.** Một tay đua được tick đã được đăng ký chặng này cho đội khác (ví dụ `Carlos Sainz` đã được đăng ký chặng `R10` cho `Williams` trước khi chuyển sang `Ferrari`, nhân viên vẫn tick `Carlos Sainz` ở màn đăng ký của đội `Ferrari`) → hệ thống báo lỗi "Tay đua Carlos Sainz đã được đăng ký cho đội Williams ở chặng R10", không lưu dòng nào.<br>**8c.** Ngày hiện tại đã qua thời gian diễn ra chặng (ví dụ sửa đăng ký chặng `R01 - 16/03/2025` vào ngày 20/05/2025) → hệ thống báo lỗi "Chặng đã diễn ra, không được thay đổi danh sách đăng ký", không lưu. |
 
-### 5.3. Biểu đồ hoạt động
+### 5.3. Biểu đồ trạng thái (phân tích hoạt động)
 
-(Hình 5.2 — Biểu đồ hoạt động Module 1)
+Theo giáo trình (mục 3.2.4): **mỗi trạng thái = một lần hệ thống hiển thị một giao diện và chờ tương tác của người dùng**; cung chuyển trạng thái = hành động của người dùng, ghi trong nhãn `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính** của nhân viên: `Hiển thị GD chính NV` —`[click Đăng ký thi đấu]`→ `Hiển thị GD chọn chặng và đội` (cung tự quay `[chọn chặng / chọn đội]`) —`[click Tiếp tục]`→ `Hiển thị GD đăng ký tay đua` (cung tự quay `[tick chọn tay đua]`, cung `[click Quay lại]` trở về màn chọn chặng và đội) —`[click Lưu, hợp lệ]`→ `Hiển thị thông báo + danh sách xuất phát` —`[click OK]`→ Kết thúc.
+
+Các ràng buộc nghiệp vụ (tối đa 2 tay đua, trùng đăng ký, chỉ lưu trước ngày đua…) không xuất hiện ở đây — chúng được thể hiện bằng các node quyết định trong **biểu đồ hoạt động pha thiết kế** (mục 5.7).
+
+![Biểu đồ trạng thái Module 2](<../Module 2 - Kin/hinh/m2-trangthai.png>)
+
+*Hình 5.2 — Biểu đồ trạng thái Module 2 (phân tích hoạt động)*
 
 ### 5.4. Biểu đồ lớp phân tích
 
-(Hình 5.3 — Biểu đồ lớp phân tích Module 1)
+Biểu đồ chỉ gồm **hai tầng**: lớp biên và lớp thực thể. Không có lớp điều khiển; nghiệp vụ được gán thẳng cho lớp thực thể.
+
+**Lớp biên** (mỗi màn hình một lớp, chỉ có thuộc tính, đặt tên theo chức năng dữ liệu `in / out / inout / sub / outsub`):
+
+| Lớp biên | Màn hình | Thuộc tính |
+|---|---|---|
+| `GDChinhNV` | Trang chính của nhân viên (trang chủ chung hệ thống) | `-subDangKyChang` |
+| `GDChonChangDoi` | Chọn chặng và đội | `-inChangDua`, `-inDoiDua`, `-subTiepTuc` |
+| `GDDangKyTayDua` | Đăng ký tay đua | `-outsubDSTayDua`, `-subLuu`, `-subSua`, `-outDSXuatPhat`, `-subQuayLai` |
+
+Lớp biên `GDChinhNV` là **giao diện chính** của actor Nhân viên (theo mẫu `GDChinhSV{-subDangki}` của giáo trình): chỉ có nút/liên kết `-subDangKyChang` dẫn vào chức năng của module, nối `--` sang lớp biên đầu tiên `GDChonChangDoi`. Trang chính là trang chủ chung của hệ thống nên không sinh use case con và không cần mockup riêng.
+
+Hai thuộc tính `-outDSXuatPhat` và `-subQuayLai` tương ứng với bảng **danh sách xuất phát** (hiện ra sau khi lưu, các cột Đội | Tay đua 1 | Tay đua 2) và nút **[Quay lại]** trên màn hình Đăng ký tay đua — mọi thành phần hiện dữ liệu ra hoặc submit trên mockup đều phải có đúng một thuộc tính tương ứng ở lớp biên (xem mục 5.5).
+
+**Phương thức nghiệp vụ gán cho lớp thực thể:**
+
+| Chức năng cần thực hiện dưới tầng giao diện | Gán cho lớp | Phương thức |
+|---|---|---|
+| Lấy danh sách chặng đua của mùa giải | `ChangDua` | `getDSChangDua()` |
+| Lấy danh sách đội đua | `DoiDua` | `getDSDoiDua()` |
+| Tìm tay đua có hợp đồng hiệu lực với đội tại thời điểm chặng | `HopDong` | `getTayDuaHieuLuc(doiDuaId, thoiGianChang)` |
+| Đếm số tay đua đội đã đăng ký trong chặng (ràng buộc ≤ 2) | `DangKyChang` | `demSoTayDua(changDuaId, doiDuaId)` |
+| Kiểm tra tay đua đã đăng ký chặng này chưa (ràng buộc trùng) | `DangKyChang` | `daDangKy(changDuaId, tayDuaId)` |
+| Lưu một dòng đăng ký | `DangKyChang` | `luuDangKy()` |
+| Lấy danh sách xuất phát của chặng | `DangKyChang` | `getDangKyCuaChang(changDuaId)` |
+
+Biểu đồ giữ nguyên toàn bộ quan hệ giữa các lớp thực thể như ở biểu đồ lớp thực thể chung của nhóm (Chương 3), kể cả các lớp không liên quan trực tiếp tới module; chỉ vẽ những phương thức nghiệp vụ mà Module 2 sử dụng (danh sách đầy đủ xem mục 3.2.2). Ở pha phân tích, lớp thực thể **chưa có thuộc tính `id`** và **chưa khai báo kiểu dữ liệu**.
+
+![Biểu đồ lớp phân tích Module 2](<../Module 2 - Kin/hinh/m2-lop-phantich.png>)
+
+*Hình 5.3 — Biểu đồ lớp phân tích Module 2*
 
 ### 5.5. Thiết kế giao diện
 
-(Hình 5.4 — Giao diện tìm tay đua)
+Module có **2 màn hình hiển thị**, nối tiếp nhau theo luồng: **Chọn chặng và đội → Đăng ký tay đua**. Điểm vào của luồng là **trang chính** `gdChinhNV.jsp` (lớp biên `GDChinhNV`) — trang chủ chung của hệ thống chứa liên kết "Đăng ký thi đấu"; trang này dùng chung cho mọi module nên **không cần mockup riêng**.
 
-(Hình 5.5 — Giao diện nhập hợp đồng)
+**Màn hình 1 — Chọn chặng và đội** (`gdChonChangDoi.jsp`, lớp biên `GDChonChangDoi`). Tiêu đề: "Đăng ký tay đua tham gia chặng đua — Bước 1: Chọn chặng và đội". Thân màn hình gồm hai danh sách thả xuống xếp theo chiều dọc: **Chặng đua** (`inChangDua`), mỗi dòng hiển thị dạng `Mã - Tên chặng - Địa điểm - Thời gian`, chỉ lấy các chặng thuộc mùa giải đang diễn ra (2025) và sắp xếp tăng dần theo thời gian (`R01 - Australian Grand Prix - Melbourne - 16/03/2025` … `R24 - Abu Dhabi Grand Prix - Yas Marina - 07/12/2025`); **Đội đua** (`inDoiDua`), mỗi dòng hiển thị dạng `Tên đội (Hãng)`, ví dụ `Red Bull (Honda RBPT)`. Cuối màn hình là nút **[Tiếp tục]** (`subTiepTuc`), mặc định **chưa được active**; chỉ khi cả hai ô chọn đều đã có giá trị thì nút mới chuyển sang active. Click [Tiếp tục] → hệ thống chuyển sang màn hình 2, mang theo chặng và đội vừa chọn.
 
-### 5.6. Biểu đồ lớp thiết kế (MVC)
+![Giao diện chọn chặng và đội](<../Module 2 - Kin/hinh/m2-giaodien-chonchangdoi.png>)
 
-(Hình 5.6 — Biểu đồ lớp thiết kế MVC Module 1)
+*Hình 5.4 — Giao diện Chọn chặng và đội (Module 2)*
 
-### 5.7. Biểu đồ tuần tự
+**Màn hình 2 — Đăng ký tay đua** (`gdDangKyTayDua.jsp`, lớp biên `GDDangKyTayDua`). Tiêu đề nhắc lại lựa chọn ở bước trước: `Chặng R06 - Monaco Grand Prix - 25/05/2025 | Đội Red Bull`. Thân màn hình gồm **bảng tay đua** (`outsubDSTayDua`) — vừa hiển thị vừa cho tick chọn, gồm các cột **Chọn | Mã | Tên | Ngày sinh | Quốc tịch | Trạng thái đăng ký**, chỉ liệt kê tay đua có hợp đồng hiệu lực với đội đã chọn tại thời điểm chặng và **sắp xếp tăng dần theo alphabet của cột Tên**. Cột Trạng thái đăng ký nhận một trong ba giá trị: `Chưa đăng ký`, `Đã đăng ký (<tên đội>)` khi tay đua đã được đăng ký chặng này cho chính đội đang xem, hoặc `Đã đăng ký (<tên đội khác>)` khi tay đua đã bị đội khác đăng ký — trường hợp cuối là cảnh báo trực quan cho ràng buộc trùng đăng ký. **Nút [Lưu]** (`subLuu`) mặc định chưa active, chuyển sang active khi có ít nhất một dòng được tick; click [Lưu] gửi dữ liệu sang trang xử lý `doLuuDangKy.jsp` — trang này kiểm tra ba ràng buộc (tối đa 2 tay đua mỗi đội mỗi chặng, mỗi tay đua chỉ đăng ký một lần trong một chặng, chỉ được lưu trước thời gian diễn ra chặng) rồi ghi CSDL và quay lại chính màn hình Đăng ký tay đua. **Nút [Sửa]** (`subSua`) chỉ active khi chặng và đội đang xem đã có đăng ký trong CSDL; click [Sửa] mở khóa các ô tick để nhân viên thay tay đua trước ngày đua rồi click [Lưu] ghi đè danh sách cũ. **Bảng danh sách xuất phát** (`outDSXuatPhat`) — chỉ hiển thị, nằm dưới bảng tay đua, ban đầu chưa hiện, chỉ hiện sau khi lưu thành công, gồm các cột **Đội | Tay đua 1 | Tay đua 2** — với dữ liệu mẫu là 1 dòng `Red Bull | Max Verstappen | Yuki Tsunoda`; đây chính là danh sách nhân viên đối soát và in gửi ban tổ chức. **Nút [Quay lại]** (`subQuayLai`) ở góc dưới bên trái: trở về màn hình 1, giữ nguyên chặng đang chọn để nhân viên chọn đội khác. Sau khi lưu thành công, cột Trạng thái đăng ký của các tay đua vừa lưu đổi thành `Đã đăng ký (Red Bull)`.
 
-(Hình 5.7 — Biểu đồ tuần tự Module 1)
+![Giao diện đăng ký tay đua](<../Module 2 - Kin/hinh/m2-giaodien-dangkytaydua.png>)
 
-### 5.8. Test case
+*Hình 5.5 — Giao diện Đăng ký tay đua (Module 2)*
 
-| ID | Mục tiêu | Dữ liệu vào | Kết quả mong đợi |
+### 5.6. Biểu đồ lớp thiết kế (view `.jsp` / `DAO` / `model`)
+
+Kiến trúc phân tầng gồm 3 gói. Tầng điều khiển của mô hình chính là **các lớp DAO** (lớp truy xuất dữ liệu), **không có lớp `Controller` riêng**. Biểu đồ vẽ theo mẫu Hình 4.4 của giáo trình:
+
+- **Gói `view`** — các trang jsp: `gdChinhNV` (trang chính), `gdChonChangDoi` (màn hình 1), `gdDangKyTayDua` (màn hình 2), `doLuuDangKy` (trang xử lý lưu, không hiển thị giao diện). Mỗi trang có thuộc tính **kèm kiểu control** (`Select` — danh sách thả xuống, `Table` — bảng, `link` — liên kết, `submit` — nút bấm) và các **thuộc tính ẩn**: đối tượng phiên `-nv : NhanVien` và dữ liệu truyền giữa các trang (`-changDua : ChangDua`, `-doiDua : DoiDua`, `-listTayDua : TayDua[]`, `-listDangKy : DangKyChang[]`).
+- **Gói `dao`** — lớp cha `DAO` giữ kết nối CSDL dùng chung (`-con : Connection`); các lớp `ChangDuaDAO`, `DoiDuaDAO`, `HopDongDAO`, `DangKyChangDAO` **kế thừa** lớp `DAO`, mỗi lớp có **constructor** và các phương thức ghi **đầy đủ chữ ký** (tham số : kiểu, kiểu trả về — mảng `Xxx[]` cho thao tác đọc danh sách, `boolean` cho thao tác ghi), ví dụ `+getTayDuaHieuLuc(doiDuaId : int, thoiGianChang : Date) : TayDua[]`, `+luuDangKy(dk : DangKyChang) : boolean`.
+- **Gói `model`** — các lớp thực thể: `ChangDua`, `DoiDua`, `TayDua`, `HopDong`, `DangKyChang`.
+
+Module không cần `TayDuaDAO` riêng — danh sách tay đua hợp lệ được lấy qua `HopDongDAO.getTayDuaHieuLuc()` (lọc theo hợp đồng còn hiệu lực tại thời điểm chặng) rồi đóng gói bằng lớp `TayDua`, nên `HopDongDAO` gắn với cả hai lớp model `HopDong` và `TayDua`.
+
+![Biểu đồ lớp thiết kế Module 2](<../Module 2 - Kin/hinh/m2-lop-mvc.png>)
+
+*Hình 5.6 — Biểu đồ lớp thiết kế Module 2 (view `.jsp` / `DAO` / `model`)*
+
+### 5.7. Biểu đồ hoạt động (pha thiết kế)
+
+Theo giáo trình (mục 4.3.2 bước 1): **mỗi hành động tương ứng một phương thức đã thiết kế trong biểu đồ lớp** (mục 5.6). Các hành động được nhóm theo khung `Xử lí tại gdXxx.jsp` cho **từng trang jsp** (kể cả trang xử lý `doLuuDangKy.jsp` và trang chính `gdChinhNV.jsp`); lời gọi DAO ghi rõ dạng `XxxDAO: tenHam()`; guard trên cung chuyển ghi `[click …]`, `[lưu xong]`… Các nhánh kiểm tra ràng buộc nghiệp vụ là node quyết định đặt trong khung của trang xử lý tương ứng, phủ đủ 5 ngoại lệ ở đặc tả mục 5.2: 5a, 5b (tại `gdDangKyTayDua.jsp`) và 8a, 8b, 8c (tại `doLuuDangKy.jsp`). Ba nhánh báo lỗi 8a, 8b, 8c kết thúc bằng node Kết thúc cho gọn hình; trên thực tế, sau khi hệ thống báo lỗi, nhân viên chỉnh lại tick rồi thực hiện lại từ hành động "Nhận thông tin tick chọn tay đua".
+
+![Biểu đồ hoạt động Module 2](<../Module 2 - Kin/hinh/m2-hoatdong.png>)
+
+*Hình 5.7 — Biểu đồ hoạt động Module 2 (pha thiết kế)*
+
+### 5.8. Thuyết minh (kịch bản phiên bản 3)
+
+Kịch bản dưới đây chỉ mô tả **luồng chính**; các ngoại lệ đã nêu ở đặc tả use case mục 5.2. Mỗi dòng tương ứng với một message trong biểu đồ tuần tự ở mục 5.9 (58 dòng — 58 message). Luồng **đọc** dữ liệu giữ chuỗi 7 message (DAO self-call tên hàm + lớp thực thể self-call constructor); luồng **lưu** theo mẫu Hình 4.12 của giáo trình: lớp thực thể tự đóng gói dữ liệu nhập bằng `setter()` **trước**, rồi trang xử lý mới gọi DAO lưu (DAO không gọi lại lớp thực thể nữa).
+
+1. Nhân viên (sau khi đăng nhập) đang ở trang chính gdChinhNV.jsp, click chức năng "Đăng ký thi đấu".
+2. Trang gdChinhNV.jsp gọi trang gdChonChangDoi.jsp.
+3. Trang gdChonChangDoi.jsp gọi lớp ChangDuaDAO yêu cầu lấy danh sách chặng đua của mùa giải đang diễn ra.
+4. Lớp ChangDuaDAO gọi hàm getDSChangDua().
+5. Hàm getDSChangDua() gọi lớp ChangDua để đóng gói thông tin.
+6. Lớp ChangDua đóng gói thông tin thực thể.
+7. Lớp ChangDua trả kết quả về cho hàm getDSChangDua().
+8. Hàm getDSChangDua() trả kết quả cho trang gdChonChangDoi.jsp.
+9. Trang gdChonChangDoi.jsp gọi lớp DoiDuaDAO yêu cầu lấy danh sách đội đua.
+10. Lớp DoiDuaDAO gọi hàm getDSDoiDua().
+11. Hàm getDSDoiDua() gọi lớp DoiDua để đóng gói thông tin.
+12. Lớp DoiDua đóng gói thông tin thực thể.
+13. Lớp DoiDua trả kết quả về cho hàm getDSDoiDua().
+14. Hàm getDSDoiDua() trả kết quả cho trang gdChonChangDoi.jsp.
+15. Trang gdChonChangDoi.jsp hiển thị hai danh sách thả xuống cho nhân viên.
+16. Nhân viên chọn chặng đua "R06 - Monaco Grand Prix - 25/05/2025".
+17. Nhân viên chọn đội đua "Red Bull".
+18. Nhân viên click nút [Tiếp tục].
+19. Trang gdChonChangDoi.jsp gọi trang gdDangKyTayDua.jsp.
+20. Trang gdDangKyTayDua.jsp gọi lớp HopDongDAO yêu cầu tìm các tay đua có hợp đồng hiệu lực với đội tại thời điểm chặng.
+21. Lớp HopDongDAO gọi hàm getTayDuaHieuLuc().
+22. Hàm getTayDuaHieuLuc() gọi lớp TayDua để đóng gói thông tin.
+23. Lớp TayDua đóng gói thông tin thực thể.
+24. Lớp TayDua trả kết quả về cho hàm getTayDuaHieuLuc().
+25. Hàm getTayDuaHieuLuc() trả kết quả cho trang gdDangKyTayDua.jsp.
+26. Trang gdDangKyTayDua.jsp gọi lớp DangKyChangDAO yêu cầu kiểm tra trạng thái đăng ký của từng tay đua trong chặng.
+27. Lớp DangKyChangDAO gọi hàm daDangKy().
+28. Hàm daDangKy() gọi lớp DangKyChang để đóng gói thông tin.
+29. Lớp DangKyChang đóng gói thông tin thực thể.
+30. Lớp DangKyChang trả kết quả về cho hàm daDangKy().
+31. Hàm daDangKy() trả kết quả cho trang gdDangKyTayDua.jsp.
+32. Trang gdDangKyTayDua.jsp hiển thị bảng tay đua (sắp xếp theo alphabet của cột Tên) cho nhân viên.
+33. Nhân viên tick chọn một tay đua (lặp lại cho đến khi chọn xong các tay đua đội yêu cầu, nhiều nhất 2).
+34. Nhân viên click nút [Lưu].
+35. Trang gdDangKyTayDua.jsp gọi trang doLuuDangKy.jsp.
+36. Trang doLuuDangKy.jsp gọi lớp DangKyChangDAO yêu cầu đếm số tay đua mà đội đã đăng ký trong chặng.
+37. Lớp DangKyChangDAO gọi hàm demSoTayDua().
+38. Hàm demSoTayDua() gọi lớp DangKyChang để đóng gói thông tin.
+39. Lớp DangKyChang đóng gói thông tin thực thể.
+40. Lớp DangKyChang trả kết quả về cho hàm demSoTayDua().
+41. Hàm demSoTayDua() trả kết quả cho trang doLuuDangKy.jsp.
+42. Trang doLuuDangKy.jsp gọi lớp DangKyChang yêu cầu đóng gói dữ liệu một dòng đăng ký (lặp lại các bước 42–47 cho từng tay đua được chọn).
+43. Lớp DangKyChang gọi hàm setter() tự đóng gói dữ liệu đăng ký vừa nhập.
+44. Lớp DangKyChang trả về cho trang doLuuDangKy.jsp.
+45. Trang doLuuDangKy.jsp gọi lớp DangKyChangDAO yêu cầu lưu dòng đăng ký.
+46. Lớp DangKyChangDAO gọi hàm luuDangKy().
+47. Hàm luuDangKy() trả kết quả cho trang doLuuDangKy.jsp.
+48. Trang doLuuDangKy.jsp gọi lớp DangKyChangDAO yêu cầu lấy danh sách xuất phát của chặng.
+49. Lớp DangKyChangDAO gọi hàm getDangKyCuaChang().
+50. Hàm getDangKyCuaChang() gọi lớp DangKyChang để đóng gói thông tin.
+51. Lớp DangKyChang đóng gói thông tin thực thể.
+52. Lớp DangKyChang trả kết quả về cho hàm getDangKyCuaChang().
+53. Hàm getDangKyCuaChang() trả kết quả cho trang doLuuDangKy.jsp.
+54. Trang doLuuDangKy.jsp trả kết quả kèm thông báo thành công cho trang gdDangKyTayDua.jsp.
+55. Trang gdDangKyTayDua.jsp hiển thị thông báo thành công và danh sách xuất phát cho nhân viên đối soát.
+56. Nhân viên click nút [OK].
+57. Trang gdDangKyTayDua.jsp gọi trang gdChinhNV.jsp.
+58. Trang gdChinhNV.jsp hiển thị cho nhân viên.
+
+### 5.9. Biểu đồ tuần tự
+
+Lifeline gồm: actor Nhân viên + trang chính `gdChinhNV.jsp` (mở đầu và kết thúc, theo mẫu Hình 4.10) + 3 trang jsp của module + 4 lớp DAO + 4 lớp thực thể. Không có lifeline cơ sở dữ liệu, không có lifeline điều khiển, không có câu lệnh SQL trong nhãn message; message được đánh số tự động (trong Visual Paradigm bật *Show sequence number*). Luồng **đọc** là chuỗi 7 message (`goi` → self-call tên hàm ở DAO → `goi` → self-call hàm khởi tạo ở lớp thực thể → `tra ve` → `tra ve` → `hien thi`); luồng **lưu** theo mẫu `setter()` (Hình 4.12): lớp thực thể self-call `setter()` đóng gói trước, rồi DAO self-call `luuDangKy()` — không gọi lại lớp thực thể. Biểu đồ giữ hai khối `loop` cho vòng lặp tick chọn tay đua và vòng lặp lưu từng dòng đăng ký. Kết thúc: thông báo thành công kèm danh sách xuất phát hiển thị trên `gdDangKyTayDua.jsp` để nhân viên đối soát, click OK → gọi trang chính → hiển thị. Số thứ tự 58 message khớp 1-1 với 58 dòng thuyết minh ở mục 5.8.
+
+![Biểu đồ tuần tự Module 2](<../Module 2 - Kin/hinh/m2-tuantu.png>)
+
+*Hình 5.8 — Biểu đồ tuần tự Module 2*
+
+### 5.10. Test case
+
+Test case xây dựng theo **quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2**: (1) lập checklist trường hợp cần kiểm thử; (2) viết test case; (3) chuẩn bị data test; (4) chạy và ghi nhận kết quả. Toàn bộ test case gom vào **một bảng 4 cột** `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm: **Giao diện** (2 ca/màn), **Chức năng** (2 ca/màn — kết quả đối chiếu các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, kết quả ghi cả hiệu ứng CSDL). Mã ca: `DKC_n`.
+
+#### 5.10.1. Data test (bước 3 quy trình test)
+
+Toàn bộ các ca dùng chung bộ dữ liệu mùa giải F1 2025 đã thống nhất của nhóm; đây là tiền đề chung cho nhóm **Luồng nghiệp vụ**.
+
+`tblMuaGiai`
+
+| id | ten | nam | trangThai |
 |---|---|---|---|
-| TC1 | Ký hợp đồng hợp lệ | Tay đua A, Đội X, từ 01/01/2026 (ngày kết thúc để trống) | Lưu thành công, in hợp đồng |
-| TC2 | Chặn chồng lấn | A đã có hợp đồng 01/06–31/12; nhập ngày bắt đầu 01/09 | Báo lỗi, không lưu |
-| TC3 | Thêm tay đua khi không tìm thấy | Tên chưa có | Hiện form thêm tay đua |
-| TC4 | Ký hợp đồng mới khi tay đua còn hợp đồng hiệu lực với đội khác | Tay đua A đang có hợp đồng hiệu lực với đội Y, ký mới với đội X | Tự động đóng hợp đồng cũ (ngày kết thúc = ngày bắt đầu mới − 1), lưu hợp đồng mới |
+| 1 | FIA Formula One World Championship | 2025 | Đang diễn ra |
+
+`tblDoiDua`
+
+| id | ma | ten | hang | moTa |
+|---|---|---|---|---|
+| 1 | FER | Ferrari | Ferrari | Scuderia Ferrari |
+| 2 | RBR | Red Bull | Honda RBPT | Oracle Red Bull Racing |
+| 3 | MCL | McLaren | Mercedes | McLaren Formula 1 Team |
+| 4 | MER | Mercedes | Mercedes | Mercedes-AMG Petronas F1 Team |
+| 5 | AST | Aston Martin | Mercedes | Aston Martin Aramco F1 Team |
+| 6 | WIL | Williams | Mercedes | Williams Racing |
+
+`tblTayDua`
+
+| id | ma | ten | ngaySinh | quocTich | tieuSu |
+|---|---|---|---|---|---|
+| 1 | LEC | Charles Leclerc | 16/10/1997 | Monaco | (…) |
+| 2 | HAM | Lewis Hamilton | 07/01/1985 | Anh | (…) |
+| 3 | VER | Max Verstappen | 30/09/1997 | Hà Lan | (…) |
+| 4 | TSU | Yuki Tsunoda | 11/05/2000 | Nhật Bản | (…) |
+| 5 | NOR | Lando Norris | 13/11/1999 | Anh | (…) |
+| 6 | PIA | Oscar Piastri | 06/04/2001 | Úc | (…) |
+| 7 | RUS | George Russell | 15/02/1998 | Anh | (…) |
+| 8 | ANT | Andrea Kimi Antonelli | 25/08/2006 | Ý | (…) |
+| 9 | ALO | Fernando Alonso | 29/07/1981 | Tây Ban Nha | (…) |
+| 10 | STR | Lance Stroll | 29/10/1998 | Canada | (…) |
+| 11 | ALB | Alexander Albon | 23/03/1996 | Thái Lan | (…) |
+| 12 | SAI | Carlos Sainz | 01/09/1994 | Tây Ban Nha | (…) |
+
+`tblChangDua`
+
+| id | ma | ten | soVong | diaDiem | thoiGian | moTa | tblMuaGiaiid |
+|---|---|---|---|---|---|---|---|
+| 1 | R01 | Australian Grand Prix | 58 | Melbourne | 16/03/2025 | (…) | 1 |
+| 2 | R02 | Chinese Grand Prix | 56 | Thượng Hải | 23/03/2025 | (…) | 1 |
+| 3 | R06 | Monaco Grand Prix | 78 | Monte Carlo | 25/05/2025 | (…) | 1 |
+| 4 | R10 | British Grand Prix | 52 | Silverstone | 06/07/2025 | (…) | 1 |
+| 5 | R16 | Italian Grand Prix | 53 | Monza | 07/09/2025 | (…) | 1 |
+| 6 | R24 | Abu Dhabi Grand Prix | 58 | Yas Marina | 07/12/2025 | (…) | 1 |
+
+`tblHopDong`
+
+| id | tblTayDuaid | tblDoiDuaid | ngayBatDau | ngayKetThuc |
+|---|---|---|---|---|
+| 1 | 1 (LEC) | 1 (Ferrari) | 01/01/2019 | (trống) |
+| 2 | 2 (HAM) | 4 (Mercedes) | 01/01/2013 | 31/12/2024 |
+| 3 | 2 (HAM) | 1 (Ferrari) | 01/01/2025 | (trống) |
+| 4 | 3 (VER) | 2 (Red Bull) | 01/01/2016 | (trống) |
+| 5 | 4 (TSU) | 2 (Red Bull) | 01/04/2025 | (trống) |
+| 6 | 5 (NOR) | 3 (McLaren) | 01/01/2019 | (trống) |
+| 7 | 6 (PIA) | 3 (McLaren) | 01/01/2023 | (trống) |
+| 8 | 7 (RUS) | 4 (Mercedes) | 01/01/2022 | (trống) |
+| 9 | 8 (ANT) | 4 (Mercedes) | 01/01/2025 | (trống) |
+| 10 | 11 (ALB) | 6 (Williams) | 01/01/2022 | (trống) |
+| 11 | 12 (SAI) | 6 (Williams) | 01/01/2025 | (trống) |
+
+> Đội `Aston Martin` (id 5) chưa có hợp đồng nào trong hệ thống (hai tay đua `Fernando Alonso` và `Lance Stroll` mới chỉ được nhập vào danh mục tay đua) — dữ liệu này dùng cho các ca DKC_8 và DKC_12.
+
+`tblDangKyChang`
+
+| id | tblChangDuaid | tblTayDuaid | tblDoiDuaid |
+|---|---|---|---|
+| *(bảng rỗng)* | | | |
+
+Ngày hệ thống mặc định khi chạy test: **20/05/2025** (ca nào dùng ngày khác sẽ ghi rõ trong cột Các bước thực hiện).
+
+**Data test bổ sung — giả định chuyển nhượng giữa mùa (dùng cho DKC_10, DKC_11):** ngày `02/07/2025`, `Carlos Sainz` ký hợp đồng mới với `Ferrari` hiệu lực từ `02/07/2025`; theo đúng luồng của Module 1, hệ thống **tự đóng** hợp đồng cũ của Sainz với `Williams` (dòng id 11 nhận `ngayKetThuc = 01/07/2025`), nên tại mọi thời điểm Sainz vẫn chỉ thuộc một đội — không phá ràng buộc "một tay đua tại một thời điểm chỉ thuộc một đội". Kết quả: tại chặng `R10 - British Grand Prix - Silverstone - 06/07/2025`, đội `Ferrari` có **3 tay đua hợp đồng hiệu lực**: `Charles Leclerc`, `Lewis Hamilton`, `Carlos Sainz`; đội `Williams` chỉ còn `Alexander Albon`. Riêng `DKC_11` thêm tiền đề: ngày `01/07/2025` — **trước khi** Sainz chuyển đội — nhân viên đã đăng ký đội `Williams` cho chặng `R10` gồm `Alexander Albon` và `Carlos Sainz`, nên `tblDangKyChang` đã có 2 dòng `(4 - R10, 11 - ALB, 6 - Williams)` và `(4 - R10, 12 - SAI, 6 - Williams)`; ở màn đăng ký của Ferrari, Sainz vừa có hợp đồng hiệu lực tại thời điểm chặng, vừa **đã bị đội cũ đăng ký** cho chính chặng đó.
+
+> Giả định chuyển nhượng này **chỉ áp dụng cho DKC_10 và DKC_11**; các ca còn lại và các module khác vẫn dùng đội hình gốc (Sainz thuộc Williams cả mùa).
+
+#### 5.10.2. Bảng test case
+
+| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|---|---|---|---|
+| **Nhóm Giao diện** | | | |
+| DKC_1 | Bố cục tổng thể màn Chọn chặng và đội | 1. Đăng nhập bằng tài khoản nhân viên.<br>2. Tại trang chính click "Đăng ký thi đấu". | Màn hình hiện đúng title "Đăng ký tay đua tham gia chặng đua — Bước 1: Chọn chặng và đội"; hiển thị đầy đủ 2 danh sách thả xuống "Chặng đua", "Đội đua" (đang rỗng) và nút [Tiếp tục] (chưa active); con trỏ focus vào ô "Chặng đua" |
+| DKC_2 | Hành vi phím màn Chọn chặng và đội | 1. Mở màn Chọn chặng và đội.<br>2. Nhấn Tab lần lượt qua các control.<br>3. Chọn chặng `R06`, chọn đội `Red Bull`, nhấn Enter. | Tab di chuyển đúng thứ tự: ô "Chặng đua" → ô "Đội đua" → nút [Tiếp tục]; khi cả hai ô đã có giá trị, Enter thực hiện nút [Tiếp tục] và chuyển sang màn Đăng ký tay đua |
+| DKC_3 | Bố cục tổng thể màn Đăng ký tay đua | 1. Từ màn 1 chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, đội `Red Bull (Honda RBPT)`, click [Tiếp tục]. | Title hiện `Chặng R06 - Monaco Grand Prix - 25/05/2025 \| Đội Red Bull`; bảng tay đua đủ 6 cột **Chọn \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Trạng thái đăng ký**; hiển thị đầy đủ nút [Lưu], [Sửa], [Quay lại]; focus vào ô tick của dòng đầu; [Lưu] và [Sửa] chưa active |
+| DKC_4 | Hành vi phím màn Đăng ký tay đua | 1. Tại màn Đăng ký tay đua (R06, Red Bull), nhấn Space tại dòng đang focus.<br>2. Nhấn Enter. | Space tick được ô Chọn của dòng đang focus, nút [Lưu] chuyển sang active; Enter thực hiện nút [Lưu] (nút chính của màn) |
+| **Nhóm Chức năng** | | | |
+| DKC_5 | Màn Chọn chặng và đội hiển thị đúng dữ liệu | 1. Mở màn Chọn chặng và đội.<br>2. Mở lần lượt hai danh sách thả xuống. | Danh sách "Chặng đua" có 6 dòng **khớp các bản ghi trong `tblChangDua`** thuộc mùa 2025, sắp xếp tăng dần theo `thoiGian` (R01 → R24); danh sách "Đội đua" có 6 dòng **khớp các bản ghi trong `tblDoiDua`** (hiển thị dạng `Tên đội (Hãng)`) |
+| DKC_6 | Màn Chọn chặng và đội khi không có dữ liệu | 1. Data test riêng: xóa/chuyển các dòng `tblChangDua` sao cho mùa giải đang diễn ra không còn chặng nào.<br>2. Mở màn Chọn chặng và đội. | Danh sách "Chặng đua" rỗng, kèm thông báo "Chưa có chặng đua của mùa giải"; nút [Tiếp tục] không thể chuyển sang active |
+| DKC_7 | Màn Đăng ký tay đua hiển thị đúng dữ liệu | 1. Chọn chặng `R06`, đội `Red Bull (Honda RBPT)`, click [Tiếp tục]. | Bảng tay đua có đúng 2 dòng VER, TSU — **khớp các bản ghi `tblHopDong` còn hiệu lực tại 25/05/2025** của đội id 2, thông tin từng dòng đối chiếu đúng `tblTayDua`; cột Trạng thái đăng ký khớp `tblDangKyChang` (đang rỗng → tất cả `Chưa đăng ký`) |
+| DKC_8 | Màn Đăng ký tay đua khi không có dữ liệu | 1. Chọn chặng `R06`, đội `Aston Martin (Mercedes)` — đội chưa có bản ghi nào trong `tblHopDong`, click [Tiếp tục]. | Bảng tay đua rỗng (chỉ còn dòng tiêu đề); thông báo "Đội Aston Martin không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng R06"; [Lưu], [Sửa] chưa active |
+| **Nhóm Luồng nghiệp vụ** | | | |
+| | **Precond:** nhân viên đã đăng nhập; CSDL đúng trạng thái Data test mục 5.10.1; ngày hệ thống 20/05/2025 (ca nào dùng ngày/data khác sẽ ghi rõ ở bước 1). | | |
+| DKC_9 | Đăng ký 2 tay đua hợp lệ cho chặng chưa có đăng ký (ca chuẩn) | 1. Tại trang chính click "Đăng ký thi đấu".<br>2. Chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, chọn đội `Red Bull (Honda RBPT)`, click [Tiếp tục].<br>3. Tick dòng `VER - Max Verstappen`, tick dòng `TSU - Yuki Tsunoda`.<br>4. Click [Lưu].<br>5. Đối soát danh sách xuất phát, click [OK]. | Bước 4: hệ thống kiểm tra 3 ràng buộc đều hợp lệ (2 ≤ 2 tay đua; VER, TSU chưa đăng ký R06 cho đội khác; 20/05/2025 trước 25/05/2025), thông báo "Đã lưu đăng ký cho đội Red Bull ở chặng R06"; cột Trạng thái đăng ký của VER, TSU đổi thành `Đã đăng ký (Red Bull)`; danh sách xuất phát hiện 1 dòng `Red Bull \| Max Verstappen \| Yuki Tsunoda`; nút [Sửa] chuyển sang active. **CSDL:** `tblDangKyChang` thêm 2 bản ghi `(3 - R06, 3 - VER, 2 - Red Bull)`, `(3 - R06, 4 - TSU, 2 - Red Bull)`; các bảng khác không đổi. Bước 5: hệ thống quay về trang chính |
+| DKC_10 | Tick chọn quá 2 tay đua cho một đội trong một chặng → báo lỗi | 1. Áp data test chuyển nhượng giữa mùa (mục 5.10.1); ngày hệ thống 04/07/2025.<br>2. Chọn chặng `R10 - British Grand Prix - Silverstone - 06/07/2025`, đội `Ferrari (Ferrari)`, click [Tiếp tục].<br>3. Tick cả 3 dòng SAI, LEC, HAM.<br>4. Click [Lưu].<br>5. Bỏ tick dòng `SAI - Carlos Sainz`, click [Lưu]. | Bước 2: bảng hiện 3 dòng theo alphabet của Tên: `Carlos Sainz`, `Charles Leclerc`, `Lewis Hamilton`. Bước 4: báo lỗi "Mỗi đội chỉ được đăng ký tối đa 2 tay đua trong một chặng"; **CSDL:** không dòng nào được ghi vào `tblDangKyChang`; màn hình giữ nguyên 3 ô tick. Bước 5: lưu thành công; danh sách xuất phát hiện `Ferrari \| Charles Leclerc \| Lewis Hamilton`. **CSDL:** `tblDangKyChang` thêm 2 bản ghi `(4 - R10, 1 - LEC, 1 - Ferrari)`, `(4 - R10, 2 - HAM, 1 - Ferrari)` |
+| DKC_11 | Tick chọn tay đua đã được đội khác đăng ký ở chính chặng đó → báo lỗi | 1. Áp data test chuyển nhượng + 2 dòng đăng ký Williams tại R10 (mục 5.10.1); ngày hệ thống 04/07/2025.<br>2. Chọn chặng `R10`, đội `Ferrari (Ferrari)`, click [Tiếp tục].<br>3. Tick dòng `LEC - Charles Leclerc` và dòng `SAI - Carlos Sainz`, click [Lưu].<br>4. Bỏ tick SAI, tick dòng `HAM - Lewis Hamilton`, click [Lưu]. | Bước 2: dòng SAI hiện Trạng thái đăng ký `Đã đăng ký (Williams)` — cảnh báo trực quan ràng buộc trùng. Bước 3: báo lỗi "Tay đua Carlos Sainz đã được đăng ký cho đội Williams ở chặng R10"; **CSDL:** không dòng nào được ghi vào `tblDangKyChang` (kể cả dòng của Leclerc). Bước 4: lưu thành công. **CSDL:** `tblDangKyChang` giữ nguyên 2 dòng Williams (ALB, SAI) và thêm 2 dòng `(4 - R10, 1 - LEC, 1 - Ferrari)`, `(4 - R10, 2 - HAM, 1 - Ferrari)` |
+| DKC_12 | Chọn đội không có tay đua hợp đồng hiệu lực tại thời điểm chặng → thông báo | 1. Chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, đội `Aston Martin (Mercedes)` — chưa có dòng nào trong `tblHopDong`, click [Tiếp tục].<br>2. Click [Quay lại]. | Bước 1: bảng tay đua rỗng, thông báo "Đội Aston Martin không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng R06"; [Lưu], [Sửa] chưa active. Bước 2: hệ thống trở về màn Chọn chặng và đội, giữ nguyên chặng R06 để nhân viên chọn đội khác. **CSDL:** không bảng nào thay đổi |
+| DKC_13 | Thay tay đua trước ngày đua (sửa danh sách đã đăng ký) | 1. Tiền đề: CSDL sau khi chạy DKC_9 — `tblDangKyChang` có 2 dòng VER, TSU của Red Bull tại R06; ngày hệ thống 22/05/2025.<br>2. Chọn chặng `R06`, đội `Red Bull (Honda RBPT)`, click [Tiếp tục].<br>3. Click [Sửa], bỏ tick dòng `TSU - Yuki Tsunoda` (tay đua chấn thương).<br>4. Click [Lưu].<br>5. Đặt ngày hệ thống 26/05/2025 (sau ngày đua), lặp lại bước 2–4. | Bước 2: 2 dòng được **tick sẵn**, Trạng thái `Đã đăng ký (Red Bull)`; [Sửa] đang active, [Lưu] chưa active. Bước 3: các ô tick được mở khóa, [Lưu] chuyển sang active. Bước 4: kiểm tra hợp lệ (1 ≤ 2; 22/05/2025 trước 25/05/2025), thông báo "Đã cập nhật đăng ký cho đội Red Bull ở chặng R06"; danh sách xuất phát đổi thành `Red Bull \| Max Verstappen \| (trống)`; Trạng thái của dòng TSU đổi lại `Chưa đăng ký`. **CSDL:** `tblDangKyChang` chỉ còn dòng `(3 - R06, 3 - VER, 2 - Red Bull)`, dòng của TSU bị xóa. Bước 5: báo lỗi "Chặng đã diễn ra, không được thay đổi danh sách đăng ký"; **CSDL:** `tblDangKyChang` không đổi |
+| DKC_14 | Danh sách tay đua sắp xếp đúng thứ tự alphabet của Tên (đề gốc: "sorted by their alphabetic order of name") | 1. Chọn chặng `R06`, đội `Mercedes (Mercedes)`, click [Tiếp tục].<br>2. Click [Quay lại], đổi đội sang `Williams (Mercedes)`, click [Tiếp tục]. | Bước 1: bảng hiện đúng 2 dòng — dòng đầu `ANT - Andrea Kimi Antonelli`, dòng thứ hai `RUS - George Russell` — theo alphabet của Tên (`Andrea` trước `George`), **không** theo thứ tự id trong `tblTayDua` (RUS id 7 nhập trước, ANT id 8 nhập sau). Bước 2: dòng đầu `ALB - Alexander Albon`, dòng thứ hai `SAI - Carlos Sainz` (`Alexander` trước `Carlos`). **CSDL:** không bảng nào thay đổi (ca chỉ xem) |
+
+#### 5.10.3. Ghi chú về cách trình bày
+
+- Nhóm **Giao diện** và **Chức năng** có 2 ca cho mỗi màn hình (bố cục + hành vi phím; có dữ liệu + không có dữ liệu) theo đúng cấu trúc Bảng 6.7. Nhóm **Luồng nghiệp vụ** gồm 6 ca end-to-end phủ đủ các ràng buộc của đặc tả (5a, 5b, 8a, 8b, 8c) và yêu cầu sắp xếp alphabet của đề gốc.
+- Bảng "CSDL sau khi test" của format cũ được **rút gọn thành mô tả hiệu ứng CSDL** ngay trong cột Kết quả mong muốn của từng ca (phần in đậm **CSDL:**) — đây là cách trình bày theo Bảng 6.7, không phải làm thiếu bước.
+- Các ca có thể chạy nối tiếp trên cùng một CSDL nếu khôi phục trạng thái Data test (mục 5.10.1) trước mỗi ca; riêng DKC_13 chủ ý dùng lại trạng thái CSDL sau khi chạy DKC_9.
 
 ---
 
-## CHƯƠNG 6: MODULE 2 — ĐĂNG KÝ TAY ĐUA THAM GIA CHẶNG ĐUA (Trần Xuân Kiên)
+## CHƯƠNG 6: MODULE 3 — CẬP NHẬT KẾT QUẢ CHẶNG ĐUA
+
+**Thành viên thực hiện:** Nguyễn Minh Kiệt — **Use case:** Cập nhật kết quả chặng đua
 
 ### 6.1. Biểu đồ Use Case chi tiết
 
-Use case "Đăng ký thi đấu" include các use case con: Đăng nhập, Chọn chặng và đội, Chọn tay đua đăng ký.
+Use case chính của module là **`Cập nhật kết quả chặng đua`** — tên use case là động từ chỉ hành động của actor, không phải hành động của hệ thống (vì vậy tên cũ "Cập nhật kết quả **và tính điểm** chặng đua" đã được sửa lại: việc tính điểm là do hệ thống tự làm sau khi nhân viên bấm nút).
 
-(Hình 6.1 — Biểu đồ Use Case chi tiết Module 2)
+Theo nguyên tắc "mỗi giao diện tương tác với người dùng đề xuất thành một use case con", module có **2 màn hình** nên tách thành **2 use case con**; ngoài ra, giáo trình (mục 3.1.3) phân rã thêm use case con `Đăng nhập` mà use case chính **include** — đăng nhập là giao diện dùng chung của toàn hệ thống:
+
+| Màn hình | Use case con | Quan hệ với UC chính |
+|---|---|---|
+| Đăng nhập (giao diện dùng chung toàn hệ thống) | `Đăng nhập` | include |
+| Chọn chặng | `Chọn chặng` | include |
+| Nhập kết quả | `Nhập kết quả chặng` | include |
+
+Trang xử lý `doLuuKetQua.jsp` chỉ làm nhiệm vụ ghi dữ liệu, không phải màn hình hiển thị nên **không sinh use case con**. Use case con `Đăng nhập` chỉ xuất hiện trong biểu đồ UC chi tiết; vì giao diện đăng nhập dùng chung cho toàn hệ thống nên module **không** tạo lớp biên, trang jsp hay lifeline riêng cho nó — kịch bản của module vẫn mở đầu "sau khi đăng nhập", và "nhân viên đã đăng nhập" vẫn được ghi ở **Tiền điều kiện** của đặc tả use case. Trang chính `gdChinhNV.jsp` là trang chủ chung của hệ thống nên cũng không sinh use case con.
+
+![Biểu đồ Use Case chi tiết Module 3](<../Module 3 - Kiet/hinh/m3-uc-chitiet.png>)
+
+*Hình 6.1 — Biểu đồ Use Case chi tiết Module 3*
 
 ### 6.2. Đặc tả Use Case
 
 | Mục | Nội dung |
 |---|---|
-| Use case | Đăng ký tay đua tham gia chặng đua |
-| Actor | Nhân viên |
-| Tiền điều kiện | Đã đăng nhập; chặng và đội đã tồn tại |
-| Hậu điều kiện | Danh sách đăng ký (tối đa 2 tay đua) được lưu và in phiếu |
-| Kịch bản chính | 1. Chọn menu Đăng ký thi đấu. 2. Hệ thống hiện danh sách thả xuống chặng, đội. 3. Chọn chặng và đội. 4. Hệ thống hiện tay đua có hợp đồng hiệu lực. 5. Tick chọn tay đua, click Lưu. 6. Hệ thống kiểm tra ràng buộc; hợp lệ → lưu và in phiếu đăng ký (danh sách xuất phát). |
-| Luồng phụ | Thay tay đua trước ngày đua: mở lại chặng + đội đã đăng ký → hệ thống hiện lại danh sách với tay đua đang đăng ký được tick sẵn → bỏ tick / tick lại → kiểm tra lại ràng buộc → lưu thay đổi. |
-| Ngoại lệ | 4a. Đội không có tay đua hiệu lực → thông báo. 5a. Quá 2 tay đua → báo lỗi. 5b. Tay đua đã đăng ký chặng này cho đội khác → báo lỗi trùng. |
+| **Use case** | Cập nhật kết quả chặng đua |
+| **Actor** | Nhân viên |
+| **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; chặng đua cần cập nhật đã diễn ra và đã có danh sách tay đua đăng ký (do use case "Đăng ký tay đua tham gia chặng đua" sinh ra) |
+| **Hậu điều kiện** | Kết quả của từng tay đua trong chặng (thời gian về đích, số vòng hoàn thành, trạng thái, hạng, điểm) được lưu vào cơ sở dữ liệu. Nếu chặng đã có kết quả cũ thì kết quả cũ bị xóa và thay bằng kết quả mới |
+| **Kịch bản chính** | 1. Nhân viên chọn menu "Cập nhật kết quả chặng đua".<br>2. Hệ thống hiển thị màn hình **Chọn chặng**: ô chọn chặng đua liệt kê các chặng của mùa giải 2025 (`R01 - Australian Grand Prix`, `R02 - Chinese Grand Prix`, `R06 - Monaco Grand Prix`, `R10 - British Grand Prix`, `R16 - Italian Grand Prix`, `R24 - Abu Dhabi Grand Prix`); ô chọn đang rỗng; nút [Tiếp tục] **chưa được active**.<br>3. Nhân viên chọn chặng `R16 - Italian Grand Prix (Monza)`; nút [Tiếp tục] chuyển sang **active**; nhân viên click [Tiếp tục].<br>4. Hệ thống hiển thị màn hình **Nhập kết quả**: dòng thông tin chặng `R16 \| Italian Grand Prix \| Monza \| 53 vòng \| 07/09/2025`; bảng nhập kết quả gồm các cột **STT \| Mã \| Tên tay đua \| Đội đua \| Thời gian về đích (hh:mm:ss.xxx) \| Số vòng hoàn thành \| Trạng thái**, có 12 dòng ứng với 12 tay đua đã đăng ký chặng, dòng đầu là `1 \| LEC \| Charles Leclerc \| Ferrari \| (trống) \| (trống) \| (chưa chọn)`; ba cột cuối là ô nhập và ô chọn đang rỗng; bảng đối soát **chưa hiện**; nút [Lưu] **chưa được active**.<br>5. Nhân viên nhập Thời gian về đích, Số vòng hoàn thành và chọn Trạng thái cho từng tay đua, ví dụ dòng của Max Verstappen: `1:13:24.325 \| 53 \| Hoàn thành`, dòng của Lando Norris: `1:13:27.019 \| 53 \| Hoàn thành`. *(Lặp lại bước 5 cho đến khi nhập xong kết quả của cả 12 tay đua.)*<br>6. Nhân viên click [Tính kết quả].<br>7. Hệ thống tách danh sách thành nhóm Hoàn thành và nhóm DNF/DSQ, sắp xếp nhóm Hoàn thành tăng dần theo thời gian về đích, xếp nhóm DNF/DSQ xuống cuối, gán hạng theo vị trí, gán điểm cho hạng 1 đến 10 theo thang `25, 18, 15, 12, 10, 8, 6, 4, 2, 1` và gán 0 điểm cho tay đua DNF/DSQ dù nằm trong top 10; sau đó hiển thị **bảng đối soát** gồm các cột **Hạng \| Mã \| Tên tay đua \| Đội đua \| Thời gian \| Số vòng \| Trạng thái \| Điểm**, có 12 dòng, dòng đầu là `1 \| VER \| Max Verstappen \| Red Bull \| 1:13:24.325 \| 53 \| Hoàn thành \| 25`, dòng cuối là `12 \| STR \| Lance Stroll \| Aston Martin \| 1:14:25.310 \| 53 \| Hoàn thành \| 0`; nút [Lưu] chuyển sang **active**.<br>8. Nhân viên đối chiếu bảng đối soát với biên bản chính thức của Ban tổ chức rồi click [Lưu].<br>9. Hệ thống kiểm tra thấy chặng chưa có kết quả cũ, lưu 12 dòng kết quả vào cơ sở dữ liệu và hiển thị thông báo "Đã lưu kết quả chặng R16 - Italian Grand Prix". |
+| **Ngoại lệ** | **3a.** Chặng vừa chọn chưa có tay đua nào đăng ký → hệ thống báo "Chặng đua R24 - Abu Dhabi Grand Prix chưa có tay đua nào đăng ký, vui lòng chọn chặng khác", giữ nguyên màn hình Chọn chặng.<br>**6a.** Còn tay đua chưa chọn Trạng thái → hệ thống báo "Vui lòng chọn trạng thái cho tất cả 12 tay đua", không tính kết quả, giữ nguyên dữ liệu đã nhập.<br>**6b.** Tay đua có trạng thái Hoàn thành nhưng bỏ trống hoặc nhập sai định dạng Thời gian về đích (ví dụ dòng của Charles Leclerc để trống) → hệ thống báo "Vui lòng nhập thời gian hợp lệ theo định dạng hh:mm:ss.xxx cho tay đua đã hoàn thành", không tính kết quả. Tay đua DNF hoặc DSQ **không bắt buộc** nhập thời gian.<br>**6c.** Số vòng hoàn thành bỏ trống, nhỏ hơn 0 hoặc lớn hơn số vòng của chặng → hệ thống báo "Số vòng hoàn thành phải nằm trong khoảng 0 đến 53", không tính kết quả.<br>**6d.** Hai tay đua có trạng thái Hoàn thành nhập trùng thời gian về đích → hệ thống báo "Thời gian về đích của Lando Norris và Charles Leclerc trùng nhau, vui lòng kiểm tra lại", không tính kết quả.<br>**8a.** Chặng đã có kết quả từ trước → hệ thống hiển thị hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?". Nếu nhân viên chọn [Hủy] → không lưu, giữ nguyên kết quả cũ. Nếu chọn [Đồng ý] → hệ thống xóa toàn bộ kết quả cũ của chặng, lưu kết quả mới và tính lại điểm của toàn chặng. |
 
-### 6.3. Biểu đồ hoạt động
+### 6.3. Biểu đồ trạng thái (phân tích hoạt động)
 
-(Hình 6.2 — Biểu đồ hoạt động Module 2)
+Theo giáo trình (mục 3.2.4): **mỗi trạng thái là một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác**; cung chuyển trạng thái là hành động của người dùng, nhãn đặt trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công: `Hiển thị GD chính của nhân viên` —`[click Cập nhật kết quả chặng đua]`→ `Hiển thị GD chọn chặng` —`[chọn chặng, click Tiếp tục]`→ `Hiển thị GD nhập kết quả` (cung tự quay `[nhập thời gian, số vòng, trạng thái của từng tay đua]`) —`[click Tính kết quả, dữ liệu hợp lệ]`→ `Hiển thị GD nhập kết quả kèm bảng đối soát` —`[click Lưu]`→ `Hiển thị thông báo lưu thành công` —`[click OK]`→ Kết thúc.
+
+Các ràng buộc kiểm tra dữ liệu nhập (ngoại lệ 6a–6d, 8a ở mục 6.2) không xuất hiện ở đây — chúng được thể hiện bằng các node quyết định trong **biểu đồ hoạt động pha thiết kế** (mục 6.7).
+
+![Biểu đồ trạng thái Module 3](<../Module 3 - Kiet/hinh/m3-trangthai.png>)
+
+*Hình 6.2 — Biểu đồ trạng thái Module 3 (phân tích hoạt động)*
 
 ### 6.4. Biểu đồ lớp phân tích
 
-(Hình 6.3 — Biểu đồ lớp phân tích Module 2)
+Biểu đồ lớp phân tích của module chỉ có **hai tầng**: lớp biên và lớp thực thể (không có lớp điều khiển). Nghiệp vụ được gán thẳng cho lớp thực thể.
+
+**Lớp biên** — mỗi màn hình một lớp biên, mỗi thành phần nhận/hiện/submit dữ liệu là một thuộc tính, lớp biên không có phương thức. Ngoài 2 lớp biên của 2 màn hình riêng, module có thêm lớp biên **trang chính của nhân viên** `GDChinhNV` (trang chủ chung của hệ thống, không sinh use case con), nối `--` sang lớp biên đầu tiên `GDChonChang`:
+
+| Lớp biên | Màn hình | Thuộc tính |
+|---|---|---|
+| `GDChinhNV` | Trang chính của nhân viên (trang chủ chung hệ thống) | `-subCapNhatKetQua` |
+| `GDChonChang` | Chọn chặng | `-inChangDua`, `-subTiepTuc` |
+| `GDNhapKetQua` | Nhập kết quả và đối soát | `-inoutBangKetQua`, `-subTinhKetQua`, `-outBangDoiSoat`, `-subLuu` |
+
+**Phương thức nghiệp vụ gán cho lớp thực thể:**
+
+| Chức năng cần thực hiện dưới tầng giao diện | Gán cho lớp | Phương thức |
+|---|---|---|
+| Lấy danh sách chặng đua để đổ vào ô chọn | `ChangDua` | `getDSChangDua()` |
+| Lấy danh sách tay đua đã đăng ký chặng | `DangKyChang` | `getDangKyCuaChang(changDuaId)` |
+| Kiểm tra chặng đã có kết quả hay chưa | `KetQua` | `kiemTraKetQuaCu(changDuaId)` |
+| Xóa kết quả cũ khi nhân viên xác nhận ghi đè | `KetQua` | `xoaKetQuaCu(changDuaId)` |
+| Xếp hạng và tính điểm cho toàn chặng | `KetQua` | `xepHangVaTinhDiem(changDuaId)` |
+| Lưu kết quả của một tay đua | `KetQua` | `luuKetQua()` |
+
+Các lớp thực thể còn lại được giữ trên biểu đồ **cùng toàn bộ quan hệ** của chúng, để đồng bộ với biểu đồ lớp thực thể chung của nhóm ở Chương 3; chỉ vẽ những phương thức nghiệp vụ mà Module 3 sử dụng (danh sách đầy đủ xem mục 3.2.2). Ở pha phân tích, thuộc tính **chưa có kiểu dữ liệu** và **chưa có `id`**.
+
+![Biểu đồ lớp phân tích Module 3](<../Module 3 - Kiet/hinh/m3-lop-phantich.png>)
+
+*Hình 6.3 — Biểu đồ lớp phân tích Module 3*
 
 ### 6.5. Thiết kế giao diện
 
-(Hình 6.4 — Giao diện đăng ký thi đấu)
+Module có **2 màn hình hiển thị**, đúng bằng số use case con giao diện của module (không tính use case con `Đăng nhập` dùng chung toàn hệ thống). Giao diện chính của nhân viên (`GDChinhNV` / `gdChinhNV.jsp`) là **trang chủ chung của hệ thống** nên không cần mockup riêng trong module này.
 
-### 6.6. Biểu đồ lớp thiết kế (MVC)
+**Màn hình 1 — Chọn chặng** (`gdChonChang.jsp`, lớp biên `GDChonChang`). Tiêu đề màn hình "CẬP NHẬT KẾT QUẢ CHẶNG ĐUA"; nhãn "Mùa giải:" hiển thị mùa giải đang hoạt động `2025 — FIA Formula One World Championship`. Ô chọn **[Chọn chặng đua ▾]** (`inChangDua`) đổ danh sách các chặng của mùa giải, mỗi mục hiển thị dạng `Mã - Tên chặng (Địa điểm)`; khi mới vào màn hình, ô chọn đang rỗng. Nút **[Tiếp tục]** (`subTiepTuc`) ban đầu **chưa được active**, chỉ active khi nhân viên đã chọn một chặng. Click [Tiếp tục] chuyển sang màn hình Nhập kết quả; nếu chặng chưa có tay đua đăng ký, hệ thống hiện thông báo lỗi ngay trên màn hình này và không chuyển màn.
 
-(Hình 6.5 — Biểu đồ lớp thiết kế MVC Module 2)
+![Giao diện chọn chặng](<../Module 3 - Kiet/hinh/m3-giaodien-chonchang.png>)
 
-### 6.7. Biểu đồ tuần tự
+*Hình 6.4 — Giao diện Chọn chặng (Module 3)*
 
-(Hình 6.6 — Biểu đồ tuần tự Module 2)
+**Màn hình 2 — Nhập kết quả** (`gdNhapKetQua.jsp`, lớp biên `GDNhapKetQua`), gồm vùng nhập liệu và vùng đối soát trên cùng một trang. Dòng thông tin chặng đang cập nhật (chỉ đọc): `R16 | Italian Grand Prix | Monza | 53 vòng | 07/09/2025`. **Bảng nhập kết quả** (`inoutBangKetQua`) vừa hiển thị danh sách tay đua đã đăng ký, vừa nhận dữ liệu nhập vào, gồm các cột **STT | Mã | Tên tay đua | Đội đua | Thời gian về đích (hh:mm:ss.xxx) | Số vòng hoàn thành | Trạng thái**; ba cột đầu là dữ liệu chỉ đọc lấy từ đăng ký chặng, ba cột cuối là ô nhập. Cột Trạng thái là ô chọn ba giá trị **Hoàn thành / DNF (bỏ cuộc, tai nạn) / DSQ (bị loại)**; tay đua DNF hoặc DSQ không bắt buộc nhập Thời gian về đích. Nút **[Tính kết quả]** (`subTinhKetQua`) nằm dưới bảng nhập. **Bảng đối soát** (`outBangDoiSoat`) chỉ hiển thị, ban đầu chưa hiện, chỉ hiện sau khi bấm [Tính kết quả], gồm các cột **Hạng | Mã | Tên tay đua | Đội đua | Thời gian | Số vòng | Trạng thái | Điểm**. Nút **[Lưu]** (`subLuu`) nằm dưới bảng đối soát, ban đầu **chưa được active**, chỉ active sau khi bảng đối soát đã hiện. Click [Lưu] → trang xử lý `doLuuKetQua.jsp` ghi dữ liệu; nếu chặng đã có kết quả cũ thì hộp thoại cảnh báo ghi đè hiện lên ngay trên màn hình này trước khi ghi. Lưu xong, hệ thống hiển thị thông báo thành công; nhân viên click [OK] để quay về trang chính `gdChinhNV.jsp` (từ đó có thể mở lại chức năng để cập nhật chặng khác).
 
-### 6.8. Test case
+![Giao diện nhập kết quả](<../Module 3 - Kiet/hinh/m3-giaodien-nhapketqua.png>)
 
-| ID | Mục tiêu | Dữ liệu vào | Kết quả mong đợi |
+*Hình 6.5 — Giao diện Nhập kết quả và đối soát (Module 3)*
+
+### 6.6. Biểu đồ lớp thiết kế (view `.jsp` / `DAO` / `model`)
+
+Kiến trúc phân tầng gồm ba gói. Tầng `dao` chính là tầng điều khiển truy xuất dữ liệu; **không có lớp Controller riêng**. Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** — lớp này chứa cơ chế kết nối cơ sở dữ liệu dùng chung. Vẽ theo mẫu Hình 4.4 của giáo trình: lớp view có thuộc tính **kèm kiểu control** (`Select`, `Table`, `link`, `submit`, `Text`, `Reset`) và **thuộc tính ẩn** (đối tượng phiên `-nv : NhanVien`, dữ liệu truyền giữa các trang như `-changDua : ChangDua`, `-listDangKy : DangKyChang[]`, `-listKQ : KetQua[]`); lớp DAO có **constructor** và **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về).
+
+- **View (jsp):** `gdChinhNV.jsp` — trang chính của nhân viên (trang chủ chung của hệ thống), chứa liên kết mở chức năng cập nhật kết quả; `gdChonChang.jsp`, `gdNhapKetQua.jsp` — hai màn hình hiển thị của module; `doLuuKetQua.jsp` — trang xử lý ghi dữ liệu, không hiển thị.
+- **DAO:** `DAO` (lớp cha) — `-con : Connection`, `+DAO()`, `+ketNoi()`, `+dongKetNoi()`; `ChangDuaDAO` — `+getDSChangDua() : ChangDua[]`; `DangKyChangDAO` — `+getDangKyCuaChang(changDuaId : int) : DangKyChang[]`; `KetQuaDAO` — `+kiemTraKetQuaCu(changDuaId : int) : boolean`, `+xoaKetQuaCu(changDuaId : int) : boolean`, `+xepHangVaTinhDiem(changDuaId : int) : KetQua[]`, `+luuKetQua(kq : KetQua) : boolean` — mỗi lớp nhận đúng các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở mục 6.4.
+- **Model:** `ChangDua`, `DangKyChang`, `KetQua` (thuộc tính và kiểu dữ liệu đầy đủ xem mục 3.5).
+
+![Biểu đồ lớp thiết kế Module 3](<../Module 3 - Kiet/hinh/m3-lop-mvc.png>)
+
+*Hình 6.6 — Biểu đồ lớp thiết kế Module 3 (view `.jsp` / `DAO` / `model`)*
+
+### 6.7. Biểu đồ hoạt động (pha thiết kế)
+
+Vẽ theo mẫu Hình 4.9 của giáo trình (mục 4.3.2 bước 1): **mỗi hành động tương ứng một phương thức đã thiết kế trong biểu đồ lớp** ở mục 6.6; các hành động được gom vào khung `Xử lí tại gdXxx.jsp` theo từng trang (kể cả trang xử lý `doLuuKetQua.jsp` và trang chính `gdChinhNV.jsp`); lời gọi tầng dữ liệu ghi rõ `XxxDAO: tenHam()`; guard trên cung chuyển dạng `[click …]`, `[lấy xong dữ liệu]`; các nhánh kiểm tra ràng buộc nghiệp vụ là node quyết định đặt trong khung của trang xử lý tương ứng (nút [Tính kết quả] do chính `gdNhapKetQua.jsp` tự submit xử lý — phủ các ngoại lệ 6a–6d; kiểm tra kết quả cũ và nhánh cảnh báo ghi đè 8a do `doLuuKetQua.jsp` xử lý). Hai vòng lặp thể hiện việc nhập lại dữ liệu cho tới khi hợp lệ và việc lưu lần lượt kết quả của từng tay đua.
+
+![Biểu đồ hoạt động Module 3](<../Module 3 - Kiet/hinh/m3-hoatdong.png>)
+
+*Hình 6.7 — Biểu đồ hoạt động Module 3 (pha thiết kế)*
+
+### 6.8. Thuyết minh (kịch bản phiên bản 3)
+
+Chỉ thuyết minh **luồng chính** (chặng chưa có kết quả cũ, dữ liệu nhập hợp lệ). Mỗi dòng dưới đây ứng với một message trong biểu đồ tuần tự ở mục 6.9. Luồng mở đầu và kết thúc tại trang chính `gdChinhNV.jsp`; luồng lưu đóng gói dữ liệu bằng `setter()` của lớp thực thể trước khi gọi DAO ghi dữ liệu (mẫu Hình 4.12 của giáo trình).
+
+1. Nhân viên click "Cập nhật kết quả chặng đua" trên trang chính gdChinhNV.jsp.
+2. Trang gdChinhNV.jsp gọi trang gdChonChang.jsp.
+3. Trang gdChonChang.jsp gọi lớp ChangDuaDAO yêu cầu lấy danh sách chặng đua của mùa giải.
+4. Lớp ChangDuaDAO gọi hàm getDSChangDua().
+5. Hàm getDSChangDua() gọi lớp ChangDua để đóng gói thông tin.
+6. Lớp ChangDua đóng gói thông tin thực thể.
+7. Lớp ChangDua trả kết quả về cho hàm getDSChangDua().
+8. Hàm getDSChangDua() trả kết quả cho trang gdChonChang.jsp.
+9. Trang gdChonChang.jsp hiển thị danh sách chặng đua cho nhân viên.
+10. Nhân viên chọn chặng "R16 - Italian Grand Prix (Monza)" và click Tiếp tục.
+11. Trang gdChonChang.jsp gọi trang gdNhapKetQua.jsp.
+12. Trang gdNhapKetQua.jsp gọi lớp DangKyChangDAO yêu cầu lấy danh sách tay đua đã đăng ký chặng.
+13. Lớp DangKyChangDAO gọi hàm getDangKyCuaChang().
+14. Hàm getDangKyCuaChang() gọi lớp DangKyChang để đóng gói thông tin.
+15. Lớp DangKyChang đóng gói thông tin thực thể.
+16. Lớp DangKyChang trả kết quả về cho hàm getDangKyCuaChang().
+17. Hàm getDangKyCuaChang() trả kết quả cho trang gdNhapKetQua.jsp.
+18. Trang gdNhapKetQua.jsp hiển thị bảng nhập kết quả cho nhân viên.
+19. Nhân viên nhập thời gian về đích, số vòng hoàn thành và chọn trạng thái cho từng tay đua. *(Lặp lại bước 19 cho đến khi nhập xong tất cả tay đua.)*
+20. Nhân viên click Tính kết quả.
+21. Trang gdNhapKetQua.jsp submit gọi chính nó xử lí.
+22. Trang gdNhapKetQua.jsp gọi lớp KetQuaDAO yêu cầu xếp hạng và tính điểm cho chặng.
+23. Lớp KetQuaDAO gọi hàm xepHangVaTinhDiem().
+24. Hàm xepHangVaTinhDiem() gọi lớp KetQua để đóng gói thông tin.
+25. Lớp KetQua đóng gói thông tin thực thể.
+26. Lớp KetQua trả kết quả về cho hàm xepHangVaTinhDiem().
+27. Hàm xepHangVaTinhDiem() trả kết quả cho trang gdNhapKetQua.jsp.
+28. Trang gdNhapKetQua.jsp hiển thị bảng đối soát cho nhân viên.
+29. Nhân viên click Lưu.
+30. Trang gdNhapKetQua.jsp gọi trang doLuuKetQua.jsp.
+31. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu kiểm tra chặng đã có kết quả cũ hay chưa.
+32. Lớp KetQuaDAO gọi hàm kiemTraKetQuaCu().
+33. Hàm kiemTraKetQuaCu() gọi lớp KetQua để đóng gói thông tin.
+34. Lớp KetQua đóng gói thông tin thực thể.
+35. Lớp KetQua trả kết quả về cho hàm kiemTraKetQuaCu().
+36. Hàm kiemTraKetQuaCu() trả kết quả cho trang doLuuKetQua.jsp.
+37. Trang doLuuKetQua.jsp gọi lớp KetQua để đóng gói dữ liệu kết quả vừa nhập.
+38. Lớp KetQua gọi hàm setter() đóng gói dữ liệu nhập.
+39. Lớp KetQua trả kết quả về cho trang doLuuKetQua.jsp.
+40. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu lưu kết quả của một tay đua.
+41. Lớp KetQuaDAO gọi hàm luuKetQua().
+42. Hàm luuKetQua() trả kết quả cho trang doLuuKetQua.jsp. *(Lặp lại các bước 40–42 cho đến khi lưu xong kết quả của tất cả tay đua trong chặng.)*
+43. Trang doLuuKetQua.jsp thông báo lưu thành công cho nhân viên.
+44. Nhân viên click OK.
+45. Trang doLuuKetQua.jsp gọi lại trang chính gdChinhNV.jsp.
+46. Trang gdChinhNV.jsp hiển thị cho nhân viên.
+
+### 6.9. Biểu đồ tuần tự
+
+Lifeline gồm: actor Nhân viên + trang chính `gdChinhNV.jsp` (mở đầu và kết thúc) + 3 trang `.jsp` của module + 3 lớp `XxxDAO` + 3 lớp thực thể. Không có lifeline cơ sở dữ liệu, không có lifeline Controller, không có câu lệnh SQL trong message; message được đánh số tự động (trong Visual Paradigm bật *Show sequence number*). Nút [Tính kết quả] do `gdNhapKetQua.jsp` tự submit xử lý (self-call `submit xu li`, mẫu Hình 4.12 message 11); luồng lưu đóng gói bằng `setter()` của lớp thực thể trước khi gọi DAO `luuKetQua()`. Biểu đồ chỉ vẽ **luồng chính**; các ngoại lệ (thiếu trạng thái, sai định dạng thời gian, số vòng không hợp lệ, trùng thời gian, ghi đè kết quả cũ) đã mô tả ở mục 6.2 và 6.7. Số thứ tự 46 message khớp 1-1 với 46 dòng thuyết minh ở mục 6.8.
+
+![Biểu đồ tuần tự Module 3](<../Module 3 - Kiet/hinh/m3-tuantu.png>)
+
+*Hình 6.8 — Biểu đồ tuần tự Module 3*
+
+### 6.10. Test case
+
+Test case xây dựng theo **quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2**: (1) lập checklist các trường hợp cần kiểm thử; (2) viết test case theo bảng 4 cột `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm **Giao diện / Chức năng / Luồng nghiệp vụ**; (3) chuẩn bị data test; (4) chạy và ghi nhận kết quả. Mã test case của module: `CNKQ_n`.
+
+#### 6.10.1. Data test (bước 3 quy trình test)
+
+Bộ dữ liệu nền dưới đây (bộ dữ liệu F1 2025 thống nhất của nhóm) là tiền đề chung cho nhóm **Luồng nghiệp vụ** và các ca Chức năng có dữ liệu.
+
+`tblChangDua` (chặng của mùa giải 2025, `tblMuaGiaiid = 1`)
+
+| id | ma | ten | soVong | diaDiem | thoiGian | tblMuaGiaiid |
+|---|---|---|---|---|---|---|
+| 1 | R01 | Australian Grand Prix | 58 | Melbourne | 16/03/2025 | 1 |
+| 2 | R02 | Chinese Grand Prix | 56 | Thượng Hải | 23/03/2025 | 1 |
+| 3 | R06 | Monaco Grand Prix | 78 | Monte Carlo | 25/05/2025 | 1 |
+| 4 | R10 | British Grand Prix | 52 | Silverstone | 06/07/2025 | 1 |
+| 5 | R16 | Italian Grand Prix | 53 | Monza | 07/09/2025 | 1 |
+| 6 | R24 | Abu Dhabi Grand Prix | 58 | Yas Marina | 07/12/2025 | 1 |
+
+`tblDoiDua`
+
+| id | ma | ten | hang |
 |---|---|---|---|
-| TC1 | Đăng ký 2 tay đua hợp lệ | Chặng R, Đội X, tay đua A và B | Lưu, in phiếu đăng ký |
-| TC2 | Chặn quá 2 tay đua | Tick A, B, C | Báo lỗi "tối đa 2 tay đua", không lưu |
-| TC3 | Chặn trùng đăng ký | A đã đăng ký chặng R cho đội Y | Báo lỗi trùng, không lưu |
-| TC4 | Đội không có tay đua hiệu lực | Đội Z | Thông báo, không đăng ký được |
+| 1 | FER | Ferrari | Ferrari |
+| 2 | RBR | Red Bull | Honda RBPT |
+| 3 | MCL | McLaren | Mercedes |
+| 4 | MER | Mercedes | Mercedes |
+| 5 | AST | Aston Martin | Mercedes |
+| 6 | WIL | Williams | Mercedes |
+
+`tblTayDua`
+
+| id | ma | ten | ngaySinh | quocTich |
+|---|---|---|---|---|
+| 1 | LEC | Charles Leclerc | 16/10/1997 | Monaco |
+| 2 | HAM | Lewis Hamilton | 07/01/1985 | Anh |
+| 3 | VER | Max Verstappen | 30/09/1997 | Hà Lan |
+| 4 | TSU | Yuki Tsunoda | 11/05/2000 | Nhật Bản |
+| 5 | NOR | Lando Norris | 13/11/1999 | Anh |
+| 6 | PIA | Oscar Piastri | 06/04/2001 | Úc |
+| 7 | RUS | George Russell | 15/02/1998 | Anh |
+| 8 | ANT | Andrea Kimi Antonelli | 25/08/2006 | Ý |
+| 9 | ALO | Fernando Alonso | 29/07/1981 | Tây Ban Nha |
+| 10 | STR | Lance Stroll | 29/10/1998 | Canada |
+| 11 | ALB | Alexander Albon | 23/03/1996 | Thái Lan |
+| 12 | SAI | Carlos Sainz | 01/09/1994 | Tây Ban Nha |
+
+`tblDangKyChang` (đăng ký của chặng R16 — Monza)
+
+| id | tblChangDuaid | tblTayDuaid | tblDoiDuaid |
+|---|---|---|---|
+| 41 | 5 | 1 (LEC) | 1 (Ferrari) |
+| 42 | 5 | 2 (HAM) | 1 (Ferrari) |
+| 43 | 5 | 3 (VER) | 2 (Red Bull) |
+| 44 | 5 | 4 (TSU) | 2 (Red Bull) |
+| 45 | 5 | 5 (NOR) | 3 (McLaren) |
+| 46 | 5 | 6 (PIA) | 3 (McLaren) |
+| 47 | 5 | 7 (RUS) | 4 (Mercedes) |
+| 48 | 5 | 8 (ANT) | 4 (Mercedes) |
+| 49 | 5 | 9 (ALO) | 5 (Aston Martin) |
+| 50 | 5 | 10 (STR) | 5 (Aston Martin) |
+| 51 | 5 | 11 (ALB) | 6 (Williams) |
+| 52 | 5 | 12 (SAI) | 6 (Williams) |
+
+`tblKetQua`
+
+| id | tblDangKyChangid | thoiGian | soVongHoanThanh | trangThai | hang | diem |
+|---|---|---|---|---|---|---|
+| *(không có dòng nào của chặng R16)* | | | | | | |
+
+> Cột `thoiGian` lưu tổng số giây (kiểu `float(10)`); giao diện hiển thị dạng `hh:mm:ss.xxx`. Ví dụ `4404.325` giây hiển thị là `1:13:24.325`.
+
+#### 6.10.2. Bảng test case
+
+| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|---|---|---|---|
+| **Giao diện** | | | |
+| CNKQ_1 | Kiểm tra bố cục màn hình Chọn chặng | 1. Đăng nhập bằng tài khoản nhân viên.<br>2. Tại trang chính `gdChinhNV.jsp` click "Cập nhật kết quả chặng đua" | Màn hình Chọn chặng hiện ra: title "CẬP NHẬT KẾT QUẢ CHẶNG ĐUA"; nhãn mùa giải `2025 — FIA Formula One World Championship`; ô chọn [Chọn chặng đua ▾] đang rỗng; nút [Tiếp tục] chưa được active; focus đặt vào ô chọn chặng đua |
+| CNKQ_2 | Kiểm tra phím Enter thực hiện nút chính của màn Chọn chặng | 1. Mở màn Chọn chặng.<br>2. Dùng bàn phím chọn chặng `R16 - Italian Grand Prix (Monza)`.<br>3. Nhấn Enter | Enter thực hiện nút [Tiếp tục] (nút chính của màn): hệ thống chuyển sang màn Nhập kết quả của chặng R16 |
+| CNKQ_3 | Kiểm tra bố cục màn hình Nhập kết quả | 1. Từ màn Chọn chặng chọn `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục] | Màn Nhập kết quả hiện ra: dòng thông tin chặng `R16 \| Italian Grand Prix \| Monza \| 53 vòng \| 07/09/2025`; bảng nhập đủ 7 cột **STT \| Mã \| Tên tay đua \| Đội đua \| Thời gian về đích \| Số vòng hoàn thành \| Trạng thái**; nút [Tính kết quả]; bảng đối soát chưa hiện; nút [Lưu] chưa được active; focus đặt vào ô Thời gian về đích của dòng đầu tiên |
+| CNKQ_4 | Kiểm tra thứ tự phím Tab trên bảng nhập kết quả | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhấn Tab liên tiếp từ ô đầu tiên | Focus di chuyển đúng thứ tự: Thời gian về đích → Số vòng hoàn thành → Trạng thái của cùng một dòng, rồi chuyển sang dòng kế tiếp; hết dòng 12 thì focus tới nút [Tính kết quả] |
+| **Chức năng** | | | |
+| CNKQ_5 | Màn Chọn chặng hiển thị đúng danh sách chặng khi CSDL có dữ liệu | 1. Mở màn Chọn chặng.<br>2. Mở ô chọn chặng đua | Danh sách chặng khớp các bản ghi trong `tblChangDua` của mùa giải 2025: đúng 6 mục từ `R01 - Australian Grand Prix (Melbourne)` đến `R24 - Abu Dhabi Grand Prix (Yas Marina)`, xếp theo thứ tự thời gian |
+| CNKQ_6 | Màn Chọn chặng khi mùa giải chưa có chặng đua | 1. Data test riêng: `tblChangDua` không có bản ghi nào của mùa giải 2025.<br>2. Mở màn Chọn chặng | Ô chọn chặng đua rỗng; hệ thống báo "Mùa giải chưa có chặng đua"; nút [Tiếp tục] không active |
+| CNKQ_7 | Màn Nhập kết quả hiển thị đúng danh sách tay đua đã đăng ký | 1. Chọn chặng `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục] | Bảng nhập hiện đúng 12 dòng khớp các bản ghi trong `tblDangKyChang` của chặng R16 (id 41–52); tên tay đua, đội đua khớp `tblTayDua`, `tblDoiDua`; ba cột Thời gian về đích, Số vòng hoàn thành, Trạng thái đang rỗng |
+| CNKQ_8 | Màn Nhập kết quả khi chặng chưa có tay đua đăng ký | 1. Chọn chặng `R24 - Abu Dhabi Grand Prix (Yas Marina)` (không có bản ghi trong `tblDangKyChang`), click [Tiếp tục] | Hệ thống báo "Chặng đua R24 - Abu Dhabi Grand Prix chưa có tay đua nào đăng ký, vui lòng chọn chặng khác"; giữ nguyên màn Chọn chặng |
+| **Luồng nghiệp vụ** | | | |
+| | **Precond:** nhân viên đã đăng nhập; CSDL đúng như mục 6.10.1 — chặng R16 có 12 đăng ký (id 41–52), `tblKetQua` chưa có dòng nào của chặng R16 (riêng CNKQ_13 có precond khác, ghi ở bước 1) | | |
+| CNKQ_9 | Nhập đủ kết quả, hệ thống xếp hạng và tính điểm đúng (ca chuẩn) | 1. Tại trang chính click "Cập nhật kết quả chặng đua", chọn `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục].<br>2. Nhập 12 dòng: VER `1:13:24.325`/53, NOR `1:13:27.019`/53, LEC `1:13:31.482`/53, PIA `1:13:33.900`/53, RUS `1:13:39.245`/53, HAM `1:13:41.663`/53, ALB `1:13:52.117`/53, SAI `1:13:58.520`/53, ANT `1:14:04.031`/53, ALO `1:14:11.786`/53, TSU `1:14:18.902`/53, STR `1:14:25.310`/53 — tất cả Trạng thái `Hoàn thành`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 3: bảng đối soát 12 dòng xếp tăng dần theo thời gian: `1 \| VER \| 25`, `2 \| NOR \| 18`, `3 \| LEC \| 15`, `4 \| PIA \| 12`, `5 \| RUS \| 10`, `6 \| HAM \| 8`, `7 \| ALB \| 6`, `8 \| SAI \| 4`, `9 \| ANT \| 2`, `10 \| ALO \| 1`, `11 \| TSU \| 0`, `12 \| STR \| 0`; nút [Lưu] chuyển sang active. Bước 4: không hiện cảnh báo ghi đè, thông báo "Đã lưu kết quả chặng R16 - Italian Grand Prix". **CSDL:** `tblKetQua` thêm 12 dòng mới (id 101–112), dòng đầu `43 (VER) \| 4404.325 \| 53 \| HoanThanh \| 1 \| 25`, dòng cuối `50 (STR) \| 4465.310 \| 53 \| HoanThanh \| 12 \| 0` (cột `thoiGian` lưu tổng số giây) |
+| CNKQ_10 | Tay đua DNF nhận 0 điểm và xếp cuối | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập như CNKQ_9, riêng dòng Max Verstappen: Thời gian để trống, Số vòng `40`, Trạng thái `DNF (bỏ cuộc, tai nạn)`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 2: ô Thời gian trống của Verstappen không bị báo lỗi vì trạng thái là DNF. Bước 3: bảng đối soát: `1 \| NOR \| 25`, `2 \| LEC \| 18`, …, `12 \| VER \| — \| 40 \| DNF \| 0` — Verstappen xếp cuối, 0 điểm; 11 tay đua còn lại đôn lên một bậc so với CNKQ_9. Bước 4: thông báo lưu thành công. **CSDL:** `tblKetQua` thêm 12 dòng, dòng Verstappen `43 \| NULL \| 40 \| DNF \| 12 \| 0`, dòng Norris `45 \| 4407.019 \| 53 \| HoanThanh \| 1 \| 25` |
+| CNKQ_11 | Tay đua DSQ nhận 0 điểm và xếp cuối | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập như CNKQ_9, riêng dòng Lewis Hamilton giữ Thời gian `1:13:41.663`, Số vòng `53` nhưng đổi Trạng thái sang `DSQ (bị loại)`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 3: Hamilton tuy về đích thứ 6 nhưng bị xếp cuối hạng 12 với 0 điểm; Albon đôn từ hạng 7 lên hạng 6 nên nhận 8 điểm thay vì 6 điểm. Bước 4: thông báo lưu thành công. **CSDL:** `tblKetQua` thêm 12 dòng, dòng Hamilton `42 \| 4421.663 \| 53 \| DSQ \| 12 \| 0`, dòng Albon `51 \| 4432.117 \| 53 \| HoanThanh \| 6 \| 8` |
+| CNKQ_12 | Tay đua Hoàn thành nhưng thiếu Thời gian về đích bị chặn | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập đủ cho 11 tay đua như CNKQ_9; riêng Charles Leclerc để trống Thời gian, nhập Số vòng `53`, chọn Trạng thái `Hoàn thành`.<br>3. Click [Tính kết quả].<br>4. Nhập `1:13:31.482` vào ô Thời gian của Leclerc rồi click [Tính kết quả] lần nữa | Bước 3: báo lỗi "Vui lòng nhập thời gian hợp lệ theo định dạng hh:mm:ss.xxx cho tay đua đã hoàn thành", con trỏ nhảy về ô Thời gian dòng Leclerc; bảng đối soát không hiện; nút [Lưu] chưa active; dữ liệu 11 tay đua kia giữ nguyên. **CSDL:** không bảng nào thay đổi (hệ thống chặn trước khi ghi). Bước 4: bảng đối soát hiện đúng như CNKQ_9 |
+| CNKQ_13 | Chặng đã có kết quả cũ: cảnh báo ghi đè và tính lại điểm | 1. Precond riêng: `tblKetQua` đã có 12 dòng id 101–112 của chặng R16 (kết quả sau CNKQ_9); Ban tổ chức phát hiện thời gian của Verstappen và Norris bị nhập nhầm cho nhau.<br>2. Mở màn Nhập kết quả chặng R16, nhập lại: NOR `1:13:24.325`/53/`Hoàn thành`, VER `1:13:27.019`/53/`Hoàn thành`, 10 tay đua còn lại như CNKQ_9.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] rồi chọn [Hủy].<br>5. Click [Lưu] lần nữa rồi chọn [Đồng ý] | Bước 3: bảng đối soát: `1 \| NOR \| 25`, `2 \| VER \| 18`, các hạng 3–12 như CNKQ_9. Bước 4: hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?"; chọn [Hủy] → không lưu, kết quả cũ giữ nguyên (Verstappen vẫn hạng 1). Bước 5: hệ thống xóa kết quả cũ, lưu kết quả mới, tính lại điểm toàn chặng, thông báo "Đã cập nhật lại kết quả chặng R16 - Italian Grand Prix". **CSDL:** `tblKetQua` xóa 12 dòng id 101–112, thêm 12 dòng mới id 113–124: `45 (NOR) \| 4404.325 \| 53 \| HoanThanh \| 1 \| 25`, `43 (VER) \| 4407.019 \| 53 \| HoanThanh \| 2 \| 18`, các dòng còn lại giữ thời gian như CNKQ_9 với hạng 3–12 |
 
 ---
 
-## CHƯƠNG 7: MODULE 3 — CẬP NHẬT KẾT QUẢ VÀ TÍNH ĐIỂM CHẶNG ĐUA (Nguyễn Minh Kiệt)
+## CHƯƠNG 7: MODULE 4 — QUYẾT TOÁN VÀ TRAO GIẢI CUỐI MÙA
+
+**Thành viên thực hiện:** Phùng Tuấn Thành — **Use case:** Quyết toán và trao giải cuối mùa
 
 ### 7.1. Biểu đồ Use Case chi tiết
 
-Use case "Cập nhật kết quả" include các use case con: Đăng nhập, Chọn chặng, Nhập kết quả và tính điểm.
+Use case chính: **`Quyết toán và trao giải cuối mùa`**, actor **Quản lý**. Theo giáo trình (mục 3.1.3), use case chi tiết được phân rã theo 2 nguồn: (1) **mỗi giao diện tương tác với người dùng → 1 use case con** (quan hệ include/extend); (2) chức năng **Đăng nhập** được đề xuất thành use case con dùng chung — use case chính **include** use case này — vì đăng nhập là giao diện dùng chung của toàn hệ thống, không thuộc riêng module nào nên **không** sinh lớp biên/jsp riêng trong module.
 
-(Hình 7.1 — Biểu đồ Use Case chi tiết Module 3)
+Module có 3 màn hình hiển thị nghiệp vụ (ngoài trang chính của quản lý — trang chủ chung, không sinh use case con):
+
+| Màn hình | UC con | Quan hệ với UC chính | Lớp biên | Trang JSP |
+|---|---|---|---|---|
+| Trang chính quản lý (trang chủ chung) | — | — | `GDChinhQL` | `gdChinhQL.jsp` |
+| Bảng tổng sắp (chọn chặng từ danh sách) | `Xem bảng tổng sắp` | include | `GDXepHang` | `gdXepHang.jsp` |
+| Chi tiết theo chặng (drill-down 1 dòng) | `Xem chi tiết theo chặng` | **extend từ `Xem bảng tổng sắp`** | `GDChiTietXepHang` | `gdChiTietXepHang.jsp` |
+| Trao giải | `Nhập thưởng và lưu` | include | `GDTraoGiai` | `gdTraoGiai.jsp` |
+| — (giao diện dùng chung toàn hệ thống) | `Đăng nhập` | include | — | — |
+| — (trang xử lý, không hiển thị tương tác) | — | — | — | `doLuuTraoGiai.jsp` |
+
+UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp (đề gốc bắt buộc có drill-down này). Tên use case con cũ `Tổng hợp xếp hạng` đã được **đổi thành `Xem bảng tổng sắp`**: "tổng hợp", "xếp hạng" là hành động của **hệ thống**, còn tên use case bắt buộc phải là động từ chỉ hành động của **actor** (quản lý chỉ mở màn hình để xem). Kịch bản vẫn mở đầu "sau khi đăng nhập" và Tiền điều kiện giữ "đã đăng nhập".
+
+![Biểu đồ Use Case chi tiết Module 4](<../Module 4 - Thanh/hinh/m4-uc-chitiet.png>)
+
+*Hình 7.1 — Biểu đồ Use Case chi tiết Module 4*
 
 ### 7.2. Đặc tả Use Case
 
 | Mục | Nội dung |
 |---|---|
-| Use case | Cập nhật kết quả và tính điểm chặng đua |
-| Actor | Nhân viên |
-| Tiền điều kiện | Đã đăng nhập; chặng đã có tay đua đăng ký |
-| Hậu điều kiện | Kết quả và điểm của từng tay đua được lưu; in bảng kết quả |
-| Kịch bản chính | 1. Chọn menu Cập nhật kết quả. 2. Hệ thống hiện danh sách chặng. 3. Chọn chặng. 4. Hệ thống hiện bảng tay đua đã đăng ký. 5. Nhập thời gian / số vòng / DNF cho từng tay đua, click Tính kết quả. 6. Hệ thống xếp hạng theo thời gian (DNF xếp cuối), gán điểm top 10 (25→1), DNF trong top 10 nhận 0 điểm. 7. Kiểm tra bảng đối soát, click Lưu → lưu và in bảng kết quả. |
-| Ngoại lệ | 5a. Tay đua không DNF nhưng bỏ trống thời gian → báo lỗi, không tính. 7a. Chặng đã có kết quả cũ → cảnh báo ghi đè, tính lại điểm toàn bộ chặng. |
+| **Use case** | Quyết toán và trao giải cuối mùa |
+| **Actor** | Quản lý |
+| **Tiền điều kiện** | Quản lý đã đăng nhập vào hệ thống; mùa giải `FIA Formula One World Championship 2025` đang ở trạng thái `Đã kết thúc` |
+| **Hậu điều kiện** | Quyết định trao giải của mùa giải (giải cá nhân hạng 1–3, giải đồng đội hạng 1–3 kèm tiền thưởng) được lưu vào CSDL; danh sách trao giải được in ra |
+| **Kịch bản chính** | 1. Quản lý click "Quyết toán mùa giải" trên trang chính của hệ thống.<br>2. Hệ thống lấy mùa giải hiện tại `FIA Formula One World Championship 2025` và hiển thị màn **Bảng tổng sắp** kèm **danh sách chọn chặng** gồm 6 chặng `R01 Melbourne, R02 Thượng Hải, R06 Monaco, R10 Silverstone, R16 Monza, R24 Abu Dhabi`.<br>3. Quản lý chọn chặng `Abu Dhabi` — **chặng cuối** — từ danh sách. Hệ thống kiểm tra cả 6/6 chặng đều đã có kết quả; cộng dồn điểm, tổng thời gian và số lần đạt từng thứ hạng của mỗi tay đua và mỗi đội **tính đến chặng đã chọn**, rồi sắp xếp theo **3 tầng**: (1) tổng điểm giảm dần; (2) bằng điểm → **countback** (so số lần về nhất, rồi về nhì, về ba…); (3) countback vẫn bằng → **tổng thời gian tăng dần**. Hệ thống hiển thị 2 bảng: bảng *Xếp hạng cá nhân* có các cột `Hạng \| Tên tay đua \| Quốc tịch \| Tên đội \| Tổng điểm \| Tổng thời gian`, 12 dòng, dòng đầu là `1 \| Lando Norris \| Anh \| McLaren \| 119 \| 9:03:19.885`, dòng thứ hai là `2 \| Max Verstappen \| Hà Lan \| Red Bull \| 119 \| 9:03:12.418`; bảng *Xếp hạng đội* có các cột `Hạng \| Tên đội \| Hãng \| Tổng điểm \| Tổng thời gian`, 6 dòng, dòng đầu là `1 \| McLaren \| Mercedes \| 214 \| 18:07:21.092`. Mỗi dòng của 2 bảng là một liên kết click được. Nút [Tiếp tục] **đang active** (vì chặng được chọn là chặng cuối và mọi chặng đều có kết quả).<br>4. Quản lý xem bảng tổng sắp và click [Tiếp tục].<br>5. Hệ thống hiển thị màn **Trao giải**: bảng *Danh sách trao giải* có các cột `Loại giải \| Hạng \| Tay đua/Đội \| Tổng điểm \| Tiền thưởng` với 6 dòng (cá nhân hạng 1–3, đội hạng 1–3), **cột Tiền thưởng đang rỗng**; 6 ô nhập mức thưởng (cá nhân hạng 1/2/3, đội hạng 1/2/3) **đang rỗng**; nút [Tính thưởng] đang active, nút [Lưu] **chưa được active**.<br>6. Quản lý nhập mức thưởng: cá nhân hạng 1 = `5.000.000.000`, hạng 2 = `3.000.000.000`, hạng 3 = `2.000.000.000`; đội hạng 1 = `20.000.000.000`, hạng 2 = `12.000.000.000`, hạng 3 = `8.000.000.000` rồi click [Tính thưởng].<br>7. Hệ thống điền cột Tiền thưởng cho 6 dòng: `Cá nhân \| 1 \| Lando Norris \| 119 \| 5.000.000.000`, `Cá nhân \| 2 \| Max Verstappen \| 119 \| 3.000.000.000`, `Cá nhân \| 3 \| Oscar Piastri \| 95 \| 2.000.000.000`, `Đội \| 1 \| McLaren \| 214 \| 20.000.000.000`, `Đội \| 2 \| Ferrari \| 132 \| 12.000.000.000`, `Đội \| 3 \| Red Bull \| 121 \| 8.000.000.000`; nút [Lưu] **chuyển sang active**.<br>*(Lặp lại các bước 6–7 cho đến khi quản lý ưng ý với mức thưởng.)*<br>8. Quản lý kiểm tra danh sách và click [Lưu].<br>9. Hệ thống lưu 6 bản ghi trao giải, in danh sách trao giải mùa giải 2025 và hiển thị thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025`.<br>10. Quản lý click OK; hệ thống quay về trang chính của quản lý. |
+| **Ngoại lệ** | **2a.** Không có mùa giải nào ở trạng thái `Đã kết thúc` → hệ thống báo `Không có mùa giải nào đủ điều kiện quyết toán`, quay về trang chính, dừng.<br>**3a.** Quản lý click vào dòng `Max Verstappen` trên bảng xếp hạng cá nhân → hệ thống hiển thị màn **Chi tiết theo chặng**: tiêu đề `Max Verstappen — Red Bull`, bảng chi tiết có các cột `Tên chặng \| Hạng về đích \| Điểm \| Thời gian về đích`, 6 dòng, dòng đầu là `Australian Grand Prix \| 2 \| 18 \| 1:28:06.334`; quản lý click [Quay lại] → về bước 3. Khi click 1 dòng **đội**, hệ thống hiển thị bảng chi tiết đội với các cột `Tên chặng \| Tổng điểm \| Tổng thời gian của 2 tay đua`.<br>**3b.** Quản lý chọn chặng **giữa mùa** (ví dụ `R10 Silverstone`) → hệ thống hiển thị 2 bảng xếp hạng **tính đến chặng đó**; nút [Tiếp tục] **chưa active** vì chưa phải chặng cuối.<br>**3c.** Mùa giải còn chặng chưa có kết quả (ví dụ `R24 Abu Dhabi` chưa nhập) → hệ thống vẫn cho xem bảng xếp hạng tính đến chặng gần nhất đã có kết quả, nhưng báo `Mùa giải 2025 còn 1 chặng chưa có kết quả (R24 — Abu Dhabi Grand Prix), chưa thể quyết toán`, nút [Tiếp tục] **chưa active**.<br>**3d.** Hai tay đua (hoặc hai đội) bằng tổng điểm → phân định bằng **countback**: `Lando Norris` và `Max Verstappen` cùng 119 điểm, Norris có 3 lần về nhất so với 2 của Verstappen nên Norris xếp trên (dù tổng thời gian của Verstappen nhỏ hơn).<br>**3e.** Countback vẫn không phân định được sau khi so hết các thứ hạng → hệ thống so **tổng thời gian tăng dần**: bên có tổng thời gian nhỏ hơn xếp trên (đúng mô tả bài toán).<br>**6a.** Ô mức thưởng bỏ trống, nhập chữ hoặc nhập số âm → hệ thống báo `Mức thưởng phải là số không âm`, giữ nguyên màn Trao giải, nút [Lưu] vẫn chưa active.<br>**8a.** Mùa giải đã có quyết định trao giải trước đó → hệ thống cảnh báo `Mùa giải 2025 đã có quyết định trao giải, xác nhận ghi đè?`; chọn Có → xoá quyết định cũ rồi lưu bản mới; chọn Không → huỷ thao tác lưu, giữ nguyên màn Trao giải. |
 
-### 7.3. Biểu đồ hoạt động
+### 7.3. Biểu đồ trạng thái (phân tích hoạt động)
 
-(Hình 7.2 — Biểu đồ hoạt động Module 3)
+Theo giáo trình (mục 3.2.4): **mỗi trạng thái = một lần hệ thống hiển thị một giao diện và chờ tương tác; cung chuyển trạng thái = hành động của người dùng**, nhãn đặt trong `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính** của quản lý: `Hiển thị GD chính QL` —`[click Quyết toán mùa giải]`→ `Hiển thị GD bảng tổng sắp` (cung tự quay `[chọn chặng từ danh sách]` — xem bảng xếp hạng tính đến chặng bất kỳ; cung `[click 1 dòng tay đua hoặc đội]` sang `Hiển thị GD chi tiết theo chặng`, từ đó `[click Quay lại]` trở về) —`[click Tiếp tục, đã chọn chặng cuối và đủ kết quả]`→ `Hiển thị GD trao giải` (cung tự quay `[nhập mức thưởng, click Tính thưởng]` — tính lại tiền thưởng nhiều lần trước khi lưu) —`[click Lưu, mức thưởng hợp lệ]`→ `Hiển thị thông báo và in danh sách trao giải` —`[click OK]`→ Kết thúc.
+
+![Biểu đồ trạng thái Module 4](<../Module 4 - Thanh/hinh/m4-trangthai.png>)
+
+*Hình 7.2 — Biểu đồ trạng thái Module 4 (phân tích hoạt động)*
 
 ### 7.4. Biểu đồ lớp phân tích
 
-(Hình 7.3 — Biểu đồ lớp phân tích Module 3)
+Biểu đồ lớp phân tích của module chỉ có **2 tầng** — **lớp biên** và **lớp thực thể**, hộp class trơn (không stereotype), nối nhau bằng **đường kẻ trơn** (không mũi tên định hướng). **Không có lớp Control**: mọi hành động nghiệp vụ được gán thẳng cho lớp thực thể.
+
+**Lớp biên** (mỗi giao diện → 1 lớp biên, chỉ có thuộc tính, không có phương thức; tên thuộc tính theo prefix `in / out / inout / sub / outsub`):
+
+| Lớp biên | Màn hình | Thuộc tính |
+|---|---|---|
+| `GDChinhQL` | Trang chính của quản lý (trang chủ chung hệ thống) | `-subQuyetToan` |
+| `GDXepHang` | Bảng tổng sắp (có chọn chặng; 2 bảng xếp hạng click được từng dòng) | `-inChangDua`, `-outsubXHCaNhan`, `-outsubXHDoi`, `-subTiepTuc` |
+| `GDChiTietXepHang` | Chi tiết theo chặng (drill-down) | `-outTenDoiTuong`, `-outBangChiTiet`, `-subQuayLai` |
+| `GDTraoGiai` | Trao giải | `-inMucThuong`, `-subTinhThuong`, `-outDSTraoGiai`, `-subLuu` |
+
+**Phương thức nghiệp vụ gán cho lớp thực thể:**
+
+| Chức năng cần thực hiện dưới tầng giao diện | Gán cho lớp | Phương thức |
+|---|---|---|
+| Lấy mùa giải hiện tại và danh sách chặng | `MuaGiai` | `getMuaGiaiHienTai()` |
+| Kiểm tra một chặng đã có kết quả hay chưa | `KetQua` | `kiemTraKetQuaCu(changDuaId)` |
+| Tổng hợp xếp hạng cá nhân tính đến chặng được chọn | `KetQua` | `tongHopCaNhan(muaGiaiId)` |
+| Tổng hợp xếp hạng đội tính đến chặng được chọn | `KetQua` | `tongHopDoi(muaGiaiId)` |
+| Sắp xếp bảng xếp hạng theo quy tắc 3 tầng | `KetQua` | `sapXepBangXepHang(ds)` |
+| Lấy chi tiết kết quả từng chặng của một tay đua | `KetQua` | `getChiTietTheoTayDua(muaGiaiId, tayDuaId)` |
+| Lấy chi tiết kết quả từng chặng của một đội | `KetQua` | `getChiTietTheoDoi(muaGiaiId, doiDuaId)` |
+| Tính tiền thưởng theo hạng | `TraoGiai` | `tinhTienThuong(hang, mucThuong)` |
+| Lưu một bản ghi trao giải | `TraoGiai` | `luuTraoGiai()` |
+
+**Ghi chú 1 — quan hệ giữa các lớp thực thể** được giữ **y hệt** biểu đồ lớp thực thể chung của nhóm ở Chương 3, kể cả những lớp không tham gia trực tiếp vào module (`ThamGia`, `HopDong`, `ThanhVien`…): quan hệ giữa các lớp thực thể phải thống nhất, đồng bộ với biểu đồ lớp thực thể đã vẽ ở bước trước. Ở pha phân tích, lớp thực thể **không có `id`, không có kiểu dữ liệu**.
+
+**Ghi chú 2 — phương thức.** Biểu đồ chỉ vẽ những phương thức mà Module 4 sử dụng; các phương thức nghiệp vụ khác của cùng những lớp thực thể này (ví dụ `HopDong.kiemTraChongLan()` của Module 1, `DangKyChang.luuDangKy()` của Module 2, `KetQua.xepHangVaTinhDiem()` của Module 3) được vẽ ở biểu đồ của module tương ứng; danh sách đầy đủ xem mục 3.2.2. Hai phương thức `getChiTietTheoTayDua` / `getChiTietTheoDoi` được gán cho `KetQua` theo quy tắc gán của giáo trình (mục 3.2.3): **tham số đầu ra là danh sách `KetQua`** nên gán cho lớp `KetQua`.
+
+**Ghi chú 3 — quy tắc xếp hạng 3 tầng** (cài trong `tongHopCaNhan` / `tongHopDoi` / `sapXepBangXepHang`): cộng dồn tổng điểm và tổng thời gian qua các chặng tính đến chặng được chọn, đồng thời đếm số lần đạt mỗi thứ hạng. Sắp xếp: **(1) tổng điểm giảm dần; (2) bằng điểm → countback** — so số lần về nhất, vẫn bằng thì số lần về nhì, rồi về ba… (bổ sung theo luật FIA); **(3) countback vẫn bằng → tổng thời gian tăng dần** (theo mô tả bài toán). Tổng thời gian luôn được cộng dồn và **hiển thị trên bảng xếp hạng**.
+
+**Ghi chú 4 — xếp hạng đội:** cộng dồn theo đội đã đăng ký tay đua ở **từng chặng** (`DangKyChang` — đội tại thời điểm chặng), **không** theo đội hiện tại của tay đua; một tay đua có thể đổi đội giữa mùa nên điểm ở mỗi chặng phải thuộc về đội đã đăng ký tại chặng đó.
+
+![Biểu đồ lớp phân tích Module 4](<../Module 4 - Thanh/hinh/m4-lop-phantich.png>)
+
+*Hình 7.3 — Biểu đồ lớp phân tích Module 4*
 
 ### 7.5. Thiết kế giao diện
 
-(Hình 7.4 — Giao diện chọn chặng)
+Module có 3 màn hình hiển thị nghiệp vụ, khớp 1-1 với 3 use case con màn hình và 3 lớp biên ở mục 7.1 và 7.4 (trang chính `gdChinhQL.jsp` là trang chủ chung của hệ thống — **không cần mockup riêng**). Dữ liệu minh hoạ lấy từ bộ dữ liệu mẫu mùa 2025.
 
-(Hình 7.5 — Giao diện nhập kết quả)
+**Màn 1 — Bảng tổng sắp** (`gdXepHang.jsp`, lớp biên `GDXepHang`). Màn hình mở ra ngay sau khi quản lý click "Quyết toán mùa giải" trên trang chính. Bố cục từ trên xuống: **Tiêu đề** `Bảng tổng sắp — FIA Formula One World Championship 2025`. **Danh sách chọn chặng** (`-inChangDua`) — dropdown 6 chặng `R01 Melbourne … R24 Abu Dhabi`; bảng xếp hạng được tính **đến chặng đã chọn** (đề gốc: xem BXH "tính đến chặng X"); khi chọn chặng cuối và 6/6 chặng có kết quả, tiêu đề hiển thị thêm `(6/6 chặng đã có kết quả)`. **Bảng Xếp hạng cá nhân** (`-outsubXHCaNhan`) — 12 dòng, các cột `Hạng | Tên tay đua | Quốc tịch | Tên đội | Tổng điểm | Tổng thời gian`; ba dòng đầu: `1 | Lando Norris | Anh | McLaren | 119 | 9:03:19.885`, `2 | Max Verstappen | Hà Lan | Red Bull | 119 | 9:03:12.418`, `3 | Oscar Piastri | Úc | McLaren | 95 | 9:04:01.207`; hai dòng đầu bằng điểm nên được tô nền nhạt kèm chú thích `Phân định bằng countback (số lần về nhất)`; **mỗi dòng là một liên kết click được** → mở màn Chi tiết theo chặng của tay đua đó. **Bảng Xếp hạng đội** (`-outsubXHDoi`) — 6 dòng, các cột `Hạng | Tên đội | Hãng | Tổng điểm | Tổng thời gian`; ba dòng đầu: `1 | McLaren | Mercedes | 214 | 18:07:21.092`, `2 | Ferrari | Ferrari | 132 | 18:10:03.757`, `3 | Red Bull | Honda RBPT | 121 | 18:12:45.433`; mỗi dòng cũng là một liên kết click được. **Chú thích dưới 2 bảng:** `Xếp hạng: tổng điểm giảm dần → countback → tổng thời gian tăng dần. Tổng thời gian luôn được hiển thị.` **Nút [Tiếp tục]** (`-subTiepTuc`) ở góc dưới bên phải — **chỉ active khi chặng đang chọn là chặng cuối và mọi chặng đều có kết quả**; click → chuyển sang màn Trao giải (`gdTraoGiai.jsp`).
 
-### 7.6. Biểu đồ lớp thiết kế (MVC)
+![Giao diện bảng tổng sắp](<../Module 4 - Thanh/hinh/m4-giaodien-xephang.png>)
 
-(Hình 7.6 — Biểu đồ lớp thiết kế MVC Module 3)
+*Hình 7.4 — Giao diện Bảng tổng sắp (Module 4)*
 
-### 7.7. Biểu đồ tuần tự
+**Màn 2 — Chi tiết theo chặng** (`gdChiTietXepHang.jsp`, lớp biên `GDChiTietXepHang`). Màn drill-down mở ra khi quản lý click 1 dòng trên bảng tổng sắp (đề gốc bắt buộc). Bố cục: **Tiêu đề — tên đối tượng** (`-outTenDoiTuong`), ví dụ `Max Verstappen — Red Bull` (khi click 1 dòng tay đua) hoặc `McLaren — Mercedes` (khi click 1 dòng đội). **Bảng chi tiết từng chặng** (`-outBangChiTiet`), mỗi chặng một dòng: với **tay đua** là các cột `Tên chặng | Hạng về đích | Điểm | Thời gian về đích` — 6 dòng, dòng đầu `Australian Grand Prix | 2 | 18 | 1:28:06.334`; với **đội** là các cột `Tên chặng | Tổng điểm | Tổng thời gian của 2 tay đua` — 6 dòng, dòng đầu (McLaren) `Australian Grand Prix | 35 | 2:56:36.414`. **Nút [Quay lại]** (`-subQuayLai`) → trở về màn Bảng tổng sắp, giữ nguyên chặng đang chọn.
 
-(Hình 7.7 — Biểu đồ tuần tự Module 3)
+![Giao diện chi tiết theo chặng](<../Module 4 - Thanh/hinh/m4-giaodien-chitietxephang.png>)
 
-### 7.8. Test case
+*Hình 7.5 — Giao diện Chi tiết theo chặng (Module 4)*
 
-| ID | Mục tiêu | Dữ liệu vào | Kết quả mong đợi |
+**Màn 3 — Trao giải** (`gdTraoGiai.jsp`, lớp biên `GDTraoGiai`). **Tiêu đề:** `Trao giải mùa giải FIA Formula One World Championship 2025`. **Khu nhập mức thưởng** (`-inMucThuong`) — 6 ô nhập, xếp 2 cột: *Giải cá nhân* (Hạng 1, Hạng 2, Hạng 3) và *Giải đồng đội* (Hạng 1, Hạng 2, Hạng 3), đơn vị VNĐ; khi mới vào màn cả 6 ô đều rỗng. **Nút [Tính thưởng]** (`-subTinhThuong`) ngay dưới khu nhập, đang active. **Bảng Danh sách trao giải** (`-outDSTraoGiai`) — 6 dòng, các cột `Loại giải | Hạng | Tay đua/Đội | Tổng điểm | Tiền thưởng`; khi mới vào màn, 4 cột đầu đã có dữ liệu (`Cá nhân | 1 | Lando Norris | 119`, `Cá nhân | 2 | Max Verstappen | 119`, `Cá nhân | 3 | Oscar Piastri | 95`, `Đội | 1 | McLaren | 214`, `Đội | 2 | Ferrari | 132`, `Đội | 3 | Red Bull | 121`) còn **cột Tiền thưởng rỗng**; sau khi click [Tính thưởng], cột Tiền thưởng được điền lần lượt `5.000.000.000`, `3.000.000.000`, `2.000.000.000`, `20.000.000.000`, `12.000.000.000`, `8.000.000.000`. **Nút [Lưu]** (`-subLuu`) ở góc dưới bên phải, **chưa active** khi cột Tiền thưởng còn rỗng; chuyển sang active sau khi tính thưởng xong. Click [Lưu] → gửi sang **trang xử lý** `doLuuTraoGiai.jsp`, trang này lưu 6 bản ghi trao giải, in danh sách và hiển thị thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025`; quản lý click OK → quay về trang chính `gdChinhQL.jsp`. Trang `doLuuTraoGiai.jsp` là **trang xử lý**, không phải màn hình tương tác ⇒ không sinh use case con, không sinh lớp biên, không cần mockup riêng.
+
+![Giao diện trao giải](<../Module 4 - Thanh/hinh/m4-giaodien-traogiai.png>)
+
+*Hình 7.6 — Giao diện Trao giải (Module 4)*
+
+### 7.6. Biểu đồ lớp thiết kế (view `.jsp` / `DAO` / `model`)
+
+Kiến trúc phân tầng: **view** = các trang `.jsp`, **dao** = các lớp truy xuất dữ liệu (chính là "tầng điều khiển" của mô hình MVC), **model** = các lớp thực thể. **Không có lớp `XxxController`.** Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** để dùng chung cơ chế kết nối cơ sở dữ liệu.
+
+Theo mẫu Hình 4.4 của giáo trình: lớp view có **thuộc tính kèm kiểu control** (`Select` — dropdown, `Table` — bảng, `link` — liên kết/click dòng, `submit` — nút, `Text` — ô nhập, `Reset`) và **thuộc tính ẩn** (đối tượng phiên `-ql : QuanLy`, dữ liệu truyền giữa trang kiểu entity/mảng như `-listXHCaNhan : KetQua[]`, `-listChiTiet : KetQua[]`, `-listTraoGiai : TraoGiai[]`); lớp DAO có **constructor** và các phương thức ghi **đầy đủ chữ ký** (tham số : kiểu, kiểu trả về — mảng `KetQua[]` cho thao tác đọc danh sách, `boolean` cho thao tác ghi).
+
+- **View (jsp):** `gdChinhQL` (trang chính của quản lý), `gdXepHang`, `gdChiTietXepHang`, `gdTraoGiai`, `doLuuTraoGiai` (trang xử lý)
+- **DAO:** `MuaGiaiDAO` — `+getMuaGiaiHienTai() : MuaGiai`; `KetQuaDAO` — `+kiemTraKetQuaCu(changDuaId : int) : boolean`, `+tongHopCaNhan(muaGiaiId : int) : KetQua[]`, `+tongHopDoi(muaGiaiId : int) : KetQua[]`, `+sapXepBangXepHang(ds : KetQua[]) : KetQua[]`, `+getChiTietTheoTayDua(muaGiaiId : int, tayDuaId : int) : KetQua[]`, `+getChiTietTheoDoi(muaGiaiId : int, doiDuaId : int) : KetQua[]`; `TraoGiaiDAO` — `+tinhTienThuong(hang : int, mucThuong : float) : float`, `+luuTraoGiai(listTG : TraoGiai[]) : boolean` (tất cả kế thừa `DAO`)
+- **Model:** `MuaGiai`, `ChangDua`, `KetQua`, `TayDua`, `DoiDua`, `TraoGiai`, `QuanLy`
+
+Lớp cha `DAO` chỉ giữ cơ chế dùng chung (`-con : Connection`, constructor `+DAO()`, `ketNoi()`, `dongKetNoi()`), không mang nghiệp vụ. Mỗi `XxxDAO` mang **đúng** các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở mục 7.4 (quy tắc ánh xạ của giáo trình, mục 4.3.1 bước 3). Quan hệ giữa các lớp vẽ bằng **đường kẻ trơn**, không mũi tên định hướng.
+
+![Biểu đồ lớp thiết kế Module 4](<../Module 4 - Thanh/hinh/m4-lop-mvc.png>)
+
+*Hình 7.7 — Biểu đồ lớp thiết kế Module 4 (view `.jsp` / `DAO` / `model`)*
+
+### 7.7. Biểu đồ hoạt động (pha thiết kế)
+
+Vẽ theo phong cách Hình 4.9 của giáo trình (mục 4.3.2 bước 1): **mỗi hành động tương ứng một phương thức đã thiết kế** trong biểu đồ lớp ở mục 7.6; hoạt động nhóm theo khung `Xử lí tại gdXxx.jsp` cho **từng trang jsp** (kể cả trang xử lý `doLuuTraoGiai.jsp` và trang chính `gdChinhQL.jsp` — xuất hiện ở đầu khi mở chức năng và ở cuối khi quay về sau khi click OK); lời gọi DAO ghi rõ `XxxDAO: tenHam()`; guard trên cung là hành động người dùng `[click …]`; các nhánh kiểm tra ràng buộc nghiệp vụ là decision node đặt trong khung của trang xử lý tương ứng: kiểm tra "đã chọn chặng cuối và mọi chặng có kết quả" (active nút Tiếp tục) tại `gdXepHang.jsp`, nhánh drill-down qua `gdChiTietXepHang.jsp`, kiểm tra mức thưởng không âm (lặp nhập – tính thưởng) tại `gdTraoGiai.jsp`, và nhánh xác nhận ghi đè quyết định trao giải cũ tại `doLuuTraoGiai.jsp` (đóng gói danh sách trao giải bằng `setter()` rồi `TraoGiaiDAO: luuTraoGiai()`).
+
+![Biểu đồ hoạt động Module 4](<../Module 4 - Thanh/hinh/m4-hoatdong.png>)
+
+*Hình 7.8 — Biểu đồ hoạt động Module 4 (pha thiết kế)*
+
+### 7.8. Thuyết minh (kịch bản phiên bản 3)
+
+1. Quản lý click chức năng "Quyết toán mùa giải" trên trang chính gdChinhQL.jsp.
+2. Trang gdChinhQL.jsp gọi trang gdXepHang.jsp.
+3. Trang gdXepHang.jsp gọi lớp MuaGiaiDAO yêu cầu lấy mùa giải hiện tại.
+4. Lớp MuaGiaiDAO gọi hàm getMuaGiaiHienTai().
+5. Hàm getMuaGiaiHienTai() gọi lớp MuaGiai để đóng gói thông tin.
+6. Lớp MuaGiai đóng gói thông tin thực thể.
+7. Lớp MuaGiai gọi lớp ChangDua để đóng gói danh sách chặng của mùa giải.
+8. Lớp ChangDua đóng gói thông tin thực thể.
+9. Lớp ChangDua trả kết quả về cho lớp MuaGiai.
+10. Lớp MuaGiai trả kết quả về cho hàm getMuaGiaiHienTai().
+11. Hàm getMuaGiaiHienTai() trả kết quả cho trang gdXepHang.jsp.
+12. Trang gdXepHang.jsp hiển thị màn Bảng tổng sắp kèm danh sách chọn chặng cho quản lý.
+13. Quản lý chọn chặng Abu Dhabi (chặng cuối) từ danh sách.
+14. Trang gdXepHang.jsp gọi lớp KetQuaDAO yêu cầu kiểm tra một chặng đã có kết quả hay chưa.
+15. Lớp KetQuaDAO gọi hàm kiemTraKetQuaCu().
+16. Hàm kiemTraKetQuaCu() gọi lớp KetQua để đóng gói thông tin.
+17. Lớp KetQua đóng gói thông tin thực thể.
+18. Lớp KetQua trả kết quả về cho hàm kiemTraKetQuaCu().
+19. Hàm kiemTraKetQuaCu() trả kết quả cho trang gdXepHang.jsp. *(Lặp lại các bước 14–19 cho từng chặng tính đến chặng được chọn.)*
+20. Trang gdXepHang.jsp gọi lớp KetQuaDAO yêu cầu tổng hợp xếp hạng cá nhân của mùa giải.
+21. Lớp KetQuaDAO gọi hàm tongHopCaNhan().
+22. Hàm tongHopCaNhan() gọi lớp KetQua để đóng gói thông tin.
+23. Lớp KetQua đóng gói thông tin thực thể.
+24. Lớp KetQua gọi lớp TayDua để đóng gói thông tin tay đua cho từng dòng xếp hạng.
+25. Lớp TayDua đóng gói thông tin thực thể.
+26. Lớp TayDua trả kết quả về cho lớp KetQua.
+27. Lớp KetQua trả kết quả về cho hàm tongHopCaNhan().
+28. Lớp KetQuaDAO gọi hàm sapXepBangXepHang() sắp xếp bảng xếp hạng cá nhân theo 3 tầng: tổng điểm giảm dần, countback, tổng thời gian tăng dần.
+29. Hàm tongHopCaNhan() trả kết quả cho trang gdXepHang.jsp.
+30. Trang gdXepHang.jsp gọi lớp KetQuaDAO yêu cầu tổng hợp xếp hạng đội của mùa giải.
+31. Lớp KetQuaDAO gọi hàm tongHopDoi().
+32. Hàm tongHopDoi() gọi lớp KetQua để đóng gói thông tin.
+33. Lớp KetQua đóng gói thông tin thực thể.
+34. Lớp KetQua gọi lớp DoiDua để đóng gói thông tin đội đua cho từng dòng xếp hạng.
+35. Lớp DoiDua đóng gói thông tin thực thể.
+36. Lớp DoiDua trả kết quả về cho lớp KetQua.
+37. Lớp KetQua trả kết quả về cho hàm tongHopDoi().
+38. Lớp KetQuaDAO gọi hàm sapXepBangXepHang() sắp xếp bảng xếp hạng đội theo 3 tầng.
+39. Hàm tongHopDoi() trả kết quả cho trang gdXepHang.jsp.
+40. Trang gdXepHang.jsp hiển thị hai bảng xếp hạng cho quản lý.
+41. Quản lý click vào dòng Max Verstappen trên bảng xếp hạng cá nhân.
+42. Trang gdXepHang.jsp gọi trang gdChiTietXepHang.jsp.
+43. Trang gdChiTietXepHang.jsp gọi lớp KetQuaDAO yêu cầu lấy chi tiết kết quả từng chặng của tay đua.
+44. Lớp KetQuaDAO gọi hàm getChiTietTheoTayDua().
+45. Hàm getChiTietTheoTayDua() gọi lớp KetQua để đóng gói thông tin.
+46. Lớp KetQua đóng gói thông tin thực thể.
+47. Lớp KetQua gọi lớp ChangDua để đóng gói tên chặng cho từng dòng chi tiết.
+48. Lớp ChangDua đóng gói thông tin thực thể.
+49. Lớp ChangDua trả kết quả về cho lớp KetQua.
+50. Lớp KetQua trả kết quả về cho hàm getChiTietTheoTayDua().
+51. Hàm getChiTietTheoTayDua() trả kết quả cho trang gdChiTietXepHang.jsp.
+52. Trang gdChiTietXepHang.jsp hiển thị bảng chi tiết từng chặng cho quản lý. *(Khi quản lý click 1 dòng đội, luồng tương tự với hàm getChiTietTheoDoi().)*
+53. Quản lý click nút Quay lại.
+54. Trang gdChiTietXepHang.jsp gọi lại trang gdXepHang.jsp.
+55. Trang gdXepHang.jsp hiển thị lại hai bảng xếp hạng cho quản lý.
+56. Quản lý click nút Tiếp tục.
+57. Trang gdXepHang.jsp gọi trang gdTraoGiai.jsp.
+58. Trang gdTraoGiai.jsp hiển thị màn trao giải cho quản lý.
+59. Quản lý nhập mức thưởng cho 6 hạng và click nút Tính thưởng.
+60. Trang gdTraoGiai.jsp gọi lớp TraoGiaiDAO yêu cầu tính tiền thưởng cho một hạng.
+61. Lớp TraoGiaiDAO gọi hàm tinhTienThuong().
+62. Hàm tinhTienThuong() gọi lớp TraoGiai để đóng gói thông tin.
+63. Lớp TraoGiai đóng gói thông tin thực thể.
+64. Lớp TraoGiai trả kết quả về cho hàm tinhTienThuong().
+65. Hàm tinhTienThuong() trả kết quả cho trang gdTraoGiai.jsp. *(Lặp lại các bước 60–65 cho từng hạng được thưởng.)*
+66. Trang gdTraoGiai.jsp hiển thị danh sách trao giải kèm cột Tiền thưởng cho quản lý.
+67. Quản lý click nút Lưu.
+68. Trang gdTraoGiai.jsp gọi trang doLuuTraoGiai.jsp.
+69. Trang doLuuTraoGiai.jsp gọi lớp TraoGiai yêu cầu đóng gói danh sách trao giải vừa nhập.
+70. Lớp TraoGiai gọi hàm setter() để đóng gói dữ liệu.
+71. Lớp TraoGiai trả về cho trang doLuuTraoGiai.jsp.
+72. Trang doLuuTraoGiai.jsp gọi lớp TraoGiaiDAO yêu cầu lưu danh sách trao giải.
+73. Lớp TraoGiaiDAO gọi hàm luuTraoGiai().
+74. Hàm luuTraoGiai() trả kết quả cho trang doLuuTraoGiai.jsp.
+75. Trang doLuuTraoGiai.jsp thông báo lưu thành công và in danh sách trao giải cho quản lý.
+76. Quản lý click nút OK.
+77. Trang doLuuTraoGiai.jsp gọi lại trang chính gdChinhQL.jsp.
+78. Trang gdChinhQL.jsp hiển thị cho quản lý.
+
+### 7.9. Biểu đồ tuần tự
+
+Lifeline gồm **actor Quản lý + trang chính `gdChinhQL.jsp` (mở đầu và kết thúc, theo mẫu Hình 4.10) + 4 trang `.jsp` của module (kể cả `gdChiTietXepHang.jsp`) + 3 lớp `XxxDAO` + 6 lớp thực thể**; **không có lifeline cơ sở dữ liệu, không có câu lệnh SQL trong message, không có lớp Controller**. Nhãn message giữ cực ngắn (`goi`, `tra ve`, `hien thi`, `click …`, `nhap …`, `chon …`); chỉ **self-call** mới ghi tên hàm; message được đánh số tự động (trong Visual Paradigm bật *Show sequence number*). Biểu đồ chỉ vẽ **luồng chính** (mùa giải đã kết thúc và đủ kết quả tất cả các chặng), kèm nhánh drill-down xem chi tiết theo chặng (chọn 1 dòng tay đua → `getChiTietTheoTayDua()` → hiển thị → quay lại) trước khi sang trao giải; khối `loop` thể hiện vòng lặp kiểm tra từng chặng và vòng lặp tính thưởng từng hạng. **Luồng lưu dùng mẫu `setter()`** theo Hình 4.12: lớp thực thể `TraoGiai` tự đóng gói dữ liệu nhập bằng `setter()` trước, rồi `TraoGiaiDAO.luuTraoGiai()` ghi cả danh sách 6 bản ghi — không gọi constructor thực thể ở luồng lưu. Mọi cặp `activate` / `deactivate` đều cân bằng. Số thứ tự 78 message khớp 1-1 với 78 dòng thuyết minh ở mục 7.8.
+
+![Biểu đồ tuần tự Module 4](<../Module 4 - Thanh/hinh/m4-tuantu.png>)
+
+*Hình 7.9 — Biểu đồ tuần tự Module 4*
+
+### 7.10. Test case
+
+Test case xây dựng theo **quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2** (bước 1: checklist theo 3 nhóm Giao diện / Chức năng / Luồng nghiệp vụ; bước 2: viết test case 4 cột; bước 3: chuẩn bị data test; bước 4: chạy và ghi pass/fail). Bảng "CSDL sau khi test" của format cũ được **rút gọn thành mô tả hiệu ứng CSDL trong cột Kết quả mong muốn** của ca tương ứng.
+
+#### 7.10.1. Data test (bước 3 quy trình test)
+
+Bộ dữ liệu nền dùng chung cho nhóm **Luồng nghiệp vụ** (và các ca Chức năng), lấy từ bộ dữ liệu mẫu mùa 2025 thống nhất của nhóm. Hai ca `QTTG_15` (countback bằng → tổng thời gian) và `QTTG_18` (đổi đội giữa mùa) dùng **biến thể rút gọn** của bộ dữ liệu này — phần sửa đổi được mô tả ngay trong cột "Các bước thực hiện" của ca đó.
+
+`tblMuaGiai`
+
+| id | ten | nam | trangThai |
 |---|---|---|---|
-| TC1 | Tính điểm top 10 đúng | Thời gian tăng dần | Hạng 1 = 25đ … hạng 10 = 1đ, từ hạng 11 = 0đ |
-| TC2 | DNF nhận 0 điểm | A có thời gian về nhì nhưng DNF | A xếp cuối, 0 điểm |
-| TC3 | Chặn thiếu thời gian | B không DNF, bỏ trống thời gian | Báo lỗi, không tính |
-| TC4 | Cảnh báo ghi đè | Chặng đã có kết quả | Cảnh báo trước khi lưu, tính lại toàn bộ |
+| 1 | FIA Formula One World Championship | 2025 | Đã kết thúc |
+
+`tblChangDua`
+
+| id | ma | ten | soVong | diaDiem | thoiGian | moTa | tblMuaGiaiid |
+|---|---|---|---|---|---|---|---|
+| 1 | R01 | Australian Grand Prix | 58 | Melbourne | 16/03/2025 | Chặng mở màn | 1 |
+| 2 | R02 | Chinese Grand Prix | 56 | Thượng Hải | 23/03/2025 | | 1 |
+| 3 | R06 | Monaco Grand Prix | 78 | Monte Carlo | 25/05/2025 | Đường phố | 1 |
+| 4 | R10 | British Grand Prix | 52 | Silverstone | 06/07/2025 | | 1 |
+| 5 | R16 | Italian Grand Prix | 53 | Monza | 07/09/2025 | | 1 |
+| 6 | R24 | Abu Dhabi Grand Prix | 58 | Yas Marina | 07/12/2025 | Chặng kết mùa | 1 |
+
+`tblDoiDua`
+
+| id | ma | ten | hang | moTa |
+|---|---|---|---|---|
+| 1 | FER | Ferrari | Ferrari | |
+| 2 | RBR | Red Bull | Honda RBPT | |
+| 3 | MCL | McLaren | Mercedes | |
+| 4 | MER | Mercedes | Mercedes | |
+| 5 | AST | Aston Martin | Mercedes | |
+| 6 | WIL | Williams | Mercedes | |
+
+`tblTayDua`
+
+| id | ma | ten | ngaySinh | quocTich | tieuSu |
+|---|---|---|---|---|---|
+| 1 | LEC | Charles Leclerc | 16/10/1997 | Monaco | |
+| 2 | HAM | Lewis Hamilton | 07/01/1985 | Anh | |
+| 3 | VER | Max Verstappen | 30/09/1997 | Hà Lan | |
+| 4 | TSU | Yuki Tsunoda | 11/05/2000 | Nhật Bản | |
+| 5 | NOR | Lando Norris | 13/11/1999 | Anh | |
+| 6 | PIA | Oscar Piastri | 06/04/2001 | Úc | |
+| 7 | RUS | George Russell | 15/02/1998 | Anh | |
+| 8 | ANT | Andrea Kimi Antonelli | 25/08/2006 | Ý | |
+| 9 | ALO | Fernando Alonso | 29/07/1981 | Tây Ban Nha | |
+| 10 | STR | Lance Stroll | 29/10/1998 | Canada | |
+| 11 | ALB | Alexander Albon | 23/03/1996 | Thái Lan | |
+| 12 | SAI | Carlos Sainz | 01/09/1994 | Tây Ban Nha | |
+
+`tblDangKyChang` — 72 dòng (6 chặng × 12 tay đua). Mỗi tay đua đăng ký cho đúng đội đang có hợp đồng hiệu lực ở cả 6 chặng: LEC, HAM → Ferrari; VER, TSU → Red Bull; NOR, PIA → McLaren; RUS, ANT → Mercedes; ALO, STR → Aston Martin; ALB, SAI → Williams. Trích 12 dòng của chặng R01:
+
+| id | tblChangDuaid | tblTayDuaid | tblDoiDuaid |
+|---|---|---|---|
+| 1 | 1 | 1 (LEC) | 1 (Ferrari) |
+| 2 | 1 | 2 (HAM) | 1 (Ferrari) |
+| 3 | 1 | 3 (VER) | 2 (Red Bull) |
+| 4 | 1 | 4 (TSU) | 2 (Red Bull) |
+| 5 | 1 | 5 (NOR) | 3 (McLaren) |
+| 6 | 1 | 6 (PIA) | 3 (McLaren) |
+| 7 | 1 | 7 (RUS) | 4 (Mercedes) |
+| 8 | 1 | 8 (ANT) | 4 (Mercedes) |
+| 9 | 1 | 9 (ALO) | 5 (Aston Martin) |
+| 10 | 1 | 10 (STR) | 5 (Aston Martin) |
+| 11 | 1 | 11 (ALB) | 6 (Williams) |
+| 12 | 1 | 12 (SAI) | 6 (Williams) |
+
+`tblKetQua` — 72 dòng, tất cả `trangThai = HoanThanh`. Trích đầy đủ 12 dòng của chặng R01:
+
+| id | tblDangKyChangid | thoiGian | soVongHoanThanh | trangThai | hang | diem |
+|---|---|---|---|---|---|---|
+| 1 | 5 (NOR) | 5284.512 | 58 | HoanThanh | 1 | 25 |
+| 2 | 3 (VER) | 5286.334 | 58 | HoanThanh | 2 | 18 |
+| 3 | 7 (RUS) | 5299.870 | 58 | HoanThanh | 3 | 15 |
+| 4 | 1 (LEC) | 5304.115 | 58 | HoanThanh | 4 | 12 |
+| 5 | 6 (PIA) | 5311.902 | 58 | HoanThanh | 5 | 10 |
+| 6 | 2 (HAM) | 5327.663 | 58 | HoanThanh | 6 | 8 |
+| 7 | 8 (ANT) | 5342.238 | 58 | HoanThanh | 7 | 6 |
+| 8 | 11 (ALB) | 5355.407 | 58 | HoanThanh | 8 | 4 |
+| 9 | 9 (ALO) | 5368.991 | 58 | HoanThanh | 9 | 2 |
+| 10 | 12 (SAI) | 5384.126 | 58 | HoanThanh | 10 | 1 |
+| 11 | 10 (STR) | 5398.775 | 58 | HoanThanh | 11 | 0 |
+| 12 | 4 (TSU) | 5412.043 | 58 | HoanThanh | 12 | 0 |
+
+> Cột `thoiGian` lưu **tổng số giây** (kiểu `float(10)`, xem mục 3.6.4); giao diện hiển thị dạng `hh:mm:ss.xxx`. Ví dụ `5284.512` giây hiển thị là `1:28:04.512`. Cột `Tổng thời gian` trên hai bảng xếp hạng ở mục 7.5 cũng là giá trị cộng dồn từ cột này rồi định dạng lại khi hiển thị.
+
+Nội dung **đầy đủ** hai cột `hang` / `diem` của cả 72 dòng `tblKetQua`, trình bày dạng ma trận `hạng (điểm)` cho gọn:
+
+| Tay đua | R01 | R02 | R06 | R10 | R16 | R24 | Tổng điểm |
+|---|---|---|---|---|---|---|---|
+| NOR | 1 (25) | 2 (18) | 2 (18) | 1 (25) | 1 (25) | 6 (8) | **119** |
+| VER | 2 (18) | 3 (15) | 1 (25) | 2 (18) | 2 (18) | 1 (25) | **119** |
+| PIA | 5 (10) | 1 (25) | 4 (12) | 3 (15) | 3 (15) | 2 (18) | 95 |
+| LEC | 4 (12) | 4 (12) | 3 (15) | 5 (10) | 4 (12) | 3 (15) | 76 |
+| RUS | 3 (15) | 5 (10) | 6 (8) | 6 (8) | 5 (10) | 4 (12) | 63 |
+| HAM | 6 (8) | 6 (8) | 5 (10) | 4 (12) | 6 (8) | 5 (10) | 56 |
+| ANT | 7 (6) | 7 (6) | 9 (2) | 7 (6) | 8 (4) | 7 (6) | 30 |
+| ALB | 8 (4) | 8 (4) | 8 (4) | 10 (1) | 7 (6) | 9 (2) | 21 |
+| ALO | 9 (2) | 9 (2) | 7 (6) | 8 (4) | 9 (2) | 8 (4) | 20 |
+| SAI | 10 (1) | 11 (0) | 10 (1) | 11 (0) | 10 (1) | 10 (1) | 4 |
+| TSU | 12 (0) | 12 (0) | 12 (0) | 9 (2) | 11 (0) | 12 (0) | 2 |
+| STR | 11 (0) | 10 (1) | 11 (0) | 12 (0) | 12 (0) | 11 (0) | 1 |
+
+`tblTraoGiai` — **rỗng** (chưa có dòng nào).
+
+> `tblTraoGiai` **không** lưu `tongDiem` và `tongThoiGian`: đây là thuộc tính dẫn xuất, tính lại được từ `tblKetQua` tại thời điểm hiển thị (xem mục 3.6.5). Các cột `loai`, `hang`, `tienThuong` được giữ vì là **quyết định trao giải đã chốt sổ**, không phải giá trị tính lại được.
+
+#### 7.10.2. Bảng test case
+
+| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|---|---|---|---|
+| | **Nhóm 1 — Giao diện** | | |
+| QTTG_1 | Kiểm tra bố cục màn Bảng tổng sắp | 1. Đăng nhập tài khoản quyền Quản lý.<br>2. Click "Quyết toán mùa giải" trên trang chính. | Title đúng `Bảng tổng sắp — FIA Formula One World Championship 2025`; hiển thị đầy đủ: danh sách chọn chặng (6 chặng), bảng Xếp hạng cá nhân đủ 6 cột `Hạng \| Tên tay đua \| Quốc tịch \| Tên đội \| Tổng điểm \| Tổng thời gian`, bảng Xếp hạng đội đủ 5 cột `Hạng \| Tên đội \| Hãng \| Tổng điểm \| Tổng thời gian`, nút [Tiếp tục]; focus đặt vào danh sách chọn chặng |
+| QTTG_2 | Kiểm tra hành vi phím màn Bảng tổng sắp | 1. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`.<br>2. Nhấn Tab lần lượt; nhấn Enter khi focus ở [Tiếp tục]. | Tab di chuyển đúng thứ tự: danh sách chọn chặng → bảng cá nhân → bảng đội → [Tiếp tục]; Enter tại [Tiếp tục] chuyển sang màn Trao giải |
+| QTTG_3 | Kiểm tra bố cục màn Chi tiết theo chặng | 1. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`.<br>2. Click dòng `Max Verstappen`. | Title là tên đối tượng `Max Verstappen — Red Bull`; bảng chi tiết đủ 4 cột `Tên chặng \| Hạng về đích \| Điểm \| Thời gian về đích`; có nút [Quay lại]; focus đặt vào nút [Quay lại] |
+| QTTG_4 | Kiểm tra hành vi phím màn Chi tiết theo chặng | 1. Đang ở màn Chi tiết theo chặng của `Max Verstappen`.<br>2. Nhấn Enter. | Enter thực hiện nút chính [Quay lại]: trở về màn Bảng tổng sắp, danh sách chọn chặng vẫn giữ `Abu Dhabi` |
+| QTTG_5 | Kiểm tra bố cục màn Trao giải | 1. Từ màn Bảng tổng sắp (chặng cuối, đủ kết quả) click [Tiếp tục]. | Title đúng `Trao giải mùa giải FIA Formula One World Championship 2025`; đủ 6 ô nhập mức thưởng (cá nhân hạng 1/2/3, đội hạng 1/2/3), nút [Tính thưởng] active, bảng Danh sách trao giải đủ 5 cột `Loại giải \| Hạng \| Tay đua/Đội \| Tổng điểm \| Tiền thưởng`, nút [Lưu] **chưa active**; focus đặt vào ô mức thưởng cá nhân hạng 1 |
+| QTTG_6 | Kiểm tra hành vi phím màn Trao giải | 1. Đang ở màn Trao giải.<br>2. Nhấn Tab lần lượt; nhập đủ 6 mức thưởng rồi nhấn Enter tại ô cuối. | Tab di chuyển đúng thứ tự 6 ô nhập (cá nhân 1→2→3, đội 1→2→3) → [Tính thưởng] → [Lưu]; Enter tại ô nhập cuối thực hiện [Tính thưởng] |
+| | **Nhóm 2 — Chức năng** | | |
+| QTTG_7 | Màn Bảng tổng sắp hiển thị đúng dữ liệu khi CSDL có dữ liệu | 1. CSDL như mục 7.10.1.<br>2. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`. | Bảng cá nhân đủ 12 dòng — danh sách **khớp** kết quả tổng hợp từ 72 bản ghi trong `tblKetQua` và 12 bản ghi trong `tblTayDua`; bảng đội đủ 6 dòng khớp 6 bản ghi trong `tblDoiDua`; tổng điểm 2 bảng đều bằng 606 = 101 điểm × 6 chặng |
+| QTTG_8 | Màn Bảng tổng sắp — ca không có dữ liệu | 1. Sửa data test: `tblKetQua` rỗng (mùa chưa đua chặng nào).<br>2. Mở màn Bảng tổng sắp. | Hai bảng xếp hạng không có dòng nào, hiển thị thông báo `Mùa giải chưa có kết quả chặng nào`; nút [Tiếp tục] **không active**; `tblTraoGiai` không phát sinh bản ghi |
+| QTTG_9 | Màn Chi tiết theo chặng hiển thị đúng dữ liệu tay đua | 1. CSDL như mục 7.10.1.<br>2. Chọn chặng `Abu Dhabi`, click dòng `Max Verstappen`. | Bảng chi tiết đủ 6 dòng — **khớp** 6 bản ghi của Verstappen trong `tblKetQua`; dòng đầu `Australian Grand Prix \| 2 \| 18 \| 1:28:06.334` (= 5286.334 giây); tổng cột Điểm của 6 dòng = 119 đúng bằng Tổng điểm trên bảng tổng sắp |
+| QTTG_10 | Màn Chi tiết theo chặng hiển thị đúng dữ liệu đội và phạm vi chặng | 1. CSDL như mục 7.10.1.<br>2. Chọn chặng `Abu Dhabi`, click dòng đội `McLaren`.<br>3. Quay lại, chọn chặng `R01 Melbourne`, click lại dòng `McLaren`. | Bước 2: bảng chi tiết đội đủ 6 dòng cột `Tên chặng \| Tổng điểm \| Tổng thời gian của 2 tay đua`, dòng đầu `Australian Grand Prix \| 35 \| 2:56:36.414` (NOR 25 + PIA 10; 5284.512 + 5311.902 giây), tổng điểm 6 dòng = 214. Bước 3: bảng chỉ còn **1 dòng** (phạm vi tính đến chặng R01); đối tượng không có kết quả trong phạm vi lọc hiển thị `Không có dữ liệu` |
+| QTTG_11 | Màn Trao giải hiển thị đúng danh sách top 3 | 1. CSDL như mục 7.10.1.<br>2. Chọn chặng cuối, click [Tiếp tục]. | Bảng Danh sách trao giải đúng 6 dòng khớp kết quả tổng hợp từ `tblKetQua`: `Cá nhân \| 1 \| Lando Norris \| 119`, `Cá nhân \| 2 \| Max Verstappen \| 119`, `Cá nhân \| 3 \| Oscar Piastri \| 95`, `Đội \| 1 \| McLaren \| 214`, `Đội \| 2 \| Ferrari \| 132`, `Đội \| 3 \| Red Bull \| 121`; từ hạng 4 trở xuống (`Charles Leclerc`, đội `Mercedes`) **không** xuất hiện |
+| QTTG_12 | Màn Trao giải — ca chưa có dữ liệu trao giải | 1. CSDL như mục 7.10.1 (`tblTraoGiai` rỗng).<br>2. Mở màn Trao giải. | Cột Tiền thưởng của cả 6 dòng **rỗng**, 6 ô nhập mức thưởng rỗng, nút [Lưu] **chưa active** (khớp `tblTraoGiai` chưa có bản ghi nào của mùa giải) |
+| | **Nhóm 3 — Luồng nghiệp vụ** — *Precond: CSDL đúng như mục 7.10.1 (Data test); đã đăng nhập tài khoản quyền Quản lý; mùa giải 2025 ở trạng thái `Đã kết thúc`* | | |
+| QTTG_13 | Quyết toán mùa giải đủ kết quả — luồng chuẩn end-to-end | 1. Click "Quyết toán mùa giải" trên trang chính.<br>2. Chọn chặng `Abu Dhabi` (chặng cuối) từ danh sách.<br>3. Đối chiếu bảng cá nhân: `1 \| Lando Norris \| Anh \| McLaren \| 119 \| 9:03:19.885`; `2 \| Max Verstappen \| Hà Lan \| Red Bull \| 119 \| 9:03:12.418`; `3 \| Oscar Piastri \| 95`; `4 \| Charles Leclerc \| 76`; `5 \| George Russell \| 63`; `6 \| Lewis Hamilton \| 56`; `7 \| Antonelli \| 30`; `8 \| Albon \| 21`; `9 \| Alonso \| 20`; `10 \| Sainz \| 4`; `11 \| Tsunoda \| 2`; `12 \| Stroll \| 1`.<br>4. Đối chiếu bảng đội: `McLaren 214, Ferrari 132, Red Bull 121, Mercedes 93, Williams 25, Aston Martin 21`.<br>5. Click [Tiếp tục]; nhập mức thưởng cá nhân `5.000.000.000 / 3.000.000.000 / 2.000.000.000`, đội `20.000.000.000 / 12.000.000.000 / 8.000.000.000`; click [Tính thưởng].<br>6. Click [Lưu], click OK ở thông báo. | Hai bảng xếp hạng đúng thứ tự như bước 3–4; cột Tiền thưởng điền đúng 6 dòng, [Lưu] chuyển active; thông báo `Đã lưu quyết định trao giải mùa giải FIA Formula One World Championship 2025` rồi quay về trang chính. **Hiệu ứng CSDL:** `tblTraoGiai` thêm đúng 6 bản ghi mới `(CaNhan, NOR, hang 1, 5.000.000.000)`, `(CaNhan, VER, 2, 3.000.000.000)`, `(CaNhan, PIA, 3, 2.000.000.000)`, `(Doi, MCL, 1, 20.000.000.000)`, `(Doi, FER, 2, 12.000.000.000)`, `(Doi, RBR, 3, 8.000.000.000)`; các bảng khác giữ nguyên |
+| QTTG_14 | Bằng tổng điểm → phân định bằng countback (tầng 2) | 1. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`.<br>2. Đối chiếu 2 dòng đầu bảng cá nhân: Norris và Verstappen cùng **119** điểm; theo `tblKetQua`, Norris có 3 lần hạng 1 (R01, R10, R16), Verstappen có 2 lần (R06, R24). | `1 \| Lando Norris \| 119 \| 9:03:19.885`; `2 \| Max Verstappen \| 119 \| 9:03:12.418` — Norris xếp trên nhờ countback (3 lần về nhất so với 2) **dù tổng thời gian của Norris lớn hơn** ⇒ tầng 3 tổng thời gian chưa được dùng khi countback đã phân định; kèm chú thích `Phân định bằng countback (số lần về nhất)`. CSDL không thay đổi |
+| QTTG_15 | Countback vẫn bằng → phân định bằng tổng thời gian tăng dần (tầng 3) | 1. Sửa data test: mùa rút gọn còn 2 chặng `R01 Melbourne`, `R02 Thượng Hải`; `tblKetQua` sửa chặng R02: Verstappen hạng 1 (`thoiGian = 5430.000` giây), Norris hạng 2 (`5433.906` giây); chặng R01 giữ nguyên: Norris hạng 1 (`5284.512`), Verstappen hạng 2 (`5286.334`).<br>2. Mở màn Bảng tổng sắp, chọn chặng `R02` (chặng cuối của mùa rút gọn).<br>3. Đối chiếu 2 dòng đầu bảng cá nhân. | Norris và Verstappen cùng **43** điểm (25 + 18), cùng 1 lần hạng 1 và 1 lần hạng 2 ⇒ countback không phân định ⇒ so **tổng thời gian tăng dần**: Verstappen 10716.334 giây (`2:58:36.334`) nhỏ hơn Norris 10718.418 giây (`2:58:38.418`) ⇒ `1 \| Max Verstappen \| 43 \| 2:58:36.334`; `2 \| Lando Norris \| 43 \| 2:58:38.418`. CSDL không thay đổi |
+| QTTG_16 | Drill-down xem chi tiết theo chặng của tay đua và đội | 1. Mở màn Bảng tổng sắp, chọn chặng `Abu Dhabi`.<br>2. Click dòng `Max Verstappen`.<br>3. Click [Quay lại].<br>4. Click dòng đội `McLaren`.<br>5. Click [Quay lại]. | Bước 2: màn Chi tiết `Max Verstappen — Red Bull`, 6 dòng khớp `tblKetQua` (dòng đầu `Australian Grand Prix \| 2 \| 18 \| 1:28:06.334`, cột Điểm cộng lại = 119). Bước 3: về màn Bảng tổng sắp, chặng đang chọn giữ nguyên. Bước 4: màn Chi tiết `McLaren — Mercedes` với cột `Tên chặng \| Tổng điểm \| Tổng thời gian của 2 tay đua`, 6 dòng (dòng đầu `Australian Grand Prix \| 35 \| 2:56:36.414`), tổng điểm = 214. Bước 5: về màn Bảng tổng sắp. CSDL không thay đổi |
+| QTTG_17 | Tính tiền thưởng: kiểm tra ràng buộc và tính lại nhiều lần | 1. Vào màn Trao giải (qua QTTG_13 bước 1–5, chưa nhập mức thưởng).<br>2. Bỏ trống cả 6 ô, click [Tính thưởng].<br>3. Nhập mức thưởng cá nhân hạng 1 = `-5.000.000`, click [Tính thưởng].<br>4. Nhập đủ 6 mức như QTTG_13 bước 5, click [Tính thưởng].<br>5. Sửa cá nhân hạng 1 thành `6.000.000.000`, click [Tính thưởng] lần 2.<br>6. Click [Lưu], click OK. | Bước 2, 3: báo `Mức thưởng phải là số không âm`, cột Tiền thưởng rỗng, [Lưu] **chưa active**. Bước 4: 6 dòng điền đúng tiền thưởng theo hạng và loại giải, [Lưu] active; hạng 4 trở xuống không được tính. Bước 5: dòng Norris cập nhật `6.000.000.000`, 5 dòng còn lại giữ nguyên. **Hiệu ứng CSDL:** `tblTraoGiai` có 6 bản ghi mới theo lần tính **cuối cùng** — dòng `(CaNhan, NOR, 1)` có `tienThuong = 6.000.000.000` |
+| QTTG_18 | Tay đua đổi đội giữa mùa → điểm đội cộng theo đội tại thời điểm chặng | 1. Sửa data test: mùa rút gọn còn 2 chặng `R01 Melbourne`, `R06 Monaco`; `tblDangKyChang` sửa: Hamilton đăng ký cho **Mercedes** ở R01 (`tblDoiDuaid = 4`) và cho **Ferrari** ở R06 (`tblDoiDuaid = 1`); kết quả 2 chặng giữ nguyên cột R01, R06 của ma trận điểm (Hamilton hạng 6 = 8 điểm ở R01, hạng 5 = 10 điểm ở R06); hợp đồng hiệu lực hiện tại của Hamilton là Ferrari.<br>2. Mở màn Bảng tổng sắp, chọn chặng `R06` (chặng cuối của mùa rút gọn).<br>3. Kiểm tra dòng Hamilton ở bảng cá nhân.<br>4. Kiểm tra điểm đội Mercedes và Ferrari ở bảng đội.<br>5. Click [Tiếp tục], nhập mức thưởng như QTTG_13, click [Tính thưởng], click [Lưu]. | Bước 3: `Lewis Hamilton \| Anh \| Ferrari \| 18` (8 + 10; cột Tên đội hiển thị đội hiện tại). Bước 4: **Mercedes = 39** = RUS (15 + 8) + ANT (6 + 2) + Hamilton tại R01 (8); **Ferrari = 37** = LEC (12 + 15) + Hamilton tại R06 (10) — điểm cộng theo `tblDangKyChang.tblDoiDuaid` (đội tại thời điểm chặng), không cộng cả 18 điểm cho Ferrari; tổng 6 đội = 202 = 101 × 2 chặng (không mất, không nhân đôi). **Hiệu ứng CSDL:** `tblTraoGiai` thêm 6 bản ghi mới theo bảng xếp hạng của mùa rút gọn |
+
+> Nhóm Giao diện 6 ca (2 ca/màn × 3 màn), nhóm Chức năng 6 ca (2 ca/màn), nhóm Luồng nghiệp vụ 6 ca — tổng 18 ca, mã `QTTG_1`–`QTTG_18`. Bộ test case kiểm chứng đủ: luồng chuẩn, tie-break 3 tầng (countback tầng 2 — `QTTG_14`, tổng thời gian tầng 3 — `QTTG_15`), drill-down (`QTTG_16`), tính thưởng (`QTTG_17`) và ràng buộc quan trọng nhất của module — điểm đội cộng dồn theo đội tại thời điểm chặng (`QTTG_18`).
 
 ---
 
-## CHƯƠNG 8: MODULE 4 — QUYẾT TOÁN VÀ TRAO GIẢI CUỐI MÙA (Phùng Tuấn Thành)
+## CHƯƠNG 8: KẾT LUẬN
 
-### 8.1. Biểu đồ Use Case chi tiết
+Nhóm đã phân tích và thiết kế hệ thống Quản lý giải đua xe F1 với 4 module nghiệp vụ, mỗi module có ràng buộc và xử lý riêng: kiểm tra chồng lấn hợp đồng và tự động đóng hợp đồng cũ (Module 1), giới hạn 2 tay đua/đội/chặng (Module 2), xếp hạng và tính điểm theo luật F1 với ba trạng thái Hoàn thành / DNF / DSQ (Module 3), và quyết toán trao giải với điều kiện đủ kết quả, xem bảng xếp hạng tính đến chặng bất kỳ kèm drill-down chi tiết theo chặng, cùng quy tắc xếp hạng ba tầng: tổng điểm giảm dần → countback → tổng thời gian tăng dần (Module 4).
 
-Use case "Quyết toán và trao giải" include các use case con: Đăng nhập, Tổng hợp xếp hạng, Nhập thưởng và lưu.
+Các sản phẩm đã hoàn thành gồm: mô tả yêu cầu bài toán theo ngôn ngữ tự nhiên (phạm vi hệ thống, nghiệp vụ 11 chức năng, đối tượng và thuộc tính, quan hệ số lượng, ràng buộc nghiệp vụ); mô tả yêu cầu phần mềm (actor, bảng use case, yêu cầu chức năng, yêu cầu phi chức năng, biểu đồ use case tổng quát); biểu đồ lớp thực thể ở cả hai pha phân tích và thiết kế kèm bảng trích danh từ, thiết kế cơ sở dữ liệu 12 bảng và biểu đồ package triển khai; và với mỗi thành viên là bộ tài liệu đầy đủ cho một use case (biểu đồ use case chi tiết, đặc tả use case, biểu đồ trạng thái phân tích hoạt động, biểu đồ lớp phân tích, thiết kế giao diện, biểu đồ lớp thiết kế, biểu đồ hoạt động pha thiết kế, thuyết minh kịch bản kèm biểu đồ tuần tự, và test case theo mẫu Bảng 6.7).
 
-(Hình 8.1 — Biểu đồ Use Case chi tiết Module 4)
-
-### 8.2. Đặc tả Use Case
-
-| Mục | Nội dung |
-|---|---|
-| Use case | Quyết toán và trao giải cuối mùa |
-| Actor | Quản lý |
-| Tiền điều kiện | Đã đăng nhập; mùa giải đã kết thúc |
-| Hậu điều kiện | Bảng xếp hạng và tiền thưởng được lưu; in danh sách trao giải |
-| Kịch bản chính | 1. Chọn menu Quyết toán. 2. Hệ thống kiểm tra tất cả chặng trong mùa đã có kết quả. 3. Hệ thống cộng dồn điểm / thời gian, lập bảng xếp hạng cá nhân và đội (giảm dần theo tổng điểm, bằng điểm thì tăng dần theo tổng thời gian). 4. Quản lý nhập mức thưởng cho các hạng 1, 2, 3 (cá nhân và đội), click Tính thưởng. 5. Hệ thống tính tiền thưởng theo hạng đạt được. 6. Kiểm tra, click Lưu → lưu quyết định trao giải và in danh sách trao giải. |
-| Ngoại lệ | 2a. Còn chặng chưa có kết quả → báo lỗi, từ chối quyết toán. |
-
-### 8.3. Biểu đồ hoạt động
-
-(Hình 8.2 — Biểu đồ hoạt động Module 4)
-
-### 8.4. Biểu đồ lớp phân tích
-
-(Hình 8.3 — Biểu đồ lớp phân tích Module 4)
-
-### 8.5. Thiết kế giao diện
-
-(Hình 8.4 — Giao diện quyết toán mùa giải)
-
-### 8.6. Biểu đồ lớp thiết kế (MVC)
-
-(Hình 8.5 — Biểu đồ lớp thiết kế MVC Module 4)
-
-### 8.7. Biểu đồ tuần tự
-
-(Hình 8.6 — Biểu đồ tuần tự Module 4)
-
-### 8.8. Test case
-
-| ID | Mục tiêu | Dữ liệu vào | Kết quả mong đợi |
-|---|---|---|---|
-| TC1 | Quyết toán hợp lệ | Tất cả chặng đã có kết quả | Xếp hạng, tính thưởng, lưu và in danh sách trao giải |
-| TC2 | Chặn khi thiếu kết quả | Còn 1 chặng chưa có kết quả | Báo lỗi, không quyết toán |
-| TC3 | Tie-break bằng điểm | A và B cùng tổng điểm, A có tổng thời gian ít hơn | A xếp trên B |
-| TC4 | Tính tiền thưởng | Mức thưởng hạng 1 = 100 triệu | Tay đua/đội hạng 1 nhận đúng 100 triệu |
-
----
-
-## CHƯƠNG 9: KẾT LUẬN
-
-Nhóm đã phân tích và thiết kế hệ thống Quản lý giải đua xe F1 với 4 module nghiệp vụ, mỗi module có ràng buộc và xử lý riêng: kiểm tra chồng lấn hợp đồng và tự động đóng hợp đồng cũ (Module 1), giới hạn 2 tay đua/đội/chặng (Module 2), tính điểm theo luật F1 (Module 3), và quyết toán trao giải với điều kiện đủ kết quả (Module 4). Các sản phẩm gồm: đặc tả yêu cầu, biểu đồ use case tổng quát, biểu đồ lớp thực thể và thiết kế cơ sở dữ liệu, cùng bộ biểu đồ chi tiết (use case, hoạt động, lớp phân tích, giao diện, lớp MVC, tuần tự) và test case cho từng module.
-
-**Hướng phát triển:** bổ sung chức năng quản lý danh mục đầy đủ, thống kê theo mùa giải, và triển khai mã nguồn theo kiến trúc MVC đã thiết kế.
+**Hướng phát triển:** bổ sung chức năng quản lý danh mục đầy đủ, thống kê theo mùa giải, và triển khai mã nguồn theo kiến trúc phân tầng view (`.jsp`) / dao / model đã thiết kế.

@@ -12,11 +12,11 @@
 - [ ] Biểu đồ UC chi tiết
 - [ ] Đặc tả UC (kịch bản chuẩn + ngoại lệ)
 - [ ] Biểu đồ hoạt động (activity)
-- [ ] Biểu đồ lớp phân tích (boundary/control/entity) — *khuyến nghị*
-- [ ] Thiết kế giao diện
-- [ ] Biểu đồ lớp thiết kế MVC — *khuyến nghị*
-- [ ] Biểu đồ tuần tự (sequence)
-- [ ] Test case
+- [ ] Biểu đồ lớp phân tích (lớp biên `GDxxx` chỉ có thuộc tính + lớp thực thể mang phương thức nghiệp vụ; **không có lớp Control**)
+- [ ] Thiết kế giao diện (2 màn)
+- [ ] Biểu đồ lớp thiết kế view (.jsp) / DAO / model — **không có Controller**, các `XxxDAO` kế thừa lớp cha `DAO`
+- [ ] Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự
+- [ ] Test case (kế hoạch kiểm thử + từng test case có CSDL trước/sau)
 
 ## Nơi để file
 - `hinh/` — ảnh biểu đồ export từ Visual Paradigm (PNG).

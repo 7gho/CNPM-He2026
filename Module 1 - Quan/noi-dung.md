@@ -1,18 +1,23 @@
 # Module 1 — Ký hợp đồng tay đua với đội đua — Nội dung chi tiết
 
-> Nội dung chữ do Claude dựng. Việc của bạn: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
+> Tài liệu chi tiết của module. Việc của người phụ trách: mở Visual Paradigm, vẽ theo các blueprint/PlantUML bên dưới, export ảnh vào `hinh/`, rồi ghép vào báo cáo.
 
 ## 0. Danh sách ảnh cần export (đặt vào `hinh/`)
 
 | Tên file | Biểu đồ (mục) |
 |---|---|
-| `m1-uc-chitiet.png` | UC chi tiết (mục 1) |
-| `m1-hoatdong.png` | Biểu đồ hoạt động (mục 3) |
+| `m1-uc-chitiet.png` | Biểu đồ UC chi tiết (mục 1) |
+| `m1-trangthai.png` | Biểu đồ trạng thái (mục 3) |
 | `m1-lop-phantich.png` | Biểu đồ lớp phân tích (mục 4) |
-| `m1-giaodien-timtaydua.png` | Giao diện tìm tay đua (mục 5) |
-| `m1-giaodien-nhaphopdong.png` | Giao diện nhập hợp đồng (mục 5) |
-| `m1-lop-mvc.png` | Biểu đồ lớp thiết kế MVC (mục 6) |
-| `m1-tuantu.png` | Biểu đồ tuần tự (mục 7) |
+| `m1-giaodien-timtaydua.png` | Giao diện màn 1 — Tìm tay đua (mục 5) |
+| `m1-giaodien-nhaphopdong.png` | Giao diện màn 2 — Nhập hợp đồng (mục 5) |
+| `m1-lop-mvc.png` | Biểu đồ lớp thiết kế: view (.jsp) / DAO / model (mục 6) |
+| `m1-hoatdong.png` | Biểu đồ hoạt động pha thiết kế (mục 7) — **vẽ lại** |
+| `m1-tuantu.png` | Biểu đồ tuần tự (mục 8) |
+
+> Module 1 có **2 màn hình hiển thị riêng** ⇒ **2 ảnh giao diện**, tương ứng 2 lớp biên `GDTimTayDua` / `GDNhapHopDong` và 2 trang `.jsp` hiển thị. Trang `doLuuHopDong.jsp` là trang xử lý, không phải màn hình hiển thị nên không có ảnh giao diện, không sinh UC con và không sinh lớp biên. Trang chính `gdChinhNV.jsp` (lớp biên `GDChinhNV`) là trang chủ chung của hệ thống: có mặt trong biểu đồ lớp phân tích, lớp thiết kế và biểu đồ tuần tự nhưng **không sinh UC con và không cần mockup riêng**. UC con `Đăng nhập` dùng giao diện đăng nhập chung của toàn hệ thống nên cũng không có ảnh giao diện trong module.
+
+> **Ghi chú cho người vẽ (mẫu hình trong giáo trình BG HP TTTN 2 CNPM — PDF):** biểu đồ trạng thái vẽ theo mẫu **Hình 3.9/3.11** (máy trạng thái đơn giản, nhãn cung `[hành động]`); biểu đồ hoạt động vẽ theo mẫu **Hình 4.9** (khung "Xử lí tại gdXxx.jsp", node DAO ghi rõ tên hàm); biểu đồ lớp thiết kế vẽ theo mẫu **Hình 4.4** (3 tầng jsp/DAO/entity, DAO kế thừa `DAO`, chữ ký đầy đủ); biểu đồ tuần tự vẽ theo mẫu **Hình 4.10/4.12** (đánh số message, trang chính mở đầu + kết thúc, luồng lưu có `setter()`).
 
 > **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
 
@@ -20,30 +25,35 @@
 
 ## 1. Biểu đồ UC chi tiết
 
-Chức năng "Ký hợp đồng" có các giao diện tương tác với nhân viên ⇒ tách use case con:
-- Đăng nhập → UC `Đăng nhập`
-- Tìm tay đua → UC `Tìm tay đua`
-- Nhập thông tin hợp đồng (chọn đội, ngày, lưu) → UC `Nhập thông tin hợp đồng`
-- (mở rộng) Thêm tay đua mới khi không tìm thấy → UC `Thêm tay đua`
+Theo bước 2 của quy trình xây dựng UC chi tiết: **mỗi giao diện tương tác với người dùng được đề xuất thành một use case con**. Module 1 có 2 màn hình hiển thị nên có 2 UC con quan hệ `include`:
 
-Quan hệ: `Ký hợp đồng` **include** {Đăng nhập, Tìm tay đua, Nhập thông tin hợp đồng}; `Nhập thông tin hợp đồng` **extend** bởi `Thêm tay đua` (chỉ khi tay đua chưa có).
+- Màn hình **Tìm tay đua** → UC con `Tìm tay đua` (include)
+- Màn hình **Nhập hợp đồng** → UC con `Nhập thông tin hợp đồng` (include)
+
+Ngoài ra có 1 UC mở rộng: khi nhân viên tìm mà không thấy tay đua trong hệ thống, nhân viên được phép thêm tay đua mới ngay trên **màn hình Tìm tay đua**. Vì vậy `Thêm tay đua` là quan hệ **extend của `Tìm tay đua`** (không phải của `Nhập thông tin hợp đồng`), và nó dùng lại chính lớp biên `GDTimTayDua` chứ không sinh thêm màn hình mới.
+
+Ngoài các màn hình riêng của module, luồng nghiệp vụ nào cũng phải đi qua bước đăng nhập. **Giao diện đăng nhập là giao diện dùng chung của toàn hệ thống** (không thuộc riêng module nào), theo giáo trình (mục 3.1.3) nó vẫn được phân rã thành UC con `Đăng nhập` và UC chính **include** UC này. Module không tạo lớp biên, trang `.jsp` hay lifeline riêng cho đăng nhập; kịch bản vẫn mở đầu "sau khi đăng nhập" và dòng **Tiền điều kiện** của bảng đặc tả giữ nguyên "nhân viên đã đăng nhập". Trang chính của nhân viên cũng là trang chủ chung của hệ thống nên **không sinh UC con**.
 
 ```plantuml
 @startuml
 left to right direction
-actor NhanVien
-usecase "Ký hợp đồng" as UC
-usecase "Đăng nhập" as DN
-usecase "Tìm tay đua" as TIM
-usecase "Nhập thông tin hợp đồng" as NHAP
-usecase "Thêm tay đua" as THEM
-NhanVien --> UC
-UC ..> DN : include
-UC ..> TIM : include
-UC ..> NHAP : include
-THEM ..> NHAP : extend
+actor "Nhân viên" as NV
+rectangle "Hệ thống quản lý giải đua F1" {
+  usecase "Ký hợp đồng tay đua với đội đua" as UC
+  usecase "Đăng nhập" as DN
+  usecase "Tìm tay đua" as TIM
+  usecase "Nhập thông tin hợp đồng" as NHAP
+  usecase "Thêm tay đua" as THEM
+  UC ..> DN : include
+  UC ..> TIM : include
+  UC ..> NHAP : include
+  THEM ..> TIM : extend
+}
+NV -- UC
 @enduml
 ```
+
+> Lưu ý khi vẽ trong Visual Paradigm: liên kết giữa actor và use case là **đường kẻ trơn**, không có mũi tên định hướng. Quan hệ `include` / `extend` vẽ bằng **mũi tên nét đứt** kèm stereotype tương ứng. Kiểm tra điều kiện "mọi UC phải có đường đi tới actor": `Nhân viên — Ký hợp đồng tay đua với đội đua` → include tới `Đăng nhập`, `Tìm tay đua` và `Nhập thông tin hợp đồng`; `Thêm tay đua` đi ngược chiều extend về `Tìm tay đua` rồi về actor.
 
 ## 2. Đặc tả Use Case
 
@@ -51,253 +61,585 @@ THEM ..> NHAP : extend
 |---|---|
 | **Use case** | Ký hợp đồng tay đua với đội đua |
 | **Actor** | Nhân viên |
-| **Tiền điều kiện** | Nhân viên đã đăng nhập thành công |
-| **Hậu điều kiện** | Một hợp đồng mới hợp lệ được lưu vào hệ thống và in ra |
-| **Kịch bản chính** | 1. Nhân viên chọn menu "Ký hợp đồng".<br>2. Hệ thống hiển thị giao diện tìm tay đua.<br>3. Nhân viên nhập tên tay đua và click Tìm.<br>4. Hệ thống hiển thị danh sách tay đua có tên chứa từ khóa.<br>5. Nhân viên chọn đúng tay đua.<br>6. Hệ thống hiển thị chi tiết tay đua và danh sách hợp đồng cũ (đội, ngày bắt đầu, ngày kết thúc — dòng có **ngày kết thúc trống là hợp đồng đang hiệu lực**).<br>7. Nhân viên chọn đội đua, **chỉ nhập ngày bắt đầu hiệu lực**, click Lưu.<br>8. Hệ thống: nếu tay đua còn hợp đồng đang hiệu lực thì **tự động đóng** hợp đồng cũ (đặt ngày kết thúc = ngày liền trước ngày bắt đầu mới); sau đó lưu hợp đồng mới (ngày kết thúc để trống) và in ra hợp đồng. |
-| **Ngoại lệ** | 4a. Không tìm thấy tay đua → hệ thống cho phép nhập tay đua mới (UC Thêm tay đua) rồi quay lại bước 6.<br>8a. Ngày bắt đầu mới chồng lấn khoảng thời gian của một hợp đồng **đã đóng** (lịch sử) → báo lỗi "Tay đua đã có hợp đồng trong khoảng thời gian này", yêu cầu nhập lại. |
+| **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; danh mục đội đua của mùa giải 2025 đã được khai báo |
+| **Hậu điều kiện** | Một hợp đồng mới hợp lệ được lưu vào hệ thống với ngày kết thúc để trống (đang hiệu lực); hợp đồng cũ đang hiệu lực của tay đua (nếu có) được đóng lại; hợp đồng mới được in ra |
+| **Kịch bản chính** | 1. Nhân viên chọn menu "Ký hợp đồng".<br>2. Hệ thống hiển thị màn hình **Tìm tay đua**: ô nhập "Tên tay đua" đang rỗng, nút [Tìm], nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng.<br>3. Nhân viên nhập tên `Hamilton` và click [Tìm].<br>4. Hệ thống hiển thị bảng kết quả gồm các cột **Mã \| Tên \| Ngày sinh \| Quốc tịch \| Đội hiện tại**, có 1 dòng: `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; mỗi dòng có nút [Chọn].<br>5. Nhân viên click [Chọn] ở dòng `HAM`.<br>6. Hệ thống hiển thị màn hình **Nhập hợp đồng**: vùng thông tin tay đua ghi `HAM — Lewis Hamilton — 07/01/1985 — Anh`; bảng "Hợp đồng cũ" gồm các cột **Đội đua \| Ngày bắt đầu \| Ngày kết thúc**, có 1 dòng: `Mercedes \| 01/01/2013 \| (trống)` — dòng có ngày kết thúc trống là hợp đồng đang hiệu lực; ô chọn "Đội đua" và ô "Ngày bắt đầu" đang rỗng; nút [Lưu] **chưa được active**.<br>7. Nhân viên chọn `Ferrari` trong ô "Đội đua" (danh sách gồm Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) và nhập "Ngày bắt đầu" = `01/01/2025`; nút [Lưu] **chuyển sang active**.<br>8. Nhân viên click [Lưu].<br>9. Hệ thống kiểm tra ngày `01/01/2025` không rơi vào khoảng thời gian của bất kỳ hợp đồng đã đóng nào của Lewis Hamilton.<br>10. Hệ thống tự động đóng hợp đồng đang hiệu lực với Mercedes: đặt ngày kết thúc = `31/12/2024` (ngày liền trước ngày bắt đầu mới).<br>11. Hệ thống lưu hợp đồng mới: `Lewis Hamilton — Ferrari — 01/01/2025 — ngày kết thúc để trống`.<br>12. Hệ thống hiển thị thông báo "Lưu hợp đồng thành công" và in hợp đồng; bảng "Hợp đồng cũ" cập nhật thành 2 dòng: `Mercedes \| 01/01/2013 \| 31/12/2024` và `Ferrari \| 01/01/2025 \| (trống)`.<br>13. Nhân viên click [OK]; hệ thống quay về trang chính của nhân viên.<br><br>*(Lặp lại từ bước 1 cho từng tay đua cần ký hợp đồng, cho đến khi nhân viên ký xong toàn bộ.)* |
+| **Ngoại lệ** | **4a.** Không tìm thấy tay đua nào khớp từ khóa (ví dụ nhập `Antonelli`) → hệ thống hiển thị dòng "Không tìm thấy tay đua nào"; nhân viên click [+ Thêm tay đua mới], nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử rồi click [Lưu tay đua]; hệ thống lưu tay đua mới và quay lại bước 4 với bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`.<br>**7a.** Nhân viên chưa chọn đội đua hoặc chưa nhập ngày bắt đầu → nút [Lưu] vẫn **chưa được active**, không thể chuyển sang bước 8.<br>**9a.** Ngày bắt đầu rơi vào khoảng thời gian của một hợp đồng **đã đóng** (ví dụ Carlos Sainz có hợp đồng Ferrari `01/01/2021–31/12/2024`, nhân viên nhập ngày bắt đầu `01/06/2023`) → hệ thống hiện thông báo lỗi màu đỏ dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này", không lưu, quay lại bước 7.<br>**9b.** Ngày bắt đầu mới nhỏ hơn hoặc bằng ngày bắt đầu của hợp đồng đang hiệu lực (ví dụ nhập `01/01/2010` trong khi hợp đồng Mercedes bắt đầu `01/01/2013`) → hệ thống báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu của hợp đồng đang hiệu lực", không lưu, quay lại bước 7.<br>**10a.** Tay đua chưa có hợp đồng nào đang hiệu lực (ví dụ Oscar Piastri) → hệ thống bỏ qua bước 10 và chuyển thẳng sang bước 11. |
 
-## 3. Biểu đồ hoạt động (Activity)
+## 3. Phân tích hoạt động — biểu đồ trạng thái
+
+Theo quy tắc của giáo trình (mục 3.2.4): **mỗi trạng thái ứng với một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác**; cung chuyển trạng thái là hành động của người dùng, nhãn viết trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công:
+
+- `Hiển thị GD chính NV` —`[click Ký hợp đồng]`→ `Hiển thị GD tìm tay đua`
+- `Hiển thị GD tìm tay đua` có **cung tự quay** `[click Tìm]` (nhân viên tìm nhiều lần đến khi thấy tay đua cần ký)
+- `Hiển thị GD tìm tay đua` —`[chọn 1 tay đua]`→ `Hiển thị GD nhập hợp đồng`
+- `Hiển thị GD nhập hợp đồng` —`[click Lưu, dữ liệu hợp lệ]`→ `Hiển thị thông báo và in hợp đồng`
+- `Hiển thị thông báo và in hợp đồng` —`[click OK]`→ Kết thúc
+
+Ảnh export: `hinh/m1-trangthai.png` — vẽ theo mẫu **Hình 3.9/3.11** của giáo trình PDF.
 
 ```plantuml
 @startuml
-start
-:Chọn menu Ký hợp đồng;
-:Nhập tên tay đua, click Tìm;
-if (Tìm thấy tay đua?) then (không)
-  :Nhập tay đua mới;
-else (có)
-endif
-:Chọn tay đua;
-:Hiển thị hợp đồng cũ;
-:Chọn đội, nhập ngày bắt đầu;
-:Click Lưu;
-if (Ngày bắt đầu chồng lấn hợp đồng đã đóng?) then (có)
-  :Báo lỗi;
-  stop
-else (không)
-  if (Còn hợp đồng đang hiệu lực?) then (có)
-    :Tự động đóng HĐ cũ (ngày KT = ngày BĐ mới − 1);
-  else (không)
-  endif
-  :Lưu hợp đồng mới (ngày KT trống);
-  :In hợp đồng;
-  stop
-endif
+state "Hiển thị GD chính NV" as S1
+state "Hiển thị GD tìm tay đua" as S2
+state "Hiển thị GD nhập hợp đồng" as S3
+state "Hiển thị thông báo và in hợp đồng" as S4
+[*] --> S1
+S1 --> S2 : [click Ký hợp đồng]
+S2 --> S2 : [click Tìm]
+S2 --> S3 : [chọn 1 tay đua]
+S3 --> S4 : [click Lưu, dữ liệu hợp lệ]
+S4 --> [*] : [click OK]
 @enduml
 ```
 
-## 4. Biểu đồ lớp phân tích (Boundary / Control / Entity)
+> Biểu đồ hoạt động dạng flowchart nghiệp vụ trước đây được thay bằng biểu đồ trạng thái ở vị trí này. Luồng xử lý chi tiết theo từng trang (kèm các node quyết định cho từng ràng buộc nghiệp vụ `4a`, `9a`, `9b`, `10a` ở mục 2) được thể hiện ở **biểu đồ hoạt động pha thiết kế** (mục 7).
 
-- **Boundary (1 lớp/màn hình):** `GDKyHopDong` (menu), `GDTimTayDua`, `GDNhapHopDong`
-- **Control:** `HopDongControl` điều phối toàn bộ luồng
-- **Entity (kèm phương thức nghiệp vụ gán trong pha phân tích):** `TayDua`, `DoiDua`, `HopDong`
+## 4. Biểu đồ lớp phân tích
+
+Biểu đồ lớp phân tích của module chỉ có **2 tầng**: lớp biên và lớp thực thể. **Không có lớp Control** — mọi hành động nghiệp vụ được gán thẳng cho lớp thực thể phù hợp. Hộp lớp để trơn, **không dùng stereotype**. Quan hệ chỉ dùng **đường kẻ trơn**, hình thoi rỗng ◇, hình thoi đặc ♦ và tam giác rỗng ▷ — **không có mũi tên định hướng**.
+
+**Lớp biên (mỗi màn hình → 1 lớp biên, chỉ có thuộc tính, không có phương thức):** ngoài 2 lớp biên của 2 màn hình riêng, module có thêm lớp biên **trang chính của nhân viên** `GDChinhNV` — trang chủ chung của hệ thống, không sinh UC con — nối bằng đường kẻ trơn sang lớp biên đầu tiên của module (`GDTimTayDua`).
+
+| Lớp biên | Thuộc tính | Ý nghĩa |
+|---|---|---|
+| `GDChinhNV` | `-subKyHopDong` | liên kết "Ký hợp đồng" trên trang chính (trang chủ chung của hệ thống) |
+| `GDTimTayDua` | `-inTenTayDua` | ô nhập tên tay đua |
+| | `-subTim` | nút [Tìm] |
+| | `-outsubDSTayDua` | bảng kết quả vừa hiện vừa cho chọn |
+| | `-subThemTayDua` | nút [+ Thêm tay đua mới] |
+| | `-inMaTayDua` | ô nhập mã tay đua mới (form thêm tay đua) |
+| | `-inTenTayDuaMoi` | ô nhập tên tay đua mới (form thêm tay đua) |
+| | `-inNgaySinh` | ô nhập ngày sinh (form thêm tay đua) |
+| | `-inQuocTich` | ô nhập quốc tịch (form thêm tay đua) |
+| | `-inTieuSu` | ô nhập tiểu sử (form thêm tay đua) |
+| | `-subLuuTayDua` | nút [Lưu tay đua] (form thêm tay đua) |
+| `GDNhapHopDong` | `-outTayDua` | vùng hiện thông tin tay đua đã chọn |
+| | `-outDSHopDongCu` | bảng hiện danh sách hợp đồng cũ |
+| | `-inDoiDua` | ô chọn đội đua |
+| | `-inNgayBatDau` | ô nhập ngày bắt đầu |
+| | `-subLuu` | nút [Lưu] |
+
+**Phương thức nghiệp vụ gán cho lớp thực thể:**
+
+| Chức năng ở tầng dưới giao diện | Gán cho lớp thực thể | Phương thức |
+|---|---|---|
+| Tìm tay đua theo tên | `TayDua` | `getTayDuaTheoTen(ten)` |
+| Thêm tay đua mới | `TayDua` | `themTayDua()` |
+| Lấy danh sách đội đua để chọn | `DoiDua` | `getDSDoiDua()` |
+| Lấy hợp đồng cũ của tay đua | `HopDong` | `getHopDongCuaTayDua(tayDuaId)` |
+| Kiểm tra chồng lấn thời gian | `HopDong` | `kiemTraChongLan(tayDuaId, ngayBatDau)` |
+| Đóng hợp đồng cũ đang hiệu lực | `HopDong` | `dongHopDongCu(tayDuaId, ngayBatDau)` |
+| Lưu hợp đồng mới | `HopDong` | `luuHopDong()` |
+
+Sáu thuộc tính `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu`, `-subLuuTayDua` thuộc **form thêm tay đua** — form này nằm ngay trên màn hình **Tìm tay đua** (use case mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải một màn hình riêng, nên các thành phần của nó là thuộc tính của chính lớp biên `GDTimTayDua`. Nguyên tắc áp dụng: mỗi thành phần nhận dữ liệu vào / hiện dữ liệu ra / submit trên một màn hình đều phải có đúng một thuộc tính tương ứng ở lớp biên của màn hình đó.
+
+Ở pha phân tích, lớp thực thể **chưa có thuộc tính `id`** và **chưa khai báo kiểu dữ liệu**. Toàn bộ quan hệ giữa các lớp thực thể được giữ **thống nhất với biểu đồ lớp thực thể chung của nhóm** (`docs/03`), kể cả những lớp không tham gia trực tiếp vào module 1. Về phương thức, biểu đồ **chỉ vẽ những phương thức nghiệp vụ mà module 1 sử dụng**; các phương thức khác của cùng những lớp thực thể này (ví dụ `HopDong.getTayDuaHieuLuc()` của module 2, `KetQua.xepHangVaTinhDiem()` của module 3, `KetQua.tongHopCaNhan()` của module 4) được vẽ ở biểu đồ của module tương ứng — danh sách đầy đủ xem `docs/03`. Quy ước này dùng chung cho cả 4 module.
 
 ```plantuml
 @startuml
-class GDKyHopDong <<boundary>> {
-  btnKyHopDong
-  moManTim()
+class GDChinhNV {
+  -subKyHopDong
 }
-class GDTimTayDua <<boundary>> {
-  txtTen
-  btnTim
-  lstTayDua
-  hienDanhSach(ds)
-  chonTayDua(id)
+class GDTimTayDua {
+  -inTenTayDua
+  -subTim
+  -outsubDSTayDua
+  -subThemTayDua
+  -inMaTayDua
+  -inTenTayDuaMoi
+  -inNgaySinh
+  -inQuocTich
+  -inTieuSu
+  -subLuuTayDua
 }
-class GDNhapHopDong <<boundary>> {
-  lblTayDua
-  lstHopDongCu
-  cboDoi
-  dtpBatDau
-  btnLuu
-  hienHopDongCu(ds)
-  baoLoi(tb)
-  inHopDong(hd)
+class GDNhapHopDong {
+  -outTayDua
+  -outDSHopDongCu
+  -inDoiDua
+  -inNgayBatDau
+  -subLuu
 }
-class HopDongControl <<control>> {
-  timTayDua(ten)
-  chonTayDua(id)
-  layDanhSachDoi()
-  luuHopDong(tayDuaId, doiDuaId, batDau)
+
+class MuaGiai {
+  -ten
+  -nam
+  -trangThai
 }
-class TayDua <<entity>> {
-  id
-  ma
-  ten
-  ngaySinh
-  quocTich
-  getByTen(ten)
+class DoiDua {
+  -ma
+  -ten
+  -hang
+  -moTa
+  +getDSDoiDua()
 }
-class DoiDua <<entity>> {
-  id
-  ma
-  ten
-  hang
-  getAll()
+class TayDua {
+  -ma
+  -ten
+  -ngaySinh
+  -quocTich
+  -tieuSu
+  +getTayDuaTheoTen(ten)
+  +themTayDua()
 }
-class HopDong <<entity>> {
-  id
-  ngayBatDau
-  ngayKetThuc
-  getByTayDua(tayDuaId)
-  kiemTraChongLan(tayDuaId, batDau)
-  dongHopDongCu(tayDuaId, batDau)
-  insert()
+class ChangDua {
+  -ma
+  -ten
+  -soVong
+  -diaDiem
+  -thoiGian
+  -moTa
 }
-GDKyHopDong --> GDTimTayDua
-GDTimTayDua --> HopDongControl
-GDNhapHopDong --> HopDongControl
-HopDongControl --> TayDua
-HopDongControl --> DoiDua
-HopDongControl --> HopDong
+class ThamGia {
+}
+class HopDong {
+  -ngayBatDau
+  -ngayKetThuc
+  +getHopDongCuaTayDua(tayDuaId)
+  +kiemTraChongLan(tayDuaId, ngayBatDau)
+  +dongHopDongCu(tayDuaId, ngayBatDau)
+  +luuHopDong()
+}
+class DangKyChang {
+}
+class KetQua {
+  -thoiGian
+  -soVongHoanThanh
+  -trangThai
+  -hang
+  -diem
+}
+class TraoGiai {
+  -loai
+  -hang
+  -tienThuong
+}
+abstract class ThanhVien {
+  -tenDangNhap
+  -matKhau
+  -hoTen
+}
+class NhanVien {
+}
+class QuanLy {
+}
+
+GDChinhNV -- GDTimTayDua
+GDTimTayDua -- TayDua
+GDTimTayDua -- GDNhapHopDong
+GDNhapHopDong -- DoiDua
+GDNhapHopDong -- HopDong
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
 @enduml
 ```
 
 ## 5. Thiết kế giao diện
 
-**Màn 1 — Tìm tay đua:** ô nhập "Tên tay đua" + nút [Tìm]; bảng kết quả (Mã, Tên, Ngày sinh, Quốc tịch) mỗi dòng có nút [Chọn]; nút [+ Thêm tay đua mới].
+Module có **2 màn hình hiển thị riêng**, tương ứng 2 lớp biên `GDTimTayDua` / `GDNhapHopDong` và 2 trang `.jsp` hiển thị. Hai màn hình nối nhau bằng luồng chuyển màn: **Tìm tay đua → Nhập hợp đồng**. Điểm vào của luồng là **trang chính của nhân viên** `gdChinhNV.jsp` — trang chủ chung của hệ thống chứa liên kết [Ký hợp đồng] — nên **không cần mockup riêng**; giao diện đăng nhập (UC con `Đăng nhập`) cũng là giao diện dùng chung toàn hệ thống, không vẽ trong module.
 
-**Màn 2 — Nhập hợp đồng:** phần trên hiển thị thông tin tay đua đã chọn + bảng "Hợp đồng cũ" (Đội, Ngày bắt đầu, Ngày kết thúc — dòng ngày kết thúc trống là hợp đồng đang hiệu lực); phần dưới form: combobox [Đội đua], date [Ngày bắt đầu], nút [Lưu]. **Không nhập ngày kết thúc** — hợp đồng mở, ngày kết thúc để trống = đang hiệu lực (hệ thống tự đóng khi ký hợp đồng mới). Khi lưu lỗi → hiện thông báo đỏ dưới form.
+**Màn 1 — Tìm tay đua** (`gdTimTayDua.jsp`, lớp biên `GDTimTayDua`, ảnh `hinh/m1-giaodien-timtaydua.png`)
 
-> Vẽ 2 mockup này trong VP và export: màn tìm tay đua → `hinh/m1-giaodien-timtaydua.png`, màn nhập hợp đồng → `hinh/m1-giaodien-nhaphopdong.png`.
+Tiêu đề màn hình "Ký hợp đồng tay đua với đội đua — Bước 1: Tìm tay đua". Phần trên là thanh tìm kiếm gồm nhãn "Tên tay đua", một ô nhập văn bản (thuộc tính `-inTenTayDua`) và nút [Tìm] (`-subTim`). Bên phải thanh tìm kiếm đặt nút [+ Thêm tay đua mới] (`-subThemTayDua`). Phần dưới là bảng kết quả (`-outsubDSTayDua`) gồm các cột **TT | Mã | Tên | Ngày sinh | Quốc tịch | Đội hiện tại | (thao tác)**; cột cuối mỗi dòng có nút [Chọn]. Khi mới vào màn hình, ô nhập rỗng và bảng kết quả rỗng. Ví dụ khi nhân viên nhập `Hamilton` và click [Tìm], bảng hiện 1 dòng: `1 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Mercedes | [Chọn]`. Nếu không có kết quả, bảng hiện dòng chữ "Không tìm thấy tay đua nào" và nhân viên click nút [+ Thêm tay đua mới] để mở **form thêm tay đua** ngay trên màn hình này (khối nằm dưới bảng kết quả): ô "Mã" (`-inMaTayDua`), ô "Tên" (`-inTenTayDuaMoi`), ô "Ngày sinh" (`-inNgaySinh`), ô "Quốc tịch" (`-inQuocTich`), ô "Tiểu sử" (`-inTieuSu`) và nút [Lưu tay đua] (`-subLuuTayDua`) — nút này chỉ active khi đã nhập đủ mã, tên, ngày sinh và quốc tịch. Lưu xong, form đóng lại và bảng kết quả nạp lại dòng tay đua vừa thêm. Click [Chọn] ở một dòng sẽ **chuyển sang màn 2 — Nhập hợp đồng**.
 
-## 6. Biểu đồ lớp thiết kế (MVC)
+**Màn 2 — Nhập hợp đồng** (`gdNhapHopDong.jsp`, lớp biên `GDNhapHopDong`, ảnh `hinh/m1-giaodien-nhaphopdong.png`)
 
-- **View (jsp):** `gdTimTayDua.jsp`, `gdNhapHopDong.jsp`, `doLuuHopDong.jsp`
-- **Controller:** `HopDongController`
-- **DAO:** `TayDuaDAO` (getByTen), `DoiDuaDAO` (getAll), `HopDongDAO` (getByTayDua, kiemTraChongLan, dongHopDongCu, insert)
-- **Entity:** `TayDua`, `DoiDua`, `HopDong`
+Tiêu đề màn hình "Ký hợp đồng tay đua với đội đua — Bước 2: Nhập thông tin hợp đồng". Khối thứ nhất là vùng chỉ đọc hiển thị tay đua đã chọn (`-outTayDua`), ví dụ `HAM — Lewis Hamilton — 07/01/1985 — Anh`. Khối thứ hai là bảng "Hợp đồng cũ" (`-outDSHopDongCu`) gồm các cột **TT | Đội đua | Ngày bắt đầu | Ngày kết thúc**; ví dụ với Lewis Hamilton bảng hiện 1 dòng `1 | Mercedes | 01/01/2013 | (trống)` — **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**. Khối thứ ba là form nhập gồm ô chọn "Đội đua" dạng danh sách thả xuống (`-inDoiDua`, chứa Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams), ô chọn ngày "Ngày bắt đầu" (`-inNgayBatDau`) và nút [Lưu] (`-subLuu`). **Màn hình không có ô nhập ngày kết thúc**: hợp đồng mới luôn được lưu ở trạng thái mở (ngày kết thúc trống), hệ thống sẽ tự đóng khi tay đua ký hợp đồng tiếp theo. Khi mới mở màn hình, hai ô nhập đều rỗng và nút [Lưu] **chưa được active**; nút chỉ chuyển sang active khi cả đội đua lẫn ngày bắt đầu đã có giá trị. Click [Lưu] sẽ gửi dữ liệu sang trang xử lý `doLuuHopDong.jsp`; nếu hợp lệ, màn hình hiện thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng, đồng thời bảng "Hợp đồng cũ" được nạp lại thành 2 dòng `1 | Mercedes | 01/01/2013 | 31/12/2024` và `2 | Ferrari | 01/01/2025 | (trống)`; nếu không hợp lệ, màn hình giữ nguyên dữ liệu đã nhập và hiện thông báo lỗi màu đỏ ngay dưới form, ví dụ "Tay đua đã có hợp đồng trong khoảng thời gian này".
+
+> Khi vẽ mockup trong Visual Paradigm, nối hai màn hình bằng **mũi tên xám dày** để thể hiện luồng chuyển màn từ màn 1 sang màn 2.
+
+## 6. Biểu đồ lớp thiết kế (view / DAO / model)
+
+Kiến trúc phân tầng theo mô hình MVC, trong đó **M** là các lớp thực thể (`model`), **V** là các trang `.jsp` (`view`), **C** là **các lớp `XxxDAO`** đóng vai trò tầng điều khiển / truy xuất dữ liệu. **Không có lớp `XxxController` riêng.** Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** để dùng chung cơ chế kết nối cơ sở dữ liệu. Quan hệ giữa các lớp vẽ bằng **đường kẻ trơn**, không có mũi tên định hướng; riêng kế thừa dùng tam giác rỗng ▷.
+
+- **View (jsp):** `gdChinhNV.jsp` (trang chính của nhân viên), `gdTimTayDua.jsp` (màn hình hiển thị), `gdNhapHopDong.jsp` (màn hình hiển thị), `doLuuHopDong.jsp` (trang xử lý, không hiển thị)
+- **DAO:** lớp cha `DAO`; các lớp con `TayDuaDAO`, `DoiDuaDAO`, `HopDongDAO`
+- **Model:** `TayDua`, `DoiDua`, `HopDong`
+
+Theo mẫu **Hình 4.4** của giáo trình PDF, mỗi lớp view có **thuộc tính kèm kiểu control** (`Select` — danh sách thả xuống, `Table` — bảng, `link` — liên kết/click dòng, `submit` — nút, `Text` — ô nhập, `Reset` — nút xóa nhập) và **thuộc tính ẩn**: đối tượng phiên (`-nv : NhanVien`) và dữ liệu truyền giữa các trang (`-tayDua : TayDua`, `-hopDong : HopDong`). Mỗi lớp `XxxDAO` có **constructor** và các phương thức với **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về — mảng `Xxx[]` cho thao tác đọc, `boolean` cho thao tác ghi); tất cả kế thừa lớp cha `DAO` để dùng chung kết nối cơ sở dữ liệu.
 
 ```plantuml
 @startuml
-package View {
-  class gdTimTayDua
-  class gdNhapHopDong
-  class doLuuHopDong
+package view {
+  class "gdChinhNV.jsp" as gdChinhNV {
+    -kyHopDong : link
+    -nv : NhanVien
+  }
+  class "gdTimTayDua.jsp" as gdTimTayDua {
+    -tenTayDua : Text
+    -btnTim : submit
+    -tblTayDua : Table
+    -chonTayDua : link
+    -btnThemMoi : submit
+    -maTayDua : Text
+    -tenTayDuaMoi : Text
+    -ngaySinh : Text
+    -quocTich : Text
+    -tieuSu : Text
+    -btnLuuTayDua : submit
+    -nv : NhanVien
+  }
+  class "gdNhapHopDong.jsp" as gdNhapHopDong {
+    -tayDua : TayDua
+    -tblHopDongCu : Table
+    -doiDua : Select
+    -ngayBatDau : Text
+    -btnLuu : submit
+    -nv : NhanVien
+  }
+  class "doLuuHopDong.jsp" as doLuuHopDong {
+    -hopDong : HopDong
+    -nv : NhanVien
+  }
 }
-package Controller {
-  class HopDongController
+package dao {
+  class DAO {
+    -con : Connection
+    +DAO()
+    +ketNoi()
+    +dongKetNoi()
+  }
+  class TayDuaDAO {
+    +TayDuaDAO()
+    +getTayDuaTheoTen(ten : String) : TayDua[]
+    +themTayDua(td : TayDua) : boolean
+  }
+  class DoiDuaDAO {
+    +DoiDuaDAO()
+    +getDSDoiDua() : DoiDua[]
+  }
+  class HopDongDAO {
+    +HopDongDAO()
+    +getHopDongCuaTayDua(tayDuaId : int) : HopDong[]
+    +kiemTraChongLan(tayDuaId : int, ngayBatDau : Date) : boolean
+    +dongHopDongCu(tayDuaId : int, ngayBatDau : Date) : boolean
+    +luuHopDong(hd : HopDong) : boolean
+  }
 }
-package DAO {
-  class TayDuaDAO
-  class DoiDuaDAO
-  class HopDongDAO
-}
-package Entity {
+package model {
   class TayDua
   class DoiDua
   class HopDong
 }
-gdTimTayDua --> HopDongController
-gdNhapHopDong --> HopDongController
-doLuuHopDong --> HopDongController
-HopDongController --> TayDuaDAO
-HopDongController --> DoiDuaDAO
-HopDongController --> HopDongDAO
-TayDuaDAO --> TayDua
-DoiDuaDAO --> DoiDua
-HopDongDAO --> HopDong
+DAO <|-- TayDuaDAO
+DAO <|-- DoiDuaDAO
+DAO <|-- HopDongDAO
+gdChinhNV -- gdTimTayDua
+gdTimTayDua -- TayDuaDAO
+gdTimTayDua -- gdNhapHopDong
+gdNhapHopDong -- DoiDuaDAO
+gdNhapHopDong -- HopDongDAO
+gdNhapHopDong -- doLuuHopDong
+doLuuHopDong -- gdChinhNV
+doLuuHopDong -- HopDongDAO
+TayDuaDAO -- TayDua
+DoiDuaDAO -- DoiDua
+HopDongDAO -- HopDong
 @enduml
 ```
 
-## 7. Biểu đồ tuần tự (Sequence) — luồng chính
+> Ghi chú: mỗi `XxxDAO` **chỉ vẽ những phương thức mà module 1 sử dụng**, đúng quy ước dùng chung của cả 4 module. Ví dụ `HopDongDAO.getTayDuaHieuLuc(doiDuaId, thoiGianChang)` do Module 2 sử dụng nên được vẽ ở biểu đồ lớp thiết kế của Module 2, không vẽ lại ở đây; danh sách đầy đủ phương thức của từng lớp xem `docs/03-lop-thuc-the-va-csdl.md`. Các thuộc tính `-maTayDua` … `-btnLuuTayDua` của `gdTimTayDua.jsp` thuộc **form thêm tay đua** đặt ngay trên trang tìm (UC mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải trang riêng.
 
-> Chỉ vẽ **luồng chính (thành công)**: 8 lifeline (có lifeline CSDL), mũi tên return, activation. Luồng chính thể hiện trường hợp tay đua chuyển đội (còn HĐ hiệu lực → hệ thống tự đóng HĐ cũ rồi tạo HĐ mới). Các ngoại lệ (không tìm thấy tay đua, chồng lấn khoảng đã đóng) đã mô tả trong đặc tả UC ở mục 2, không đưa vào sequence.
+## 7. Biểu đồ hoạt động (pha thiết kế)
+
+Theo quy tắc của giáo trình (mục 4.3.2 bước 1): **mỗi hành động trong biểu đồ hoạt động tương ứng một phương thức đã thiết kế trong biểu đồ lớp** (mục 6). Các hành động được gom thành từng khung (partition) **"Xử lí tại gdXxx.jsp"** theo đúng trang thực hiện — kể cả trang chính `gdChinhNV.jsp` và trang xử lý `doLuuHopDong.jsp`; lời gọi tầng dưới ghi rõ dạng `XxxDAO: tenHam()`; điều kiện chuyển ghi trong ngoặc vuông (`[click Lưu]`, `[lấy xong dữ liệu]`, `[lưu xong]`); các ràng buộc nghiệp vụ (`9a`, `9b`, `10a` ở mục 2) được kiểm tra bằng **node quyết định** trong khung của trang xử lý `doLuuHopDong.jsp`; ràng buộc `4a` (không tìm thấy tay đua → thêm mới) là node quyết định trong khung `gdTimTayDua.jsp`. Biểu đồ có node Bắt đầu và Kết thúc. Khung `gdChinhNV.jsp` xuất hiện ở **đầu** (mở chức năng) và **cuối** (quay về trang chính sau khi nhân viên click [OK] trên thông báo lưu thành công) — khớp với thuyết minh bước 44–46 và biểu đồ tuần tự ở mục 8.
+
+Ảnh export: `hinh/m1-hoatdong.png` — **vẽ lại** theo mẫu **Hình 4.9** của giáo trình PDF (khung "Xử lí tại gdXxx.jsp", node DAO ghi rõ tên hàm).
 
 ```plantuml
 @startuml
-actor NhanVien as NV
-participant "gdTimTayDua" as V1
-participant "gdNhapHopDong" as V2
-participant "HopDongController" as C
-participant "TayDuaDAO" as TDAO
-participant "DoiDuaDAO" as DDAO
-participant "HopDongDAO" as HDAO
-database "CSDL" as DB
-
-NV -> V1 : nhập tên, click Tìm
-activate V1
-V1 -> C : timTayDua(ten)
-activate C
-C -> TDAO : getByTen(ten)
-activate TDAO
-TDAO -> DB : SELECT tblTayDua WHERE ten LIKE ?
-activate DB
-DB --> TDAO : rows
-deactivate DB
-TDAO --> C : List<TayDua>
-deactivate TDAO
-C --> V1 : hiển thị danh sách
-deactivate C
-V1 --> NV : danh sách tay đua
-deactivate V1
-
-NV -> V1 : chọn tay đua
-activate V1
-V1 -> C : chonTayDua(tayDuaId)
-activate C
-C -> HDAO : getByTayDua(tayDuaId)
-activate HDAO
-HDAO -> DB : SELECT tblHopDong WHERE tayDuaId = ?
-activate DB
-DB --> HDAO : rows
-deactivate DB
-HDAO --> C : List<HopDong>
-deactivate HDAO
-C -> DDAO : getAll()
-activate DDAO
-DDAO -> DB : SELECT tblDoiDua
-activate DB
-DB --> DDAO : rows
-deactivate DB
-DDAO --> C : List<DoiDua>
-deactivate DDAO
-C --> V2 : mở màn nhập (hợp đồng cũ + danh sách đội)
-deactivate C
-V2 --> NV : màn nhập hợp đồng
-deactivate V1
-
-NV -> V2 : chọn đội, nhập ngày bắt đầu, click Lưu
-activate V2
-V2 -> C : luuHopDong(tayDuaId, doiDuaId, batDau)
-activate C
-C -> HDAO : kiemTraChongLan(tayDuaId, batDau)
-activate HDAO
-HDAO -> DB : SELECT COUNT(*) hợp đồng đã đóng chồng lấn
-activate DB
-DB --> HDAO : count
-deactivate DB
-HDAO --> C : coChongLan = false
-deactivate HDAO
-C -> HDAO : dongHopDongCu(tayDuaId, batDau)
-activate HDAO
-HDAO -> DB : UPDATE tblHopDong SET ngayKetThuc = batDau-1 WHERE tayDuaId=? AND ngayKetThuc IS NULL
-activate DB
-DB --> HDAO : ok
-deactivate DB
-HDAO --> C : ok
-deactivate HDAO
-C -> HDAO : insert(hopDong)
-activate HDAO
-HDAO -> DB : INSERT INTO tblHopDong (ngayKetThuc = NULL)
-activate DB
-DB --> HDAO : ok
-deactivate DB
-HDAO --> C : ok
-deactivate HDAO
-C --> V2 : in hợp đồng
-deactivate C
-V2 --> NV : hợp đồng đã in
-deactivate V2
+start
+partition "Xử lí tại gdChinhNV.jsp" {
+  :Hiển thị GD chính của nhân viên;
+}
+-> [click Ký hợp đồng];
+partition "Xử lí tại gdTimTayDua.jsp" {
+  :Hiển thị GD tìm tay đua;
+  -> [click Tìm];
+  :TayDuaDAO: getTayDuaTheoTen();
+  if (Tìm thấy tay đua?) then (không)
+    :Nhận thông tin tay đua mới;
+    -> [click Lưu tay đua];
+    :TayDuaDAO: themTayDua();
+    :Hiển thị lại danh sách có tay đua vừa thêm;
+  else (có)
+    :Hiển thị danh sách tay đua tìm được;
+  endif
+}
+-> [chọn 1 tay đua];
+partition "Xử lí tại gdNhapHopDong.jsp" {
+  :HopDongDAO: getHopDongCuaTayDua();
+  :DoiDuaDAO: getDSDoiDua();
+  -> [lấy xong dữ liệu];
+  :Hiển thị GD nhập hợp đồng;
+  :Nhận thông tin đội đua, ngày bắt đầu;
+}
+-> [click Lưu];
+partition "Xử lí tại doLuuHopDong.jsp" {
+  :HopDongDAO: kiemTraChongLan();
+  if (Ngày bắt đầu chồng lấn hợp đồng đã đóng?) then (có)
+    :Thông báo lỗi "Tay đua đã có hợp đồng
+trong khoảng thời gian này";
+    stop
+  else (không)
+  endif
+  if (Ngày bắt đầu sau ngày bắt đầu hợp đồng đang hiệu lực?) then (không)
+    :Thông báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu
+của hợp đồng đang hiệu lực";
+    stop
+  else (có)
+  endif
+  if (Tay đua còn hợp đồng đang hiệu lực?) then (có)
+    :HopDongDAO: dongHopDongCu();
+  else (không)
+  endif
+  :HopDongDAO: luuHopDong();
+  -> [lưu xong];
+  :Thông báo lưu thành công và in hợp đồng;
+}
+-> [click OK];
+partition "Xử lí tại gdChinhNV.jsp " {
+  :Hiển thị GD chính của nhân viên;
+}
+stop
 @enduml
 ```
 
-## 8. Test case
+## 8. Thuyết minh (kịch bản phiên bản 3) và biểu đồ tuần tự
 
-| ID | Mục tiêu | Tiền điều kiện | Dữ liệu vào | Các bước | Kết quả mong đợi |
+### 8.1. Thuyết minh (kịch bản phiên bản 3)
+
+Kịch bản dưới đây là luồng chính (thành công) của trường hợp tay đua chuyển đội: Lewis Hamilton đang có hợp đồng hiệu lực với Mercedes, ký hợp đồng mới với Ferrari từ `01/01/2025`. Luồng mở đầu và kết thúc tại **trang chính của nhân viên** `gdChinhNV.jsp`; **luồng lưu** theo mẫu Hình 4.12 của giáo trình PDF: lớp thực thể `HopDong` tự gọi `setter()` đóng gói dữ liệu nhập **trước**, sau đó trang xử lý mới gọi các hàm của `HopDongDAO` (không gọi constructor thực thể ở luồng lưu). Mỗi dòng thuyết minh tương ứng đúng một message trong biểu đồ tuần tự ở mục 8.2.
+
+1. Nhân viên click [Ký hợp đồng] trên trang chính `gdChinhNV.jsp`.
+2. Trang `gdChinhNV.jsp` gọi trang `gdTimTayDua.jsp`.
+3. Trang `gdTimTayDua.jsp` hiển thị màn hình tìm tay đua cho nhân viên.
+4. Nhân viên nhập tên `Hamilton` và click [Tìm] trên trang `gdTimTayDua.jsp`.
+5. Trang `gdTimTayDua.jsp` gọi lớp `TayDuaDAO` yêu cầu tìm tay đua theo tên.
+6. Lớp `TayDuaDAO` gọi hàm `getTayDuaTheoTen()`.
+7. Hàm `getTayDuaTheoTen()` gọi lớp `TayDua` để đóng gói thông tin.
+8. Lớp `TayDua` đóng gói thông tin thực thể.
+9. Lớp `TayDua` trả kết quả về cho hàm `getTayDuaTheoTen()`.
+10. Hàm `getTayDuaTheoTen()` trả kết quả cho trang `gdTimTayDua.jsp`.
+11. Trang `gdTimTayDua.jsp` hiển thị danh sách tay đua tìm được cho nhân viên.
+12. Nhân viên chọn tay đua `Lewis Hamilton` trên trang `gdTimTayDua.jsp`.
+13. Trang `gdTimTayDua.jsp` gọi trang `gdNhapHopDong.jsp`.
+14. Trang `gdNhapHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu tìm danh sách hợp đồng cũ của tay đua.
+15. Lớp `HopDongDAO` gọi hàm `getHopDongCuaTayDua()`.
+16. Hàm `getHopDongCuaTayDua()` gọi lớp `HopDong` để đóng gói thông tin.
+17. Lớp `HopDong` đóng gói thông tin thực thể.
+18. Lớp `HopDong` trả kết quả về cho hàm `getHopDongCuaTayDua()`.
+19. Hàm `getHopDongCuaTayDua()` trả kết quả cho trang `gdNhapHopDong.jsp`.
+20. Trang `gdNhapHopDong.jsp` gọi lớp `DoiDuaDAO` yêu cầu tìm danh sách đội đua.
+21. Lớp `DoiDuaDAO` gọi hàm `getDSDoiDua()`.
+22. Hàm `getDSDoiDua()` gọi lớp `DoiDua` để đóng gói thông tin.
+23. Lớp `DoiDua` đóng gói thông tin thực thể.
+24. Lớp `DoiDua` trả kết quả về cho hàm `getDSDoiDua()`.
+25. Hàm `getDSDoiDua()` trả kết quả cho trang `gdNhapHopDong.jsp`.
+26. Trang `gdNhapHopDong.jsp` hiển thị màn hình nhập hợp đồng cho nhân viên.
+27. Nhân viên chọn đội đua `Ferrari` trên trang `gdNhapHopDong.jsp`.
+28. Nhân viên nhập ngày bắt đầu `01/01/2025` trên trang `gdNhapHopDong.jsp`.
+29. Nhân viên click [Lưu] trên trang `gdNhapHopDong.jsp`.
+30. Trang `gdNhapHopDong.jsp` gọi trang `doLuuHopDong.jsp`.
+31. Trang `doLuuHopDong.jsp` gọi lớp `HopDong` để đóng gói dữ liệu hợp đồng vừa nhập.
+32. Lớp `HopDong` gọi hàm `setter()` tự đóng gói dữ liệu (tay đua, đội đua, ngày bắt đầu).
+33. Lớp `HopDong` trả đối tượng đã đóng gói về cho trang `doLuuHopDong.jsp`.
+34. Trang `doLuuHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu kiểm tra chồng lấn thời gian hợp đồng.
+35. Lớp `HopDongDAO` gọi hàm `kiemTraChongLan()`.
+36. Hàm `kiemTraChongLan()` trả kết quả kiểm tra cho trang `doLuuHopDong.jsp`.
+37. Trang `doLuuHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu đóng hợp đồng cũ đang hiệu lực.
+38. Lớp `HopDongDAO` gọi hàm `dongHopDongCu()`.
+39. Hàm `dongHopDongCu()` trả kết quả cho trang `doLuuHopDong.jsp`.
+40. Trang `doLuuHopDong.jsp` gọi lớp `HopDongDAO` yêu cầu lưu hợp đồng mới.
+41. Lớp `HopDongDAO` gọi hàm `luuHopDong()` lưu đối tượng hợp đồng đã đóng gói.
+42. Hàm `luuHopDong()` trả kết quả cho trang `doLuuHopDong.jsp`.
+43. Trang `doLuuHopDong.jsp` thông báo lưu hợp đồng thành công (kèm bản in hợp đồng) cho nhân viên.
+44. Nhân viên click [OK] trên thông báo của trang `doLuuHopDong.jsp`.
+45. Trang `doLuuHopDong.jsp` gọi trang chính `gdChinhNV.jsp`.
+46. Trang `gdChinhNV.jsp` hiển thị trang chính cho nhân viên.
+
+*(Lặp lại các bước 1–46 cho đến khi nhân viên ký xong hợp đồng cho tất cả tay đua cần ký.)*
+
+### 8.2. Biểu đồ tuần tự (Sequence) — luồng chính
+
+> Lifeline gồm: actor **Nhân viên** + 4 trang `.jsp` (kể cả trang chính `gdChinhNV.jsp` — lifeline **đầu và cuối** của biểu đồ) + 3 lớp `XxxDAO` + 3 lớp thực thể. **Không có lifeline CSDL, không có lifeline Controller, không có câu lệnh SQL trong message.** Nhãn message để cực ngắn (`goi`, `tra ve`, `hien thi`, `chon ...`, `click ...`); chỉ **self-call** mới ghi tên hàm. Message được đánh số tự động bằng `autonumber` (trong Visual Paradigm bật *Show sequence number*). **Luồng đọc** giữ chuỗi 7 message (DAO self-call + Entity constructor); **luồng lưu** theo mẫu Hình 4.12: Entity self-call `setter()` đóng gói trước, sau đó DAO self-call `kiemTraChongLan()` / `dongHopDongCu()` / `luuHopDong()` — không gọi Entity constructor. Kết thúc theo mẫu trang chính: `thong bao thanh cong` → `click OK` → `goi` → `hien thi`. Chỉ vẽ luồng chính; các ngoại lệ đã mô tả ở mục 2 và mục 7, không đưa vào biểu đồ tuần tự.
+
+```plantuml
+@startuml
+autonumber
+actor "Nhan vien" as NV
+participant "gdChinhNV.jsp" as V0
+participant "gdTimTayDua.jsp" as V1
+participant "gdNhapHopDong.jsp" as V2
+participant "doLuuHopDong.jsp" as V3
+participant "TayDuaDAO" as TDAO
+participant "DoiDuaDAO" as DDAO
+participant "HopDongDAO" as HDAO
+participant "TayDua" as ETD
+participant "DoiDua" as EDD
+participant "HopDong" as EHD
+
+loop lap cho tung tay dua can ky hop dong
+NV -> V0 : click Ky hop dong
+activate V0
+V0 -> V1 : goi
+activate V1
+deactivate V0
+V1 --> NV : hien thi
+deactivate V1
+
+NV -> V1 : nhap ten, click Tim
+activate V1
+V1 -> TDAO : goi
+activate TDAO
+TDAO -> TDAO : getTayDuaTheoTen()
+TDAO -> ETD : goi
+activate ETD
+ETD -> ETD : TayDua()
+ETD --> TDAO : tra ve
+deactivate ETD
+TDAO --> V1 : tra ve
+deactivate TDAO
+V1 --> NV : hien thi
+deactivate V1
+
+NV -> V1 : chon tay dua
+activate V1
+V1 -> V2 : goi
+activate V2
+deactivate V1
+V2 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : getHopDongCuaTayDua()
+HDAO -> EHD : goi
+activate EHD
+EHD -> EHD : HopDong()
+EHD --> HDAO : tra ve
+deactivate EHD
+HDAO --> V2 : tra ve
+deactivate HDAO
+V2 -> DDAO : goi
+activate DDAO
+DDAO -> DDAO : getDSDoiDua()
+DDAO -> EDD : goi
+activate EDD
+EDD -> EDD : DoiDua()
+EDD --> DDAO : tra ve
+deactivate EDD
+DDAO --> V2 : tra ve
+deactivate DDAO
+V2 --> NV : hien thi
+deactivate V2
+
+NV -> V2 : chon doi dua
+activate V2
+NV -> V2 : nhap ngay bat dau
+NV -> V2 : click Luu
+V2 -> V3 : goi
+activate V3
+deactivate V2
+V3 -> EHD : goi
+activate EHD
+EHD -> EHD : setter()
+EHD --> V3 : tra ve
+deactivate EHD
+V3 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : kiemTraChongLan()
+HDAO --> V3 : tra ve
+deactivate HDAO
+V3 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : dongHopDongCu()
+HDAO --> V3 : tra ve
+deactivate HDAO
+V3 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : luuHopDong()
+HDAO --> V3 : tra ve
+deactivate HDAO
+V3 --> NV : thong bao thanh cong
+NV -> V3 : click OK
+V3 -> V0 : goi
+activate V0
+deactivate V3
+V0 --> NV : hien thi
+deactivate V0
+end
+@enduml
+```
+
+## 9. Test case
+
+> Xây dựng theo quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2. Test case gom trong **một bảng 4 cột** `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm bằng dòng tiêu đề nhóm in đậm giữa bảng: **Giao diện** (2 ca/màn hình), **Chức năng** (2 ca/màn hình — kết quả mong muốn đối chiếu trực tiếp các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, dữ liệu thật F1 2025, kết quả mong muốn ghi cả hiệu ứng lên CSDL). Mã test case: `KHD_n` (Ký hợp đồng).
+
+### 9.1. Data test (bước 3 quy trình test)
+
+Dữ liệu được nạp sẵn vào CSDL trước khi chạy test, là **tiền đề chung cho nhóm Luồng nghiệp vụ** ở bảng 9.2.
+
+`tblTayDua`
+
+| id | ma | ten | ngaySinh | quocTich | tieuSu |
 |---|---|---|---|---|---|
-| TC1 | Ký hợp đồng mới (hợp đồng mở) | Đã đăng nhập; tay đua A chưa có hợp đồng | Tay đua A, Đội X, từ 01/01/2026 (ngày kết thúc để trống) | Tìm A → chọn → chọn X, nhập ngày bắt đầu → Lưu | Lưu thành công (ngày kết thúc trống = đang hiệu lực), in hợp đồng |
-| TC2 | Chặn chồng lấn lịch sử | Tay đua A có HĐ **đã đóng** với Đội Y 01/06/2025–31/12/2025 | Tay đua A, Đội X, từ 01/09/2025 | Tìm A → chọn → nhập ngày bắt đầu rơi vào khoảng đã đóng → Lưu | Báo lỗi "đã có hợp đồng trong khoảng thời gian này", không lưu |
-| TC3 | Thêm tay đua khi không tìm thấy | Đã đăng nhập | Tên "Zzz" (chưa có) | Tìm "Zzz" → không có → Thêm mới | Hiện form thêm tay đua, thêm xong quay lại ký HĐ |
-| TC4 | Tự động đóng HĐ cũ khi chuyển đội | Tay đua A đang có HĐ **hiệu lực** với Đội Y (từ 01/01/2026, ngày kết thúc trống) | Tay đua A, Đội X, từ 01/07/2026 | Tìm A → chọn → chọn X, nhập ngày bắt đầu → Lưu | Hệ thống tự đóng HĐ Y (ngày kết thúc = 30/06/2026), lưu HĐ X mới, in hợp đồng |
+| 1 | LEC | Charles Leclerc | 16/10/1997 | Monaco | Trưởng thành từ học viện Ferrari |
+| 2 | HAM | Lewis Hamilton | 07/01/1985 | Anh | Bảy lần vô địch thế giới |
+| 5 | NOR | Lando Norris | 13/11/1999 | Anh | Lên F1 từ mùa 2019 |
+| 6 | PIA | Oscar Piastri | 06/04/2001 | Úc | Vô địch F2 mùa 2021 |
+| 12 | SAI | Carlos Sainz | 01/09/1994 | Tây Ban Nha | Từng thi đấu cho Ferrari |
+
+> Bảng chỉ trích các dòng liên quan tới test case; số `id` giữ đúng bộ dữ liệu mẫu dùng chung của nhóm (`docs/03` mục 5) nên có khoảng trống giữa các giá trị.
+
+`tblDoiDua`
+
+| id | ma | ten | hang | moTa |
+|---|---|---|---|---|
+| 1 | FER | Ferrari | Ferrari | Đội đua lâu đời nhất |
+| 2 | RBR | Red Bull | Honda RBPT | Trụ sở tại Milton Keynes |
+| 3 | MCL | McLaren | Mercedes | Trụ sở tại Woking |
+| 4 | MER | Mercedes | Mercedes | Nhà vô địch giai đoạn 2014-2021 |
+| 5 | AST | Aston Martin | Mercedes | Đội đua của hãng xe Anh |
+| 6 | WIL | Williams | Mercedes | Đội đua tư nhân của Anh |
+
+`tblHopDong`
+
+| id | tblTayDuaid | tblDoiDuaid | ngayBatDau | ngayKetThuc |
+|---|---|---|---|---|
+| 1 | 2 (HAM) | 4 (Mercedes) | 01/01/2013 | (trống) |
+| 2 | 1 (LEC) | 1 (Ferrari) | 01/01/2019 | (trống) |
+| 3 | 5 (NOR) | 3 (McLaren) | 01/01/2019 | (trống) |
+| 4 | 12 (SAI) | 1 (Ferrari) | 01/01/2021 | 31/12/2024 |
+
+> Tay đua `PIA — Oscar Piastri` (id = 6) chưa có dòng nào trong `tblHopDong`; trong `tblTayDua` không có tay đua nào tên chứa `Antonelli`.
+
+### 9.2. Bảng test case
+
+| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+|---|---|---|---|
+| | **Nhóm 1 — Giao diện** | | |
+| KHD_1 | Bố cục màn Tìm tay đua | 1. Đăng nhập với vai trò nhân viên.<br>2. Tại trang chính click [Ký hợp đồng]. | Màn hình hiện đúng title "Ký hợp đồng tay đua với đội đua — Bước 1: Tìm tay đua"; hiển thị đầy đủ: ô nhập "Tên tay đua", nút [Tìm], nút [+ Thêm tay đua mới], bảng kết quả (TT \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Đội hiện tại \| thao tác) đang rỗng; con trỏ focus vào ô "Tên tay đua" |
+| KHD_2 | Hành vi phím Enter màn Tìm tay đua | 1. Mở màn Tìm tay đua.<br>2. Nhập `Hamilton` vào ô "Tên tay đua".<br>3. Nhấn phím Enter. | Phím Enter thực hiện đúng chức năng nút [Tìm]: bảng kết quả hiện danh sách tay đua có tên chứa `Hamilton` |
+| KHD_3 | Bố cục màn Nhập hợp đồng | 1. Từ màn Tìm tay đua, tìm `Hamilton`.<br>2. Click [Chọn] ở dòng `HAM`. | Màn hình hiện đúng title "Ký hợp đồng tay đua với đội đua — Bước 2: Nhập thông tin hợp đồng"; hiển thị đầy đủ: vùng thông tin tay đua, bảng "Hợp đồng cũ" (TT \| Đội đua \| Ngày bắt đầu \| Ngày kết thúc), ô chọn "Đội đua", ô "Ngày bắt đầu", nút [Lưu]; không có ô nhập ngày kết thúc; focus vào ô "Đội đua"; nút [Lưu] **chưa được active** |
+| KHD_4 | Thứ tự phím Tab màn Nhập hợp đồng | 1. Mở màn Nhập hợp đồng với tay đua `HAM`.<br>2. Nhấn Tab liên tiếp. | Focus di chuyển đúng thứ tự: ô "Đội đua" → ô "Ngày bắt đầu" → nút [Lưu] |
+| | **Nhóm 2 — Chức năng** | | |
+| KHD_5 | Màn Tìm tay đua hiển thị đúng khi CSDL có dữ liệu | 1. Nhập `Hamilton`, click [Tìm]. | Danh sách khớp các bản ghi trong `tblTayDua` có tên chứa `Hamilton`: 1 dòng `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; cột "Đội hiện tại" đối chiếu đúng dòng `tblHopDong` có `ngayKetThuc` trống của tay đua |
+| KHD_6 | Màn Tìm tay đua khi không có dữ liệu khớp | 1. Nhập `Schumacher`, click [Tìm]. | Bảng kết quả hiện dòng "Không tìm thấy tay đua nào" (trong `tblTayDua` không có bản ghi tên chứa `Schumacher`); nút [+ Thêm tay đua mới] vẫn hiển thị |
+| KHD_7 | Màn Nhập hợp đồng hiển thị đúng dữ liệu tay đua có hợp đồng | 1. Tìm và chọn `HAM`. | Bảng "Hợp đồng cũ" khớp các bản ghi trong `tblHopDong` của tay đua id = 2: 1 dòng `Mercedes \| 01/01/2013 \| (trống)`; ô chọn "Đội đua" chứa đủ 6 đội khớp `tblDoiDua` (Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) |
+| KHD_8 | Màn Nhập hợp đồng khi tay đua chưa có hợp đồng | 1. Tìm và chọn `PIA`. | Bảng "Hợp đồng cũ" **rỗng** (trong `tblHopDong` không có bản ghi nào của tay đua id = 6); hai ô nhập rỗng; nút [Lưu] chưa được active |
+| | **Nhóm 3 — Luồng nghiệp vụ** — *Precond: nhân viên đã đăng nhập thành công; CSDL đúng như mục Data test (9.1)* | | |
+| KHD_9 | Ký hợp đồng mới cho tay đua tự do — chưa có hợp đồng nào (ca chuẩn) | 1. Tại trang chính click [Ký hợp đồng].<br>2. Nhập `Piastri`, click [Tìm] — bảng hiện 1 dòng `PIA \| Oscar Piastri \| 06/04/2001 \| Úc \| (chưa có)`.<br>3. Click [Chọn] ở dòng `PIA` — bảng "Hợp đồng cũ" rỗng, nút [Lưu] chưa active.<br>4. Chọn đội đua `McLaren`, nhập ngày bắt đầu `01/01/2025` — nút [Lưu] chuyển sang active.<br>5. Click [Lưu]. | Thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng `Oscar Piastri — McLaren — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 1 dòng `McLaren \| 01/01/2025 \| (trống)`. **CSDL:** `tblHopDong` thêm bản ghi mới `id = 5 \| 6 (PIA) \| 3 (McLaren) \| 01/01/2025 \| (trống)`; `tblTayDua`, `tblDoiDua` không thay đổi |
+| KHD_10 | Ký hợp đồng khi tay đua đang có hợp đồng hiệu lực — hệ thống tự đóng hợp đồng cũ | 1. Nhập `Hamilton`, click [Tìm], click [Chọn] ở dòng `HAM` — bảng "Hợp đồng cũ" có 1 dòng `Mercedes \| 01/01/2013 \| (trống)`.<br>2. Chọn đội đua `Ferrari`, nhập ngày bắt đầu `01/01/2025`.<br>3. Click [Lưu]. | Thông báo "Lưu hợp đồng thành công" kèm bản in `Lewis Hamilton — Ferrari — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 2 dòng. **CSDL:** `tblHopDong`: hợp đồng cũ id = 1 (HAM — Mercedes) được tự động đóng với `ngayKetThuc = 31/12/2024`; thêm bản ghi mới `HAM — Ferrari — 01/01/2025 — (trống)` |
+| KHD_11 | Ngày bắt đầu chồng lấn hợp đồng đã đóng — báo lỗi, không lưu | 1. Nhập `Sainz`, click [Tìm], click [Chọn] ở dòng `SAI` — bảng "Hợp đồng cũ" có 1 dòng `Ferrari \| 01/01/2021 \| 31/12/2024`.<br>2. Chọn đội đua `Williams`, nhập ngày bắt đầu `01/06/2023`.<br>3. Click [Lưu]. | Thông báo lỗi màu đỏ ngay dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này"; dữ liệu đã nhập giữ nguyên trên form để sửa lại. **CSDL: không bảng nào thay đổi** — `tblHopDong` vẫn giữ đúng 4 bản ghi như Data test |
+| KHD_12 | Không tìm thấy tay đua — thêm tay đua mới rồi ký hợp đồng | 1. Nhập `Antonelli`, click [Tìm] — hiện "Không tìm thấy tay đua nào".<br>2. Click [+ Thêm tay đua mới] — form thêm tay đua hiện ra, nút [Lưu tay đua] chưa active.<br>3. Nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử `Tay đua trẻ của học viện Mercedes`, click [Lưu tay đua].<br>4. Bảng kết quả nạp lại dòng `ANT`; click [Chọn].<br>5. Chọn đội đua `Mercedes`, nhập ngày bắt đầu `01/01/2025`, click [Lưu]. | Sau bước 3: tay đua mới được lưu, bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`. Sau bước 5: thông báo "Lưu hợp đồng thành công" kèm bản in `Andrea Kimi Antonelli — Mercedes — từ 01/01/2025`. **CSDL:** `tblTayDua` thêm bản ghi mới `ANT — Andrea Kimi Antonelli — 25/08/2006 — Ý`; `tblHopDong` thêm bản ghi mới `ANT — Mercedes — 01/01/2025 — (trống)` |

@@ -1,22 +1,23 @@
-# Module 3 — Cập nhật kết quả và tính điểm chặng đua (Kiet)
+# Module 3 — Cập nhật kết quả chặng đua (Kiet)
 
 > Đề bài: mục 3 trong [../project10-F1-4modules.md](../project10-F1-4modules.md).
 > Tài liệu chung: [../docs/](../docs/). Mẫu đặc tả UC & test case: [../docs/00-ke-hoach-va-phan-cong.md](../docs/00-ke-hoach-va-phan-cong.md) mục 4.
 
 ## Tóm tắt module
 - **Actor:** Nhân viên
-- **Nghiệp vụ chính:** nhập thời gian/số vòng/DNF cho tay đua đã đăng ký → xếp hạng theo thời gian → gán điểm top 10 (25/18/15/12/10/8/6/4/2/1), DNF = 0 điểm.
+- **Tên UC chính:** `Cập nhật kết quả chặng đua`
+- **Nghiệp vụ chính:** nhập thời gian/số vòng/trạng thái (Hoàn thành, DNF, DSQ) cho tay đua đã đăng ký → xếp hạng theo thời gian → gán điểm top 10 (25/18/15/12/10/8/6/4/2/1), DNF và DSQ = 0 điểm và xếp cuối.
 - **Lớp thực thể liên quan:** `ChangDua`, `DangKyChang`, `TayDua`, `DoiDua`, `KetQua` (xem [../docs/03-lop-thuc-the-va-csdl.md](../docs/03-lop-thuc-the-va-csdl.md)).
 
 ## Checklist sản phẩm (nộp cho module này)
 - [ ] Biểu đồ UC chi tiết
 - [ ] Đặc tả UC (kịch bản chuẩn + ngoại lệ)
 - [ ] Biểu đồ hoạt động (activity)
-- [ ] Biểu đồ lớp phân tích (boundary/control/entity) — *khuyến nghị*
-- [ ] Thiết kế giao diện
-- [ ] Biểu đồ lớp thiết kế MVC — *khuyến nghị*
-- [ ] Biểu đồ tuần tự (sequence)
-- [ ] Test case
+- [ ] Biểu đồ lớp phân tích (lớp biên `GDxxx` chỉ có thuộc tính + lớp thực thể mang phương thức nghiệp vụ; **không có lớp Control**)
+- [ ] Thiết kế giao diện (2 màn)
+- [ ] Biểu đồ lớp thiết kế view (.jsp) / DAO / model — **không có Controller**, các `XxxDAO` kế thừa lớp cha `DAO`
+- [ ] Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự
+- [ ] Test case (kế hoạch kiểm thử + từng test case có CSDL trước/sau)
 
 ## Nơi để file
 - `hinh/` — ảnh biểu đồ export từ Visual Paradigm (PNG).

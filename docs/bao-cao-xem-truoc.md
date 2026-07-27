@@ -1,8 +1,16 @@
-# BÁO CÁO ĐỒ ÁN MÔN NHẬP MÔN CÔNG NGHỆ PHẦN MỀM
+> # FILE CŨ — KHÔNG DÙNG. Bản chính thức là `docs/BAO-CAO.md`.
+>
+> File này là bản xem trước **đã lỗi thời**, giữ lại chỉ để tham khảo đường dẫn ảnh. **Tuyệt đối không convert file này ra Docx để nộp.**
+>
+> Các chỗ sai đã biết của file này (đều đã được sửa đúng trong `docs/BAO-CAO.md`): MSSV `B22DCCVT270` (đúng là `B22DCVT270`); tên use case cũ "Cập nhật kết quả **và tính điểm** chặng đua", "Nhập kết quả và tính điểm", "Tổng hợp xếp hạng"; còn quan hệ `include` tới use case `Đăng nhập`; NFR6 ghi "Kiến trúc phân tầng MVC"; bảng CSDL còn cột `dnf`, `tongDiem`, `tongThoiGian`, `vaiTro` và khoá ngoại đặt sai quy ước; test case còn dùng bảng 4 cột cũ; thiếu bố cục PHẦN 1 / PHẦN 2 và mục thuyết minh.
+>
+> **Nhóm nên xoá file này khỏi repo sau khi đã export đủ ảnh cho `docs/BAO-CAO.md`.**
+
+# BÁO CÁO ĐỒ ÁN MÔN NHẬP MÔN CÔNG NGHỆ PHẦN MỀM (BẢN CŨ — KHÔNG DÙNG)
 
 ## Đề tài: Quản lý giải đua xe F1
 
-> Bản thảo báo cáo do Claude dựng để nhóm xem qua. Chỗ có **[Hình …]** là nơi chèn ảnh biểu đồ đã export từ Visual Paradigm (đường dẫn ảnh ghi kèm). Sau khi chèn đủ ảnh, xuất file này ra Word để nộp.
+> Bản thảo xem trước cũ. Chỗ có **[Hình …]** là nơi chèn ảnh biểu đồ đã export từ Visual Paradigm (đường dẫn ảnh ghi kèm).
 
 **Nhóm:** Nhóm 3 — Học viện Công nghệ Bưu chính Viễn thông
 **Giảng viên hướng dẫn:** Đào Ngọc Phong
