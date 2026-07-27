@@ -78,7 +78,7 @@ Hệ thống có hai nhóm người dùng, đều là thành viên có tài kho�
 | **Nhân viên** (kế thừa Thành viên) | 3. Quản lý mùa giải<br>4. Quản lý tay đua<br>5. Quản lý đội đua<br>6. Quản lý chặng đua<br>7. Đăng ký đội tham gia mùa giải<br>8. Ký hợp đồng tay đua với đội đua *(Module 1)*<br>9. Đăng ký tay đua tham gia chặng đua *(Module 2)*<br>10. Cập nhật kết quả chặng đua *(Module 3)* |
 | **Quản lý** (kế thừa Thành viên) | 11. Quyết toán và trao giải cuối mùa *(Module 4)* |
 
-Bốn chức năng 3–6 đều có cùng dạng thao tác (tìm / thêm / sửa / xóa trên một danh mục) nên khi mô hình hóa được gộp lại bằng một use case trừu tượng **Quản lý danh mục** làm cha.
+Bốn chức năng 3–6 có cùng dạng thao tác: tìm / thêm / sửa / xóa trên một danh mục.
 
 Ngoài hai vai trò trên, hệ thống không phục vụ trực tiếp đối tượng nào khác. Đội đua và tay đua chỉ **tham gia gián tiếp**: họ gửi yêu cầu (yêu cầu ký hợp đồng, yêu cầu đăng ký thi đấu) cho nhân viên, còn thao tác trên phần mềm do nhân viên thực hiện. Khán giả và báo chí không có tài khoản, không xem được dữ liệu qua hệ thống này.
 
@@ -336,7 +336,7 @@ Hệ thống chỉ được dùng bởi hai vai người dùng thật: người 
 
 Biểu đồ tổng quát đặt toàn bộ use case trong khung hệ thống `Hệ thống quản lý giải đua F1`, các actor nằm ngoài khung.
 
-**Actor:** actor trừu tượng `ThanhVien` (in nghiêng) là cha của `NhanVien` và `QuanLy`; nhờ quan hệ kế thừa, hai actor con dùng được `Đăng nhập` và `Đổi mật khẩu` mà không phải vẽ liên kết riêng.
+**Actor:** `ThanhVien` là actor trừu tượng, cha của `NhanVien` và `QuanLy`. Hai actor con kế thừa quyền dùng `Đăng nhập` và `Đổi mật khẩu`.
 
 **Use case:** `Đăng nhập`, `Đổi mật khẩu` (actor `ThanhVien`); use case trừu tượng `Quản lý danh mục` là cha (generalization) của `Quản lý mùa giải`, `Quản lý tay đua`, `Quản lý đội đua`, `Quản lý chặng đua`; `Đăng ký đội tham gia mùa giải`, `Ký hợp đồng tay đua với đội đua` (M1), `Đăng ký tay đua tham gia chặng đua` (M2), `Cập nhật kết quả chặng đua` (M3) — actor `NhanVien`; `Quyết toán và trao giải cuối mùa` (M4) — actor `QuanLy`.
 
@@ -437,19 +437,19 @@ Sau khi đánh giá, hệ thống có **12 lớp thực thể**, trong đó 9 l�
 
 `MuaGiai` · `ChangDua` · `DoiDua` · `TayDua` · `ThamGia` · `HopDong` · `DangKyChang` · `KetQua` · `TraoGiai` · `ThanhVien` (trừu tượng) · `NhanVien` · `QuanLy`.
 
-Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra để tách quan hệ nhiều–nhiều (xem mục 3.3).
+Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** của các quan hệ nhiều–nhiều (mục 3.3).
 
 #### 3.1.4. Hai quyết định về lớp thực thể
 
 **(a) Thuộc tính lấy từ mô tả bài toán.** Mô tả đối tượng ở mục 1.4 ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung `hang`, `moTa` cho `DoiDua`; `tieuSu` cho `TayDua`; `diaDiem`, `moTa` cho `ChangDua`.
 
-**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**.
+**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. "Hãng" chỉ là **một thông tin mô tả kèm theo đội đua**, hiển thị trên bảng xếp hạng đội. Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**.
 
 ### 3.2. Mô tả thực thể (thuộc tính, phương thức)
 
 #### 3.2.1. Thuộc tính — pha phân tích
 
-Ở pha phân tích, thuộc tính **chưa cần kiểu dữ liệu** và các lớp thực thể **chưa có thuộc tính `id`**. Bảng dưới đây là đầu vào của pha thiết kế (mục 3.5).
+Ở pha phân tích, thuộc tính **chưa cần kiểu dữ liệu** và các lớp thực thể **chưa có thuộc tính `id`**.
 
 | Lớp | Thuộc tính (pha phân tích) | Ý nghĩa |
 |---|---|---|
@@ -470,7 +470,7 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra đ
 
 #### 3.2.2. Phương thức nghiệp vụ gán cho lớp thực thể
 
-Mỗi chức năng phải thực hiện ở tầng dưới tầng giao diện được đề xuất thành một phương thức, xác định tham số vào/ra và **gán cho một lớp thực thể**. Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở lớp thực thể.
+Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở lớp thực thể.
 
 | Lớp | Phương thức | Module dùng |
 |---|---|---|
@@ -491,7 +491,7 @@ Mỗi chức năng phải thực hiện ở tầng dưới tầng giao diện đ
 
 #### 3.3.1. Quan hệ số lượng và ba lớp trung gian
 
-Ba quan hệ nhiều–nhiều phải tách bằng lớp trung gian để mỗi quan hệ trở thành ít nhất hai quan hệ 1-n:
+Ba quan hệ nhiều–nhiều được tách bằng lớp trung gian:
 
 | Quan hệ n-n | Lớp trung gian | Tách thành | Ý nghĩa của một bản ghi |
 |---|---|---|---|
@@ -499,7 +499,7 @@ Ba quan hệ nhiều–nhiều phải tách bằng lớp trung gian để mỗi 
 | `TayDua` – `DoiDua` | **`HopDong`** | `TayDua "1" – "n" HopDong` và `DoiDua "1" – "n" HopDong` | Một giai đoạn tay đua thi đấu cho một đội, có `ngayBatDau` và `ngayKetThuc` (Module 1) |
 | `ChangDua` – `TayDua` | **`DangKyChang`** | `ChangDua "1" – "n" DangKyChang`, `TayDua "1" – "n" DangKyChang` và `DoiDua "1" – "n" DangKyChang` | Một tay đua được một đội đăng ký thi đấu ở một chặng (Module 2) |
 
-> `DangKyChang` thực chất tách một quan hệ **ba ngôi** `ChangDua` – `TayDua` – `DoiDua` thành ba quan hệ 1-n. Phải giữ `DoiDua` ở đây (chứ không tra ngược qua `HopDong`) vì tay đua có thể **đổi đội giữa mùa**: điểm của chặng phải cộng cho đội tại **thời điểm diễn ra chặng**, tức đội ghi trong `DangKyChang`, không phải đội hiện tại.
+> `DangKyChang` thực chất tách một quan hệ **ba ngôi** `ChangDua` – `TayDua` – `DoiDua` thành ba quan hệ 1-n. `DoiDua` được giữ ở đây thay vì tra ngược qua `HopDong`, vì tay đua có thể **đổi đội giữa mùa**: điểm của chặng phải cộng cho đội tại **thời điểm diễn ra chặng**, tức đội ghi trong `DangKyChang`, không phải đội hiện tại.
 
 Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực thể.
 
@@ -527,7 +527,7 @@ Các liên kết được chuyển thành quan hệ đối tượng: **hợp th�
 2. **Hai nghiệp vụ, hai chủ thể ghi khác nhau.** Đăng ký do Module 2 ghi và có thể **sửa lại trước ngày đua**; kết quả do Module 3 ghi, có thể bị **ghi đè và tính lại toàn chặng**. Tách bảng cho phép `KetQua.xoaKetQuaCu(changDuaId)` xoá và nhập lại kết quả mà **không đụng tới danh sách đăng ký**.
 3. **Truy vấn tổng hợp của Module 4** chỉ đọc `tblKetQua`; giữ riêng bảng giúp câu lệnh cộng dồn điểm và countback gọn hơn.
 
-Vì vậy nhóm **giữ hai lớp và hai bảng riêng**, thể hiện bằng bội số `"1" *-- "0..1"`. Đây là quyết định có chủ đích, không phải bỏ sót bước gộp bảng.
+Hai lớp và hai bảng được giữ riêng, bội số `"1" *-- "0..1"`.
 
 ### 3.4. Biểu đồ lớp thực thể — pha phân tích
 
@@ -574,7 +574,7 @@ Vì vậy nhóm **giữ hai lớp và hai bảng riêng**, thể hiện bằng b
 
 #### 3.6.1. Bước 1 — Mỗi lớp thực thể thành một bảng
 
-Đặt tên bảng theo quy ước `tblXxx`: `tblMuaGiai`, `tblChangDua`, `tblDoiDua`, `tblTayDua`, `tblThamGia`, `tblHopDong`, `tblDangKyChang`, `tblKetQua`, `tblTraoGiai`, `tblThanhVien`, `tblNhanVien`, `tblQuanLy`.
+Mười hai bảng: `tblMuaGiai`, `tblChangDua`, `tblDoiDua`, `tblTayDua`, `tblThamGia`, `tblHopDong`, `tblDangKyChang`, `tblKetQua`, `tblTraoGiai`, `tblThanhVien`, `tblNhanVien`, `tblQuanLy`.
 
 Cây kế thừa `ThanhVien` được ánh xạ thành **bảng cha + hai bảng con**: `tblNhanVien` và `tblQuanLy` không có `id` riêng mà dùng khoá ngoại `tblThanhVienid` vừa làm khoá chính vừa tham chiếu `tblThanhVien`.
 
@@ -590,7 +590,7 @@ Các thuộc tính kiểu đối tượng thêm ở mục 3.5 **không trở th�
 
 #### 3.6.4. Bước 4 — Bổ sung khoá chính và khoá ngoại
 
-Quy ước: khoá chính là cột `id`; với quan hệ 1 `tblA` – n `tblB` thì `tblB` có khoá ngoại **`tblAid`** tham chiếu tới `tblA.id` (khi vẽ thì in nghiêng tên khoá ngoại).
+Khoá chính là cột `id`. Với quan hệ 1 `tblA` – n `tblB`, bảng `tblB` có khoá ngoại **`tblAid`** tham chiếu tới `tblA.id`.
 
 | Bảng | Cột và kiểu dữ liệu | Khoá |
 |---|---|---|
@@ -646,7 +646,7 @@ Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gó
 | `dao` | `DAO` (lớp cha) · `TayDuaDAO`, `DoiDuaDAO`, `HopDongDAO`, `ChangDuaDAO`, `DangKyChangDAO`, `KetQuaDAO`, `MuaGiaiDAO`, `TraoGiaiDAO` |
 | `model` | `MuaGiai`, `ChangDua`, `DoiDua`, `TayDua`, `ThamGia`, `HopDong`, `DangKyChang`, `KetQua`, `TraoGiai`, `ThanhVien`, `NhanVien`, `QuanLy` |
 
-**Lớp cha `DAO`.** Mọi lớp `XxxDAO` đều kế thừa lớp `DAO`; lớp cha này giữ **cơ chế kết nối cơ sở dữ liệu dùng chung** (mở kết nối, đóng kết nối, thực thi câu lệnh) để các lớp con không phải lặp lại đoạn mã kết nối.
+**Lớp cha `DAO`.** Mọi lớp `XxxDAO` đều kế thừa lớp `DAO`; lớp cha này giữ **cơ chế kết nối cơ sở dữ liệu dùng chung**: mở kết nối, đóng kết nối, thực thi câu lệnh.
 
 **Ánh xạ sang mô hình MVC.** Kiến trúc trên vẫn là MVC, với cách phân vai:
 
@@ -672,11 +672,11 @@ Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gó
 
 ### 4.1. Biểu đồ Use Case chi tiết
 
-Module 1 có **2 màn hình hiển thị**, mỗi màn hình được đề xuất thành một use case con quan hệ `include`: màn hình **Tìm tay đua** → use case con `Tìm tay đua`; màn hình **Nhập hợp đồng** → use case con `Nhập thông tin hợp đồng`.
+Module 1 có **2 màn hình hiển thị**, ứng với 2 use case con quan hệ `include`: **Tìm tay đua** và **Nhập thông tin hợp đồng**.
 
-Ngoài ra có một use case mở rộng: khi nhân viên tìm mà không thấy tay đua trong hệ thống, nhân viên được phép thêm tay đua mới ngay trên **màn hình Tìm tay đua**. Vì vậy `Thêm tay đua` là quan hệ **extend của `Tìm tay đua`** (không phải của `Nhập thông tin hợp đồng`), và nó dùng lại chính lớp biên `GDTimTayDua` chứ không sinh thêm màn hình mới.
+Ngoài ra có một use case mở rộng: khi nhân viên tìm mà không thấy tay đua trong hệ thống, nhân viên được phép thêm tay đua mới ngay trên **màn hình Tìm tay đua**. `Thêm tay đua` là use case mở rộng (**extend**) của `Tìm tay đua`, dùng lại màn hình Tìm tay đua.
 
-Đăng nhập là chức năng dùng chung của toàn hệ thống: use case `Đăng nhập` gắn với actor cha **Thành viên**, use case `NV đăng nhập` **kế thừa** `Đăng nhập`, và use case chính **include** `NV đăng nhập`. Trang chính `gdChinhNV.jsp` là trang chủ chung của hệ thống nên **không sinh use case con**; trang `doLuuHopDong.jsp` là trang xử lý, không phải màn hình hiển thị nên cũng không sinh use case con.
+Đăng nhập là chức năng dùng chung của toàn hệ thống: use case `Đăng nhập` gắn với actor cha **Thành viên**, use case `NV đăng nhập` **kế thừa** `Đăng nhập`, và use case chính **include** `NV đăng nhập`.
 
 ![Biểu đồ Use Case chi tiết Module 1](<../Module 1 - Quan/hinh/m1-uc-chitiet.png>)
 
@@ -778,7 +778,7 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính c
 
 ### 4.4. Biểu đồ lớp phân tích
 
-**Lớp biên** (mỗi màn hình → 1 lớp biên, chỉ có thuộc tính, không có phương thức): ngoài 2 lớp biên của 2 màn hình riêng, module có thêm lớp biên **trang chính của nhân viên** `GDChinhNV` — trang chủ chung của hệ thống, không sinh use case con — nối bằng đường kẻ trơn sang lớp biên đầu tiên của module (`GDTimTayDua`).
+**Lớp biên:**
 
 | Lớp biên | Thuộc tính | Ý nghĩa |
 |---|---|---|
@@ -896,8 +896,6 @@ Luồng chính: Lewis Hamilton đang có hợp đồng hiệu lực với Merced
 
 #### 4.9.1. Data test (bước 3 quy trình test)
 
-Dữ liệu được nạp sẵn vào CSDL trước khi chạy test, là **tiền đề chung cho nhóm Luồng nghiệp vụ** ở bảng 4.9.2.
-
 `tblTayDua`
 
 | id | ma | ten | ngaySinh | quocTich | tieuSu |
@@ -974,9 +972,6 @@ Use case chính của module là **`Đăng ký tay đua tham gia chặng đua`**
 | Đăng ký tay đua | `Chọn tay đua đăng ký` | include |
 
 Ghi chú:
-- Use case `NV đăng nhập` dùng lại giao diện đăng nhập chung nên **không** tạo lớp biên / trang `.jsp` / lifeline riêng trong module này; đặc tả vẫn giữ "đã đăng nhập" ở Tiền điều kiện và kịch bản mở đầu sau khi đăng nhập.
-- Trang chính `gdChinhNV.jsp` là trang chủ chung của hệ thống, **không** sinh use case con.
-- Trang xử lý `doLuuDangKy.jsp` không hiển thị giao diện cho người dùng nên **không** sinh use case con.
 
 ![Biểu đồ Use Case chi tiết Module 2](<../Module 2 - Kin/hinh/m2-uc-chitiet.png>)
 
@@ -1289,8 +1284,6 @@ Ngày hệ thống mặc định khi chạy test: **20/05/2025** (ca nào dùng 
 
 #### 5.9.2. Bảng test case
 
-Mỗi ca được chạy trên trạng thái cơ sở dữ liệu của mục 5.9.1; riêng DKC_21 dùng lại trạng thái cơ sở dữ liệu sau khi chạy DKC_17.
-
 | Mã trường hợp kiểm thử | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
 |---|---|---|---|
 | | **Giao diện — màn Chọn chặng và đội** | | |
@@ -1334,8 +1327,6 @@ Use case chính của module là **`Cập nhật kết quả chặng đua`** —
 | (dùng chung toàn hệ thống) | `NV đăng nhập` — kế thừa `Đăng nhập` | include |
 | Chọn chặng | `Chọn chặng` | include |
 | Nhập kết quả | `Nhập kết quả chặng` | include |
-
-Trang xử lý `doLuuKetQua.jsp` chỉ làm nhiệm vụ ghi dữ liệu, không phải màn hình hiển thị nên **không sinh use case con**. Use case `NV đăng nhập` dùng lại giao diện đăng nhập chung của hệ thống nên module **không** tạo lớp biên, trang jsp hay lifeline riêng cho nó — kịch bản của module vẫn mở đầu "sau khi đăng nhập", và "nhân viên đã đăng nhập" vẫn được ghi ở **Tiền điều kiện** của đặc tả use case. Trang chính `gdChinhNV.jsp` là trang chủ chung của hệ thống nên cũng không sinh use case con.
 
 ![Biểu đồ Use Case chi tiết Module 3](<../Module 3 - Kiet/hinh/m3-uc-chitiet.png>)
 
@@ -1448,7 +1439,7 @@ Các ràng buộc kiểm tra dữ liệu nhập (ngoại lệ 6a–6d, 8a ở m�
 
 ### 6.4. Biểu đồ lớp phân tích
 
-**Lớp biên** — mỗi màn hình một lớp biên, mỗi thành phần nhận/hiện/submit dữ liệu là một thuộc tính, lớp biên không có phương thức. Ngoài 2 lớp biên của 2 màn hình riêng, module có thêm lớp biên **trang chính của nhân viên** `GDChinhNV` (trang chủ chung của hệ thống, không sinh use case con), nối `--` sang lớp biên đầu tiên `GDChonChang`:
+**Lớp biên:**
 
 | Lớp biên | Màn hình | Thuộc tính |
 |---|---|---|
@@ -1661,7 +1652,7 @@ Bộ dữ liệu nền dưới đây (bộ dữ liệu F1 2025 thống nhất c�
 
 Use case chính: **`Quyết toán và trao giải cuối mùa`**, actor **Quản lý**. Use case chi tiết được phân rã theo 2 nguồn: (1) **mỗi giao diện tương tác với người dùng → 1 use case con** (quan hệ include/extend); (2) use case `QL đăng nhập` **kế thừa** use case dùng chung `Đăng nhập` (gắn với actor cha **Thành viên**), và use case chính **include** `QL đăng nhập`; đăng nhập dùng chung toàn hệ thống nên **không** sinh lớp biên hay trang `.jsp` riêng trong module.
 
-Module có 3 màn hình hiển thị nghiệp vụ (ngoài trang chính của quản lý — trang chủ chung, không sinh use case con):
+Module có 3 màn hình hiển thị nghiệp vụ:
 
 | Màn hình | UC con | Quan hệ với UC chính | Lớp biên | Trang JSP |
 |---|---|---|---|---|
@@ -1672,7 +1663,7 @@ Module có 3 màn hình hiển thị nghiệp vụ (ngoài trang chính của qu
 | — (dùng chung toàn hệ thống) | `QL đăng nhập` — kế thừa `Đăng nhập` | include | — | — |
 | — (trang xử lý, không hiển thị tương tác) | — | — | — | `doLuuTraoGiai.jsp` |
 
-UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp. Kịch bản vẫn mở đầu "sau khi đăng nhập" và Tiền điều kiện giữ "đã đăng nhập".
+`Xem chi tiết theo chặng` chỉ xảy ra khi quản lý click vào một dòng tay đua hoặc đội trên bảng tổng sắp, nên là use case mở rộng (**extend**).
 
 ![Biểu đồ Use Case chi tiết Module 4](<../Module 4 - Thanh/hinh/m4-uc-chitiet.png>)
 
@@ -1821,7 +1812,7 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính**
 
 ### 7.4. Biểu đồ lớp phân tích
 
-**Lớp biên** (mỗi giao diện → 1 lớp biên, chỉ có thuộc tính, không có phương thức; tên thuộc tính theo prefix `in / out / inout / sub / outsub`):
+**Lớp biên:**
 
 | Lớp biên | Màn hình | Thuộc tính |
 |---|---|---|
