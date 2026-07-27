@@ -513,90 +513,60 @@ stop
 
 ### 7.1. Thuyết minh (kịch bản phiên bản 3)
 
-Chỉ thuyết minh **luồng chính** (chặng chưa có kết quả cũ, dữ liệu nhập hợp lệ). Mỗi dòng dưới đây ứng với một message trong biểu đồ tuần tự ở mục 7.2. Luồng bắt đầu từ màn đăng nhập `Login.jsp`, mở đầu và kết thúc chức năng tại trang chính `gdChinhNV.jsp`; luồng lưu đóng gói dữ liệu bằng `setter()` của lớp thực thể trước khi gọi DAO ghi dữ liệu.
+Chỉ thuyết minh **luồng chính** (chặng chưa có kết quả cũ, dữ liệu nhập hợp lệ). Mỗi dòng dưới đây ứng với một message trong biểu đồ tuần tự ở mục 7.2. Luồng mở đầu và kết thúc tại trang chính `gdChinhNV.jsp`; luồng lưu đóng gói dữ liệu bằng `setter()` của lớp thực thể trước khi gọi DAO ghi dữ liệu.
 
-1. Nhân viên nhập tài khoản và click Đăng nhập trên trang `Login.jsp`.
-2. Trang `Login.jsp` gọi `actionperformed()`.
-3. Trang `Login.jsp` gọi lớp `NhanVienDAO` yêu cầu kiểm tra đăng nhập.
-4. Lớp `NhanVienDAO` gọi hàm `checkLogin()`.
-5. Hàm `checkLogin()` gọi lớp `NhanVien` để đóng gói thông tin nhân viên.
-6. Lớp `NhanVien` gọi hàm `Staff()` đóng gói thông tin thực thể.
-7. Lớp `NhanVien` trả kết quả về cho hàm `checkLogin()`.
-8. Hàm `checkLogin()` trả kết quả cho trang `Login.jsp`.
-9. Trang `Login.jsp` gọi trang `NhanVien.jsp` và truyền đối tượng `NhanVien`.
-10. Trang `NhanVien.jsp` gọi `NhanVien()` để khởi tạo và hiển thị trang chính cho nhân viên.
-11. Nhân viên click "Chặng" trên trang `NhanVien.jsp`.
-12. Trang `NhanVien.jsp` gọi `actionperformed()`.
-13. Trang `NhanVien.jsp` gọi trang `Chang.jsp`.
-14. Trang `Chang.jsp` gọi lớp `ChangDuaDAO` yêu cầu lấy danh sách chặng.
-15. Lớp `ChangDuaDAO` gọi hàm `getAllChang()`.
-16. Hàm `getAllChang()` gọi lớp `ChangDua` để đóng gói thông tin.
-17. Lớp `ChangDua` gọi hàm `getAll()` đóng gói thông tin thực thể.
-18. Lớp `ChangDua` trả kết quả về cho hàm `getAllChang()`.
-19. Hàm `getAllChang()` trả kết quả cho trang `Chang.jsp`.
-20. Trang `Chang.jsp` hiển thị danh sách chặng đua cho nhân viên.
-21. Nhân viên click chặng "R16 — Italian Grand Prix" để xem chi tiết.
-22. Trang `NhanVien.jsp` gọi `actionperformed()`.
-23. Trang `NhanVien.jsp` gọi trang `ChangChiTiet.jsp`.
-24. Trang `ChangChiTiet.jsp` gọi lớp `TayDuaDAO` yêu cầu lấy danh sách tay đua đăng ký chặng.
-25. Lớp `TayDuaDAO` gọi hàm `getAllTayDua()`.
-26. Hàm `getAllTayDua()` gọi lớp `TayDua` để đóng gói thông tin.
-27. Lớp `TayDua` gọi hàm `getAll()` đóng gói thông tin thực thể.
-28. Lớp `TayDua` trả kết quả về cho hàm `getAllTayDua()`.
-29. Hàm `getAllTayDua()` trả kết quả cho trang `ChangChiTiet.jsp`.
-30. Trang `ChangChiTiet.jsp` hiển thị trang chi tiết chặng kèm bảng nhập kết quả cho nhân viên.
-31. Nhân viên click "Cập nhật kết quả chặng đua" trên trang chính `gdChinhNV.jsp`.
-32. Trang `gdChinhNV.jsp` gọi trang `gdChonChang.jsp`.
-33. Trang `gdChonChang.jsp` gọi lớp `MuaGiaiDAO` yêu cầu lấy mùa giải đang diễn ra.
-34. Lớp `MuaGiaiDAO` gọi hàm `getMuaGiaiHienTai()`.
-35. Hàm `getMuaGiaiHienTai()` gọi lớp `MuaGiai` để đóng gói thông tin.
-36. Lớp `MuaGiai` đóng gói thông tin thực thể.
-37. Lớp `MuaGiai` trả kết quả về cho hàm `getMuaGiaiHienTai()`.
-38. Hàm `getMuaGiaiHienTai()` trả kết quả cho trang `gdChonChang.jsp`.
-39. Trang `gdChonChang.jsp` gọi lớp `ChangDuaDAO` yêu cầu lấy danh sách chặng đua của mùa giải.
-40. Lớp `ChangDuaDAO` gọi hàm `getDSChangDua()`.
-41. Hàm `getDSChangDua()` gọi lớp `ChangDua` để đóng gói thông tin.
-42. Lớp `ChangDua` đóng gói thông tin thực thể.
-43. Lớp `ChangDua` trả kết quả về cho hàm `getDSChangDua()`.
-44. Hàm `getDSChangDua()` trả kết quả cho trang `gdChonChang.jsp`.
-45. Trang `gdChonChang.jsp` hiển thị danh sách chặng đua cho nhân viên.
-46. Nhân viên chọn chặng `R16 - Italian Grand Prix (Monza)` và click Tiếp tục.
-47. Trang `gdChonChang.jsp` gọi trang `gdNhapKetQua.jsp`.
-48. Trang `gdNhapKetQua.jsp` gọi lớp `DangKyChangDAO` yêu cầu lấy danh sách tay đua đã đăng ký chặng.
-49. Lớp `DangKyChangDAO` gọi hàm `getDangKyCuaChang()`.
-50. Hàm `getDangKyCuaChang()` gọi lớp `DangKyChang` để đóng gói thông tin.
-51. Lớp `DangKyChang` đóng gói thông tin thực thể.
-52. Lớp `DangKyChang` trả kết quả về cho hàm `getDangKyCuaChang()`.
-53. Hàm `getDangKyCuaChang()` trả kết quả cho trang `gdNhapKetQua.jsp`.
-54. Trang `gdNhapKetQua.jsp` hiển thị bảng nhập kết quả cho nhân viên.
-55. Nhân viên nhập thời gian về đích, số vòng hoàn thành và chọn trạng thái cho từng tay đua. *(Lặp lại bước 55 cho đến khi nhập xong tất cả tay đua.)*
-56. Nhân viên click Tính kết quả.
-57. Trang `gdNhapKetQua.jsp` submit gọi chính nó xử lí.
-58. Trang `gdNhapKetQua.jsp` gọi lớp `KetQuaDAO` yêu cầu xếp hạng và tính điểm cho chặng.
-59. Lớp `KetQuaDAO` gọi hàm `xepHangVaTinhDiem()`.
-60. Hàm `xepHangVaTinhDiem()` gọi lớp `KetQua` để đóng gói thông tin.
-61. Lớp `KetQua` đóng gói thông tin thực thể.
-62. Lớp `KetQua` trả kết quả về cho hàm `xepHangVaTinhDiem()`.
-63. Hàm `xepHangVaTinhDiem()` trả kết quả cho trang `gdNhapKetQua.jsp`.
-64. Trang `gdNhapKetQua.jsp` hiển thị bảng đối soát cho nhân viên.
-65. Nhân viên click Lưu.
-66. Trang `gdNhapKetQua.jsp` gọi trang `doLuuKetQua.jsp`.
-67. Trang `doLuuKetQua.jsp` gọi lớp `KetQuaDAO` yêu cầu kiểm tra chặng đã có kết quả cũ hay chưa.
-68. Lớp `KetQuaDAO` gọi hàm `kiemTraKetQuaCu()`.
-69. Hàm `kiemTraKetQuaCu()` gọi lớp `KetQua` để đóng gói thông tin.
-70. Lớp `KetQua` đóng gói thông tin thực thể.
-71. Lớp `KetQua` trả kết quả về cho hàm `kiemTraKetQuaCu()`.
-72. Hàm `kiemTraKetQuaCu()` trả kết quả cho trang `doLuuKetQua.jsp`.
-73. Trang `doLuuKetQua.jsp` gọi lớp `KetQua` để đóng gói dữ liệu kết quả vừa nhập.
-74. Lớp `KetQua` gọi hàm `setter()` đóng gói dữ liệu nhập.
-75. Lớp `KetQua` trả kết quả về cho trang `doLuuKetQua.jsp`.
-76. Trang `doLuuKetQua.jsp` gọi lớp `KetQuaDAO` yêu cầu lưu kết quả của một tay đua.
-77. Lớp `KetQuaDAO` gọi hàm `luuKetQua()`.
-78. Hàm `luuKetQua()` trả kết quả cho trang `doLuuKetQua.jsp`. *(Lặp lại các bước 76–78 cho đến khi lưu xong kết quả của tất cả tay đua trong chặng.)*
-79. Trang `doLuuKetQua.jsp` thông báo lưu thành công cho nhân viên.
-80. Nhân viên click OK.
-81. Trang `doLuuKetQua.jsp` gọi lại trang chính `gdChinhNV.jsp`.
-82. Trang `gdChinhNV.jsp` hiển thị cho nhân viên.
+1. Nhân viên click "Cập nhật kết quả chặng đua" trên trang chính gdChinhNV.jsp.
+2. Trang gdChinhNV.jsp gọi trang gdChonChang.jsp.
+3. Trang gdChonChang.jsp gọi lớp MuaGiaiDAO yêu cầu lấy mùa giải đang diễn ra.
+4. Lớp MuaGiaiDAO gọi hàm getMuaGiaiHienTai().
+5. Hàm getMuaGiaiHienTai() gọi lớp MuaGiai để đóng gói thông tin.
+6. Lớp MuaGiai đóng gói thông tin thực thể.
+7. Lớp MuaGiai trả kết quả về cho hàm getMuaGiaiHienTai().
+8. Hàm getMuaGiaiHienTai() trả kết quả cho trang gdChonChang.jsp.
+9. Trang gdChonChang.jsp gọi lớp ChangDuaDAO yêu cầu lấy danh sách chặng đua của mùa giải.
+10. Lớp ChangDuaDAO gọi hàm getDSChangDua().
+11. Hàm getDSChangDua() gọi lớp ChangDua để đóng gói thông tin.
+12. Lớp ChangDua đóng gói thông tin thực thể.
+13. Lớp ChangDua trả kết quả về cho hàm getDSChangDua().
+14. Hàm getDSChangDua() trả kết quả cho trang gdChonChang.jsp.
+15. Trang gdChonChang.jsp hiển thị danh sách chặng đua cho nhân viên.
+16. Nhân viên chọn chặng "R16 - Italian Grand Prix (Monza)" và click Tiếp tục.
+17. Trang gdChonChang.jsp gọi trang gdNhapKetQua.jsp.
+18. Trang gdNhapKetQua.jsp gọi lớp DangKyChangDAO yêu cầu lấy danh sách tay đua đã đăng ký chặng.
+19. Lớp DangKyChangDAO gọi hàm getDangKyCuaChang().
+20. Hàm getDangKyCuaChang() gọi lớp DangKyChang để đóng gói thông tin.
+21. Lớp DangKyChang đóng gói thông tin thực thể.
+22. Lớp DangKyChang trả kết quả về cho hàm getDangKyCuaChang().
+23. Hàm getDangKyCuaChang() trả kết quả cho trang gdNhapKetQua.jsp.
+24. Trang gdNhapKetQua.jsp hiển thị bảng nhập kết quả cho nhân viên.
+25. Nhân viên nhập thời gian về đích, số vòng hoàn thành và chọn trạng thái cho từng tay đua. *(Lặp lại bước 25 cho đến khi nhập xong tất cả tay đua.)*
+26. Nhân viên click Tính kết quả.
+27. Trang gdNhapKetQua.jsp submit gọi chính nó xử lí.
+28. Trang gdNhapKetQua.jsp gọi lớp KetQuaDAO yêu cầu xếp hạng và tính điểm cho chặng.
+29. Lớp KetQuaDAO gọi hàm xepHangVaTinhDiem().
+30. Hàm xepHangVaTinhDiem() gọi lớp KetQua để đóng gói thông tin.
+31. Lớp KetQua đóng gói thông tin thực thể.
+32. Lớp KetQua trả kết quả về cho hàm xepHangVaTinhDiem().
+33. Hàm xepHangVaTinhDiem() trả kết quả cho trang gdNhapKetQua.jsp.
+34. Trang gdNhapKetQua.jsp hiển thị bảng đối soát cho nhân viên.
+35. Nhân viên click Lưu.
+36. Trang gdNhapKetQua.jsp gọi trang doLuuKetQua.jsp.
+37. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu kiểm tra chặng đã có kết quả cũ hay chưa.
+38. Lớp KetQuaDAO gọi hàm kiemTraKetQuaCu().
+39. Hàm kiemTraKetQuaCu() gọi lớp KetQua để đóng gói thông tin.
+40. Lớp KetQua đóng gói thông tin thực thể.
+41. Lớp KetQua trả kết quả về cho hàm kiemTraKetQuaCu().
+42. Hàm kiemTraKetQuaCu() trả kết quả cho trang doLuuKetQua.jsp.
+43. Trang doLuuKetQua.jsp gọi lớp KetQua để đóng gói dữ liệu kết quả vừa nhập.
+44. Lớp KetQua gọi hàm setter() đóng gói dữ liệu nhập.
+45. Lớp KetQua trả kết quả về cho trang doLuuKetQua.jsp.
+46. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu lưu kết quả của một tay đua.
+47. Lớp KetQuaDAO gọi hàm luuKetQua().
+48. Hàm luuKetQua() trả kết quả cho trang doLuuKetQua.jsp. *(Lặp lại các bước 46–48 cho đến khi lưu xong kết quả của tất cả tay đua trong chặng.)*
+49. Trang doLuuKetQua.jsp thông báo lưu thành công cho nhân viên.
+50. Nhân viên click OK.
+51. Trang doLuuKetQua.jsp gọi lại trang chính gdChinhNV.jsp.
+52. Trang gdChinhNV.jsp hiển thị cho nhân viên.
 
 ### 7.2. Biểu đồ tuần tự (Sequence)
 
@@ -608,90 +578,19 @@ Chỉ thuyết minh **luồng chính** (chặng chưa có kết quả cũ, dữ 
 @startuml
 autonumber
 actor "Nhân viên" as NV
-participant "Login.jsp" as Login
-participant "NhanVien.jsp" as NVjsp
-participant "Chang.jsp" as Changjsp
-participant "ChangChiTiet.jsp" as CCT
 participant "gdChinhNV.jsp" as V0
 participant "gdChonChang.jsp" as V1
 participant "gdNhapKetQua.jsp" as V2
 participant "doLuuKetQua.jsp" as V3
-participant "NhanVienDAO" as NVDAO
-participant "ChangDuaDAO" as D1
-participant "TayDuaDAO" as TDDAO
 participant "MuaGiaiDAO" as D0
+participant "ChangDuaDAO" as D1
 participant "DangKyChangDAO" as D2
 participant "KetQuaDAO" as D3
-participant "NhanVien" as ENhanVien
 participant "MuaGiai" as E0
 participant "ChangDua" as E1
-participant "TayDua" as ETayDua
 participant "DangKyChang" as E2
 participant "KetQua" as E3
 
-' Nhom 1: Dang nhap
-NV -> Login : login
-activate Login
-Login -> Login : actionperformed()
-Login -> NVDAO : goi
-activate NVDAO
-NVDAO -> NVDAO : checkLogin()
-NVDAO -> ENhanVien : goi
-activate ENhanVien
-ENhanVien -> ENhanVien : Staff()
-ENhanVien --> NVDAO : tra ve
-deactivate ENhanVien
-NVDAO --> Login : tra ve
-deactivate NVDAO
-Login -> NVjsp : goi
-activate NVjsp
-NVjsp -> NVjsp : NhanVien()
-NVjsp --> NV : hien thi
-deactivate NVjsp
-deactivate Login
-
-' Nhom 2: Xem danh sach chang
-NV -> NVjsp : click Chang
-activate NVjsp
-NVjsp -> NVjsp : actionperformed()
-NVjsp -> Changjsp : goi
-activate Changjsp
-Changjsp -> D1 : goi
-activate D1
-D1 -> D1 : getAllChang()
-D1 -> E1 : goi
-activate E1
-E1 -> E1 : getAll()
-E1 --> D1 : tra ve
-deactivate E1
-D1 --> Changjsp : tra ve
-deactivate D1
-Changjsp --> NV : hien thi
-deactivate Changjsp
-deactivate NVjsp
-
-' Nhom 3: Xem chi tiet chang
-NV -> NVjsp : click chi tiet chang
-activate NVjsp
-NVjsp -> NVjsp : actionperformed()
-NVjsp -> CCT : goi
-activate CCT
-CCT -> TDDAO : goi
-activate TDDAO
-TDDAO -> TDDAO : getAllTayDua()
-TDDAO -> ETayDua : goi
-activate ETayDua
-ETayDua -> ETayDua : getAll()
-ETayDua --> TDDAO : tra ve
-deactivate ETayDua
-TDDAO --> CCT : tra ve
-deactivate TDDAO
-CCT --> NV : hien thi
-deactivate CCT
-deactivate NVjsp
-
-
-' Nhom 4 tro di: Cap nhat ket qua chang dua
 NV -> V0 : click Cap nhat ket qua chang dua
 activate V0
 V0 -> V1 : goi

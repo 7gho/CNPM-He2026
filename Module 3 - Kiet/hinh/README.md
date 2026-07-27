@@ -19,6 +19,10 @@ Module 3 cần đúng **6 ảnh**:
 
 ## Việc cần sửa ở các ảnh đã vẽ
 
+> **Chiều đối chiếu:** `../noi-dung.md` là bản gốc, hình vẽ theo nó. Mục 7 (thuyết minh + tuần tự) đã được
+> khôi phục về bản chuẩn **52 message** khớp với mục 1, 4, 5, 6 của chính module và với M1, M2, M4 — đừng
+> sửa mục 7 cho khớp hình, mà sửa hình cho khớp mục 7.
+
 Bản render tham chiếu của từng biểu đồ theo blueprint hiện tại nằm ở `ref/` — mở ra đối chiếu khi vẽ.
 
 **Điểm chung của cả bộ:** hệ thống nhóm chốt là **ứng dụng web chạy trên nền JSP**, không phải ứng dụng desktop. Vì vậy trong mọi biểu đồ không dùng `ActionListener`, `JButton`, `JTable`, `JTextField`, `JCombobox`; lớp giao diện là **trang `.jsp` chỉ có thuộc tính**, kiểu thuộc tính là `Text` / `Select` / `Table` / `link` / `submit`.
