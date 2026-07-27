@@ -585,6 +585,81 @@ Khung `+----+` lệch ngay khi đổi font hoặc đổi độ rộng cột, và
 
 Mục **4.3.1 bước 1** của giáo trình là *"Thiết kế giao diện cho các giao diện xuất hiện trong biểu đồ"*, kèm **Hình 4.3 / 4.5 / 4.7 — Thiết kế giao diện cho modul …**, và **câu hỏi ôn tập số 3** là *"Thiết kế giao diện liên quan cho modul"*. Nhóm đã chốt ở P6 là **không làm mục "Thiết kế giao diện" riêng**, thay bằng phác thảo nhúng trong Đặc tả UC. Nội dung phác thảo đã đủ (thành phần, kiểu control, trạng thái, dữ liệu mẫu) nên nếu thầy hỏi vẫn có cái để trình bày; ghi lại đây để nhóm chủ động.
 
+## P8 — MA TRẬN ĐỐI CHIẾU TOÀN BỘ (soi hết một lượt, không soi lẻ)
+
+Các lần trước rà theo câu hỏi phát sinh nên bỏ sót. Lần này đọc hết chương 3, 4, 6 của giáo trình PDF
+và **render toàn bộ hình mẫu** (Hình 3.1–3.6, 3.9, 4.1–4.4, 4.9, 4.10, 4.12, 4.15, Bảng 6.2–6.9) rồi
+đối chiếu từng hạng mục một. Bảng dưới là kết quả đầy đủ.
+
+| # | Hạng mục | Mẫu trong giáo trình | Trạng thái |
+|---|---|---|---|
+| 1 | Mô tả hệ thống bằng ngôn ngữ tự nhiên | mục 3.1.2 | ✅ khớp — `BAO-CAO` chương 1 |
+| 2 | Biểu đồ UC tổng quan | Hình 3.1 — **có** khung hệ thống, actor ngoài khung, có phân cấp actor | ✅ khớp |
+| 3 | Biểu đồ UC chi tiết | Hình 3.2/3.3/3.4 — **không** khung hệ thống; phân cấp actor; UC `Đăng nhập` gắn actor cha + UC `<vai trò> đăng nhập` **kế thừa** nó | ✅ **đã sửa ở P7-4** |
+| 4 | Bảng đặc tả UC | mục 3.2.1 + ví dụ trang 175–177 — 6 dòng `Use case / Actor / Tiền điều kiện / Hậu điều kiện / Kịch bản chính / Ngoại lệ`; bảng dữ liệu nhúng thẳng vào bước | ✅ khớp (bản Word ghép đúng 6 dòng, bảng lồng trong ô) |
+| 5 | Đánh số ngoại lệ | thầy dùng **số bước trần** (`4.`, `6.`, `8.`) | ⚠️ nhóm dùng `4a`, `9a`, `9b` — **cố ý**: nhiều module có 2–4 ngoại lệ trên cùng một bước, số trần sẽ trùng nhãn |
+| 6 | Trích lớp thực thể (bảng danh từ) | mục 3.2.2 | ✅ khớp — `BAO-CAO` mục 3.1 |
+| 7 | Biểu đồ lớp thực thể pha phân tích | Hình 3.5 — không `id`, không kiểu dữ liệu | ✅ khớp |
+| 8 | Biểu đồ lớp phân tích của module | Hình 3.6 — lớp biên `GDXxx` **viết hoa GD**, chỉ có thuộc tính, tiền tố `in/out/sub/inout/outsub`; lớp thực thể mang phương thức nghiệp vụ; **đủ cả các lớp không tham gia**; không stereotype | ✅ khớp |
+| 9 | Biểu đồ trạng thái | Hình 3.9/3.11 — mỗi trạng thái là một lần hiển thị giao diện chờ tương tác, nhãn cung `[hành động]` | ✅ khớp |
+| 10 | Biểu đồ giao tiếp (communication) | Hình 3.10/3.12/3.14 | ⬜ **không làm** — yêu cầu bài tập nhóm không đòi; đã có thuyết minh v.3 + tuần tự thay thế |
+| 11 | Thiết kế lớp thực thể | Hình 4.1 — có `id : integer`, có kiểu dữ liệu, có thuộc tính kiểu đối tượng và mảng `Xxx[]` | ✅ khớp |
+| 12 | Thiết kế CSDL | Hình 4.2 — bảng `tblXxx`, PK `id integer(10)`, FK `tblXxxid`, `varchar(255)`, đánh dấu NULL | ✅ khớp |
+| 13 | `tblThanhvien.vaitro` | Hình 4.2 **giữ** cột `vaitro` bên cạnh bảng con `tblNhanvien` | ⚠️ nhóm **bỏ** cột `vaiTro`, vai trò suy ra từ bảng con — chuẩn hoá hơn, đã biện luận ở mục 3.6.4 |
+| 14 | Thiết kế giao diện (mục con riêng) | mục 4.3.1 bước 1 + Hình 4.3/4.5/4.7 + câu hỏi ôn tập số 3 | ⚠️ nhóm **không làm mục riêng** (quyết định ở P6) — nội dung nằm trong bảng phác thảo của Đặc tả UC |
+| 15 | **Nút rời màn hình trên mọi màn** | Hình 4.3 — mọi màn đều có [Quay lại] / [Về trang chủ]; mục 6.1.3 lặp lại **5 lần** nhận xét *"nên bổ sung button đóng màn hình hoặc quay về màn hình chính"* | ✅ **đã sửa ở P8-1** (7/9 màn trước đây thiếu) |
+| 16 | Biểu đồ lớp thiết kế | Hình 4.4 — **không khung package**; tên lớp view kèm `.jsp`; `DAO` chỉ có `-con` + `+DAO()`; DAO có chữ ký đầy đủ | ✅ **đã sửa ở P7-1, P7-2, P7-3** |
+| 17 | Biểu đồ hoạt động pha thiết kế | Hình 4.9 — khung `Xử lí tại gdXxx.jsp`; **node DAO nằm NGOÀI khung**, nối bằng mũi tên | ✅ **đã sửa ở P8-3** (ghi chú vẽ trước đây không nói rõ node DAO nằm ngoài) |
+| 18 | Biểu đồ tuần tự | Hình 4.10/4.12 — đánh số **phẳng**, nhãn `goi`/`tra ve`/`hien thi`, self-call ghi tên hàm, trang chính mở đầu + kết thúc, luồng lưu có `setter()` (Hình 4.12) | ✅ khớp |
+| 19 | Biểu đồ thiết kế gói | Hình 4.15 — `view` (chia nhỏ theo vai trò) → `dao` → `model` | ✅ khớp |
+| 20 | Cài đặt hệ thống (chương 5) | mục 5.1–5.3 — code JSP/DAO, kiểm thử đơn vị | ⬜ ngoài phạm vi bài tập nhóm |
+| 21 | Checklist rà soát đặc tả | Bảng 6.2 (25 mục) | ✅ đã đối chiếu — xem P8-4 |
+| 22 | Checklist rà soát phân tích | Bảng 6.3 (31 mục) | ✅ đã đối chiếu — xem P8-4 |
+| 23 | Checklist rà soát thiết kế + CSDL | Bảng 6.4 (27 mục) | ✅ đã đối chiếu — xem P8-4 |
+| 24 | Quy trình test 4 bước | mục 6.2 | ✅ khớp |
+| 25 | Cấu trúc bảng test case | Bảng 6.7 — 4 cột `Mã trường hợp kiểm thử / Mục đích / Các bước / Kết quả mong muốn`, 3 nhóm **Giao diện → Chức năng → Luồng**, có dòng `Precond` | ✅ **đã sửa tên cột ở P8-2** |
+| 26 | Số ca nhóm Giao diện | Bảng 6.7 — **đúng 6 ca chuẩn cho MỖI màn hình** (tổng thể · bố cục · thu-phóng · Tab · Shift-Tab · Enter) | ✅ **đã sửa ở P8-2** (trước chỉ có 2 ca/màn) |
+| 27 | Số ca nhóm Chức năng | Bảng 6.7 — theo từng màn, ca "có dữ liệu" / "không có dữ liệu", đối chiếu trực tiếp `tblXxx` | ✅ khớp |
+| 28 | Số ca nhóm Luồng | Bảng 6.7 — luồng chuẩn + từng ràng buộc + ca đồng thời | ✅ khớp (có thêm ca sửa/xoá ở M2) |
+
+### P8-1. Nút rời màn hình — **đã sửa**
+
+Đây là lỗi thầy nhắc nhiều nhất trong phần rà soát thiết kế (mục 6.1.3, ví dụ 1 và 2). Trước lần rà này chỉ
+`GDDangKyTayDua` (M2) và `GDChiTietXepHang` (M4) có nút quay lại. Đã bổ sung cho 7 màn còn lại theo quy ước:
+màn **đầu** của mỗi module có `[Về trang chủ]` (`-subVeTrangChu` / `-btnVeTrangChu : submit`), màn **sau** có
+`[Quay lại]` (`-subQuayLai` / `-btnQuayLai : submit`). Sửa đồng bộ ở bảng phác thảo, bảng lớp biên, biểu đồ lớp
+phân tích, biểu đồ lớp thiết kế và dòng ánh xạ lớp biên của cả 4 module.
+
+### P8-2. Test case — **đã sửa**
+
+| | Trước | Sau |
+|---|---|---|
+| Nhóm Giao diện | 2 ca/màn | **6 ca/màn** đúng bộ chuẩn của Bảng 6.7 |
+| Tổng số ca | M1 12 · M2 14 · M3 13 · M4 18 = **57** | M1 20 · M2 22 · M3 21 · M4 30 = **93** |
+| Tiêu đề cột 1 | `Mã` | `Mã trường hợp kiểm thử` |
+| Dòng tiêu đề nhóm | M2 khác dạng, M3 không có | thống nhất 3 dòng `Nhóm 1/2/3` ở cả 4 module |
+
+### P8-3. Biểu đồ hoạt động — **đã sửa ghi chú vẽ**
+
+Hình 4.9 vẽ các node `XxxDAO: tenHam()` **bên ngoài** khung `Xử lí tại gdXxx.jsp`, nối vào hành động gọi
+chúng bằng mũi tên. Blueprint PlantUML để lời gọi DAO nằm trong khung (giới hạn cú pháp `partition`), nên
+ghi chú vẽ đã nói rõ: khi vẽ trong Visual Paradigm phải **tách node DAO ra ngoài khung**.
+
+### P8-4. Kết quả chạy 3 checklist rà soát của thầy
+
+- **Bảng 6.2 (đặc tả yêu cầu, 25 mục):** đạt các mục về tính đầy đủ, rõ ràng, nhất quán, kiểm thử được,
+  phạm vi và tham chiếu chéo. Các mục về hợp đồng dự án, quốc tế hoá, quản lý dự án, an ninh mức tổ chức
+  → **NA** với bài tập môn học.
+- **Bảng 6.3 (phân tích, 31 mục):** đạt các mục 5 (xác định màn hình), 8 (giao diện giữa các module),
+  9 (thiết kế màn hình: đủ trường vào/ra, bố cục khớp đặc tả), 11 (thông báo lỗi), 26 (giao diện nhất quán),
+  29–31 (phủ hết yêu cầu, xử lý mọi điều kiện lỗi). Mục 15 (phân tích rủi ro), 17–24 (an ninh, audit,
+  backup, khôi phục, lưu trữ, xử lý định kỳ) → **NA**.
+- **Bảng 6.4 (thiết kế + CSDL, 27 mục):** đạt mục 3 (đã xử lý mọi ngoại lệ), 4 (hướng đối tượng),
+  7 (điều kiện kết thúc vòng lặp — mọi vòng lặp trong biểu đồ hoạt động và tuần tự đều có guard),
+  10 (bố cục màn hình khớp tài liệu phân tích), 12 (thông báo lỗi), 14–17 (mỗi thực thể → một bảng,
+  mỗi thuộc tính → một cột, khoá chính có chỉ mục, khoá ngoại NOT NULL trừ hai cột đã ghi rõ cho phép NULL).
+  Mục 19–27 (trigger, free space, phân quyền DBMS) → **NA**.
+
 ## Thứ tự làm đề xuất (cập nhật)
 
 0. **P6** — bỏ ảnh giao diện, nhúng phác thảo xen giữa các bước Kịch bản chính của Đặc tả UC (không có mục giao diện riêng), đánh số lại các mục sau.

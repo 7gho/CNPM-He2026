@@ -118,7 +118,7 @@ Sau khối Ngoại lệ đặt **một dòng ghi chú ánh xạ lớp biên** (g
 
 Mỗi module viết **MỘT bảng 4 cột**:
 
-| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+| Mã trường hợp kiểm thử | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
 |---|---|---|---|
 
 chia thành **3 nhóm** bằng dòng tiêu đề nhóm in đậm chen giữa bảng (đúng như Bảng 6.7):

@@ -90,6 +90,7 @@ Phác thảo của mỗi màn đặt ngay dưới bước mà hệ thống hiể
    | Mùa giải | vùng chỉ đọc | `2025 — FIA Formula One World Championship` |
    | Chặng đua | danh sách thả xuống | chưa chọn giá trị nào; nội dung ở bảng ngay dưới |
    | [Tiếp tục] | nút | chưa active, chỉ active khi đã chọn chặng |
+   | [Về trang chủ] | nút | active |
 
    Ô chọn chặng đua đổ đủ **6 chặng** của mùa giải 2025 theo thứ tự thời gian, mỗi mục hiển thị dạng `Mã - Tên chặng (Địa điểm)`:
 
@@ -114,6 +115,7 @@ Phác thảo của mỗi màn đặt ngay dưới bước mà hệ thống hiể
    | [Tính kết quả] | nút | active |
    | Bảng đối soát | bảng | chưa hiện, chỉ hiện sau khi click [Tính kết quả] và dữ liệu hợp lệ |
    | [Lưu] | nút | chưa active, chỉ active sau khi bảng đối soát đã hiện |
+   | [Quay lại] | nút | active |
 
 5. Nhân viên nhập Thời gian về đích, Số vòng hoàn thành và chọn Trạng thái cho từng tay đua, ví dụ dòng của Max Verstappen: `1:13:24.325 | 53 | Hoàn thành`, dòng của Lando Norris: `1:13:27.019 | 53 | Hoàn thành`. Bảng nhập kết quả sau khi nhập:
 
@@ -133,7 +135,7 @@ Phác thảo của mỗi màn đặt ngay dưới bước mà hệ thống hiể
    | `DNF (bỏ cuộc, tai nạn)` | không bắt buộc, thường để trống | xếp xuống cuối bảng | 0 |
    | `DSQ (bị loại)` | không bắt buộc, có thể vẫn có thời gian | xếp xuống cuối bảng | 0 |
 
-   Bộ dữ liệu mẫu ở trên minh hoạ **ca chuẩn** — cả 12 tay đua đều `Hoàn thành`, khớp kịch bản chính và test case CNKQ_9; hai ca `DNF` và `DSQ` được kiểm chứng riêng ở CNKQ_10 và CNKQ_11 (mục 8.2). *(Lặp lại bước 5 cho đến khi nhập xong kết quả của cả 12 tay đua.)*
+   Bộ dữ liệu mẫu ở trên minh hoạ **ca chuẩn** — cả 12 tay đua đều `Hoàn thành`, khớp kịch bản chính và test case CNKQ_17; hai ca `DNF` và `DSQ` được kiểm chứng riêng ở CNKQ_18 và CNKQ_19 (mục 8.2). *(Lặp lại bước 5 cho đến khi nhập xong kết quả của cả 12 tay đua.)*
 
 6. Nhân viên click [Tính kết quả].
 7. Hệ thống tách danh sách thành nhóm Hoàn thành và nhóm DNF/DSQ, sắp xếp nhóm Hoàn thành tăng dần theo thời gian về đích, xếp nhóm DNF/DSQ xuống cuối, gán hạng theo vị trí, gán điểm cho hạng 1 đến 10 theo thang `25, 18, 15, 12, 10, 8, 6, 4, 2, 1` và gán 0 điểm cho tay đua DNF/DSQ dù nằm trong top 10; sau đó hiển thị **bảng đối soát** (chỉ hiển thị, không nhập) gồm các cột **Hạng | Mã | Tên tay đua | Đội đua | Thời gian | Số vòng | Trạng thái | Điểm**, có 12 dòng, dòng đầu là `1 | VER | Max Verstappen | Red Bull | 1:13:24.325 | 53 | Hoàn thành | 25`, dòng cuối là `12 | STR | Lance Stroll | Aston Martin | 1:14:25.310 | 53 | Hoàn thành | 0`; nút [Lưu] chuyển sang **active**.
@@ -160,7 +162,7 @@ Phác thảo của mỗi màn đặt ngay dưới bước mà hệ thống hiể
 - **6d.** Hai tay đua có trạng thái Hoàn thành nhập trùng thời gian về đích → hệ thống báo "Thời gian về đích của Lando Norris và Charles Leclerc trùng nhau, vui lòng kiểm tra lại", không tính kết quả.
 - **8a.** Chặng đã có kết quả từ trước → hệ thống hiển thị hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?" ngay trên màn Nhập kết quả. Nếu nhân viên chọn [Hủy] → không lưu, giữ nguyên kết quả cũ. Nếu chọn [Đồng ý] → hệ thống xóa toàn bộ kết quả cũ của chặng, lưu kết quả mới và tính lại điểm của toàn chặng.
 
-> **Ánh xạ sang lớp biên:** màn *Chọn chặng* (`GDChonChang`) — nhãn mùa giải (vùng chỉ đọc) = `-outMuaGiai`, ô chọn "Chặng đua" = `-inChangDua`, nút [Tiếp tục] = `-subTiepTuc`. Màn *Nhập kết quả* (`GDNhapKetQua`) — dòng thông tin chặng (vùng chỉ đọc) = `-outChangDua`, bảng nhập kết quả = `-inoutBangKetQua` (vừa hiển thị danh sách tay đua đã đăng ký, vừa nhận dữ liệu nhập vào), nút [Tính kết quả] = `-subTinhKetQua`, bảng đối soát = `-outBangDoiSoat` (ban đầu chưa hiện, chỉ hiện sau khi bấm [Tính kết quả] và dữ liệu nhập hợp lệ), nút [Lưu] = `-subLuu` (ban đầu chưa active, chỉ active sau khi bảng đối soát đã hiện). Mọi vùng hiện dữ liệu ra màn hình đều có đúng một thuộc tính lớp biên tương ứng; trang xử lý `doLuuKetQua.jsp` không hiển thị nên không sinh lớp biên.
+> **Ánh xạ sang lớp biên:** màn *Chọn chặng* (`GDChonChang`) — nhãn mùa giải (vùng chỉ đọc) = `-outMuaGiai`, ô chọn "Chặng đua" = `-inChangDua`, nút [Tiếp tục] = `-subTiepTuc`, nút [Về trang chủ] = `-subVeTrangChu`. Màn *Nhập kết quả* (`GDNhapKetQua`) — dòng thông tin chặng (vùng chỉ đọc) = `-outChangDua`, bảng nhập kết quả = `-inoutBangKetQua` (vừa hiển thị danh sách tay đua đã đăng ký, vừa nhận dữ liệu nhập vào), nút [Tính kết quả] = `-subTinhKetQua`, bảng đối soát = `-outBangDoiSoat` (ban đầu chưa hiện, chỉ hiện sau khi bấm [Tính kết quả] và dữ liệu nhập hợp lệ), nút [Lưu] = `-subLuu` (ban đầu chưa active, chỉ active sau khi bảng đối soát đã hiện), nút [Quay lại] = `-subQuayLai`. Mọi vùng hiện dữ liệu ra màn hình đều có đúng một thuộc tính lớp biên tương ứng; trang xử lý `doLuuKetQua.jsp` không hiển thị nên không sinh lớp biên.
 
 > Luồng chuyển màn: **Trang chính → Chọn chặng → Nhập kết quả → (lưu) → Trang chính**.
 
@@ -196,6 +198,7 @@ Biểu đồ lớp phân tích của module chỉ có **hai tầng**: lớp biê
   - `GDChinhNV` — giao diện chính của nhân viên (trang chủ chung của hệ thống, không sinh use case con), chứa liên kết mở chức năng cập nhật kết quả
   - `GDChonChang` — màn hình Chọn chặng
   - `GDNhapKetQua` — màn hình Nhập kết quả và đối soát
+  - Mỗi màn hình đều có nút rời màn: màn Chọn chặng có [Về trang chủ] (`-subVeTrangChu`), màn Nhập kết quả có [Quay lại] (`-subQuayLai`)
 - **Lớp thực thể mang phương thức nghiệp vụ của module:**
   - `MuaGiai.getMuaGiaiHienTai()` — lấy mùa giải đang diễn ra để hiện lên nhãn mùa giải và làm căn cứ lọc danh sách chặng
   - `ChangDua.getDSChangDua()` — lấy danh sách chặng đua để đổ vào ô chọn
@@ -216,6 +219,7 @@ class GDChonChang {
   -outMuaGiai
   -inChangDua
   -subTiepTuc
+  -subVeTrangChu
 }
 
 class GDNhapKetQua {
@@ -224,6 +228,7 @@ class GDNhapKetQua {
   -subTinhKetQua
   -outBangDoiSoat
   -subLuu
+  -subQuayLai
 }
 
 class MuaGiai {
@@ -349,6 +354,7 @@ class "gdChonChang.jsp" as gdChonChang {
   -tenMuaGiai : Text
   -changDua : Select
   -btnTiepTuc : submit
+  -btnVeTrangChu : submit
   -muaGiai : MuaGiai
   -nv : NhanVien
 }
@@ -361,6 +367,7 @@ class "gdNhapKetQua.jsp" as gdNhapKetQua {
   -tblDoiSoat : Table
   -listKQ : KetQua[]
   -btnLuu : submit
+  -btnQuayLai : submit
   -nv : NhanVien
 }
 class "doLuuKetQua.jsp" as doLuuKetQua {
@@ -425,7 +432,7 @@ KetQuaDAO -- KetQua
 
 ## 6. Biểu đồ hoạt động (pha thiết kế)
 
-Mỗi hành động tương ứng một phương thức đã thiết kế trong biểu đồ lớp ở mục 5; các hành động được gom vào khung `Xử lí tại gdXxx.jsp` theo từng trang (kể cả trang xử lý `doLuuKetQua.jsp` và trang chính `gdChinhNV.jsp`); lời gọi tầng dữ liệu ghi rõ `XxxDAO: tenHam()`; guard trên cung chuyển dạng `[click …]`, `[lấy xong dữ liệu]`; các nhánh kiểm tra ràng buộc nghiệp vụ là node quyết định đặt trong khung của trang xử lý tương ứng (nút [Tính kết quả] do chính `gdNhapKetQua.jsp` tự submit xử lý; kiểm tra kết quả cũ do `doLuuKetQua.jsp` xử lý).
+Mỗi hành động tương ứng một phương thức đã thiết kế trong biểu đồ lớp ở mục 5; các hành động được gom vào khung `Xử lí tại gdXxx.jsp` theo từng trang (kể cả trang xử lý `doLuuKetQua.jsp` và trang chính `gdChinhNV.jsp`); lời gọi tầng dữ liệu là **node riêng đặt NGOÀI khung**, ghi `XxxDAO: tenHam()`, nối bằng mũi tên từ hành động gọi nó; guard trên cung chuyển dạng `[click …]`, `[lấy xong dữ liệu]`; các nhánh kiểm tra ràng buộc nghiệp vụ là node quyết định đặt trong khung của trang xử lý tương ứng (nút [Tính kết quả] do chính `gdNhapKetQua.jsp` tự submit xử lý; kiểm tra kết quả cũ do `doLuuKetQua.jsp` xử lý).
 
 Ảnh export: `m3-hoatdong.png` (vẽ lại theo mẫu Hình 4.9 giáo trình PDF).
 
@@ -867,22 +874,34 @@ Bộ dữ liệu nền dưới đây (bộ dữ liệu F1 2025 thống nhất c�
 
 ### 8.2. Bảng test case
 
-| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+| Mã trường hợp kiểm thử | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
 |---|---|---|---|
 | **Giao diện** | | | |
-| CNKQ_1 | Kiểm tra bố cục màn hình Chọn chặng | 1. Đăng nhập bằng tài khoản nhân viên.<br>2. Tại trang chính `gdChinhNV.jsp` click "Cập nhật kết quả chặng đua" | Màn hình Chọn chặng hiện ra: title "CẬP NHẬT KẾT QUẢ CHẶNG ĐUA"; nhãn mùa giải `2025 — FIA Formula One World Championship`; ô chọn [Chọn chặng đua ▾] đang rỗng; nút [Tiếp tục] chưa được active; focus đặt vào ô chọn chặng đua |
-| CNKQ_2 | Kiểm tra phím Enter thực hiện nút chính của màn Chọn chặng | 1. Mở màn Chọn chặng.<br>2. Dùng bàn phím chọn chặng `R16 - Italian Grand Prix (Monza)`.<br>3. Nhấn Enter | Enter thực hiện nút [Tiếp tục] (nút chính của màn): hệ thống chuyển sang màn Nhập kết quả của chặng R16 |
-| CNKQ_3 | Kiểm tra bố cục màn hình Nhập kết quả | 1. Từ màn Chọn chặng chọn `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục] | Màn Nhập kết quả hiện ra: dòng thông tin chặng `R16 \| Italian Grand Prix \| Monza \| 53 vòng \| 07/09/2025`; bảng nhập đủ 7 cột **STT \| Mã \| Tên tay đua \| Đội đua \| Thời gian về đích \| Số vòng hoàn thành \| Trạng thái**; nút [Tính kết quả]; bảng đối soát chưa hiện; nút [Lưu] chưa được active; focus đặt vào ô Thời gian về đích của dòng đầu tiên |
-| CNKQ_4 | Kiểm tra thứ tự phím Tab trên bảng nhập kết quả | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhấn Tab liên tiếp từ ô đầu tiên | Focus di chuyển đúng thứ tự: Thời gian về đích → Số vòng hoàn thành → Trạng thái của cùng một dòng, rồi chuyển sang dòng kế tiếp; hết dòng 12 thì focus tới nút [Tính kết quả] |
-| **Chức năng** | | | |
-| CNKQ_5 | Màn Chọn chặng hiển thị đúng danh sách chặng khi CSDL có dữ liệu | 1. Mở màn Chọn chặng.<br>2. Mở ô chọn chặng đua | Danh sách chặng khớp các bản ghi trong `tblChangDua` của mùa giải 2025: đúng 6 mục từ `R01 - Australian Grand Prix (Melbourne)` đến `R24 - Abu Dhabi Grand Prix (Yas Marina)`, xếp theo thứ tự thời gian |
-| CNKQ_6 | Màn Chọn chặng khi mùa giải chưa có chặng đua | 1. Data test riêng: `tblChangDua` không có bản ghi nào của mùa giải 2025.<br>2. Mở màn Chọn chặng | Ô chọn chặng đua rỗng; hệ thống báo "Mùa giải chưa có chặng đua"; nút [Tiếp tục] không active |
-| CNKQ_7 | Màn Nhập kết quả hiển thị đúng danh sách tay đua đã đăng ký | 1. Chọn chặng `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục] | Bảng nhập hiện đúng 12 dòng khớp các bản ghi trong `tblDangKyChang` của chặng R16 (id 41–52); tên tay đua, đội đua khớp `tblTayDua`, `tblDoiDua`; ba cột Thời gian về đích, Số vòng hoàn thành, Trạng thái đang rỗng |
-| CNKQ_8 | Màn Nhập kết quả khi chặng chưa có tay đua đăng ký | 1. Chọn chặng `R24 - Abu Dhabi Grand Prix (Yas Marina)` (không có bản ghi trong `tblDangKyChang`), click [Tiếp tục] | Hệ thống báo "Chặng đua R24 - Abu Dhabi Grand Prix chưa có tay đua nào đăng ký, vui lòng chọn chặng khác"; giữ nguyên màn Chọn chặng |
+| | **Giao diện — màn Chọn chặng** | | |
+| | **Nhóm 1 — Giao diện** | | |
+| CNKQ_1 | Kiểm tra tổng thể giao diện màn Chọn chặng | 1. Mở màn Chọn chặng.<br>2. Kiểm tra bố cục, font chữ, cỡ chữ, màu chữ và chính tả. | Các label và ô nhập cùng font chữ, cỡ chữ; căn lề, độ rộng, khoảng cách đồng đều, không xô lệch; không có lỗi chính tả, cấu trúc câu, ngữ pháp trên màn hình; form được bố trí hợp lý và dễ sử dụng |
+| CNKQ_2 | Kiểm tra bố cục màn Chọn chặng | 1. Kiểm tra title của màn hình.<br>2. Kiểm tra focus của con trỏ.<br>3. Kiểm tra hiển thị các trường, button và liên kết trên màn hình. | 1. Hiển thị title `Cập nhật kết quả chặng đua — Bước 1: Chọn chặng`.<br>2. Focus được đặt vào ô chọn "Chặng đua".<br>3. Hiển thị đầy đủ các trường: Mùa giải (vùng chỉ đọc) · Chặng đua (danh sách thả xuống).<br>4. Button: [Tiếp tục], [Về trang chủ]. |
+| CNKQ_3 | Kiểm tra màn Chọn chặng khi thu nhỏ, phóng to | 1. Nhấn Ctrl -.<br>2. Nhấn Ctrl +. | Màn hình thu nhỏ, phóng to tương ứng và không bị vỡ giao diện; các bảng vẫn hiển thị đủ cột, không tràn ngang |
+| CNKQ_4 | Kiểm tra thứ tự phím Tab màn Chọn chặng | 1. Focus vào màn Chọn chặng.<br>2. Nhấn Tab liên tục. | Con trỏ di chuyển lần lượt theo thứ tự từ trái qua phải, từ trên xuống dưới, đi hết các trường nhập rồi tới các button |
+| CNKQ_5 | Kiểm tra thứ tự phím Shift-Tab màn Chọn chặng | 1. Focus vào màn Chọn chặng.<br>2. Nhấn Shift-Tab liên tục. | Con trỏ di chuyển ngược lại theo thứ tự từ dưới lên trên, từ phải qua trái |
+| CNKQ_6 | Kiểm tra phím Enter màn Chọn chặng | 1. Không focus vào button nào, nhấn Enter.<br>2. Focus vào một button, nhấn Enter. | 1. Thực hiện đúng chức năng của button chính của màn hình.<br>2. Thực hiện đúng chức năng của button đang được focus |
+| | **Giao diện — màn Nhập kết quả** | | |
+| CNKQ_7 | Kiểm tra tổng thể giao diện màn Nhập kết quả | 1. Mở màn Nhập kết quả.<br>2. Kiểm tra bố cục, font chữ, cỡ chữ, màu chữ và chính tả. | Các label và ô nhập cùng font chữ, cỡ chữ; căn lề, độ rộng, khoảng cách đồng đều, không xô lệch; không có lỗi chính tả, cấu trúc câu, ngữ pháp trên màn hình; form được bố trí hợp lý và dễ sử dụng |
+| CNKQ_8 | Kiểm tra bố cục màn Nhập kết quả | 1. Kiểm tra title của màn hình.<br>2. Kiểm tra focus của con trỏ.<br>3. Kiểm tra hiển thị các trường, button và liên kết trên màn hình. | 1. Hiển thị title `Cập nhật kết quả chặng đua — Bước 2: Nhập kết quả`.<br>2. Focus được đặt vào ô "Thời gian về đích" của dòng đầu tiên.<br>3. Hiển thị đầy đủ các trường: Thông tin chặng (vùng chỉ đọc) · Bảng nhập kết quả (bảng: STT, Mã, Tên tay đua, Đội đua, Thời gian về đích, Số vòng hoàn thành, Trạng thái) · Bảng đối soát (bảng: Hạng, Mã, Tên tay đua, Đội đua, Thời gian, Số vòng, Trạng thái, Điểm — ban đầu chưa hiện).<br>4. Button: [Tính kết quả], [Lưu], [Quay lại]. |
+| CNKQ_9 | Kiểm tra màn Nhập kết quả khi thu nhỏ, phóng to | 1. Nhấn Ctrl -.<br>2. Nhấn Ctrl +. | Màn hình thu nhỏ, phóng to tương ứng và không bị vỡ giao diện; các bảng vẫn hiển thị đủ cột, không tràn ngang |
+| CNKQ_10 | Kiểm tra thứ tự phím Tab màn Nhập kết quả | 1. Focus vào màn Nhập kết quả.<br>2. Nhấn Tab liên tục. | Con trỏ di chuyển lần lượt theo thứ tự từ trái qua phải, từ trên xuống dưới, đi hết các trường nhập rồi tới các button |
+| CNKQ_11 | Kiểm tra thứ tự phím Shift-Tab màn Nhập kết quả | 1. Focus vào màn Nhập kết quả.<br>2. Nhấn Shift-Tab liên tục. | Con trỏ di chuyển ngược lại theo thứ tự từ dưới lên trên, từ phải qua trái |
+| CNKQ_12 | Kiểm tra phím Enter màn Nhập kết quả | 1. Không focus vào button nào, nhấn Enter.<br>2. Focus vào một button, nhấn Enter. | 1. Thực hiện đúng chức năng của button chính của màn hình.<br>2. Thực hiện đúng chức năng của button đang được focus |
+| | **Nhóm 2 — Chức năng** | | |
+| CNKQ_13 | Màn Chọn chặng hiển thị đúng danh sách chặng khi CSDL có dữ liệu | 1. Mở màn Chọn chặng.<br>2. Mở ô chọn chặng đua | Danh sách chặng khớp các bản ghi trong `tblChangDua` của mùa giải 2025: đúng 6 mục từ `R01 - Australian Grand Prix (Melbourne)` đến `R24 - Abu Dhabi Grand Prix (Yas Marina)`, xếp theo thứ tự thời gian |
+| CNKQ_14 | Màn Chọn chặng khi mùa giải chưa có chặng đua | 1. Data test riêng: `tblChangDua` không có bản ghi nào của mùa giải 2025.<br>2. Mở màn Chọn chặng | Ô chọn chặng đua rỗng; hệ thống báo "Mùa giải chưa có chặng đua"; nút [Tiếp tục] không active |
+| CNKQ_15 | Màn Nhập kết quả hiển thị đúng danh sách tay đua đã đăng ký | 1. Chọn chặng `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục] | Bảng nhập hiện đúng 12 dòng khớp các bản ghi trong `tblDangKyChang` của chặng R16 (id 41–52); tên tay đua, đội đua khớp `tblTayDua`, `tblDoiDua`; ba cột Thời gian về đích, Số vòng hoàn thành, Trạng thái đang rỗng |
+| CNKQ_16 | Màn Nhập kết quả khi chặng chưa có tay đua đăng ký | 1. Chọn chặng `R24 - Abu Dhabi Grand Prix (Yas Marina)` (không có bản ghi trong `tblDangKyChang`), click [Tiếp tục] | Hệ thống báo "Chặng đua R24 - Abu Dhabi Grand Prix chưa có tay đua nào đăng ký, vui lòng chọn chặng khác"; giữ nguyên màn Chọn chặng |
 | **Luồng nghiệp vụ** | | | |
-| | **Precond:** nhân viên đã đăng nhập; CSDL đúng như mục 8.1 — chặng R16 có 12 đăng ký (id 41–52), `tblKetQua` chưa có dòng nào của chặng R16 (riêng CNKQ_13 có precond khác, ghi ở bước 1) | | |
-| CNKQ_9 | Nhập đủ kết quả, hệ thống xếp hạng và tính điểm đúng (ca chuẩn) | 1. Tại trang chính click "Cập nhật kết quả chặng đua", chọn `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục].<br>2. Nhập 12 dòng: VER `1:13:24.325`/53, NOR `1:13:27.019`/53, LEC `1:13:31.482`/53, PIA `1:13:33.900`/53, RUS `1:13:39.245`/53, HAM `1:13:41.663`/53, ALB `1:13:52.117`/53, SAI `1:13:58.520`/53, ANT `1:14:04.031`/53, ALO `1:14:11.786`/53, TSU `1:14:18.902`/53, STR `1:14:25.310`/53 — tất cả Trạng thái `Hoàn thành`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 3: bảng đối soát 12 dòng xếp tăng dần theo thời gian: `1 \| VER \| 25`, `2 \| NOR \| 18`, `3 \| LEC \| 15`, `4 \| PIA \| 12`, `5 \| RUS \| 10`, `6 \| HAM \| 8`, `7 \| ALB \| 6`, `8 \| SAI \| 4`, `9 \| ANT \| 2`, `10 \| ALO \| 1`, `11 \| TSU \| 0`, `12 \| STR \| 0`; nút [Lưu] chuyển sang active. Bước 4: không hiện cảnh báo ghi đè, thông báo "Đã lưu kết quả chặng R16 - Italian Grand Prix". **CSDL:** `tblKetQua` thêm 12 dòng mới (id 101–112), dòng đầu `43 (VER) \| 4404.325 \| 53 \| HoanThanh \| 1 \| 25`, dòng cuối `50 (STR) \| 4465.310 \| 53 \| HoanThanh \| 12 \| 0` (cột `thoiGian` lưu tổng số giây) |
-| CNKQ_10 | Tay đua DNF nhận 0 điểm và xếp cuối | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập như CNKQ_9, riêng dòng Max Verstappen: Thời gian để trống, Số vòng `40`, Trạng thái `DNF (bỏ cuộc, tai nạn)`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 2: ô Thời gian trống của Verstappen không bị báo lỗi vì trạng thái là DNF. Bước 3: bảng đối soát: `1 \| NOR \| 25`, `2 \| LEC \| 18`, …, `12 \| VER \| — \| 40 \| DNF \| 0` — Verstappen xếp cuối, 0 điểm; 11 tay đua còn lại đôn lên một bậc so với CNKQ_9. Bước 4: thông báo lưu thành công. **CSDL:** `tblKetQua` thêm 12 dòng, dòng Verstappen `43 \| NULL \| 40 \| DNF \| 12 \| 0`, dòng Norris `45 \| 4407.019 \| 53 \| HoanThanh \| 1 \| 25` |
-| CNKQ_11 | Tay đua DSQ nhận 0 điểm và xếp cuối | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập như CNKQ_9, riêng dòng Lewis Hamilton giữ Thời gian `1:13:41.663`, Số vòng `53` nhưng đổi Trạng thái sang `DSQ (bị loại)`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 3: Hamilton tuy về đích thứ 6 nhưng bị xếp cuối hạng 12 với 0 điểm; Albon đôn từ hạng 7 lên hạng 6 nên nhận 8 điểm thay vì 6 điểm. Bước 4: thông báo lưu thành công. **CSDL:** `tblKetQua` thêm 12 dòng, dòng Hamilton `42 \| 4421.663 \| 53 \| DSQ \| 12 \| 0`, dòng Albon `51 \| 4432.117 \| 53 \| HoanThanh \| 6 \| 8` |
-| CNKQ_12 | Tay đua Hoàn thành nhưng thiếu Thời gian về đích bị chặn | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập đủ cho 11 tay đua như CNKQ_9; riêng Charles Leclerc để trống Thời gian, nhập Số vòng `53`, chọn Trạng thái `Hoàn thành`.<br>3. Click [Tính kết quả].<br>4. Nhập `1:13:31.482` vào ô Thời gian của Leclerc rồi click [Tính kết quả] lần nữa | Bước 3: báo lỗi "Vui lòng nhập thời gian hợp lệ theo định dạng hh:mm:ss.xxx cho tay đua đã hoàn thành", con trỏ nhảy về ô Thời gian dòng Leclerc; bảng đối soát không hiện; nút [Lưu] chưa active; dữ liệu 11 tay đua kia giữ nguyên. **CSDL:** không bảng nào thay đổi (hệ thống chặn trước khi ghi). Bước 4: bảng đối soát hiện đúng như CNKQ_9 |
-| CNKQ_13 | Chặng đã có kết quả cũ: cảnh báo ghi đè và tính lại điểm | 1. Precond riêng: `tblKetQua` đã có 12 dòng id 101–112 của chặng R16 (kết quả sau CNKQ_9); Ban tổ chức phát hiện thời gian của Verstappen và Norris bị nhập nhầm cho nhau.<br>2. Mở màn Nhập kết quả chặng R16, nhập lại: NOR `1:13:24.325`/53/`Hoàn thành`, VER `1:13:27.019`/53/`Hoàn thành`, 10 tay đua còn lại như CNKQ_9.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] rồi chọn [Hủy].<br>5. Click [Lưu] lần nữa rồi chọn [Đồng ý] | Bước 3: bảng đối soát: `1 \| NOR \| 25`, `2 \| VER \| 18`, các hạng 3–12 như CNKQ_9. Bước 4: hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?"; chọn [Hủy] → không lưu, kết quả cũ giữ nguyên (Verstappen vẫn hạng 1). Bước 5: hệ thống xóa kết quả cũ, lưu kết quả mới, tính lại điểm toàn chặng, thông báo "Đã cập nhật lại kết quả chặng R16 - Italian Grand Prix". **CSDL:** `tblKetQua` xóa 12 dòng id 101–112, thêm 12 dòng mới id 113–124: `45 (NOR) \| 4404.325 \| 53 \| HoanThanh \| 1 \| 25`, `43 (VER) \| 4407.019 \| 53 \| HoanThanh \| 2 \| 18`, các dòng còn lại giữ thời gian như CNKQ_9 với hạng 3–12 |
+| | **Precond:** nhân viên đã đăng nhập; CSDL đúng như mục 8.1 — chặng R16 có 12 đăng ký (id 41–52), `tblKetQua` chưa có dòng nào của chặng R16 (riêng CNKQ_21 có precond khác, ghi ở bước 1) | | |
+| | **Nhóm 3 — Luồng nghiệp vụ** | | |
+| CNKQ_17 | Nhập đủ kết quả, hệ thống xếp hạng và tính điểm đúng (ca chuẩn) | 1. Tại trang chính click "Cập nhật kết quả chặng đua", chọn `R16 - Italian Grand Prix (Monza)`, click [Tiếp tục].<br>2. Nhập 12 dòng: VER `1:13:24.325`/53, NOR `1:13:27.019`/53, LEC `1:13:31.482`/53, PIA `1:13:33.900`/53, RUS `1:13:39.245`/53, HAM `1:13:41.663`/53, ALB `1:13:52.117`/53, SAI `1:13:58.520`/53, ANT `1:14:04.031`/53, ALO `1:14:11.786`/53, TSU `1:14:18.902`/53, STR `1:14:25.310`/53 — tất cả Trạng thái `Hoàn thành`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 3: bảng đối soát 12 dòng xếp tăng dần theo thời gian: `1 \| VER \| 25`, `2 \| NOR \| 18`, `3 \| LEC \| 15`, `4 \| PIA \| 12`, `5 \| RUS \| 10`, `6 \| HAM \| 8`, `7 \| ALB \| 6`, `8 \| SAI \| 4`, `9 \| ANT \| 2`, `10 \| ALO \| 1`, `11 \| TSU \| 0`, `12 \| STR \| 0`; nút [Lưu] chuyển sang active. Bước 4: không hiện cảnh báo ghi đè, thông báo "Đã lưu kết quả chặng R16 - Italian Grand Prix". **CSDL:** `tblKetQua` thêm 12 dòng mới (id 101–112), dòng đầu `43 (VER) \| 4404.325 \| 53 \| HoanThanh \| 1 \| 25`, dòng cuối `50 (STR) \| 4465.310 \| 53 \| HoanThanh \| 12 \| 0` (cột `thoiGian` lưu tổng số giây) |
+| CNKQ_18 | Tay đua DNF nhận 0 điểm và xếp cuối | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập như CNKQ_17, riêng dòng Max Verstappen: Thời gian để trống, Số vòng `40`, Trạng thái `DNF (bỏ cuộc, tai nạn)`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 2: ô Thời gian trống của Verstappen không bị báo lỗi vì trạng thái là DNF. Bước 3: bảng đối soát: `1 \| NOR \| 25`, `2 \| LEC \| 18`, …, `12 \| VER \| — \| 40 \| DNF \| 0` — Verstappen xếp cuối, 0 điểm; 11 tay đua còn lại đôn lên một bậc so với CNKQ_17. Bước 4: thông báo lưu thành công. **CSDL:** `tblKetQua` thêm 12 dòng, dòng Verstappen `43 \| NULL \| 40 \| DNF \| 12 \| 0`, dòng Norris `45 \| 4407.019 \| 53 \| HoanThanh \| 1 \| 25` |
+| CNKQ_19 | Tay đua DSQ nhận 0 điểm và xếp cuối | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập như CNKQ_17, riêng dòng Lewis Hamilton giữ Thời gian `1:13:41.663`, Số vòng `53` nhưng đổi Trạng thái sang `DSQ (bị loại)`.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] | Bước 3: Hamilton tuy về đích thứ 6 nhưng bị xếp cuối hạng 12 với 0 điểm; Albon đôn từ hạng 7 lên hạng 6 nên nhận 8 điểm thay vì 6 điểm. Bước 4: thông báo lưu thành công. **CSDL:** `tblKetQua` thêm 12 dòng, dòng Hamilton `42 \| 4421.663 \| 53 \| DSQ \| 12 \| 0`, dòng Albon `51 \| 4432.117 \| 53 \| HoanThanh \| 6 \| 8` |
+| CNKQ_20 | Tay đua Hoàn thành nhưng thiếu Thời gian về đích bị chặn | 1. Mở màn Nhập kết quả chặng R16.<br>2. Nhập đủ cho 11 tay đua như CNKQ_17; riêng Charles Leclerc để trống Thời gian, nhập Số vòng `53`, chọn Trạng thái `Hoàn thành`.<br>3. Click [Tính kết quả].<br>4. Nhập `1:13:31.482` vào ô Thời gian của Leclerc rồi click [Tính kết quả] lần nữa | Bước 3: báo lỗi "Vui lòng nhập thời gian hợp lệ theo định dạng hh:mm:ss.xxx cho tay đua đã hoàn thành", con trỏ nhảy về ô Thời gian dòng Leclerc; bảng đối soát không hiện; nút [Lưu] chưa active; dữ liệu 11 tay đua kia giữ nguyên. **CSDL:** không bảng nào thay đổi (hệ thống chặn trước khi ghi). Bước 4: bảng đối soát hiện đúng như CNKQ_17 |
+| CNKQ_21 | Chặng đã có kết quả cũ: cảnh báo ghi đè và tính lại điểm | 1. Precond riêng: `tblKetQua` đã có 12 dòng id 101–112 của chặng R16 (kết quả sau CNKQ_17); Ban tổ chức phát hiện thời gian của Verstappen và Norris bị nhập nhầm cho nhau.<br>2. Mở màn Nhập kết quả chặng R16, nhập lại: NOR `1:13:24.325`/53/`Hoàn thành`, VER `1:13:27.019`/53/`Hoàn thành`, 10 tay đua còn lại như CNKQ_17.<br>3. Click [Tính kết quả].<br>4. Click [Lưu] rồi chọn [Hủy].<br>5. Click [Lưu] lần nữa rồi chọn [Đồng ý] | Bước 3: bảng đối soát: `1 \| NOR \| 25`, `2 \| VER \| 18`, các hạng 3–12 như CNKQ_17. Bước 4: hộp thoại "Chặng đua R16 - Italian Grand Prix đã có kết quả, bạn có muốn ghi đè?"; chọn [Hủy] → không lưu, kết quả cũ giữ nguyên (Verstappen vẫn hạng 1). Bước 5: hệ thống xóa kết quả cũ, lưu kết quả mới, tính lại điểm toàn chặng, thông báo "Đã cập nhật lại kết quả chặng R16 - Italian Grand Prix". **CSDL:** `tblKetQua` xóa 12 dòng id 101–112, thêm 12 dòng mới id 113–124: `45 (NOR) \| 4404.325 \| 53 \| HoanThanh \| 1 \| 25`, `43 (VER) \| 4407.019 \| 53 \| HoanThanh \| 2 \| 18`, các dòng còn lại giữ thời gian như CNKQ_17 với hạng 3–12 |

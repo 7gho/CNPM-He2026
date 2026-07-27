@@ -85,6 +85,7 @@ THEM ..> TIM : <<extend>>
    | Tên tay đua | ô nhập | rỗng, con trỏ đặt sẵn |
    | [Tìm] | nút | active |
    | [+ Thêm tay đua mới] | nút | active |
+   | [Về trang chủ] | nút | active |
    | Kết quả tìm kiếm | bảng | rỗng — nội dung hiện ở bước 4, mỗi dòng có nút [Chọn] |
    | Mã, Tên, Ngày sinh, Quốc tịch, Tiểu sử (form thêm tay đua) | ô nhập | chưa hiện, chỉ hiện khi click [+ Thêm tay đua mới] |
    | [Lưu tay đua] | nút | chưa hiện; khi hiện thì chưa active cho tới khi nhập đủ mã, tên, ngày sinh, quốc tịch |
@@ -109,6 +110,7 @@ THEM ..> TIM : <<extend>>
    | Ngày bắt đầu | ô nhập | rỗng |
    | Ngày kết thúc | — | không có trên màn hình — hợp đồng mới luôn lưu ở trạng thái mở |
    | [Lưu] | nút | chưa active cho tới khi chọn đủ đội đua và ngày bắt đầu |
+   | [Quay lại] | nút | active |
 
    Bảng "Hợp đồng cũ" của tay đua `HAM — Lewis Hamilton` lúc mới mở màn hình — **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**:
 
@@ -140,7 +142,7 @@ THEM ..> TIM : <<extend>>
 - **9b.** Ngày bắt đầu mới nhỏ hơn hoặc bằng ngày bắt đầu của hợp đồng đang hiệu lực (ví dụ nhập `01/01/2010` trong khi hợp đồng Mercedes bắt đầu `01/01/2013`) → hệ thống báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu của hợp đồng đang hiệu lực", không lưu, quay lại bước 7.
 - **10a.** Tay đua chưa có hợp đồng nào đang hiệu lực (ví dụ Oscar Piastri) → bảng "Hợp đồng cũ" ở bước 6 rỗng; hệ thống bỏ qua bước 10 và chuyển thẳng sang bước 11.
 
-> **Ánh xạ sang lớp biên:** màn *Tìm tay đua* (`GDTimTayDua`) — ô "Tên tay đua" = `-inTenTayDua`, nút [Tìm] = `-subTim`, bảng kết quả vừa hiện vừa cho chọn = `-outsubDSTayDua`, nút [+ Thêm tay đua mới] = `-subThemTayDua`; các ô của form thêm tay đua = `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu` và nút [Lưu tay đua] = `-subLuuTayDua`. Màn *Nhập hợp đồng* (`GDNhapHopDong`) — vùng thông tin tay đua đã chọn = `-outTayDua`, bảng "Hợp đồng cũ" = `-outDSHopDongCu`, ô chọn "Đội đua" = `-inDoiDua`, ô "Ngày bắt đầu" = `-inNgayBatDau`, nút [Lưu] = `-subLuu`.
+> **Ánh xạ sang lớp biên:** màn *Tìm tay đua* (`GDTimTayDua`) — ô "Tên tay đua" = `-inTenTayDua`, nút [Tìm] = `-subTim`, bảng kết quả vừa hiện vừa cho chọn = `-outsubDSTayDua`, nút [+ Thêm tay đua mới] = `-subThemTayDua`, nút [Về trang chủ] = `-subVeTrangChu`; các ô của form thêm tay đua = `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu` và nút [Lưu tay đua] = `-subLuuTayDua`. Màn *Nhập hợp đồng* (`GDNhapHopDong`) — vùng thông tin tay đua đã chọn = `-outTayDua`, bảng "Hợp đồng cũ" = `-outDSHopDongCu`, ô chọn "Đội đua" = `-inDoiDua`, ô "Ngày bắt đầu" = `-inNgayBatDau`, nút [Lưu] = `-subLuu`, nút [Quay lại] = `-subQuayLai`.
 
 > Luồng chuyển màn: **Trang chính → Tìm tay đua → Nhập hợp đồng → (lưu) → Trang chính**.
 
@@ -192,11 +194,13 @@ Biểu đồ lớp phân tích của module chỉ có **2 tầng**: lớp biên 
 | | `-inQuocTich` | ô nhập quốc tịch (form thêm tay đua) |
 | | `-inTieuSu` | ô nhập tiểu sử (form thêm tay đua) |
 | | `-subLuuTayDua` | nút [Lưu tay đua] (form thêm tay đua) |
+| | `-subVeTrangChu` | nút [Về trang chủ] |
 | `GDNhapHopDong` | `-outTayDua` | vùng hiện thông tin tay đua đã chọn |
 | | `-outDSHopDongCu` | bảng hiện danh sách hợp đồng cũ |
 | | `-inDoiDua` | ô chọn đội đua |
 | | `-inNgayBatDau` | ô nhập ngày bắt đầu |
 | | `-subLuu` | nút [Lưu] |
+| | `-subQuayLai` | nút [Quay lại] |
 
 **Phương thức nghiệp vụ gán cho lớp thực thể:**
 
@@ -230,6 +234,7 @@ class GDTimTayDua {
   -inQuocTich
   -inTieuSu
   -subLuuTayDua
+  -subVeTrangChu
 }
 class GDNhapHopDong {
   -outTayDua
@@ -237,6 +242,7 @@ class GDNhapHopDong {
   -inDoiDua
   -inNgayBatDau
   -subLuu
+  -subQuayLai
 }
 
 class MuaGiai {
@@ -353,6 +359,7 @@ class "gdTimTayDua.jsp" as gdTimTayDua {
   -quocTich : Text
   -tieuSu : Text
   -btnLuuTayDua : submit
+  -btnVeTrangChu : submit
   -nv : NhanVien
 }
 class "gdNhapHopDong.jsp" as gdNhapHopDong {
@@ -361,6 +368,7 @@ class "gdNhapHopDong.jsp" as gdNhapHopDong {
   -doiDua : Select
   -ngayBatDau : Text
   -btnLuu : submit
+  -btnQuayLai : submit
   -nv : NhanVien
 }
 class "doLuuHopDong.jsp" as doLuuHopDong {
@@ -415,7 +423,7 @@ HopDongDAO -- HopDong
 
 ## 6. Biểu đồ hoạt động (pha thiết kế)
 
-Mỗi hành động trong biểu đồ hoạt động tương ứng một phương thức đã thiết kế trong biểu đồ lớp (mục 5). Các hành động được gom thành từng khung (partition) **"Xử lí tại gdXxx.jsp"** theo đúng trang thực hiện — kể cả trang chính `gdChinhNV.jsp` và trang xử lý `doLuuHopDong.jsp`; lời gọi tầng dưới ghi rõ dạng `XxxDAO: tenHam()`; điều kiện chuyển ghi trong ngoặc vuông (`[click Lưu]`, `[lấy xong dữ liệu]`, `[lưu xong]`); các ràng buộc nghiệp vụ (`9a`, `9b`, `10a` ở mục 2) được kiểm tra bằng **node quyết định** trong khung của trang xử lý `doLuuHopDong.jsp`; ràng buộc `4a` (không tìm thấy tay đua → thêm mới) là node quyết định trong khung `gdTimTayDua.jsp`. Biểu đồ có node Bắt đầu và Kết thúc. Khung `gdChinhNV.jsp` xuất hiện ở **đầu** (mở chức năng) và **cuối** (quay về trang chính sau khi nhân viên click [OK] trên thông báo lưu thành công) — khớp với thuyết minh bước 44–46 và biểu đồ tuần tự ở mục 7.
+Mỗi hành động trong biểu đồ hoạt động tương ứng một phương thức đã thiết kế trong biểu đồ lớp (mục 5). Các hành động được gom thành từng khung (partition) **"Xử lí tại gdXxx.jsp"** theo đúng trang thực hiện — kể cả trang chính `gdChinhNV.jsp` và trang xử lý `doLuuHopDong.jsp`; lời gọi tầng dưới là **node riêng đặt NGOÀI khung**, ghi `XxxDAO: tenHam()`, nối bằng mũi tên từ hành động gọi nó; điều kiện chuyển ghi trong ngoặc vuông (`[click Lưu]`, `[lấy xong dữ liệu]`, `[lưu xong]`); các ràng buộc nghiệp vụ (`9a`, `9b`, `10a` ở mục 2) được kiểm tra bằng **node quyết định** trong khung của trang xử lý `doLuuHopDong.jsp`; ràng buộc `4a` (không tìm thấy tay đua → thêm mới) là node quyết định trong khung `gdTimTayDua.jsp`. Biểu đồ có node Bắt đầu và Kết thúc. Khung `gdChinhNV.jsp` xuất hiện ở **đầu** (mở chức năng) và **cuối** (quay về trang chính sau khi nhân viên click [OK] trên thông báo lưu thành công) — khớp với thuyết minh bước 44–46 và biểu đồ tuần tự ở mục 7.
 
 Ảnh export: `hinh/m1-hoatdong.png` — **vẽ lại** theo mẫu **Hình 4.9** của giáo trình PDF (khung "Xử lí tại gdXxx.jsp", node DAO ghi rõ tên hàm).
 
@@ -644,7 +652,7 @@ end
 
 ## 8. Test case
 
-> Xây dựng theo quy trình 4 bước. Test case gom trong **một bảng 4 cột** `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm bằng dòng tiêu đề nhóm in đậm giữa bảng: **Giao diện** (2 ca/màn hình), **Chức năng** (2 ca/màn hình — kết quả mong muốn đối chiếu trực tiếp các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, dữ liệu thật F1 2025, kết quả mong muốn ghi cả hiệu ứng lên CSDL). Mã test case: `KHD_n` (Ký hợp đồng).
+> Xây dựng theo quy trình 4 bước. Test case gom trong **một bảng 4 cột** `Mã trường hợp kiểm thử | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm bằng dòng tiêu đề nhóm in đậm giữa bảng: **Giao diện** (2 ca/màn hình), **Chức năng** (2 ca/màn hình — kết quả mong muốn đối chiếu trực tiếp các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, dữ liệu thật F1 2025, kết quả mong muốn ghi cả hiệu ứng lên CSDL). Mã test case: `KHD_n` (Ký hợp đồng).
 
 ### 8.1. Data test (bước 3 quy trình test)
 
@@ -686,20 +694,30 @@ Dữ liệu được nạp sẵn vào CSDL trước khi chạy test, là **tiề
 
 ### 8.2. Bảng test case
 
-| Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
+| Mã trường hợp kiểm thử | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn |
 |---|---|---|---|
+| | **Giao diện — màn Tìm tay đua** | | |
 | | **Nhóm 1 — Giao diện** | | |
-| KHD_1 | Bố cục màn Tìm tay đua | 1. Đăng nhập với vai trò nhân viên.<br>2. Tại trang chính click [Ký hợp đồng]. | Màn hình hiện đúng title "Ký hợp đồng tay đua với đội đua — Bước 1: Tìm tay đua"; hiển thị đầy đủ: ô nhập "Tên tay đua", nút [Tìm], nút [+ Thêm tay đua mới], bảng kết quả (TT \| Mã \| Tên \| Ngày sinh \| Quốc tịch \| Đội hiện tại \| thao tác) đang rỗng; con trỏ focus vào ô "Tên tay đua" |
-| KHD_2 | Hành vi phím Enter màn Tìm tay đua | 1. Mở màn Tìm tay đua.<br>2. Nhập `Hamilton` vào ô "Tên tay đua".<br>3. Nhấn phím Enter. | Phím Enter thực hiện đúng chức năng nút [Tìm]: bảng kết quả hiện danh sách tay đua có tên chứa `Hamilton` |
-| KHD_3 | Bố cục màn Nhập hợp đồng | 1. Từ màn Tìm tay đua, tìm `Hamilton`.<br>2. Click [Chọn] ở dòng `HAM`. | Màn hình hiện đúng title "Ký hợp đồng tay đua với đội đua — Bước 2: Nhập thông tin hợp đồng"; hiển thị đầy đủ: vùng thông tin tay đua, bảng "Hợp đồng cũ" (TT \| Đội đua \| Ngày bắt đầu \| Ngày kết thúc), ô chọn "Đội đua", ô "Ngày bắt đầu", nút [Lưu]; không có ô nhập ngày kết thúc; focus vào ô "Đội đua"; nút [Lưu] **chưa được active** |
-| KHD_4 | Thứ tự phím Tab màn Nhập hợp đồng | 1. Mở màn Nhập hợp đồng với tay đua `HAM`.<br>2. Nhấn Tab liên tiếp. | Focus di chuyển đúng thứ tự: ô "Đội đua" → ô "Ngày bắt đầu" → nút [Lưu] |
+| KHD_1 | Kiểm tra tổng thể giao diện màn Tìm tay đua | 1. Mở màn Tìm tay đua.<br>2. Kiểm tra bố cục, font chữ, cỡ chữ, màu chữ và chính tả. | Các label và ô nhập cùng font chữ, cỡ chữ; căn lề, độ rộng, khoảng cách đồng đều, không xô lệch; không có lỗi chính tả, cấu trúc câu, ngữ pháp trên màn hình; form được bố trí hợp lý và dễ sử dụng |
+| KHD_2 | Kiểm tra bố cục màn Tìm tay đua | 1. Kiểm tra title của màn hình.<br>2. Kiểm tra focus của con trỏ.<br>3. Kiểm tra hiển thị các trường, button và liên kết trên màn hình. | 1. Hiển thị title `Ký hợp đồng tay đua với đội đua — Bước 1: Tìm tay đua`.<br>2. Focus được đặt vào ô nhập "Tên tay đua".<br>3. Hiển thị đầy đủ các trường: Tên tay đua (ô nhập) · Bảng kết quả tìm kiếm (bảng: TT, Mã, Tên, Ngày sinh, Quốc tịch, Đội hiện tại, Thao tác) · Form thêm tay đua gồm Mã, Tên, Ngày sinh, Quốc tịch, Tiểu sử (ô nhập, ban đầu ẩn).<br>4. Button: [Tìm], [+ Thêm tay đua mới], [Lưu tay đua] (trong form thêm), [Về trang chủ].<br>5. Liên kết click được: nút [Chọn] trên từng dòng bảng kết quả. |
+| KHD_3 | Kiểm tra màn Tìm tay đua khi thu nhỏ, phóng to | 1. Nhấn Ctrl -.<br>2. Nhấn Ctrl +. | Màn hình thu nhỏ, phóng to tương ứng và không bị vỡ giao diện; các bảng vẫn hiển thị đủ cột, không tràn ngang |
+| KHD_4 | Kiểm tra thứ tự phím Tab màn Tìm tay đua | 1. Focus vào màn Tìm tay đua.<br>2. Nhấn Tab liên tục. | Con trỏ di chuyển lần lượt theo thứ tự từ trái qua phải, từ trên xuống dưới, đi hết các trường nhập rồi tới các button |
+| KHD_5 | Kiểm tra thứ tự phím Shift-Tab màn Tìm tay đua | 1. Focus vào màn Tìm tay đua.<br>2. Nhấn Shift-Tab liên tục. | Con trỏ di chuyển ngược lại theo thứ tự từ dưới lên trên, từ phải qua trái |
+| KHD_6 | Kiểm tra phím Enter màn Tìm tay đua | 1. Không focus vào button nào, nhấn Enter.<br>2. Focus vào một button, nhấn Enter. | 1. Thực hiện đúng chức năng của button chính của màn hình.<br>2. Thực hiện đúng chức năng của button đang được focus |
+| | **Giao diện — màn Nhập hợp đồng** | | |
+| KHD_7 | Kiểm tra tổng thể giao diện màn Nhập hợp đồng | 1. Mở màn Nhập hợp đồng.<br>2. Kiểm tra bố cục, font chữ, cỡ chữ, màu chữ và chính tả. | Các label và ô nhập cùng font chữ, cỡ chữ; căn lề, độ rộng, khoảng cách đồng đều, không xô lệch; không có lỗi chính tả, cấu trúc câu, ngữ pháp trên màn hình; form được bố trí hợp lý và dễ sử dụng |
+| KHD_8 | Kiểm tra bố cục màn Nhập hợp đồng | 1. Kiểm tra title của màn hình.<br>2. Kiểm tra focus của con trỏ.<br>3. Kiểm tra hiển thị các trường, button và liên kết trên màn hình. | 1. Hiển thị title `Ký hợp đồng tay đua với đội đua — Bước 2: Nhập thông tin hợp đồng`.<br>2. Focus được đặt vào ô chọn "Đội đua".<br>3. Hiển thị đầy đủ các trường: Tay đua (vùng chỉ đọc) · Bảng "Hợp đồng cũ" (bảng: TT, Đội đua, Ngày bắt đầu, Ngày kết thúc) · Đội đua (danh sách thả xuống) · Ngày bắt đầu (ô nhập); màn hình không có ô nhập Ngày kết thúc.<br>4. Button: [Lưu], [Quay lại]. |
+| KHD_9 | Kiểm tra màn Nhập hợp đồng khi thu nhỏ, phóng to | 1. Nhấn Ctrl -.<br>2. Nhấn Ctrl +. | Màn hình thu nhỏ, phóng to tương ứng và không bị vỡ giao diện; các bảng vẫn hiển thị đủ cột, không tràn ngang |
+| KHD_10 | Kiểm tra thứ tự phím Tab màn Nhập hợp đồng | 1. Focus vào màn Nhập hợp đồng.<br>2. Nhấn Tab liên tục. | Con trỏ di chuyển lần lượt theo thứ tự từ trái qua phải, từ trên xuống dưới, đi hết các trường nhập rồi tới các button |
+| KHD_11 | Kiểm tra thứ tự phím Shift-Tab màn Nhập hợp đồng | 1. Focus vào màn Nhập hợp đồng.<br>2. Nhấn Shift-Tab liên tục. | Con trỏ di chuyển ngược lại theo thứ tự từ dưới lên trên, từ phải qua trái |
+| KHD_12 | Kiểm tra phím Enter màn Nhập hợp đồng | 1. Không focus vào button nào, nhấn Enter.<br>2. Focus vào một button, nhấn Enter. | 1. Thực hiện đúng chức năng của button chính của màn hình.<br>2. Thực hiện đúng chức năng của button đang được focus |
 | | **Nhóm 2 — Chức năng** | | |
-| KHD_5 | Màn Tìm tay đua hiển thị đúng khi CSDL có dữ liệu | 1. Nhập `Hamilton`, click [Tìm]. | Danh sách khớp các bản ghi trong `tblTayDua` có tên chứa `Hamilton`: 1 dòng `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; cột "Đội hiện tại" đối chiếu đúng dòng `tblHopDong` có `ngayKetThuc` trống của tay đua |
-| KHD_6 | Màn Tìm tay đua khi không có dữ liệu khớp | 1. Nhập `Schumacher`, click [Tìm]. | Bảng kết quả hiện dòng "Không tìm thấy tay đua nào" (trong `tblTayDua` không có bản ghi tên chứa `Schumacher`); nút [+ Thêm tay đua mới] vẫn hiển thị |
-| KHD_7 | Màn Nhập hợp đồng hiển thị đúng dữ liệu tay đua có hợp đồng | 1. Tìm và chọn `HAM`. | Bảng "Hợp đồng cũ" khớp các bản ghi trong `tblHopDong` của tay đua id = 2: 1 dòng `Mercedes \| 01/01/2013 \| (trống)`; ô chọn "Đội đua" chứa đủ 6 đội khớp `tblDoiDua` (Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) |
-| KHD_8 | Màn Nhập hợp đồng khi tay đua chưa có hợp đồng | 1. Tìm và chọn `PIA`. | Bảng "Hợp đồng cũ" **rỗng** (trong `tblHopDong` không có bản ghi nào của tay đua id = 6); hai ô nhập rỗng; nút [Lưu] chưa được active |
-| | **Nhóm 3 — Luồng nghiệp vụ** — *Precond: nhân viên đã đăng nhập thành công; CSDL đúng như mục Data test (8.1)* | | |
-| KHD_9 | Ký hợp đồng mới cho tay đua tự do — chưa có hợp đồng nào (ca chuẩn) | 1. Tại trang chính click [Ký hợp đồng].<br>2. Nhập `Piastri`, click [Tìm] — bảng hiện 1 dòng `PIA \| Oscar Piastri \| 06/04/2001 \| Úc \| (chưa có)`.<br>3. Click [Chọn] ở dòng `PIA` — bảng "Hợp đồng cũ" rỗng, nút [Lưu] chưa active.<br>4. Chọn đội đua `McLaren`, nhập ngày bắt đầu `01/01/2025` — nút [Lưu] chuyển sang active.<br>5. Click [Lưu]. | Thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng `Oscar Piastri — McLaren — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 1 dòng `McLaren \| 01/01/2025 \| (trống)`. **CSDL:** `tblHopDong` thêm bản ghi mới `id = 5 \| 6 (PIA) \| 3 (McLaren) \| 01/01/2025 \| (trống)`; `tblTayDua`, `tblDoiDua` không thay đổi |
-| KHD_10 | Ký hợp đồng khi tay đua đang có hợp đồng hiệu lực — hệ thống tự đóng hợp đồng cũ | 1. Nhập `Hamilton`, click [Tìm], click [Chọn] ở dòng `HAM` — bảng "Hợp đồng cũ" có 1 dòng `Mercedes \| 01/01/2013 \| (trống)`.<br>2. Chọn đội đua `Ferrari`, nhập ngày bắt đầu `01/01/2025`.<br>3. Click [Lưu]. | Thông báo "Lưu hợp đồng thành công" kèm bản in `Lewis Hamilton — Ferrari — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 2 dòng. **CSDL:** `tblHopDong`: hợp đồng cũ id = 1 (HAM — Mercedes) được tự động đóng với `ngayKetThuc = 31/12/2024`; thêm bản ghi mới `HAM — Ferrari — 01/01/2025 — (trống)` |
-| KHD_11 | Ngày bắt đầu chồng lấn hợp đồng đã đóng — báo lỗi, không lưu | 1. Nhập `Sainz`, click [Tìm], click [Chọn] ở dòng `SAI` — bảng "Hợp đồng cũ" có 1 dòng `Ferrari \| 01/01/2021 \| 31/12/2024`.<br>2. Chọn đội đua `Williams`, nhập ngày bắt đầu `01/06/2023`.<br>3. Click [Lưu]. | Thông báo lỗi màu đỏ ngay dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này"; dữ liệu đã nhập giữ nguyên trên form để sửa lại. **CSDL: không bảng nào thay đổi** — `tblHopDong` vẫn giữ đúng 4 bản ghi như Data test |
-| KHD_12 | Không tìm thấy tay đua — thêm tay đua mới rồi ký hợp đồng | 1. Nhập `Antonelli`, click [Tìm] — hiện "Không tìm thấy tay đua nào".<br>2. Click [+ Thêm tay đua mới] — form thêm tay đua hiện ra, nút [Lưu tay đua] chưa active.<br>3. Nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử `Tay đua trẻ của học viện Mercedes`, click [Lưu tay đua].<br>4. Bảng kết quả nạp lại dòng `ANT`; click [Chọn].<br>5. Chọn đội đua `Mercedes`, nhập ngày bắt đầu `01/01/2025`, click [Lưu]. | Sau bước 3: tay đua mới được lưu, bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`. Sau bước 5: thông báo "Lưu hợp đồng thành công" kèm bản in `Andrea Kimi Antonelli — Mercedes — từ 01/01/2025`. **CSDL:** `tblTayDua` thêm bản ghi mới `ANT — Andrea Kimi Antonelli — 25/08/2006 — Ý`; `tblHopDong` thêm bản ghi mới `ANT — Mercedes — 01/01/2025 — (trống)` |
+| KHD_13 | Màn Tìm tay đua hiển thị đúng khi CSDL có dữ liệu | 1. Nhập `Hamilton`, click [Tìm]. | Danh sách khớp các bản ghi trong `tblTayDua` có tên chứa `Hamilton`: 1 dòng `HAM \| Lewis Hamilton \| 07/01/1985 \| Anh \| Mercedes`; cột "Đội hiện tại" đối chiếu đúng dòng `tblHopDong` có `ngayKetThuc` trống của tay đua |
+| KHD_14 | Màn Tìm tay đua khi không có dữ liệu khớp | 1. Nhập `Schumacher`, click [Tìm]. | Bảng kết quả hiện dòng "Không tìm thấy tay đua nào" (trong `tblTayDua` không có bản ghi tên chứa `Schumacher`); nút [+ Thêm tay đua mới] vẫn hiển thị |
+| KHD_15 | Màn Nhập hợp đồng hiển thị đúng dữ liệu tay đua có hợp đồng | 1. Tìm và chọn `HAM`. | Bảng "Hợp đồng cũ" khớp các bản ghi trong `tblHopDong` của tay đua id = 2: 1 dòng `Mercedes \| 01/01/2013 \| (trống)`; ô chọn "Đội đua" chứa đủ 6 đội khớp `tblDoiDua` (Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) |
+| KHD_16 | Màn Nhập hợp đồng khi tay đua chưa có hợp đồng | 1. Tìm và chọn `PIA`. | Bảng "Hợp đồng cũ" **rỗng** (trong `tblHopDong` không có bản ghi nào của tay đua id = 6); hai ô nhập rỗng; nút [Lưu] chưa được active |
+| | **Nhóm 3 — Luồng nghiệp vụ** | | |
+| KHD_17 | Ký hợp đồng mới cho tay đua tự do — chưa có hợp đồng nào (ca chuẩn) | 1. Tại trang chính click [Ký hợp đồng].<br>2. Nhập `Piastri`, click [Tìm] — bảng hiện 1 dòng `PIA \| Oscar Piastri \| 06/04/2001 \| Úc \| (chưa có)`.<br>3. Click [Chọn] ở dòng `PIA` — bảng "Hợp đồng cũ" rỗng, nút [Lưu] chưa active.<br>4. Chọn đội đua `McLaren`, nhập ngày bắt đầu `01/01/2025` — nút [Lưu] chuyển sang active.<br>5. Click [Lưu]. | Thông báo xanh "Lưu hợp đồng thành công" kèm bản in hợp đồng `Oscar Piastri — McLaren — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 1 dòng `McLaren \| 01/01/2025 \| (trống)`. **CSDL:** `tblHopDong` thêm bản ghi mới `id = 5 \| 6 (PIA) \| 3 (McLaren) \| 01/01/2025 \| (trống)`; `tblTayDua`, `tblDoiDua` không thay đổi |
+| KHD_18 | Ký hợp đồng khi tay đua đang có hợp đồng hiệu lực — hệ thống tự đóng hợp đồng cũ | 1. Nhập `Hamilton`, click [Tìm], click [Chọn] ở dòng `HAM` — bảng "Hợp đồng cũ" có 1 dòng `Mercedes \| 01/01/2013 \| (trống)`.<br>2. Chọn đội đua `Ferrari`, nhập ngày bắt đầu `01/01/2025`.<br>3. Click [Lưu]. | Thông báo "Lưu hợp đồng thành công" kèm bản in `Lewis Hamilton — Ferrari — từ 01/01/2025`; bảng "Hợp đồng cũ" nạp lại 2 dòng. **CSDL:** `tblHopDong`: hợp đồng cũ id = 1 (HAM — Mercedes) được tự động đóng với `ngayKetThuc = 31/12/2024`; thêm bản ghi mới `HAM — Ferrari — 01/01/2025 — (trống)` |
+| KHD_19 | Ngày bắt đầu chồng lấn hợp đồng đã đóng — báo lỗi, không lưu | 1. Nhập `Sainz`, click [Tìm], click [Chọn] ở dòng `SAI` — bảng "Hợp đồng cũ" có 1 dòng `Ferrari \| 01/01/2021 \| 31/12/2024`.<br>2. Chọn đội đua `Williams`, nhập ngày bắt đầu `01/06/2023`.<br>3. Click [Lưu]. | Thông báo lỗi màu đỏ ngay dưới form: "Tay đua đã có hợp đồng trong khoảng thời gian này"; dữ liệu đã nhập giữ nguyên trên form để sửa lại. **CSDL: không bảng nào thay đổi** — `tblHopDong` vẫn giữ đúng 4 bản ghi như Data test |
+| KHD_20 | Không tìm thấy tay đua — thêm tay đua mới rồi ký hợp đồng | 1. Nhập `Antonelli`, click [Tìm] — hiện "Không tìm thấy tay đua nào".<br>2. Click [+ Thêm tay đua mới] — form thêm tay đua hiện ra, nút [Lưu tay đua] chưa active.<br>3. Nhập Mã `ANT`, Tên `Andrea Kimi Antonelli`, Ngày sinh `25/08/2006`, Quốc tịch `Ý`, Tiểu sử `Tay đua trẻ của học viện Mercedes`, click [Lưu tay đua].<br>4. Bảng kết quả nạp lại dòng `ANT`; click [Chọn].<br>5. Chọn đội đua `Mercedes`, nhập ngày bắt đầu `01/01/2025`, click [Lưu]. | Sau bước 3: tay đua mới được lưu, bảng kết quả có 1 dòng `ANT \| Andrea Kimi Antonelli \| 25/08/2006 \| Ý \| (chưa có)`. Sau bước 5: thông báo "Lưu hợp đồng thành công" kèm bản in `Andrea Kimi Antonelli — Mercedes — từ 01/01/2025`. **CSDL:** `tblTayDua` thêm bản ghi mới `ANT — Andrea Kimi Antonelli — 25/08/2006 — Ý`; `tblHopDong` thêm bản ghi mới `ANT — Mercedes — 01/01/2025 — (trống)` |
