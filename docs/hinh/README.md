@@ -13,4 +13,4 @@
 
 > Thư mục này chỉ chứa **đúng 4 ảnh** trên. Ảnh của từng module đặt trong `hinh/` của thư mục thành viên (**6 ảnh mỗi module**).
 
-> **Không có ảnh giao diện** ở bất kỳ thư mục nào: nhóm không vẽ mockup, giao diện chỉ trình bày dạng **phác thảo** (khung bố cục + bảng dữ liệu mẫu) trong mục Đặc tả UC của từng module. Tổng số ảnh toàn đồ án: **28**.
+> **Không có ảnh giao diện** ở bất kỳ thư mục nào: nhóm không vẽ mockup, giao diện chỉ trình bày dạng **bảng phác thảo** xen giữa các bước Kịch bản chính trong mục Đặc tả UC của từng module. Tổng số ảnh toàn đồ án: **28**.

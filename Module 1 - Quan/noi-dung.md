@@ -25,31 +25,38 @@
 
 ## 1. Biểu đồ UC chi tiết
 
-Theo bước 2 của quy trình xây dựng UC chi tiết: **mỗi giao diện tương tác với người dùng được đề xuất thành một use case con**. Module 1 có 2 màn hình hiển thị nên có 2 UC con quan hệ `include`:
+Mỗi giao diện tương tác với người dùng được đề xuất thành một use case con. Module 1 có 2 màn hình hiển thị nên có 2 UC con quan hệ `include`:
 
 - Màn hình **Tìm tay đua** → UC con `Tìm tay đua` (include)
 - Màn hình **Nhập hợp đồng** → UC con `Nhập thông tin hợp đồng` (include)
 
 Ngoài ra có 1 UC mở rộng: khi nhân viên tìm mà không thấy tay đua trong hệ thống, nhân viên được phép thêm tay đua mới ngay trên **màn hình Tìm tay đua**. Vì vậy `Thêm tay đua` là quan hệ **extend của `Tìm tay đua`** (không phải của `Nhập thông tin hợp đồng`), và nó dùng lại chính lớp biên `GDTimTayDua` chứ không sinh thêm màn hình mới.
 
-Ngoài các màn hình riêng của module, luồng nghiệp vụ nào cũng phải đi qua bước đăng nhập. **Giao diện đăng nhập là giao diện dùng chung của toàn hệ thống** (không thuộc riêng module nào), theo giáo trình (mục 3.1.3) nó vẫn được phân rã thành UC con `Đăng nhập` và UC chính **include** UC này. Module không tạo lớp biên, trang `.jsp` hay lifeline riêng cho đăng nhập; kịch bản vẫn mở đầu "sau khi đăng nhập" và dòng **Tiền điều kiện** của bảng đặc tả giữ nguyên "nhân viên đã đăng nhập". Trang chính của nhân viên cũng là trang chủ chung của hệ thống nên **không sinh UC con**.
+Đăng nhập là chức năng dùng chung của toàn hệ thống nên biểu đồ tách thành use case `Đăng nhập` gắn với actor cha **Thành viên**, còn use case `NV đăng nhập` **kế thừa** `Đăng nhập` cho vai trò Nhân viên; use case chính **include** `NV đăng nhập`. Module không tạo lớp biên, trang `.jsp` hay lifeline riêng cho đăng nhập; kịch bản vẫn mở đầu "sau khi đăng nhập" và dòng **Tiền điều kiện** của bảng đặc tả giữ nguyên "nhân viên đã đăng nhập". Trang chính `gdChinhNV.jsp` là trang chủ chung của hệ thống nên **không sinh use case con**.
 
 ```plantuml
 @startuml
 left to right direction
+
+actor "Thành viên" as TV
 actor "Nhân viên" as NV
-rectangle "Hệ thống quản lý giải đua F1" {
-  usecase "Ký hợp đồng tay đua với đội đua" as UC
-  usecase "Đăng nhập" as DN
-  usecase "Tìm tay đua" as TIM
-  usecase "Nhập thông tin hợp đồng" as NHAP
-  usecase "Thêm tay đua" as THEM
-  UC ..> DN : include
-  UC ..> TIM : include
-  UC ..> NHAP : include
-  THEM ..> TIM : extend
-}
+TV <|-- NV
+
+usecase "Đăng nhập" as DN
+usecase "NV đăng nhập" as NVDN
+usecase "Ký hợp đồng tay đua\nvới đội đua" as UC
+usecase "Tìm tay đua" as TIM
+usecase "Nhập thông tin hợp đồng" as NHAP
+usecase "Thêm tay đua" as THEM
+
+TV -- DN
 NV -- UC
+
+DN <|-- NVDN
+UC ..> NVDN : <<include>>
+UC ..> TIM : <<include>>
+UC ..> NHAP : <<include>>
+THEM ..> TIM : <<extend>>
 @enduml
 ```
 
@@ -64,31 +71,23 @@ NV -- UC
 | **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; danh mục đội đua của mùa giải 2025 đã được khai báo |
 | **Hậu điều kiện** | Một hợp đồng mới hợp lệ được lưu vào hệ thống với ngày kết thúc để trống (đang hiệu lực); hợp đồng cũ đang hiệu lực của tay đua (nếu có) được đóng lại; hợp đồng mới được in ra |
 
-> Phác thảo giao diện được đặt **xen ngay dưới bước hiển thị tương ứng** của Kịch bản chính (theo mẫu giáo trình PDF mục 3.2.1), không tách thành mục riêng và không xuất ảnh. Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ ... v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích. Module có **2 màn hình hiển thị riêng** (`gdTimTayDua.jsp`, `gdNhapHopDong.jsp`); trang chính của nhân viên `gdChinhNV.jsp` và giao diện đăng nhập là giao diện dùng chung của toàn hệ thống nên không phác thảo trong module.
+> Phác thảo giao diện đặt ngay dưới bước mà hệ thống hiển thị màn hình tương ứng. Module có **2 màn hình hiển thị riêng** (`gdTimTayDua.jsp`, `gdNhapHopDong.jsp`); trang chính `gdChinhNV.jsp` và màn hình đăng nhập dùng chung cho toàn hệ thống nên không phác thảo lại ở đây.
 
 **Kịch bản chính**
 
 1. Nhân viên (đã đăng nhập) chọn menu **Ký hợp đồng** trên trang chính `gdChinhNV.jsp`.
 2. Hệ thống hiển thị màn hình **Tìm tay đua** (`gdTimTayDua.jsp`): ô nhập "Tên tay đua" đang rỗng, nút [Tìm] luôn active, nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng và form thêm tay đua chưa hiện.
 
-   ```
-   +----------------------------------------------------------------------+
-   |  KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA — Bước 1: Tìm tay đua               |
-   +----------------------------------------------------------------------+
-   |  Tên tay đua: [                 ]  [ Tìm ]  [+ Thêm tay đua mới]     |
-   +----------------------------------------------------------------------+
-   |  Kết quả tìm kiếm:                                                   |
-   |  ( đang rỗng — kết quả hiện ở bước 4, mỗi dòng có nút [Chọn] )       |
-   +----------------------------------------------------------------------+
-   |  Form thêm tay đua mới ( chỉ hiện khi click [+ Thêm tay đua mới] )   |
-   |    Mã:        [ ANT                     ]                            |
-   |    Tên:       [ Andrea Kimi Antonelli   ]                            |
-   |    Ngày sinh: [ 25/08/2006              ]                            |
-   |    Quốc tịch: [ Ý                       ]                            |
-   |    Tiểu sử:   [                         ]                            |
-   |                                            [ Lưu tay đua ]           |
-   +----------------------------------------------------------------------+
-   ```
+   **Màn hình *Tìm tay đua* (`gdTimTayDua.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Tên tay đua | ô nhập | rỗng, con trỏ đặt sẵn |
+   | [Tìm] | nút | active |
+   | [+ Thêm tay đua mới] | nút | active |
+   | Kết quả tìm kiếm | bảng | rỗng — nội dung hiện ở bước 4, mỗi dòng có nút [Chọn] |
+   | Mã, Tên, Ngày sinh, Quốc tịch, Tiểu sử (form thêm tay đua) | ô nhập | chưa hiện, chỉ hiện khi click [+ Thêm tay đua mới] |
+   | [Lưu tay đua] | nút | chưa hiện; khi hiện thì chưa active cho tới khi nhập đủ mã, tên, ngày sinh, quốc tịch |
 
 3. Nhân viên nhập tên `Hamilton` và click [Tìm].
 4. Hệ thống hiển thị bảng kết quả tìm kiếm, mỗi dòng có nút [Chọn]; cột "Đội hiện tại" lấy từ hợp đồng có ngày kết thúc trống của tay đua:
@@ -100,22 +99,16 @@ NV -- UC
 5. Nhân viên click [Chọn] ở dòng `HAM`.
 6. Hệ thống hiển thị màn hình **Nhập hợp đồng** (`gdNhapHopDong.jsp`): vùng chỉ đọc ghi `HAM — Lewis Hamilton — 07/01/1985 — Anh`; ô chọn "Đội đua" (danh sách thả xuống gồm Ferrari, Red Bull, McLaren, Mercedes, Aston Martin, Williams) và ô "Ngày bắt đầu" đang rỗng; màn hình **không có ô nhập Ngày kết thúc** — hợp đồng mới luôn được lưu ở trạng thái mở, hệ thống tự đóng khi tay đua ký hợp đồng tiếp theo; nút [Lưu] **chưa được active**.
 
-   ```
-   +----------------------------------------------------------------------+
-   |  KÝ HỢP ĐỒNG TAY ĐUA VỚI ĐỘI ĐUA — Bước 2: Nhập thông tin hợp đồng   |
-   +----------------------------------------------------------------------+
-   |  Tay đua: ( HAM — Lewis Hamilton — 07/01/1985 — Anh )                |
-   +----------------------------------------------------------------------+
-   |  Hợp đồng cũ:                                                        |
-   |  ( bảng hợp đồng cũ — xem bảng ngay dưới )                           |
-   +----------------------------------------------------------------------+
-   |  Đội đua:      [ -- chọn đội đua --   v ]                            |
-   |  Ngày bắt đầu: [                        ]                            |
-   |  ( không có ô nhập Ngày kết thúc )                                   |
-   |  ( nút [ Lưu ] chưa active cho tới khi chọn đủ đội đua + ngày )      |
-   |                                                  [ Lưu ]             |
-   +----------------------------------------------------------------------+
-   ```
+   **Màn hình *Nhập hợp đồng* (`gdNhapHopDong.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Tay đua | vùng chỉ đọc | `HAM — Lewis Hamilton — 07/01/1985 — Anh` |
+   | Hợp đồng cũ | bảng | nội dung ở bảng ngay dưới |
+   | Đội đua | danh sách thả xuống | `-- chọn đội đua --`; 6 đội của mùa giải |
+   | Ngày bắt đầu | ô nhập | rỗng |
+   | Ngày kết thúc | — | không có trên màn hình — hợp đồng mới luôn lưu ở trạng thái mở |
+   | [Lưu] | nút | chưa active cho tới khi chọn đủ đội đua và ngày bắt đầu |
 
    Bảng "Hợp đồng cũ" của tay đua `HAM — Lewis Hamilton` lúc mới mở màn hình — **dòng có ngày kết thúc trống là hợp đồng đang hiệu lực**:
 
@@ -153,7 +146,7 @@ NV -- UC
 
 ## 3. Phân tích hoạt động — biểu đồ trạng thái
 
-Theo quy tắc của giáo trình (mục 3.2.4): **mỗi trạng thái ứng với một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác**; cung chuyển trạng thái là hành động của người dùng, nhãn viết trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công:
+Mỗi trạng thái ứng với một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác; cung chuyển trạng thái là hành động của người dùng, nhãn viết trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công:
 
 - `Hiển thị GD chính NV` —`[click Ký hợp đồng]`→ `Hiển thị GD tìm tay đua`
 - `Hiển thị GD tìm tay đua` có **cung tự quay** `[click Tìm]` (nhân viên tìm nhiều lần đến khi thấy tay đua cần ký)
@@ -178,7 +171,7 @@ S4 --> [*] : [click OK]
 @enduml
 ```
 
-> Biểu đồ hoạt động dạng flowchart nghiệp vụ trước đây được thay bằng biểu đồ trạng thái ở vị trí này. Luồng xử lý chi tiết theo từng trang (kèm các node quyết định cho từng ràng buộc nghiệp vụ `4a`, `9a`, `9b`, `10a` ở mục 2) được thể hiện ở **biểu đồ hoạt động pha thiết kế** (mục 6).
+> Luồng xử lý chi tiết theo từng trang (kèm các node quyết định cho từng ràng buộc nghiệp vụ `4a`, `9a`, `9b`, `10a` ở mục 2) được thể hiện ở **biểu đồ hoạt động pha thiết kế** (mục 6).
 
 ## 4. Biểu đồ lớp phân tích
 
@@ -219,7 +212,7 @@ Biểu đồ lớp phân tích của module chỉ có **2 tầng**: lớp biên 
 
 Sáu thuộc tính `-inMaTayDua`, `-inTenTayDuaMoi`, `-inNgaySinh`, `-inQuocTich`, `-inTieuSu`, `-subLuuTayDua` thuộc **form thêm tay đua** — form này nằm ngay trên màn hình **Tìm tay đua** (use case mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải một màn hình riêng, nên các thành phần của nó là thuộc tính của chính lớp biên `GDTimTayDua`. Nguyên tắc áp dụng: mỗi thành phần nhận dữ liệu vào / hiện dữ liệu ra / submit trên một màn hình đều phải có đúng một thuộc tính tương ứng ở lớp biên của màn hình đó.
 
-Ở pha phân tích, lớp thực thể **chưa có thuộc tính `id`** và **chưa khai báo kiểu dữ liệu**. Toàn bộ quan hệ giữa các lớp thực thể được giữ **thống nhất với biểu đồ lớp thực thể chung của nhóm** (`docs/03`), kể cả những lớp không tham gia trực tiếp vào module 1. Về phương thức, biểu đồ **chỉ vẽ những phương thức nghiệp vụ mà module 1 sử dụng**; các phương thức khác của cùng những lớp thực thể này (ví dụ `HopDong.getTayDuaHieuLuc()` của module 2, `KetQua.xepHangVaTinhDiem()` của module 3, `KetQua.tongHopCaNhan()` của module 4) được vẽ ở biểu đồ của module tương ứng — danh sách đầy đủ xem `docs/03`. Quy ước này dùng chung cho cả 4 module.
+Ở pha phân tích, lớp thực thể **chưa có thuộc tính `id`** và **chưa khai báo kiểu dữ liệu**. Toàn bộ quan hệ giữa các lớp thực thể được giữ **thống nhất với biểu đồ lớp thực thể chung của nhóm** (`docs/03`), kể cả những lớp không tham gia trực tiếp vào module 1. Về phương thức, biểu đồ **chỉ vẽ những phương thức nghiệp vụ mà module 1 sử dụng**; các phương thức khác của cùng những lớp thực thể này (ví dụ `HopDong.getTayDuaHieuLuc()` của module 2, `KetQua.xepHangVaTinhDiem()` của module 3, `KetQua.tongHopCaNhan()` của module 4) được vẽ ở biểu đồ của module tương ứng — danh sách đầy đủ xem `docs/03`.
 
 ```plantuml
 @startuml
@@ -338,73 +331,69 @@ Kiến trúc phân tầng theo mô hình MVC, trong đó **M** là các lớp th
 
 - **View (jsp):** `gdChinhNV.jsp` (trang chính của nhân viên), `gdTimTayDua.jsp` (màn hình hiển thị), `gdNhapHopDong.jsp` (màn hình hiển thị), `doLuuHopDong.jsp` (trang xử lý, không hiển thị)
 - **DAO:** lớp cha `DAO`; các lớp con `TayDuaDAO`, `DoiDuaDAO`, `HopDongDAO`
-- **Model:** `TayDua`, `DoiDua`, `HopDong`
+- **Model:** `TayDua`, `DoiDua`, `HopDong`, `ThanhVien`, `NhanVien` (đối tượng phiên của các trang jsp)
 
-Theo mẫu **Hình 4.4** của giáo trình PDF, mỗi lớp view có **thuộc tính kèm kiểu control** (`Select` — danh sách thả xuống, `Table` — bảng, `link` — liên kết/click dòng, `submit` — nút, `Text` — ô nhập, `Reset` — nút xóa nhập) và **thuộc tính ẩn**: đối tượng phiên (`-nv : NhanVien`) và dữ liệu truyền giữa các trang (`-tayDua : TayDua`, `-hopDong : HopDong`). Mỗi lớp `XxxDAO` có **constructor** và các phương thức với **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về — mảng `Xxx[]` cho thao tác đọc, `boolean` cho thao tác ghi); tất cả kế thừa lớp cha `DAO` để dùng chung kết nối cơ sở dữ liệu.
+Mỗi lớp view có **thuộc tính kèm kiểu control** (`Select` — danh sách thả xuống, `Table` — bảng, `link` — liên kết/click dòng, `submit` — nút, `Text` — ô nhập, `Reset` — nút xóa nhập) và **thuộc tính ẩn**: đối tượng phiên (`-nv : NhanVien`) và dữ liệu truyền giữa các trang (`-tayDua : TayDua`, `-hopDong : HopDong`). Mỗi lớp `XxxDAO` có **constructor** và các phương thức với **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về — mảng `Xxx[]` cho thao tác đọc, `boolean` cho thao tác ghi); tất cả kế thừa lớp cha `DAO` để dùng chung kết nối cơ sở dữ liệu.
 
 ```plantuml
 @startuml
-package view {
-  class "gdChinhNV.jsp" as gdChinhNV {
-    -kyHopDong : link
-    -nv : NhanVien
-  }
-  class "gdTimTayDua.jsp" as gdTimTayDua {
-    -tenTayDua : Text
-    -btnTim : submit
-    -tblTayDua : Table
-    -chonTayDua : link
-    -btnThemMoi : submit
-    -maTayDua : Text
-    -tenTayDuaMoi : Text
-    -ngaySinh : Text
-    -quocTich : Text
-    -tieuSu : Text
-    -btnLuuTayDua : submit
-    -nv : NhanVien
-  }
-  class "gdNhapHopDong.jsp" as gdNhapHopDong {
-    -tayDua : TayDua
-    -tblHopDongCu : Table
-    -doiDua : Select
-    -ngayBatDau : Text
-    -btnLuu : submit
-    -nv : NhanVien
-  }
-  class "doLuuHopDong.jsp" as doLuuHopDong {
-    -hopDong : HopDong
-    -nv : NhanVien
-  }
+class "gdChinhNV.jsp" as gdChinhNV {
+  -kyHopDong : link
+  -nv : NhanVien
 }
-package dao {
-  class DAO {
-    -con : Connection
-    +DAO()
-    +ketNoi()
-    +dongKetNoi()
-  }
-  class TayDuaDAO {
-    +TayDuaDAO()
-    +getTayDuaTheoTen(ten : String) : TayDua[]
-    +themTayDua(td : TayDua) : boolean
-  }
-  class DoiDuaDAO {
-    +DoiDuaDAO()
-    +getDSDoiDua() : DoiDua[]
-  }
-  class HopDongDAO {
-    +HopDongDAO()
-    +getHopDongCuaTayDua(tayDuaId : int) : HopDong[]
-    +kiemTraChongLan(tayDuaId : int, ngayBatDau : Date) : boolean
-    +dongHopDongCu(tayDuaId : int, ngayBatDau : Date) : boolean
-    +luuHopDong(hd : HopDong) : boolean
-  }
+class "gdTimTayDua.jsp" as gdTimTayDua {
+  -tenTayDua : Text
+  -btnTim : submit
+  -tblTayDua : Table
+  -chonTayDua : link
+  -btnThemMoi : submit
+  -maTayDua : Text
+  -tenTayDuaMoi : Text
+  -ngaySinh : Text
+  -quocTich : Text
+  -tieuSu : Text
+  -btnLuuTayDua : submit
+  -nv : NhanVien
 }
-package model {
-  class TayDua
-  class DoiDua
-  class HopDong
+class "gdNhapHopDong.jsp" as gdNhapHopDong {
+  -tayDua : TayDua
+  -tblHopDongCu : Table
+  -doiDua : Select
+  -ngayBatDau : Text
+  -btnLuu : submit
+  -nv : NhanVien
 }
+class "doLuuHopDong.jsp" as doLuuHopDong {
+  -hopDong : HopDong
+  -nv : NhanVien
+}
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class TayDuaDAO {
+  +TayDuaDAO()
+  +getTayDuaTheoTen(ten : String) : TayDua[]
+  +themTayDua(td : TayDua) : boolean
+}
+class DoiDuaDAO {
+  +DoiDuaDAO()
+  +getDSDoiDua() : DoiDua[]
+}
+class HopDongDAO {
+  +HopDongDAO()
+  +getHopDongCuaTayDua(tayDuaId : int) : HopDong[]
+  +kiemTraChongLan(tayDuaId : int, ngayBatDau : Date) : boolean
+  +dongHopDongCu(tayDuaId : int, ngayBatDau : Date) : boolean
+  +luuHopDong(hd : HopDong) : boolean
+}
+class TayDua
+class DoiDua
+class HopDong
+
+abstract class ThanhVien
+class NhanVien
+ThanhVien <|-- NhanVien
 DAO <|-- TayDuaDAO
 DAO <|-- DoiDuaDAO
 DAO <|-- HopDongDAO
@@ -422,11 +411,11 @@ HopDongDAO -- HopDong
 @enduml
 ```
 
-> Ghi chú: mỗi `XxxDAO` **chỉ vẽ những phương thức mà module 1 sử dụng**, đúng quy ước dùng chung của cả 4 module. Ví dụ `HopDongDAO.getTayDuaHieuLuc(doiDuaId, thoiGianChang)` do Module 2 sử dụng nên được vẽ ở biểu đồ lớp thiết kế của Module 2, không vẽ lại ở đây; danh sách đầy đủ phương thức của từng lớp xem `docs/03-lop-thuc-the-va-csdl.md`. Các thuộc tính `-maTayDua` … `-btnLuuTayDua` của `gdTimTayDua.jsp` thuộc **form thêm tay đua** đặt ngay trên trang tìm (UC mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải trang riêng.
+> Ghi chú: mỗi `XxxDAO` **chỉ vẽ những phương thức mà module 1 sử dụng**. Ví dụ `HopDongDAO.getTayDuaHieuLuc(doiDuaId, thoiGianChang)` do Module 2 sử dụng nên được vẽ ở biểu đồ lớp thiết kế của Module 2, không vẽ lại ở đây; danh sách đầy đủ phương thức của từng lớp xem `docs/03-lop-thuc-the-va-csdl.md`. Các thuộc tính `-maTayDua` … `-btnLuuTayDua` của `gdTimTayDua.jsp` thuộc **form thêm tay đua** đặt ngay trên trang tìm (UC mở rộng `Thêm tay đua` extend từ `Tìm tay đua`), không phải trang riêng.
 
 ## 6. Biểu đồ hoạt động (pha thiết kế)
 
-Theo quy tắc của giáo trình (mục 4.3.2 bước 1): **mỗi hành động trong biểu đồ hoạt động tương ứng một phương thức đã thiết kế trong biểu đồ lớp** (mục 5). Các hành động được gom thành từng khung (partition) **"Xử lí tại gdXxx.jsp"** theo đúng trang thực hiện — kể cả trang chính `gdChinhNV.jsp` và trang xử lý `doLuuHopDong.jsp`; lời gọi tầng dưới ghi rõ dạng `XxxDAO: tenHam()`; điều kiện chuyển ghi trong ngoặc vuông (`[click Lưu]`, `[lấy xong dữ liệu]`, `[lưu xong]`); các ràng buộc nghiệp vụ (`9a`, `9b`, `10a` ở mục 2) được kiểm tra bằng **node quyết định** trong khung của trang xử lý `doLuuHopDong.jsp`; ràng buộc `4a` (không tìm thấy tay đua → thêm mới) là node quyết định trong khung `gdTimTayDua.jsp`. Biểu đồ có node Bắt đầu và Kết thúc. Khung `gdChinhNV.jsp` xuất hiện ở **đầu** (mở chức năng) và **cuối** (quay về trang chính sau khi nhân viên click [OK] trên thông báo lưu thành công) — khớp với thuyết minh bước 44–46 và biểu đồ tuần tự ở mục 7.
+Mỗi hành động trong biểu đồ hoạt động tương ứng một phương thức đã thiết kế trong biểu đồ lớp (mục 5). Các hành động được gom thành từng khung (partition) **"Xử lí tại gdXxx.jsp"** theo đúng trang thực hiện — kể cả trang chính `gdChinhNV.jsp` và trang xử lý `doLuuHopDong.jsp`; lời gọi tầng dưới ghi rõ dạng `XxxDAO: tenHam()`; điều kiện chuyển ghi trong ngoặc vuông (`[click Lưu]`, `[lấy xong dữ liệu]`, `[lưu xong]`); các ràng buộc nghiệp vụ (`9a`, `9b`, `10a` ở mục 2) được kiểm tra bằng **node quyết định** trong khung của trang xử lý `doLuuHopDong.jsp`; ràng buộc `4a` (không tìm thấy tay đua → thêm mới) là node quyết định trong khung `gdTimTayDua.jsp`. Biểu đồ có node Bắt đầu và Kết thúc. Khung `gdChinhNV.jsp` xuất hiện ở **đầu** (mở chức năng) và **cuối** (quay về trang chính sau khi nhân viên click [OK] trên thông báo lưu thành công) — khớp với thuyết minh bước 44–46 và biểu đồ tuần tự ở mục 7.
 
 Ảnh export: `hinh/m1-hoatdong.png` — **vẽ lại** theo mẫu **Hình 4.9** của giáo trình PDF (khung "Xử lí tại gdXxx.jsp", node DAO ghi rõ tên hàm).
 
@@ -493,7 +482,7 @@ stop
 
 ### 7.1. Thuyết minh (kịch bản phiên bản 3)
 
-Kịch bản dưới đây là luồng chính (thành công) của trường hợp tay đua chuyển đội: Lewis Hamilton đang có hợp đồng hiệu lực với Mercedes, ký hợp đồng mới với Ferrari từ `01/01/2025`. Luồng mở đầu và kết thúc tại **trang chính của nhân viên** `gdChinhNV.jsp`; **luồng lưu** theo mẫu Hình 4.12 của giáo trình PDF: lớp thực thể `HopDong` tự gọi `setter()` đóng gói dữ liệu nhập **trước**, sau đó trang xử lý mới gọi các hàm của `HopDongDAO` (không gọi constructor thực thể ở luồng lưu). Mỗi dòng thuyết minh tương ứng đúng một message trong biểu đồ tuần tự ở mục 7.2.
+Kịch bản dưới đây là luồng chính (thành công) của trường hợp tay đua chuyển đội: Lewis Hamilton đang có hợp đồng hiệu lực với Mercedes, ký hợp đồng mới với Ferrari từ `01/01/2025`. Luồng mở đầu và kết thúc tại **trang chính của nhân viên** `gdChinhNV.jsp`; **luồng lưu**: lớp thực thể `HopDong` tự gọi `setter()` đóng gói dữ liệu nhập **trước**, sau đó trang xử lý mới gọi các hàm của `HopDongDAO` (không gọi constructor thực thể ở luồng lưu). Mỗi dòng thuyết minh tương ứng đúng một message trong biểu đồ tuần tự ở mục 7.2.
 
 1. Nhân viên click [Ký hợp đồng] trên trang chính `gdChinhNV.jsp`.
 2. Trang `gdChinhNV.jsp` gọi trang `gdTimTayDua.jsp`.
@@ -546,7 +535,7 @@ Kịch bản dưới đây là luồng chính (thành công) của trường h�
 
 ### 7.2. Biểu đồ tuần tự (Sequence) — luồng chính
 
-> Lifeline gồm: actor **Nhân viên** + 4 trang `.jsp` (kể cả trang chính `gdChinhNV.jsp` — lifeline **đầu và cuối** của biểu đồ) + 3 lớp `XxxDAO` + 3 lớp thực thể. **Không có lifeline CSDL, không có lifeline Controller, không có câu lệnh SQL trong message.** Nhãn message để cực ngắn (`goi`, `tra ve`, `hien thi`, `chon ...`, `click ...`); chỉ **self-call** mới ghi tên hàm. Message được đánh số tự động bằng `autonumber` (trong Visual Paradigm bật *Show sequence number*). **Luồng đọc** giữ chuỗi 7 message (DAO self-call + Entity constructor); **luồng lưu** theo mẫu Hình 4.12: Entity self-call `setter()` đóng gói trước, sau đó DAO self-call `kiemTraChongLan()` / `dongHopDongCu()` / `luuHopDong()` — không gọi Entity constructor. Kết thúc theo mẫu trang chính: `thong bao thanh cong` → `click OK` → `goi` → `hien thi`. Chỉ vẽ luồng chính; các ngoại lệ đã mô tả ở mục 2 và mục 6, không đưa vào biểu đồ tuần tự.
+> Lifeline gồm: actor **Nhân viên** + 4 trang `.jsp` (kể cả trang chính `gdChinhNV.jsp` — lifeline **đầu và cuối** của biểu đồ) + 3 lớp `XxxDAO` + 3 lớp thực thể. **Không có lifeline CSDL, không có lifeline Controller, không có câu lệnh SQL trong message.** Nhãn message để cực ngắn (`goi`, `tra ve`, `hien thi`, `chon ...`, `click ...`); chỉ **self-call** mới ghi tên hàm. Message được đánh số tự động. **Luồng đọc** giữ chuỗi 7 message (DAO self-call + Entity constructor); **luồng lưu**: Entity self-call `setter()` đóng gói trước, sau đó DAO self-call `kiemTraChongLan()` / `dongHopDongCu()` / `luuHopDong()` — không gọi Entity constructor. Kết thúc theo mẫu trang chính: `thong bao thanh cong` → `click OK` → `goi` → `hien thi`. Chỉ vẽ luồng chính; các ngoại lệ đã mô tả ở mục 2 và mục 6, không đưa vào biểu đồ tuần tự.
 
 ```plantuml
 @startuml
@@ -655,7 +644,7 @@ end
 
 ## 8. Test case
 
-> Xây dựng theo quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2. Test case gom trong **một bảng 4 cột** `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm bằng dòng tiêu đề nhóm in đậm giữa bảng: **Giao diện** (2 ca/màn hình), **Chức năng** (2 ca/màn hình — kết quả mong muốn đối chiếu trực tiếp các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, dữ liệu thật F1 2025, kết quả mong muốn ghi cả hiệu ứng lên CSDL). Mã test case: `KHD_n` (Ký hợp đồng).
+> Xây dựng theo quy trình 4 bước. Test case gom trong **một bảng 4 cột** `Mã | Mục đích kiểm thử | Các bước thực hiện | Kết quả mong muốn`, chia 3 nhóm bằng dòng tiêu đề nhóm in đậm giữa bảng: **Giao diện** (2 ca/màn hình), **Chức năng** (2 ca/màn hình — kết quả mong muốn đối chiếu trực tiếp các bảng `tblXxx`), **Luồng nghiệp vụ** (end-to-end, dữ liệu thật F1 2025, kết quả mong muốn ghi cả hiệu ứng lên CSDL). Mã test case: `KHD_n` (Ký hợp đồng).
 
 ### 8.1. Data test (bước 3 quy trình test)
 

@@ -38,7 +38,7 @@ Mỗi người làm đủ 8 mục sau cho module của mình, **đánh số đú
 7. **Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự (sequence)**
 8. Test case
 
-> **Ghi chú mục 2:** nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo** — khung bố cục bằng ký tự (code fence thường) kèm bảng dữ liệu mẫu — và đặt **xen giữa các bước của Kịch bản chính**: mỗi khi hệ thống hiển thị một màn hình thì chèn khung phác thảo và/hoặc bảng dữ liệu **ngay dưới bước đó**, rồi viết tiếp bước kế. **Không có mục "Thiết kế giao diện" riêng ở bất kỳ cấp nào** (kể cả mục con). Căn cứ: giáo trình PDF mục 3.2.1 — kịch bản mẫu của thầy nhúng thẳng bảng dữ liệu vào từng bước, không có mục giao diện riêng và không có ảnh mockup rời.
+> **Ghi chú mục 2:** nhóm chốt **không vẽ mockup giao diện và không xuất ảnh giao diện**. Giao diện chỉ trình bày ở mức **phác thảo bằng bảng markdown** (bảng thành phần màn hình + bảng dữ liệu mẫu, **không dùng khung ký tự `+---+`**) và đặt **xen giữa các bước của Kịch bản chính**: mỗi khi hệ thống hiển thị một màn hình thì chèn bảng phác thảo **ngay dưới bước đó**, rồi viết tiếp bước kế. **Không có mục "Thiết kế giao diện" riêng ở bất kỳ cấp nào** (kể cả mục con). Căn cứ: giáo trình PDF mục 3.2.1 — kịch bản mẫu của thầy nhúng thẳng bảng dữ liệu vào từng bước, không có mục giao diện riêng và không có ảnh mockup rời.
 
 > **Ghi chú mục 7:** yêu cầu của giảng viên ghi rõ *"**Thuyết minh và** vẽ biểu đồ tuần tự cho UC"*. Thuyết minh chính là **kịch bản phiên bản 3** — danh sách đánh số 1, 2, 3… mô tả từng lượt gọi giữa trang `.jsp`, lớp `DAO` và lớp thực thể; **số dòng thuyết minh phải khớp số message trong biểu đồ tuần tự**. Không được để hình đứng trơ một mình với caption.
 
@@ -46,7 +46,7 @@ Mỗi người làm đủ 8 mục sau cho module của mình, **đánh số đú
 
 > **Ghi chú mục 4 và 5** (2 biểu đồ lớp của mỗi module, theo pipeline lecture):
 > - **Biểu đồ lớp phân tích của module** = **lớp biên `GDxxx`** (chỉ có **thuộc tính**, không có phương thức; tên thuộc tính theo prefix `in` / `out` / `inout` / `sub` / `outsub`) + **lớp thực thể** (mang các **phương thức nghiệp vụ**). Chỉ đúng **2 tầng này**, **không có lớp Control/Controller**, **không có stereotype** `<<boundary>>` / `<<control>>` / `<<entity>>` (hộp lớp để trơn, phân biệt tầng bằng tiền tố tên `GD…`).
-> - **Biểu đồ lớp thiết kế của module** = **trang `.jsp`** (tầng giao diện) + **lớp `XxxDAO`** (tầng truy xuất dữ liệu, đều kế thừa lớp cha `DAO`) + **lớp `model`** (chính là các lớp thực thể). Vẽ theo mẫu **Hình 4.4 giáo trình PDF**: thuộc tính view kèm kiểu control (`Text`/`Select`/`Table`/`link`/`submit`/`Reset`), DAO có constructor + phương thức đầy đủ chữ ký. Vẫn gọi được là mô hình MVC với **M** = model, **V** = `.jsp`, **C** = các `DAO`, nhưng **tuyệt đối không có lớp `XxxController`**.
+> - **Biểu đồ lớp thiết kế của module** = **trang `.jsp`** (tầng giao diện) + **lớp `XxxDAO`** (tầng truy xuất dữ liệu, đều kế thừa lớp cha `DAO`) + **lớp `model`** (chính là các lớp thực thể). Vẽ theo mẫu **Hình 4.4 giáo trình PDF**: tên lớp view là **tên trang kèm đuôi `.jsp`** (`gdChinhNV.jsp`), thuộc tính view kèm kiểu control (`Text`/`Select`/`Table`/`link`/`submit`/`Reset`), DAO có constructor + phương thức đầy đủ chữ ký, lớp cha `DAO` chỉ gồm `-con : Connection` và `+DAO()`. **Không vẽ khung package `view`/`dao`/`model` trong biểu đồ lớp** — ba tầng chỉ xếp theo hàng; khung package chỉ xuất hiện ở **biểu đồ gói** (Hình 4.15, `docs/03` mục 6). Vẫn gọi được là mô hình MVC với **M** = model, **V** = `.jsp`, **C** = các `DAO`, nhưng **tuyệt đối không có lớp `XxxController`**.
 > - Quan hệ trong cả hai biểu đồ vẽ bằng **đường kẻ trơn / hình thoi rỗng ◇ / hình thoi đặc ♦ / tam giác rỗng ▷**, **không dùng mũi tên định hướng**.
 
 ## 3. Quy trình làm việc với Visual Paradigm
@@ -72,7 +72,12 @@ Sau khi vẽ xong trong VP → **export PNG/hình** vào thư mục của thành
 | **Tiền điều kiện** | Điều kiện trước khi chạy |
 | **Hậu điều kiện** | Kết quả sau khi chạy thành công |
 
-**(b) Khối `**Kịch bản chính**`** — danh sách đánh số 1., 2., 3.… mỗi bước một dòng (người dùng ↔ hệ thống). Khi một bước là *"hệ thống hiển thị màn hình X"* thì **ngay dưới bước đó** chèn **khung phác thảo** màn hình (code fence thường, **thụt vào 3 dấu cách** để nằm trong item danh sách) và/hoặc **bảng markdown** chứa dữ liệu mẫu thật, rồi viết tiếp bước kế. Ví dụ:
+**(b) Khối `**Kịch bản chính**`** — danh sách đánh số 1., 2., 3.… mỗi bước một dòng (người dùng ↔ hệ thống). Khi một bước là *"hệ thống hiển thị màn hình X"* thì **ngay dưới bước đó** chèn phác thảo màn hình, rồi viết tiếp bước kế. Phác thảo **luôn viết bằng bảng markdown** (thụt vào 3 dấu cách để nằm trong item danh sách) — **không dùng khung ký tự `+---+`** vì khung này lệch ngay khi đổi font hoặc đổi độ rộng cột. Dùng hai loại bảng:
+
+- **bảng thành phần màn hình** — ba cột cố định `Thành phần | Kiểu | Trạng thái khi mới mở màn`;
+- **bảng dữ liệu mẫu** — nội dung thật của bảng/danh sách mà màn hình hiển thị.
+
+Ví dụ:
 
 ```
 **Kịch bản chính**
@@ -80,11 +85,13 @@ Sau khi vẽ xong trong VP → **export PNG/hình** vào thư mục của thành
 1. Nhân viên (đã đăng nhập) chọn menu **Ký hợp đồng** trên trang chính.
 2. Hệ thống hiển thị màn hình **Tìm tay đua** (`gdTimTayDua.jsp`): ô nhập "Tên tay đua" đang rỗng, nút [Tìm], nút [+ Thêm tay đua mới]; bảng kết quả đang rỗng.
 
-   +--------------------------------------------------------------+
-   |  KÝ HỢP ĐỒNG — Bước 1: Tìm tay đua                           |
-   |  Tên tay đua: [                  ]  [ Tìm ]  [+ Thêm mới ]   |
-   |  ( bảng kết quả — đang rỗng )                                |
-   +--------------------------------------------------------------+
+   **Màn hình *Tìm tay đua* (`gdTimTayDua.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Tên tay đua | ô nhập | rỗng, con trỏ đặt sẵn |
+   | [Tìm] | nút | active |
+   | Kết quả tìm kiếm | bảng | rỗng — nội dung hiện ở bước 4 |
 
 3. Nhân viên nhập `Hamilton` và click [Tìm].
 4. Hệ thống hiển thị bảng kết quả tìm kiếm:
@@ -102,14 +109,12 @@ Sau khối Ngoại lệ đặt **một dòng ghi chú ánh xạ lớp biên** (g
 
 > **Ánh xạ sang lớp biên:** màn *Tìm tay đua* (`GDTimTayDua`) — ô "Tên tay đua" = `-inTenTayDua`, nút [Tìm] = `-subTim`, bảng kết quả = `-outsubDSTayDua`. Màn *Nhập hợp đồng* (`GDNhapHopDong`) — …
 
-**Vì sao tách 3 khối?** Markdown **không lồng được bảng vào ô của một bảng khác**, nên không thể viết thẳng bảng dữ liệu bên trong ô "Kịch bản chính" của bảng đặc tả. Khi sinh file Word bằng `docs/build-baocao-docx.py` (mục 4.3), script **tự ghép 3 khối lại thành đúng bảng 6 dòng như mẫu của thầy**, với bảng dữ liệu và khung phác thảo **lồng trong ô "Kịch bản chính"**. Vì vậy phải giữ đúng thứ tự và đúng tên hai nhãn `**Kịch bản chính**` / `**Ngoại lệ**` để script nhận diện.
+**Vì sao tách 3 khối?** Markdown **không lồng được bảng vào ô của một bảng khác**, nên không thể viết thẳng bảng dữ liệu bên trong ô "Kịch bản chính" của bảng đặc tả. Khi sinh file Word bằng `docs/build-baocao-docx.py` (mục 4.3), script **tự ghép 3 khối lại thành đúng bảng 6 dòng như mẫu của thầy**, với các bảng phác thảo và bảng dữ liệu **lồng trong ô "Kịch bản chính"**. Vì vậy phải giữ đúng thứ tự và đúng tên hai nhãn `**Kịch bản chính**` / `**Ngoại lệ**` để script nhận diện.
 
 > Bản Word sinh ra phải là bảng **đúng 6 dòng, đúng thứ tự** `Use case | Actor | Tiền điều kiện | Hậu điều kiện | Kịch bản chính | Ngoại lệ`. Không thêm dòng "Luồng phụ", "Thuộc tính", "Ràng buộc" vào bảng 4 dòng — nội dung đó chuyển thành ngoại lệ đánh số theo bước, hoặc ghi chú sau khối Ngoại lệ.
-> Kịch bản chính phải **có dữ liệu thật và trạng thái nút** (dùng bộ dữ liệu mẫu ở `docs/03` mục 5), ví dụ: *"Nhân viên nhập `Hamilton` và click Tìm"*, *"nút [Lưu] chưa được active"*; khung phác thảo và bảng chèn kèm cũng dùng chính bộ dữ liệu đó.
+> Kịch bản chính phải **có dữ liệu thật và trạng thái nút** (dùng bộ dữ liệu mẫu ở `docs/03` mục 5), ví dụ: *"Nhân viên nhập `Hamilton` và click Tìm"*, *"nút [Lưu] chưa được active"*; các bảng phác thảo chèn kèm cũng dùng chính bộ dữ liệu đó.
 
 ### 4.2. Mẫu Test case (theo Bảng 6.7 giáo trình PDF — 4 cột, 3 nhóm)
-
-Đầu mục test case của mỗi module ghi rõ: *"Xây dựng theo quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2."*
 
 Mỗi module viết **MỘT bảng 4 cột**:
 
@@ -221,45 +226,33 @@ Lectures/                         ← tài liệu giảng viên (tham khảo)
 
 ### 7.2. Ảnh của từng module (mỗi module đúng **6 ảnh**)
 
-> **Mẫu hình bắt buộc (giáo trình PDF `BG HP TTTN 2 CNPM`):** biểu đồ **trạng thái** vẽ theo mẫu **Hình 3.9/3.11**; biểu đồ **hoạt động** vẽ theo mẫu **Hình 4.9** (khung `Xử lí tại gdXxx.jsp` cho từng trang, node DAO tách riêng); biểu đồ **lớp thiết kế** vẽ theo mẫu **Hình 4.4** (3 tầng jsp/DAO/model, DAO kế thừa `DAO`, chữ ký đầy đủ); biểu đồ **tuần tự** vẽ theo mẫu **Hình 4.10/4.12** (đánh số message, trang chính mở đầu + kết thúc, luồng lưu có `setter()`). Mọi ảnh hoạt động / tuần tự / lớp thiết kế đã vẽ trước đây đều phải **vẽ lại** theo các mẫu này.
+> **Mẫu hình bắt buộc (giáo trình PDF `BG HP TTTN 2 CNPM`):** biểu đồ **UC chi tiết** vẽ theo mẫu **Hình 3.2/3.3/3.4** — không có khung hệ thống; có phân cấp actor `Thành viên` → `Nhân viên`/`Quản lý`; UC `Đăng nhập` gắn với actor cha, UC `NV đăng nhập`/`QL đăng nhập` kế thừa nó và được UC chính include. Biểu đồ **trạng thái** theo mẫu **Hình 3.9/3.11**. Biểu đồ **lớp phân tích** theo mẫu **Hình 3.6** — lớp biên `GDXxx` chỉ có thuộc tính, tiền tố `in/out/sub/inout/outsub`; lớp thực thể không `id`, không kiểu dữ liệu. Biểu đồ **lớp thiết kế** theo mẫu **Hình 4.4** — **không dùng khung package**, ba tầng xếp theo hàng `gdXxx.jsp` → `XxxDAO` → lớp thực thể; lớp cha `DAO` chỉ có `-con : Connection` và `+DAO()`. Biểu đồ **hoạt động** theo mẫu **Hình 4.9** — khung `Xử lí tại gdXxx.jsp` cho từng trang, node DAO tách riêng. Biểu đồ **tuần tự** theo mẫu **Hình 4.10/4.12** — đánh số message, trang chính mở đầu và kết thúc, luồng lưu có `setter()`.
 
-| Module | Tên file | Biểu đồ | Trạng thái |
+Toàn bộ ảnh cũ trong `hinh/` sẽ bị bỏ và vẽ lại từ đầu theo blueprint PlantUML trong `noi-dung.md` của từng module. Bản render tham chiếu của mỗi blueprint có sẵn ở `hinh/ref/` — mở ra xem rồi vẽ lại trong Visual Paradigm.
+
+| Module | Tên file | Biểu đồ | Blueprint |
 |---|---|---|---|
-| M1 | `m1-uc-chitiet.png` | UC chi tiết | đã vẽ — **VẼ LẠI** (giữ UC con `Đăng nhập` include theo giáo trình PDF; màn `GDKyHopDong` đổi thành trang chính `GDChinhNV` — không sinh UC con; `Thêm tay đua` extend từ `Tìm tay đua`) |
-| M1 | `m1-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
-| M1 | `m1-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | đã vẽ — **VẼ LẠI** (theo mẫu Hình 4.9: khung theo từng trang jsp; tách từng ràng buộc thành một node quyết định riêng) |
-| M1 | `m1-lop-phantich.png` | Lớp phân tích (lớp biên + lớp thực thể) | chưa vẽ |
-| M1 | `m1-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | chưa vẽ |
-| M1 | `m1-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | chưa vẽ |
-| M2 | `m2-uc-chitiet.png` | UC chi tiết | đã vẽ — **VẼ LẠI** (giữ UC con `Đăng nhập` include theo giáo trình PDF; tách thành 2 UC con `Chọn chặng và đội` + `Chọn tay đua đăng ký`) |
-| M2 | `m2-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
-| M2 | `m2-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mẫu Hình 4.9) | chưa vẽ |
-| M2 | `m2-lop-phantich.png` | Lớp phân tích | chưa vẽ |
-| M2 | `m2-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | chưa vẽ |
-| M2 | `m2-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | chưa vẽ |
-| M3 | `m3-uc-chitiet.png` | UC chi tiết | chưa vẽ |
-| M3 | `m3-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
-| M3 | `m3-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế (mẫu Hình 4.9) | chưa vẽ |
-| M3 | `m3-lop-phantich.png` | Lớp phân tích | chưa vẽ |
-| M3 | `m3-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | chưa vẽ |
-| M3 | `m3-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | chưa vẽ |
-| M4 | `m4-uc-chitiet.png` | UC chi tiết | đã vẽ — **VẼ LẠI** (giữ UC con `Đăng nhập` include theo giáo trình PDF; đổi tên UC con thành `Xem bảng tổng sắp` + `Nhập thưởng và lưu`; thêm UC con `Xem chi tiết theo chặng` extend từ `Xem bảng tổng sắp`) |
-| M4 | `m4-trangthai.png` | Biểu đồ trạng thái (mẫu Hình 3.9) | chưa vẽ |
-| M4 | `m4-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | đã vẽ — **VẼ LẠI** (theo mẫu Hình 4.9; biểu đồ cũ quá sơ sài: tách từng ràng buộc thành một node quyết định riêng, thêm nhánh countback + tổng thời gian) |
-| M4 | `m4-lop-phantich.png` | Lớp phân tích | chưa vẽ |
-| M4 | `m4-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`, mẫu Hình 4.4) | đã vẽ — **VẼ LẠI** (bản cũ có lớp `QuyetToanController` — phải bỏ tầng Controller, thay bằng `.jsp` / `DAO` kế thừa lớp cha `DAO` / `model`) |
-| M4 | `m4-tuantu.png` | Biểu đồ tuần tự (mẫu Hình 4.10/4.12) | đã vẽ — **VẼ LẠI** (bản cũ có lifeline Controller và lifeline CSDL với câu lệnh SQL — phải bỏ cả hai, thay bằng lifeline `.jsp` + `DAO` + lớp thực thể, có đánh số message) |
-
-### 7.3. Tóm tắt các ảnh đã vẽ nhưng PHẢI VẼ LẠI
-
-| Ảnh | Lý do |
-|---|---|
-| `Module 4 - Thanh/hinh/m4-lop-mvc.png` | còn lớp `QuyetToanController` — sai kiến trúc, không có tầng Controller |
-| `Module 4 - Thanh/hinh/m4-tuantu.png` | còn lifeline Controller và lifeline CSDL kèm SQL trong message |
-| `Module 4 - Thanh/hinh/m4-uc-chitiet.png` | tên UC con đã đổi, thiếu UC con `Xem chi tiết theo chặng` (extend); UC con `Đăng nhập` giữ lại (include) theo giáo trình PDF |
-| `Module 4 - Thanh/hinh/m4-hoatdong.png` | biểu đồ quá sơ sài, thiếu nhánh countback; vẽ lại theo mẫu Hình 4.9 (khung theo từng trang jsp) |
-| `Module 2 - Kin/hinh/m2-uc-chitiet.png` | đã tách thành 2 UC con theo 2 màn hình; UC con `Đăng nhập` giữ lại (include) theo giáo trình PDF |
-| `Module 1 - Quan/hinh/m1-uc-chitiet.png` | màn `GDKyHopDong` đổi thành trang chính `GDChinhNV` (không sinh UC con), quan hệ extend gắn sai UC gốc, thiếu system boundary; UC con `Đăng nhập` giữ lại (include) theo giáo trình PDF |
-| `Module 1 - Quan/hinh/m1-hoatdong.png` | chưa tách từng ràng buộc thành một node quyết định riêng; vẽ lại theo mẫu Hình 4.9 (khung theo từng trang jsp) |
-| `docs/hinh/uc-tongquat.png` | thiếu UC trừu tượng `Quản lý danh mục`, thiếu actor trừu tượng, còn mũi tên và quan hệ include thừa |
-| `docs/hinh/lop-thucthe.png` | bị **thay thế** bởi `lop-thucthe-phantich.png` + `lop-thucthe-thietke.png` |
+| M1 | `m1-uc-chitiet.png` | UC chi tiết | `Module 1 - Quan/noi-dung.md` mục 1 |
+| M1 | `m1-trangthai.png` | Biểu đồ trạng thái | mục 3 |
+| M1 | `m1-lop-phantich.png` | Lớp phân tích (lớp biên + lớp thực thể) | mục 4 |
+| M1 | `m1-lop-mvc.png` | Lớp thiết kế (`.jsp` / `DAO` / `model`) | mục 5 |
+| M1 | `m1-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | mục 6 |
+| M1 | `m1-tuantu.png` | Biểu đồ tuần tự | mục 7 |
+| M2 | `m2-uc-chitiet.png` | UC chi tiết | `Module 2 - Kin/noi-dung.md` mục 1 |
+| M2 | `m2-trangthai.png` | Biểu đồ trạng thái | mục 3 |
+| M2 | `m2-lop-phantich.png` | Lớp phân tích | mục 4 |
+| M2 | `m2-lop-mvc.png` | Lớp thiết kế | mục 5 |
+| M2 | `m2-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | mục 6 |
+| M2 | `m2-tuantu.png` | Biểu đồ tuần tự | mục 7 |
+| M3 | `m3-uc-chitiet.png` | UC chi tiết | `Module 3 - Kiet/noi-dung.md` mục 1 |
+| M3 | `m3-trangthai.png` | Biểu đồ trạng thái | mục 3 |
+| M3 | `m3-lop-phantich.png` | Lớp phân tích | mục 4 |
+| M3 | `m3-lop-mvc.png` | Lớp thiết kế | mục 5 |
+| M3 | `m3-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | mục 6 |
+| M3 | `m3-tuantu.png` | Biểu đồ tuần tự | mục 7 |
+| M4 | `m4-uc-chitiet.png` | UC chi tiết | `Module 4 - Thanh/noi-dung.md` mục 1 |
+| M4 | `m4-trangthai.png` | Biểu đồ trạng thái | mục 3 |
+| M4 | `m4-lop-phantich.png` | Lớp phân tích | mục 4 |
+| M4 | `m4-lop-mvc.png` | Lớp thiết kế | mục 5 |
+| M4 | `m4-hoatdong.png` | Biểu đồ hoạt động — pha thiết kế | mục 6 |
+| M4 | `m4-tuantu.png` | Biểu đồ tuần tự | mục 7 |

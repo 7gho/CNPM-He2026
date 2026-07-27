@@ -620,8 +620,6 @@ hide circle
 class DAO {
   -con : Connection
   +DAO()
-  +ketNoi()
-  +dongKetNoi()
 }
 class TayDuaDAO {
 }

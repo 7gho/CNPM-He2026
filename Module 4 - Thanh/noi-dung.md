@@ -15,7 +15,7 @@
 
 > **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
 >
-> **Lưu ý:** bốn ảnh đã export trước đây (`m4-uc-chitiet`, `m4-hoatdong`, `m4-lop-mvc`, `m4-tuantu`) đều **phải vẽ lại** vì các biểu đồ tương ứng đã đổi; `m4-trangthai.png` là ảnh mới.
+> **Lưu ý:** toàn bộ 6 ảnh vẽ mới theo blueprint PlantUML bên dưới; bản render tham chiếu có sẵn ở `hinh/ref/`.
 >
 > Giao diện **không cần vẽ và không cần xuất ảnh** — đã trình bày dạng phác thảo **xen ngay giữa các bước của Kịch bản chính** ở mục 2.
 >
@@ -41,7 +41,7 @@ Module có 3 màn hình hiển thị nghiệp vụ (ngoài trang chính của qu
 | Bảng tổng sắp (chọn chặng từ danh sách) | `Xem bảng tổng sắp` | include | `GDXepHang` | `gdXepHang.jsp` |
 | Chi tiết theo chặng (drill-down 1 dòng) | `Xem chi tiết theo chặng` | **extend từ `Xem bảng tổng sắp`** | `GDChiTietXepHang` | `gdChiTietXepHang.jsp` |
 | Trao giải | `Nhập thưởng và lưu` | include | `GDTraoGiai` | `gdTraoGiai.jsp` |
-| — (giao diện dùng chung toàn hệ thống) | `Đăng nhập` | include | — | — |
+| — (dùng chung toàn hệ thống) | `QL đăng nhập` — kế thừa `Đăng nhập` | include | — | — |
 | — (trang xử lý, không hiển thị tương tác) | — | — | — | `doLuuTraoGiai.jsp` |
 
 UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp (đề gốc bắt buộc có drill-down này). Tên UC cũ `Tổng hợp xếp hạng` bị **đổi thành `Xem bảng tổng sắp`**: "tổng hợp/xếp hạng" là hành động của **hệ thống**, còn tên UC bắt buộc phải là động từ chỉ hành động của **actor**.
@@ -49,19 +49,26 @@ UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản l
 ```plantuml
 @startuml
 left to right direction
+
+actor "Thành viên" as TV
 actor "Quản lý" as QL
-rectangle "Hệ thống quản lý giải đua F1" {
-  usecase "Quyết toán và trao giải cuối mùa" as UC
-  usecase "Đăng nhập" as DN
-  usecase "Xem bảng tổng sắp" as XH
-  usecase "Xem chi tiết theo chặng" as CT
-  usecase "Nhập thưởng và lưu" as NT
-  UC ..> DN : include
-  UC ..> XH : include
-  UC ..> NT : include
-  CT ..> XH : extend
-}
+TV <|-- QL
+
+usecase "Đăng nhập" as DN
+usecase "QL đăng nhập" as QLDN
+usecase "Quyết toán và trao giải\ncuối mùa" as UC
+usecase "Xem bảng tổng sắp" as XH
+usecase "Nhập thưởng và lưu" as NT
+usecase "Xem chi tiết theo chặng" as CT
+
+TV -- DN
 QL -- UC
+
+DN <|-- QLDN
+UC ..> QLDN : <<include>>
+UC ..> XH : <<include>>
+UC ..> NT : <<include>>
+CT ..> XH : <<extend>>
 @enduml
 ```
 
@@ -76,30 +83,23 @@ QL -- UC
 | **Tiền điều kiện** | Quản lý đã đăng nhập vào hệ thống; mùa giải `FIA Formula One World Championship 2025` đang ở trạng thái `Đã kết thúc` |
 | **Hậu điều kiện** | Quyết định trao giải của mùa giải (giải cá nhân hạng 1–3, giải đồng đội hạng 1–3 kèm tiền thưởng) được lưu vào CSDL; danh sách trao giải được in ra |
 
-> **Phác thảo giao diện đặt xen ngay dưới bước hiển thị tương ứng** của Kịch bản chính (theo mẫu giáo trình PDF mục 3.2.1), không tách thành mục riêng và không vẽ mockup, không xuất ảnh. Module có 3 màn hình hiển thị nghiệp vụ, khớp 1-1 với 3 UC con màn hình và 3 lớp biên ở mục 1 và mục 4; trang chính `gdChinhQL.jsp` là trang chủ chung của hệ thống nên không phác thảo riêng, trang `doLuuTraoGiai.jsp` là trang xử lý (không hiển thị tương tác) nên cũng không phác thảo. Dữ liệu minh hoạ lấy từ bộ dữ liệu mẫu mùa 2025 (`docs/03` mục 5). Quy ước ký hiệu trong khung: `[ ... ]` = ô nhập hoặc nút; `[ ... v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích. Nhãn chặng dùng **thống nhất một dạng duy nhất** `Mã - Tên chặng (Địa điểm)` ở mọi nơi trong tài liệu.
+> Phác thảo giao diện đặt ngay dưới bước mà hệ thống hiển thị màn hình tương ứng. Module có **3 màn hình hiển thị**, khớp 1-1 với 3 lớp biên ở mục 4; trang chính `gdChinhQL.jsp` dùng chung cho toàn hệ thống và trang xử lý `doLuuTraoGiai.jsp` không hiển thị tương tác nên không phác thảo. Nhãn chặng dùng thống nhất một dạng `Mã - Tên chặng (Địa điểm)`.
 
 **Kịch bản chính**
 
 1. Quản lý (đã đăng nhập) click chức năng **Quyết toán mùa giải** trên trang chính `gdChinhQL.jsp`.
 2. Hệ thống lấy mùa giải hiện tại `FIA Formula One World Championship 2025` và hiển thị màn **Bảng tổng sắp** (`gdXepHang.jsp`): danh sách thả xuống **Chặng** gồm 6 chặng của mùa giải, vùng chỉ đọc hiện tình trạng mùa giải (`6/6 chặng đã có kết quả`), hai vùng bảng *Xếp hạng cá nhân* và *Xếp hạng đội* (mỗi dòng là một liên kết click được), nút [Tiếp tục] **chưa được active**.
 
-   ```
-   +--------------------------------------------------------------------------------+
-   |  BẢNG TỔNG SẮP — FIA Formula One World Championship 2025                       |
-   +--------------------------------------------------------------------------------+
-   |  Chặng: [ R24 - Abu Dhabi Grand Prix (Yas Marina)  v ]                         |
-   |  ( tình trạng mùa giải: 6/6 chặng đã có kết quả )                              |
-   +--------------------------------------------------------------------------------+
-   |  Xếp hạng cá nhân:                                                             |
-   |  ( bảng 1 bên dưới — mỗi dòng là một liên kết click được )                     |
-   +--------------------------------------------------------------------------------+
-   |  Xếp hạng đội:                                                                 |
-   |  ( bảng 2 bên dưới — mỗi dòng là một liên kết click được )                     |
-   +--------------------------------------------------------------------------------+
-   |  ( Xếp hạng: tổng điểm giảm dần → countback → tổng thời gian tăng dần )        |
-   |                                                            [ Tiếp tục ]        |
-   +--------------------------------------------------------------------------------+
-   ```
+   **Màn hình *Bảng tổng sắp* (`gdXepHang.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Mùa giải | vùng chỉ đọc | `FIA Formula One World Championship 2025` |
+   | Chặng | danh sách thả xuống | 6 chặng của mùa giải; nội dung ở bảng ngay dưới |
+   | Tình trạng mùa giải | vùng chỉ đọc | `6/6 chặng đã có kết quả` |
+   | Xếp hạng cá nhân | bảng, mỗi dòng là liên kết | nội dung ở bảng 1 của bước 4 |
+   | Xếp hạng đội | bảng, mỗi dòng là liên kết | nội dung ở bảng 2 của bước 4 |
+   | [Tiếp tục] | nút | chưa active, chỉ active khi chặng đang chọn là chặng cuối và đủ 6/6 chặng có kết quả |
 
    Nội dung danh sách thả xuống **Chặng** — 6 chặng của mùa giải 2025 sắp xếp tăng dần theo thời gian, mỗi mục hiển thị dạng `Mã - Tên chặng (Địa điểm)` (đúng các cột `ma`, `ten`, `diaDiem` của `tblChangDua` ở mục 8.1):
 
@@ -134,25 +134,15 @@ QL -- UC
 5. Quản lý xem bảng tổng sắp và click [Tiếp tục].
 6. Hệ thống hiển thị màn **Trao giải** (`gdTraoGiai.jsp`): 6 ô nhập mức thưởng (cá nhân hạng 1/2/3, đội hạng 1/2/3) **đang rỗng**; bảng *Danh sách trao giải* có 6 dòng (cá nhân hạng 1–3, đội hạng 1–3), 4 cột đầu đã có sẵn dữ liệu top 3 cá nhân và top 3 đội, **cột Tiền thưởng đang rỗng**; nút [Tính thưởng] đang active, nút [Lưu] **chưa được active**.
 
-   ```
-   +--------------------------------------------------------------------------------+
-   |  TRAO GIẢI MÙA GIẢI — FIA Formula One World Championship 2025                  |
-   +--------------------------------------------------------------------------------+
-   |  Mức thưởng (VNĐ):                                                             |
-   |    Giải cá nhân    Hạng 1 [                ]                                   |
-   |                    Hạng 2 [                ]                                   |
-   |                    Hạng 3 [                ]                                   |
-   |    Giải đồng đội   Hạng 1 [                ]                                   |
-   |                    Hạng 2 [                ]                                   |
-   |                    Hạng 3 [                ]                                   |
-   |                                                         [ Tính thưởng ]        |
-   +--------------------------------------------------------------------------------+
-   |  Danh sách trao giải:                                                          |
-   |  ( bảng bên dưới — cột Tiền thưởng còn rỗng khi mới vào màn )                  |
-   +--------------------------------------------------------------------------------+
-   |                                                                 [ Lưu ]        |
-   +--------------------------------------------------------------------------------+
-   ```
+   **Màn hình *Trao giải* (`gdTraoGiai.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Mức thưởng giải cá nhân hạng 1, 2, 3 | ô nhập | rỗng |
+   | Mức thưởng giải đồng đội hạng 1, 2, 3 | ô nhập | rỗng |
+   | [Tính thưởng] | nút | active |
+   | Danh sách trao giải | bảng | 6 dòng (cá nhân hạng 1–3, đội hạng 1–3); 4 cột đầu đã có dữ liệu, cột Tiền thưởng đang rỗng |
+   | [Lưu] | nút | chưa active, chỉ active sau khi cột Tiền thưởng đã được điền |
 
 7. Quản lý nhập mức thưởng vào 6 ô: cá nhân hạng 1 = `5.000.000.000`, hạng 2 = `3.000.000.000`, hạng 3 = `2.000.000.000`; đội hạng 1 = `20.000.000.000`, hạng 2 = `12.000.000.000`, hạng 3 = `8.000.000.000` rồi click [Tính thưởng].
 8. Hệ thống điền cột Tiền thưởng cho đủ 6 dòng của bảng *Danh sách trao giải*:
@@ -180,18 +170,14 @@ QL -- UC
 
 **4a.** Quản lý click vào một dòng của bảng xếp hạng (ví dụ dòng `Max Verstappen` trên bảng xếp hạng cá nhân) → UC con **Xem chi tiết theo chặng** (quan hệ *extend*) được kích hoạt: hệ thống hiển thị màn **Chi tiết theo chặng** (`gdChiTietXepHang.jsp`) với tiêu đề `Max Verstappen — Red Bull`; đây là màn **chỉ đọc**, không có ô nhập nên nút [Quay lại] **luôn active** ngay khi vào màn:
 
-   ```
-   +--------------------------------------------------------------------------------+
-   |  CHI TIẾT THEO CHẶNG — Max Verstappen — Red Bull                               |
-   +--------------------------------------------------------------------------------+
-   |  ( phạm vi: tính đến chặng R24 - Abu Dhabi Grand Prix (Yas Marina) )           |
-   +--------------------------------------------------------------------------------+
-   |  Kết quả từng chặng:                                                           |
-   |  ( bảng bên dưới )                                                             |
-   +--------------------------------------------------------------------------------+
-   |                                                            [ Quay lại ]        |
-   +--------------------------------------------------------------------------------+
-   ```
+   **Màn hình *Chi tiết theo chặng* (`gdChiTietXepHang.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Tên đối tượng được click | vùng chỉ đọc | `Max Verstappen — Red Bull` |
+   | Phạm vi dữ liệu | vùng chỉ đọc | `tính đến chặng R24 - Abu Dhabi Grand Prix (Yas Marina)` |
+   | Kết quả từng chặng | bảng | nội dung ở bảng ngay dưới; màn chỉ đọc, không có ô nhập |
+   | [Quay lại] | nút | active ngay khi vào màn |
 
    Bảng chi tiết khi click 1 dòng **tay đua** — 6 dòng, trích dòng đầu:
 
@@ -225,7 +211,7 @@ QL -- UC
 
 ## 3. Phân tích hoạt động — biểu đồ trạng thái
 
-Theo giáo trình PDF mục 3.2.4: **mỗi trạng thái = một lần hệ thống hiển thị 1 giao diện và chờ tương tác; cung chuyển trạng thái = hành động của người dùng**, nhãn đặt trong `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính** của quản lý.
+Mỗi trạng thái = một lần hệ thống hiển thị 1 giao diện và chờ tương tác; cung chuyển trạng thái = hành động của người dùng, nhãn đặt trong `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính** của quản lý.
 
 ```plantuml
 @startuml
@@ -382,7 +368,7 @@ ThanhVien <|-- QuanLy
 
 > **Ghi chú 1 — quan hệ giữa các lớp thực thể** được giữ **y hệt** biểu đồ lớp thực thể chung của nhóm (`docs/03`), kể cả những lớp không tham gia trực tiếp vào module (`ThamGia`, `HopDong`, `ThanhVien`…), đúng yêu cầu B2: *"quan hệ giữa các lớp thực thể phải thống nhất, đồng bộ với biểu đồ lớp thực thể đã vẽ ở bước trước"*.
 >
-> **Ghi chú 2 — phương thức.** Ở đây chỉ vẽ những phương thức mà module 4 sử dụng. Các phương thức nghiệp vụ khác của cùng những lớp thực thể này (ví dụ `HopDong.kiemTraChongLan()` của module 1, `DangKyChang.luuDangKy()` của module 2, `KetQua.xepHangVaTinhDiem()` của module 3) được vẽ ở biểu đồ của module tương ứng; danh sách đầy đủ xem `docs/03`. Hai phương thức `getChiTietTheoTayDua` / `getChiTietTheoDoi` được gán cho `KetQua` theo quy tắc gán của giáo trình (mục 3.2.3): **tham số đầu ra là danh sách `KetQua`** nên gán cho lớp `KetQua`.
+> **Ghi chú 2 — phương thức.** Ở đây chỉ vẽ những phương thức mà module 4 sử dụng. Các phương thức nghiệp vụ khác của cùng những lớp thực thể này (ví dụ `HopDong.kiemTraChongLan()` của module 1, `DangKyChang.luuDangKy()` của module 2, `KetQua.xepHangVaTinhDiem()` của module 3) được vẽ ở biểu đồ của module tương ứng; danh sách đầy đủ xem `docs/03`. Hai phương thức `getChiTietTheoTayDua` / `getChiTietTheoDoi` được gán cho `KetQua` theo quy tắc gán: **tham số đầu ra là danh sách `KetQua`** nên gán cho lớp `KetQua`.
 >
 > **Ghi chú 3 — quy tắc xếp hạng 3 tầng** (cài trong `tongHopCaNhan` / `tongHopDoi` / `sapXepBangXepHang`): cộng dồn tổng điểm và tổng thời gian qua các chặng tính đến chặng được chọn, đồng thời đếm số lần đạt mỗi thứ hạng. Sắp xếp: **(1) tổng điểm giảm dần; (2) bằng điểm → countback** — so số lần về nhất, vẫn bằng thì số lần về nhì, rồi về ba… (bổ sung theo luật FIA); **(3) countback vẫn bằng → tổng thời gian tăng dần** (theo mô tả bài toán). Tổng thời gian luôn được cộng dồn và **hiển thị trên bảng xếp hạng**.
 >
@@ -396,89 +382,83 @@ Theo mẫu Hình 4.4 giáo trình PDF: lớp view có **thuộc tính kèm kiể
 
 - **View (jsp):** `gdChinhQL`, `gdXepHang`, `gdChiTietXepHang`, `gdTraoGiai`, `doLuuTraoGiai`
 - **DAO:** `MuaGiaiDAO`, `KetQuaDAO`, `TraoGiaiDAO` (kế thừa `DAO`)
-- **Model:** `MuaGiai`, `ChangDua`, `KetQua`, `TayDua`, `DoiDua`, `TraoGiai`, `QuanLy`
+- **Model:** `MuaGiai`, `ChangDua`, `KetQua`, `TayDua`, `DoiDua`, `TraoGiai`, `ThanhVien`, `QuanLy`
 
 ```plantuml
 @startuml
-package "view" as pkgView {
-  class gdChinhQL {
-    -quyetToan : link
-    -ql : QuanLy
-  }
-  class gdXepHang {
-    -changDua : Select
-    -tinhTrangChang : Text
-    -tblXHCaNhan : Table
-    -tblXHDoi : Table
-    -chonDoiTuong : link
-    -btnTiepTuc : submit
-    -muaGiai : MuaGiai
-    -changDua : ChangDua
-    -listXHCaNhan : KetQua[]
-    -listXHDoi : KetQua[]
-    -ql : QuanLy
-  }
-  class gdChiTietXepHang {
-    -tenDoiTuong : Text
-    -tblChiTiet : Table
-    -btnQuayLai : submit
-    -listChiTiet : KetQua[]
-    -changDua : ChangDua
-    -ql : QuanLy
-  }
-  class gdTraoGiai {
-    -mucThuongCaNhan1 : Text
-    -mucThuongCaNhan2 : Text
-    -mucThuongCaNhan3 : Text
-    -mucThuongDoi1 : Text
-    -mucThuongDoi2 : Text
-    -mucThuongDoi3 : Text
-    -btnTinhThuong : submit
-    -tblDSTraoGiai : Table
-    -btnLuu : submit
-    -listTraoGiai : TraoGiai[]
-    -ql : QuanLy
-  }
-  class doLuuTraoGiai {
-    -listTraoGiai : TraoGiai[]
-    -ql : QuanLy
-  }
+class "gdChinhQL.jsp" as gdChinhQL {
+  -quyetToan : link
+  -ql : QuanLy
 }
-package "dao" as pkgDAO {
-  class DAO {
-    -con : Connection
-    +DAO()
-    +ketNoi()
-    +dongKetNoi()
-  }
-  class MuaGiaiDAO {
-    +MuaGiaiDAO()
-    +getMuaGiaiHienTai() : MuaGiai
-  }
-  class KetQuaDAO {
-    +KetQuaDAO()
-    +kiemTraKetQuaCu(changDuaId : int) : boolean
-    +tongHopCaNhan(muaGiaiId : int, changDuaId : int) : KetQua[]
-    +tongHopDoi(muaGiaiId : int, changDuaId : int) : KetQua[]
-    +sapXepBangXepHang(ds : KetQua[]) : KetQua[]
-    +getChiTietTheoTayDua(muaGiaiId : int, tayDuaId : int, changDuaId : int) : KetQua[]
-    +getChiTietTheoDoi(muaGiaiId : int, doiDuaId : int, changDuaId : int) : KetQua[]
-  }
-  class TraoGiaiDAO {
-    +TraoGiaiDAO()
-    +tinhTienThuong(hang : int, mucThuong : float) : float
-    +luuTraoGiai(listTG : TraoGiai[]) : boolean
-  }
+class "gdXepHang.jsp" as gdXepHang {
+  -changDua : Select
+  -tinhTrangChang : Text
+  -tblXHCaNhan : Table
+  -tblXHDoi : Table
+  -chonDoiTuong : link
+  -btnTiepTuc : submit
+  -muaGiai : MuaGiai
+  -changDuaChon : ChangDua
+  -listXHCaNhan : KetQua[]
+  -listXHDoi : KetQua[]
+  -ql : QuanLy
 }
-package "model" as pkgModel {
-  class MuaGiai
-  class ChangDua
-  class KetQua
-  class TayDua
-  class DoiDua
-  class TraoGiai
-  class QuanLy
+class "gdChiTietXepHang.jsp" as gdChiTietXepHang {
+  -tenDoiTuong : Text
+  -tblChiTiet : Table
+  -btnQuayLai : submit
+  -listChiTiet : KetQua[]
+  -changDua : ChangDua
+  -ql : QuanLy
 }
+class "gdTraoGiai.jsp" as gdTraoGiai {
+  -mucThuongCaNhan1 : Text
+  -mucThuongCaNhan2 : Text
+  -mucThuongCaNhan3 : Text
+  -mucThuongDoi1 : Text
+  -mucThuongDoi2 : Text
+  -mucThuongDoi3 : Text
+  -btnTinhThuong : submit
+  -tblDSTraoGiai : Table
+  -btnLuu : submit
+  -listTraoGiai : TraoGiai[]
+  -ql : QuanLy
+}
+class "doLuuTraoGiai.jsp" as doLuuTraoGiai {
+  -listTraoGiai : TraoGiai[]
+  -ql : QuanLy
+}
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class MuaGiaiDAO {
+  +MuaGiaiDAO()
+  +getMuaGiaiHienTai() : MuaGiai
+}
+class KetQuaDAO {
+  +KetQuaDAO()
+  +kiemTraKetQuaCu(changDuaId : int) : boolean
+  +tongHopCaNhan(muaGiaiId : int, changDuaId : int) : KetQua[]
+  +tongHopDoi(muaGiaiId : int, changDuaId : int) : KetQua[]
+  +sapXepBangXepHang(ds : KetQua[]) : KetQua[]
+  +getChiTietTheoTayDua(muaGiaiId : int, tayDuaId : int, changDuaId : int) : KetQua[]
+  +getChiTietTheoDoi(muaGiaiId : int, doiDuaId : int, changDuaId : int) : KetQua[]
+}
+class TraoGiaiDAO {
+  +TraoGiaiDAO()
+  +tinhTienThuong(hang : int, mucThuong : float) : float
+  +luuTraoGiai(listTG : TraoGiai[]) : boolean
+}
+class MuaGiai
+class ChangDua
+class KetQua
+class TayDua
+class DoiDua
+class TraoGiai
+abstract class ThanhVien
+class QuanLy
+ThanhVien <|-- QuanLy
 
 DAO <|-- MuaGiaiDAO
 DAO <|-- KetQuaDAO
@@ -505,7 +485,7 @@ TraoGiaiDAO -- TraoGiai
 @enduml
 ```
 
-> Lớp cha `DAO` chỉ giữ cơ chế dùng chung (`-con : Connection`, constructor `+DAO()`, `ketNoi()`, `dongKetNoi()`), không mang nghiệp vụ. Mỗi `XxxDAO` mang **đúng** các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở mục 4 (quy tắc ánh xạ giáo trình 4.3.1 bước 3), kèm chữ ký đầy đủ: kiểu trả về là mảng `KetQua[]` cho thao tác đọc danh sách, `boolean` cho thao tác ghi. Thuộc tính ẩn `-ql : QuanLy` là đối tượng phiên đăng nhập; `-listXHCaNhan`, `-listChiTiet`, `-listTraoGiai` là dữ liệu truyền giữa các trang; `-muaGiai : MuaGiai` và `-changDua : ChangDua` lưu mùa giải và **chặng đang chọn** (phạm vi "tính đến chặng X") — chặng này được truyền từ màn Bảng tổng sắp sang màn Chi tiết theo chặng và là tham số `changDuaId` của các phương thức tổng hợp/chi tiết ở `KetQuaDAO`. Thuộc tính `-tenDoiTuong : Text` của `gdChiTietXepHang.jsp` hiển thị tiêu đề tên tay đua/đội đang xem, ứng 1-1 với `-outTenDoiTuong` của lớp biên phân tích `GDChiTietXepHang`. Quan hệ giữa các lớp vẽ bằng **đường kẻ trơn**, không mũi tên định hướng.
+> Lớp cha `DAO` chỉ giữ cơ chế dùng chung (`-con : Connection`, constructor `+DAO()`), không mang nghiệp vụ. Mỗi `XxxDAO` mang **đúng** các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở mục 4 (quy tắc ánh xạ giáo trình 4.3.1 bước 3), kèm chữ ký đầy đủ: kiểu trả về là mảng `KetQua[]` cho thao tác đọc danh sách, `boolean` cho thao tác ghi. Thuộc tính ẩn `-ql : QuanLy` là đối tượng phiên đăng nhập; `-listXHCaNhan`, `-listChiTiet`, `-listTraoGiai` là dữ liệu truyền giữa các trang; `-muaGiai : MuaGiai` và `-changDua : ChangDua` lưu mùa giải và **chặng đang chọn** (phạm vi "tính đến chặng X") — chặng này được truyền từ màn Bảng tổng sắp sang màn Chi tiết theo chặng và là tham số `changDuaId` của các phương thức tổng hợp/chi tiết ở `KetQuaDAO`. Thuộc tính `-tenDoiTuong : Text` của `gdChiTietXepHang.jsp` hiển thị tiêu đề tên tay đua/đội đang xem, ứng 1-1 với `-outTenDoiTuong` của lớp biên phân tích `GDChiTietXepHang`. Quan hệ giữa các lớp vẽ bằng **đường kẻ trơn**, không mũi tên định hướng.
 
 ## 6. Biểu đồ hoạt động (pha thiết kế)
 
@@ -838,7 +818,7 @@ deactivate V0
 
 ## 8. Test case
 
-> **Xây dựng theo quy trình 4 bước và mẫu Bảng 6.7, giáo trình BG HP TTTN 2 CNPM, mục 6.2** (bước 1: checklist theo 3 nhóm Giao diện / Chức năng / Luồng nghiệp vụ; bước 2: viết test case 4 cột; bước 3: chuẩn bị data test; bước 4: chạy và ghi pass/fail). Bảng "CSDL sau khi test" của format cũ được **rút gọn thành mô tả hiệu ứng CSDL trong cột Kết quả mong muốn** của ca tương ứng.
+> **Xây dựng theo quy trình 4 bước:** (1) lập checklist theo 3 nhóm Giao diện / Chức năng / Luồng nghiệp vụ; (2) viết test case 4 cột; (3) chuẩn bị data test; (4) chạy và ghi pass/fail. Hiệu ứng lên cơ sở dữ liệu của mỗi ca ghi ngay trong cột Kết quả mong muốn.
 
 ### 8.1. Data test (bước 3 quy trình test)
 

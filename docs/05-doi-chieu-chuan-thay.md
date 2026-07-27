@@ -533,6 +533,58 @@ Mục 0–4 giữ nguyên số. Trong `docs/BAO-CAO.md`, mỗi chương module �
 
 ---
 
+## P7 — Rà soát chéo toàn hệ thống (đọc lại Hình 3.1–3.6, 4.4, 4.15 của giáo trình PDF)
+
+Lần rà này đối chiếu **từng biểu đồ với nhau** và với hình mẫu trong giáo trình. Kết quả và cách xử lý:
+
+### P7-1. Biểu đồ lớp thiết kế KHÔNG được vẽ khung package — **đã sửa**
+
+**Hình 4.4** (Biểu đồ lớp thiết kế modul đăng kí học) là một biểu đồ lớp **phẳng**: các trang `.jsp` xếp hàng trên, các `XxxDAO` ở giữa, lớp thực thể ở dưới — **không có khung `package` nào**. Khung package chỉ xuất hiện ở **Hình 4.15 — Biểu đồ thiết kế gói của hệ thống** (mục 4.3.3 Thiết kế triển khai), và là một **biểu đồ riêng**, không phải một phần của biểu đồ lớp.
+
+Bốn biểu đồ lớp thiết kế của nhóm đang bọc `package view { … } package dao { … } package model { … }` → **đã bỏ khung package**, ba tầng chỉ còn xếp theo hàng. Biểu đồ gói giữ nguyên ở `docs/03` mục 6 (ảnh `package-trienkhai.png`).
+
+### P7-2. Tên lớp view phải kèm đuôi `.jsp` — **đã sửa**
+
+Trong Hình 4.4 các lớp view mang đúng tên trang: `gdChinhSV.jsp`, `gdChonnganh.jsp`, `gdDangki.jsp`, `doLuuDK.jsp`. M1 và M3 đang đúng; **M2 và M4 thiếu đuôi `.jsp`** → đã thêm cho cả 9 lớp view.
+
+### P7-3. Lớp cha `DAO` chỉ có `-con : Connection` và `+DAO()` — **đã sửa**
+
+Hình 4.4 vẽ `DAO { -con : Connection ; +DAO() }`. Nhóm đang thêm `+ketNoi()` và `+dongKetNoi()` → **đã bỏ hai phương thức này** ở cả 4 module và `docs/03`.
+
+### P7-4. Biểu đồ UC chi tiết quá sơ sài so với Hình 3.2/3.3/3.4 — **đã sửa**
+
+Ba hình mẫu UC chi tiết của giáo trình đều có bốn thứ mà bản của nhóm còn thiếu:
+
+| Hình mẫu có | Bản cũ của nhóm | Đã sửa thành |
+|---|---|---|
+| **Không** có khung hệ thống (khung chỉ dùng ở Hình 3.1 — UC tổng quan) | có `rectangle "Hệ thống quản lý giải đua F1"` | bỏ khung |
+| Phân cấp actor `Thanh vien` ▷ `Sinh vien` / `Nhan vien` / `Giang vien` | chỉ 1 actor | thêm `Thành viên` ▷ `Nhân viên` (M1–M3) và ▷ `Quản lý` (M4) |
+| UC `Dang nhap` gắn với actor cha + UC `SV/GV/QL dang nhap` **kế thừa** nó, UC chính include UC theo vai trò | UC chính include thẳng `Đăng nhập` | thêm `NV đăng nhập` / `QL đăng nhập` kế thừa `Đăng nhập`; UC chính include UC theo vai trò |
+| Nhãn `<<Include>>` / `<<Extend>>` | `include` / `extend` trần | dùng `<<include>>` / `<<extend>>` |
+
+### P7-5. Thiếu nguồn cấp `muaGiaiId` ở M2 và M3 — **đã sửa**
+
+`ChangDuaDAO.getDSChangDua(muaGiaiId : int)` cần một `muaGiaiId`, nhưng M2 và M3 **không có lớp nào sinh ra giá trị này** — chỉ M4 có `MuaGiaiDAO.getMuaGiaiHienTai()`. Riêng M3 còn hiển thị nhãn mùa giải trên màn Chọn chặng mà không lấy từ đâu.
+
+Đã bổ sung cho cả M2 và M3: `MuaGiai.getMuaGiaiHienTai()` (lớp phân tích), `MuaGiaiDAO` (lớp thiết kế), node `MuaGiaiDAO: getMuaGiaiHienTai()` (hoạt động), khối 7 message đọc `MuaGiai` (tuần tự) và 6 dòng thuyết minh tương ứng. Số message: **M2 58 → 64**, **M3 46 → 52**.
+
+### P7-6. Các sai lệch nhỏ giữa các biểu đồ — **đã sửa**
+
+| Lỗi | Chỗ | Xử lý |
+|---|---|---|
+| `gdXepHang.jsp` khai báo `-changDua` **hai lần** (`: Select` và `: ChangDua`) | M4 lớp thiết kế | đổi thuộc tính ẩn thành `-changDuaChon : ChangDua` |
+| Lớp `NhanVien` / `QuanLy` được các trang `.jsp` tham chiếu (`-nv`, `-ql`) nhưng không có mặt ở tầng model | cả 4 module | thêm `ThanhVien` (trừu tượng) + `NhanVien`/`QuanLy` vào tầng model, đúng như Hình 4.4 có `Thanhvien` ▷ `Sinhvien` |
+| M2 thuyết minh bước 42 ghi *"lặp lại các bước 42–47"* trong khi vòng lặp thật là 6 bước sau đó | M2 mục 7.1 | sửa thành *"lặp lại các bước 48–53"* |
+| `gdChonChang.jsp` dùng `-muaGiai : Text` cho nhãn hiển thị, trùng tên với thuộc tính ẩn kiểu thực thể | M3 lớp thiết kế | đổi nhãn thành `-tenMuaGiai : Text`, thuộc tính ẩn là `-muaGiai : MuaGiai` |
+
+### P7-7. Phác thảo giao diện đổi từ khung ký tự sang bảng — **đã sửa**
+
+Khung `+----+` lệch ngay khi đổi font hoặc đổi độ rộng cột, và khi xuất Word phải ép font đơn cách. Toàn bộ **9 khung phác thảo** (M1 2, M2 2, M3 2, M4 3) đã đổi thành **bảng markdown 3 cột** `Thành phần | Kiểu | Trạng thái khi mới mở màn`, giữ nguyên vị trí xen giữa các bước Kịch bản chính. Cách này vẫn đúng tinh thần mẫu giáo trình mục 3.2.1 (nhúng bảng thẳng vào bước) và hiển thị chuẩn trong Word.
+
+### P7-8. Điểm còn khác giáo trình — **có chủ ý, ghi lại để nhóm quyết**
+
+Mục **4.3.1 bước 1** của giáo trình là *"Thiết kế giao diện cho các giao diện xuất hiện trong biểu đồ"*, kèm **Hình 4.3 / 4.5 / 4.7 — Thiết kế giao diện cho modul …**, và **câu hỏi ôn tập số 3** là *"Thiết kế giao diện liên quan cho modul"*. Nhóm đã chốt ở P6 là **không làm mục "Thiết kế giao diện" riêng**, thay bằng phác thảo nhúng trong Đặc tả UC. Nội dung phác thảo đã đủ (thành phần, kiểu control, trạng thái, dữ liệu mẫu) nên nếu thầy hỏi vẫn có cái để trình bày; ghi lại đây để nhóm chủ động.
+
 ## Thứ tự làm đề xuất (cập nhật)
 
 0. **P6** — bỏ ảnh giao diện, nhúng phác thảo xen giữa các bước Kịch bản chính của Đặc tả UC (không có mục giao diện riêng), đánh số lại các mục sau.

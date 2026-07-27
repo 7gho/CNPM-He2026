@@ -17,7 +17,7 @@
 - [ ] Đặc tả UC (mẫu 6 dòng, kịch bản đánh số có dữ liệu thật + trạng thái nút, ngoại lệ đánh số theo bước)
 - [ ] Biểu đồ trạng thái (phân tích hoạt động) + biểu đồ hoạt động pha thiết kế (khung "Xử lí tại gdXxx.jsp")
 - [ ] Biểu đồ lớp phân tích (lớp biên `GDxxx` chỉ có thuộc tính + lớp thực thể mang phương thức nghiệp vụ; **không có lớp Control**)
-- [x] Giao diện phác thảo (trong mục 2.2 Đặc tả UC — không vẽ, không xuất ảnh)
+- [x] Giao diện phác thảo (bảng xen giữa các bước Kịch bản chính của mục 2 Đặc tả UC — không vẽ, không xuất ảnh)
 - [ ] Biểu đồ lớp thiết kế view (.jsp) / DAO / model — **không có Controller**, các `XxxDAO` kế thừa lớp cha `DAO`
 - [ ] Thuyết minh (kịch bản phiên bản 3) + biểu đồ tuần tự
 - [ ] Test case (mẫu Bảng 6.7 giáo trình PDF: 1 bảng 4 cột, 3 nhóm Giao diện / Chức năng / Luồng nghiệp vụ, mã `QTTG_n`, kèm mục Data test)

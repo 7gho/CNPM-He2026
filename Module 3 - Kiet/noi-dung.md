@@ -15,7 +15,7 @@
 
 > **Quy tắc tên:** `m<số module>-<tên biểu đồ>.png` — chữ thường, không dấu, ngăn cách bằng `-`.
 >
-> Giao diện **không cần vẽ và không cần xuất ảnh** — phác thảo giao diện được đặt xen ngay giữa các bước của Kịch bản chính trong mục 2 (theo mẫu giáo trình PDF mục 3.2.1); nhóm **không** có mục "Thiết kế giao diện" riêng.
+> Giao diện **không cần vẽ và không cần xuất ảnh** — phác thảo giao diện được đặt xen ngay giữa các bước của Kịch bản chính trong mục 2 ; nhóm **không** có mục "Thiết kế giao diện" riêng.
 >
 > **Ghi chú cho người vẽ (mẫu hình trong giáo trình PDF `BG HP TTTN 2 CNPM 2020 final.pdf`):**
 > - Biểu đồ trạng thái: vẽ theo mẫu **Hình 3.9/3.11** (máy trạng thái đơn giản, nhãn cung `[hành động]`).
@@ -27,37 +27,41 @@
 
 ## 1. Biểu đồ UC chi tiết
 
-Use case chính của module là **`Cập nhật kết quả chặng đua`** (tên use case là động từ chỉ hành động của actor, không phải hành động của hệ thống).
+Use case chính của module là **`Cập nhật kết quả chặng đua`** — tên use case là động từ chỉ hành động của actor, không phải hành động của hệ thống.
 
-Theo nguyên tắc "mỗi giao diện tương tác với người dùng đề xuất thành một use case con", module có **2 màn hình** nên tách thành **2 use case con**; ngoài ra, giáo trình (mục 3.1.3) phân rã thêm use case con `Đăng nhập` mà use case chính **include** — đăng nhập là giao diện dùng chung của toàn hệ thống:
+Theo nguyên tắc "mỗi giao diện tương tác với người dùng đề xuất thành một use case con", module có **2 màn hình** nên tách thành **2 use case con**; ngoài ra use case chính **include** use case `NV đăng nhập` — use case này **kế thừa** use case dùng chung `Đăng nhập` gắn với actor cha **Thành viên**:
 
 | Màn hình | Use case con | Quan hệ với UC chính |
 |---|---|---|
-| Đăng nhập (giao diện dùng chung toàn hệ thống) | `Đăng nhập` | include |
+| (dùng chung toàn hệ thống) | `NV đăng nhập` — kế thừa `Đăng nhập` | include |
 | Chọn chặng | `Chọn chặng` | include |
 | Nhập kết quả | `Nhập kết quả chặng` | include |
 
 Trang xử lý `doLuuKetQua.jsp` chỉ làm nhiệm vụ ghi dữ liệu, không phải màn hình hiển thị nên **không sinh use case con**.
 
-Use case con `Đăng nhập` chỉ xuất hiện trong biểu đồ UC chi tiết; vì giao diện đăng nhập dùng chung cho toàn hệ thống nên module **không** tạo lớp biên, trang jsp hay lifeline riêng cho nó — kịch bản của module vẫn mở đầu "sau khi đăng nhập", và "nhân viên đã đăng nhập" vẫn được ghi ở **Tiền điều kiện** của đặc tả use case.
+Use case `NV đăng nhập` dùng lại giao diện đăng nhập chung của hệ thống nên module **không** tạo lớp biên, trang jsp hay lifeline riêng cho nó — kịch bản của module vẫn mở đầu "sau khi đăng nhập", và "nhân viên đã đăng nhập" vẫn được ghi ở **Tiền điều kiện** của đặc tả use case.
 
 ```plantuml
 @startuml
 left to right direction
 
+actor "Thành viên" as TV
 actor "Nhân viên" as NV
+TV <|-- NV
 
-rectangle "Hệ thống quản lý giải đua F1" {
-  usecase "Cập nhật kết quả chặng đua" as UC
-  usecase "Đăng nhập" as DN
-  usecase "Chọn chặng" as CC
-  usecase "Nhập kết quả chặng" as NK
-}
+usecase "Đăng nhập" as DN
+usecase "NV đăng nhập" as NVDN
+usecase "Cập nhật kết quả\nchặng đua" as UC
+usecase "Chọn chặng" as CC
+usecase "Nhập kết quả chặng" as NK
 
+TV -- DN
 NV -- UC
-UC ..> DN : include
-UC ..> CC : include
-UC ..> NK : include
+
+DN <|-- NVDN
+UC ..> NVDN : <<include>>
+UC ..> CC : <<include>>
+UC ..> NK : <<include>>
 @enduml
 ```
 
@@ -72,27 +76,20 @@ UC ..> NK : include
 | **Tiền điều kiện** | Nhân viên đã đăng nhập thành công vào hệ thống; chặng đua cần cập nhật đã diễn ra và đã có danh sách tay đua đăng ký (do use case "Đăng ký tay đua tham gia chặng đua" sinh ra) |
 | **Hậu điều kiện** | Kết quả của từng tay đua trong chặng (thời gian về đích, số vòng hoàn thành, trạng thái, hạng, điểm) được lưu vào cơ sở dữ liệu. Nếu chặng đã có kết quả cũ thì kết quả cũ bị xóa và thay bằng kết quả mới |
 
-Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + bảng dữ liệu mẫu), không vẽ mockup và không xuất ảnh; khung phác thảo của mỗi màn được đặt **ngay dưới bước** mà hệ thống hiển thị màn đó trong Kịch bản chính. Module có **2 màn hình hiển thị** riêng, đúng bằng số use case con giao diện của module (không tính use case con `Đăng nhập` dùng chung toàn hệ thống); giao diện chính của nhân viên (`GDChinhNV` / `gdChinhNV.jsp`) là **trang chủ chung của hệ thống** nên không phác thảo trong module này. Quy ước ký hiệu trong khung phác thảo: `[ ... ]` = ô nhập hoặc nút; `[ v ]` = danh sách thả xuống; `( ... )` = vùng chỉ đọc hoặc chú thích.
+Phác thảo của mỗi màn đặt ngay dưới bước mà hệ thống hiển thị màn đó. Module có **2 màn hình hiển thị riêng**, đúng bằng số use case con giao diện; trang chính `gdChinhNV.jsp` (lớp biên `GDChinhNV`) dùng chung cho toàn hệ thống nên không phác thảo lại ở đây.
 
 **Kịch bản chính**
 
 1. Nhân viên (đã đăng nhập) chọn menu **Cập nhật kết quả chặng đua** trên trang chính `gdChinhNV.jsp`.
 2. Hệ thống hiển thị màn hình **Chọn chặng** (trang `gdChonChang.jsp`, lớp biên `GDChonChang`): nhãn mùa giải là **vùng chỉ đọc** ghi `2025 — FIA Formula One World Championship`, lấy từ `MuaGiai` đang hoạt động; ô chọn "Chặng đua" đang rỗng; nút [Tiếp tục] **chưa được active**.
 
-   ```
-   +----------------------------------------------------------------------+
-   |  CẬP NHẬT KẾT QUẢ CHẶNG ĐUA — Bước 1: Chọn chặng                     |
-   +----------------------------------------------------------------------+
-   |  Mùa giải: ( 2025 — FIA Formula One World Championship )             |
-   +----------------------------------------------------------------------+
-   |  Chặng đua: [ -- Chọn chặng đua --                     v ]           |
-   |                                                                      |
-   |                                            [ Tiếp tục ]              |
-   +----------------------------------------------------------------------+
-   |  Danh sách chặng đổ vào ô chọn:                                      |
-   |  ( bảng bên dưới )                                                   |
-   +----------------------------------------------------------------------+
-   ```
+   **Màn hình *Chọn chặng* (`gdChonChang.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Mùa giải | vùng chỉ đọc | `2025 — FIA Formula One World Championship` |
+   | Chặng đua | danh sách thả xuống | chưa chọn giá trị nào; nội dung ở bảng ngay dưới |
+   | [Tiếp tục] | nút | chưa active, chỉ active khi đã chọn chặng |
 
    Ô chọn chặng đua đổ đủ **6 chặng** của mùa giải 2025 theo thứ tự thời gian, mỗi mục hiển thị dạng `Mã - Tên chặng (Địa điểm)`:
 
@@ -108,24 +105,15 @@ Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + b�
 3. Nhân viên chọn chặng `R16 - Italian Grand Prix (Monza)`; nút [Tiếp tục] **chuyển sang active**; nhân viên click [Tiếp tục].
 4. Hệ thống hiển thị màn hình **Nhập kết quả** (trang `gdNhapKetQua.jsp`, lớp biên `GDNhapKetQua`): dòng thông tin chặng là **vùng chỉ đọc** ghi `R16 | Italian Grand Prix | Monza | 53 vòng | 07/09/2025`, lấy từ `ChangDua` được chọn ở bước 3; bảng nhập kết quả gồm các cột **STT | Mã | Tên tay đua | Đội đua | Thời gian về đích (hh:mm:ss.xxx) | Số vòng hoàn thành | Trạng thái**, có 12 dòng ứng với 12 tay đua đã đăng ký chặng, ba cột đầu là dữ liệu chỉ đọc lấy từ đăng ký chặng, ba cột cuối là ô nhập và ô chọn đang rỗng — dòng đầu là `1 | LEC | Charles Leclerc | Ferrari | (trống) | (trống) | (chưa chọn)`; bảng đối soát **chưa hiện**; nút [Lưu] **chưa được active**.
 
-   ```
-   +----------------------------------------------------------------------+
-   |  CẬP NHẬT KẾT QUẢ CHẶNG ĐUA — Bước 2: Nhập kết quả                   |
-   +----------------------------------------------------------------------+
-   |  Chặng: ( R16 - Italian Grand Prix - Monza - 53 vòng -               |
-   |           07/09/2025 )                                               |
-   +----------------------------------------------------------------------+
-   |  Bảng nhập kết quả:                                                  |
-   |  ( bảng bên dưới — 12 dòng, 3 cột cuối là ô nhập )                   |
-   |                                                                      |
-   |                                        [ Tính kết quả ]              |
-   +----------------------------------------------------------------------+
-   |  Bảng đối soát: ( chỉ hiện sau khi bấm [ Tính kết quả ] )            |
-   |  ( bảng bên dưới )                                                   |
-   |                                                                      |
-   |                                                 [ Lưu ]              |
-   +----------------------------------------------------------------------+
-   ```
+   **Màn hình *Nhập kết quả* (`gdNhapKetQua.jsp`)**
+
+   | Thành phần | Kiểu | Trạng thái khi mới mở màn |
+   |---|---|---|
+   | Thông tin chặng | vùng chỉ đọc | `R16 - Italian Grand Prix - Monza - 53 vòng - 07/09/2025` |
+   | Bảng nhập kết quả | bảng có ô nhập | 12 dòng theo danh sách đăng ký; ba cột đầu chỉ đọc, ba cột cuối đang rỗng |
+   | [Tính kết quả] | nút | active |
+   | Bảng đối soát | bảng | chưa hiện, chỉ hiện sau khi click [Tính kết quả] và dữ liệu hợp lệ |
+   | [Lưu] | nút | chưa active, chỉ active sau khi bảng đối soát đã hiện |
 
 5. Nhân viên nhập Thời gian về đích, Số vòng hoàn thành và chọn Trạng thái cho từng tay đua, ví dụ dòng của Max Verstappen: `1:13:24.325 | 53 | Hoàn thành`, dòng của Lando Norris: `1:13:27.019 | 53 | Hoàn thành`. Bảng nhập kết quả sau khi nhập:
 
@@ -178,7 +166,7 @@ Giao diện chỉ trình bày ở mức **phác thảo** (khung bố cục + b�
 
 ## 3. Phân tích hoạt động — biểu đồ trạng thái
 
-Theo giáo trình (mục 3.2.4): **mỗi trạng thái là một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác**; cung chuyển trạng thái là hành động của người dùng, nhãn đặt trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công.
+Mỗi trạng thái là một lần hệ thống hiển thị một giao diện và chờ người dùng tương tác; cung chuyển trạng thái là hành động của người dùng, nhãn đặt trong ngoặc vuông `[…]`. Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công.
 
 Ảnh export: `m3-trangthai.png` (vẽ theo mẫu Hình 3.9/3.11 giáo trình PDF).
 
@@ -209,6 +197,7 @@ Biểu đồ lớp phân tích của module chỉ có **hai tầng**: lớp biê
   - `GDChonChang` — màn hình Chọn chặng
   - `GDNhapKetQua` — màn hình Nhập kết quả và đối soát
 - **Lớp thực thể mang phương thức nghiệp vụ của module:**
+  - `MuaGiai.getMuaGiaiHienTai()` — lấy mùa giải đang diễn ra để hiện lên nhãn mùa giải và làm căn cứ lọc danh sách chặng
   - `ChangDua.getDSChangDua()` — lấy danh sách chặng đua để đổ vào ô chọn
   - `DangKyChang.getDangKyCuaChang(changDuaId)` — lấy danh sách tay đua đã đăng ký chặng
   - `KetQua.xepHangVaTinhDiem(changDuaId)` — xếp hạng và tính điểm cho toàn chặng
@@ -241,6 +230,7 @@ class MuaGiai {
   -ten
   -nam
   -trangThai
+  +getMuaGiaiHienTai()
 }
 
 class ChangDua {
@@ -312,6 +302,7 @@ class QuanLy {
 
 GDChinhNV -- GDChonChang
 GDChonChang -- GDNhapKetQua
+GDChonChang -- MuaGiai
 GDChonChang -- ChangDua
 GDNhapKetQua -- DangKyChang
 GDNhapKetQua -- KetQua
@@ -337,77 +328,79 @@ ThanhVien <|-- QuanLy
 
 ## 5. Biểu đồ lớp thiết kế (view / dao / model)
 
-Kiến trúc phân tầng gồm ba gói. Tầng `dao` chính là tầng điều khiển truy xuất dữ liệu; **không có lớp Controller riêng**. Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** — lớp này chứa cơ chế kết nối cơ sở dữ liệu dùng chung. Vẽ theo mẫu **Hình 4.4** giáo trình PDF: lớp view có thuộc tính **kèm kiểu control** (`Select`, `Table`, `link`, `submit`, `Text`, `Reset`) và **thuộc tính ẩn** (đối tượng phiên `-nv : NhanVien`, dữ liệu truyền giữa các trang); lớp DAO có **constructor** và **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về).
+Kiến trúc gồm ba tầng. Tầng `dao` chính là tầng điều khiển truy xuất dữ liệu; **không có lớp Controller riêng**. Các lớp `XxxDAO` đều **kế thừa lớp cha `DAO`** — lớp này chứa cơ chế kết nối cơ sở dữ liệu dùng chung. Lớp view có thuộc tính **kèm kiểu control** (`Select`, `Table`, `link`, `submit`, `Text`, `Reset`) và **thuộc tính ẩn** (đối tượng phiên `-nv : NhanVien`, dữ liệu truyền giữa các trang); lớp DAO có **constructor** và **chữ ký đầy đủ** (tham số : kiểu, kiểu trả về).
 
 - **View (jsp):**
   - `gdChinhNV.jsp` — trang chính của nhân viên (trang chủ chung của hệ thống), chứa liên kết mở chức năng cập nhật kết quả
   - `gdChonChang.jsp`, `gdNhapKetQua.jsp` — hai màn hình hiển thị của module
   - `doLuuKetQua.jsp` — trang xử lý ghi dữ liệu, không hiển thị
 - **DAO:**
-  - `DAO` (lớp cha) — `-con : Connection`, `+DAO()`, `+ketNoi()`, `+dongKetNoi()`: cơ chế kết nối cơ sở dữ liệu dùng chung cho mọi lớp con
-  - `ChangDuaDAO`, `DangKyChangDAO`, `KetQuaDAO` — nhận đúng các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở pha phân tích (mục 4), bổ sung chữ ký đầy đủ
-- **Model:** `ChangDua`, `DangKyChang`, `KetQua` (thuộc tính và kiểu dữ liệu đầy đủ xem `docs/03-lop-thuc-the-va-csdl.md`).
+  - `DAO` (lớp cha) — `-con : Connection`, `+DAO()`: giữ kết nối cơ sở dữ liệu dùng chung cho mọi lớp con
+  - `MuaGiaiDAO`, `ChangDuaDAO`, `DangKyChangDAO`, `KetQuaDAO` — nhận đúng các phương thức nghiệp vụ đã gán cho lớp thực thể tương ứng ở pha phân tích (mục 4), bổ sung chữ ký đầy đủ
+- **Model:** `MuaGiai`, `ChangDua`, `DangKyChang`, `KetQua`, `ThanhVien`, `NhanVien` (thuộc tính và kiểu dữ liệu đầy đủ xem `docs/03-lop-thuc-the-va-csdl.md`).
 
 ```plantuml
 @startuml
-package view {
-  class "gdChinhNV.jsp" as gdChinhNV {
-    -capNhatKetQua : link
-    -nv : NhanVien
-  }
-  class "gdChonChang.jsp" as gdChonChang {
-    -muaGiai : Text
-    -changDua : Select
-    -btnTiepTuc : submit
-    -nv : NhanVien
-  }
-  class "gdNhapKetQua.jsp" as gdNhapKetQua {
-    -thongTinChang : Text
-    -changDua : ChangDua
-    -listDangKy : DangKyChang[]
-    -tblKetQua : Table
-    -btnTinhKetQua : submit
-    -tblDoiSoat : Table
-    -listKQ : KetQua[]
-    -btnLuu : submit
-    -nv : NhanVien
-  }
-  class "doLuuKetQua.jsp" as doLuuKetQua {
-    -listKQ : KetQua[]
-    -nv : NhanVien
-  }
+class "gdChinhNV.jsp" as gdChinhNV {
+  -capNhatKetQua : link
+  -nv : NhanVien
+}
+class "gdChonChang.jsp" as gdChonChang {
+  -tenMuaGiai : Text
+  -changDua : Select
+  -btnTiepTuc : submit
+  -muaGiai : MuaGiai
+  -nv : NhanVien
+}
+class "gdNhapKetQua.jsp" as gdNhapKetQua {
+  -thongTinChang : Text
+  -changDua : ChangDua
+  -listDangKy : DangKyChang[]
+  -tblKetQua : Table
+  -btnTinhKetQua : submit
+  -tblDoiSoat : Table
+  -listKQ : KetQua[]
+  -btnLuu : submit
+  -nv : NhanVien
+}
+class "doLuuKetQua.jsp" as doLuuKetQua {
+  -listKQ : KetQua[]
+  -nv : NhanVien
 }
 
-package dao {
-  class DAO {
-    -con : Connection
-    +DAO()
-    +ketNoi()
-    +dongKetNoi()
-  }
-  class ChangDuaDAO {
-    +ChangDuaDAO()
-    +getDSChangDua(muaGiaiId : int) : ChangDua[]
-  }
-  class DangKyChangDAO {
-    +DangKyChangDAO()
-    +getDangKyCuaChang(changDuaId : int) : DangKyChang[]
-  }
-  class KetQuaDAO {
-    +KetQuaDAO()
-    +kiemTraKetQuaCu(changDuaId : int) : boolean
-    +xoaKetQuaCu(changDuaId : int) : boolean
-    +xepHangVaTinhDiem(changDuaId : int) : KetQua[]
-    +luuKetQua(kq : KetQua) : boolean
-  }
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class MuaGiaiDAO {
+  +MuaGiaiDAO()
+  +getMuaGiaiHienTai() : MuaGiai
+}
+class ChangDuaDAO {
+  +ChangDuaDAO()
+  +getDSChangDua(muaGiaiId : int) : ChangDua[]
+}
+class DangKyChangDAO {
+  +DangKyChangDAO()
+  +getDangKyCuaChang(changDuaId : int) : DangKyChang[]
+}
+class KetQuaDAO {
+  +KetQuaDAO()
+  +kiemTraKetQuaCu(changDuaId : int) : boolean
+  +xoaKetQuaCu(changDuaId : int) : boolean
+  +xepHangVaTinhDiem(changDuaId : int) : KetQua[]
+  +luuKetQua(kq : KetQua) : boolean
 }
 
-package model {
-  class ChangDua
-  class DangKyChang
-  class KetQua
-}
+class MuaGiai
+class ChangDua
+class DangKyChang
+class KetQua
+abstract class ThanhVien
+class NhanVien
+ThanhVien <|-- NhanVien
 
+DAO <|-- MuaGiaiDAO
 DAO <|-- ChangDuaDAO
 DAO <|-- DangKyChangDAO
 DAO <|-- KetQuaDAO
@@ -417,11 +410,13 @@ gdChonChang -- gdNhapKetQua
 gdNhapKetQua -- doLuuKetQua
 doLuuKetQua -- gdChinhNV
 
+gdChonChang -- MuaGiaiDAO
 gdChonChang -- ChangDuaDAO
 gdNhapKetQua -- DangKyChangDAO
 gdNhapKetQua -- KetQuaDAO
 doLuuKetQua -- KetQuaDAO
 
+MuaGiaiDAO -- MuaGiai
 ChangDuaDAO -- ChangDua
 DangKyChangDAO -- DangKyChang
 KetQuaDAO -- KetQua
@@ -430,7 +425,7 @@ KetQuaDAO -- KetQua
 
 ## 6. Biểu đồ hoạt động (pha thiết kế)
 
-Vẽ lại theo mẫu **Hình 4.9** giáo trình PDF (mục 4.3.2 bước 1): **mỗi hành động tương ứng một phương thức đã thiết kế trong biểu đồ lớp** ở mục 5; các hành động được gom vào khung `Xử lí tại gdXxx.jsp` theo từng trang (kể cả trang xử lý `doLuuKetQua.jsp` và trang chính `gdChinhNV.jsp`); lời gọi tầng dữ liệu ghi rõ `XxxDAO: tenHam()`; guard trên cung chuyển dạng `[click …]`, `[lấy xong dữ liệu]`; các nhánh kiểm tra ràng buộc nghiệp vụ là node quyết định đặt trong khung của trang xử lý tương ứng (nút [Tính kết quả] do chính `gdNhapKetQua.jsp` tự submit xử lý; kiểm tra kết quả cũ do `doLuuKetQua.jsp` xử lý).
+Mỗi hành động tương ứng một phương thức đã thiết kế trong biểu đồ lớp ở mục 5; các hành động được gom vào khung `Xử lí tại gdXxx.jsp` theo từng trang (kể cả trang xử lý `doLuuKetQua.jsp` và trang chính `gdChinhNV.jsp`); lời gọi tầng dữ liệu ghi rõ `XxxDAO: tenHam()`; guard trên cung chuyển dạng `[click …]`, `[lấy xong dữ liệu]`; các nhánh kiểm tra ràng buộc nghiệp vụ là node quyết định đặt trong khung của trang xử lý tương ứng (nút [Tính kết quả] do chính `gdNhapKetQua.jsp` tự submit xử lý; kiểm tra kết quả cũ do `doLuuKetQua.jsp` xử lý).
 
 Ảnh export: `m3-hoatdong.png` (vẽ lại theo mẫu Hình 4.9 giáo trình PDF).
 
@@ -442,6 +437,8 @@ partition "Xử lí tại gdChinhNV.jsp" {
 }
 -> [click Cập nhật kết quả chặng đua];
 partition "Xử lí tại gdChonChang.jsp" {
+  :Lấy mùa giải đang diễn ra
+  MuaGiaiDAO: getMuaGiaiHienTai();
   :Lấy danh sách chặng đua của mùa giải
   ChangDuaDAO: getDSChangDua();
   -> [lấy xong dữ liệu];
@@ -509,60 +506,66 @@ stop
 
 ### 7.1. Thuyết minh (kịch bản phiên bản 3)
 
-Chỉ thuyết minh **luồng chính** (chặng chưa có kết quả cũ, dữ liệu nhập hợp lệ). Mỗi dòng dưới đây ứng với một message trong biểu đồ tuần tự ở mục 7.2. Luồng mở đầu và kết thúc tại trang chính `gdChinhNV.jsp`; luồng lưu đóng gói dữ liệu bằng `setter()` của lớp thực thể trước khi gọi DAO ghi dữ liệu (mẫu Hình 4.12 giáo trình PDF).
+Chỉ thuyết minh **luồng chính** (chặng chưa có kết quả cũ, dữ liệu nhập hợp lệ). Mỗi dòng dưới đây ứng với một message trong biểu đồ tuần tự ở mục 7.2. Luồng mở đầu và kết thúc tại trang chính `gdChinhNV.jsp`; luồng lưu đóng gói dữ liệu bằng `setter()` của lớp thực thể trước khi gọi DAO ghi dữ liệu.
 
 1. Nhân viên click "Cập nhật kết quả chặng đua" trên trang chính gdChinhNV.jsp.
 2. Trang gdChinhNV.jsp gọi trang gdChonChang.jsp.
-3. Trang gdChonChang.jsp gọi lớp ChangDuaDAO yêu cầu lấy danh sách chặng đua của mùa giải.
-4. Lớp ChangDuaDAO gọi hàm getDSChangDua().
-5. Hàm getDSChangDua() gọi lớp ChangDua để đóng gói thông tin.
-6. Lớp ChangDua đóng gói thông tin thực thể.
-7. Lớp ChangDua trả kết quả về cho hàm getDSChangDua().
-8. Hàm getDSChangDua() trả kết quả cho trang gdChonChang.jsp.
-9. Trang gdChonChang.jsp hiển thị danh sách chặng đua cho nhân viên.
-10. Nhân viên chọn chặng "R16 - Italian Grand Prix (Monza)" và click Tiếp tục.
-11. Trang gdChonChang.jsp gọi trang gdNhapKetQua.jsp.
-12. Trang gdNhapKetQua.jsp gọi lớp DangKyChangDAO yêu cầu lấy danh sách tay đua đã đăng ký chặng.
-13. Lớp DangKyChangDAO gọi hàm getDangKyCuaChang().
-14. Hàm getDangKyCuaChang() gọi lớp DangKyChang để đóng gói thông tin.
-15. Lớp DangKyChang đóng gói thông tin thực thể.
-16. Lớp DangKyChang trả kết quả về cho hàm getDangKyCuaChang().
-17. Hàm getDangKyCuaChang() trả kết quả cho trang gdNhapKetQua.jsp.
-18. Trang gdNhapKetQua.jsp hiển thị bảng nhập kết quả cho nhân viên.
-19. Nhân viên nhập thời gian về đích, số vòng hoàn thành và chọn trạng thái cho từng tay đua. *(Lặp lại bước 19 cho đến khi nhập xong tất cả tay đua.)*
-20. Nhân viên click Tính kết quả.
-21. Trang gdNhapKetQua.jsp submit gọi chính nó xử lí.
-22. Trang gdNhapKetQua.jsp gọi lớp KetQuaDAO yêu cầu xếp hạng và tính điểm cho chặng.
-23. Lớp KetQuaDAO gọi hàm xepHangVaTinhDiem().
-24. Hàm xepHangVaTinhDiem() gọi lớp KetQua để đóng gói thông tin.
-25. Lớp KetQua đóng gói thông tin thực thể.
-26. Lớp KetQua trả kết quả về cho hàm xepHangVaTinhDiem().
-27. Hàm xepHangVaTinhDiem() trả kết quả cho trang gdNhapKetQua.jsp.
-28. Trang gdNhapKetQua.jsp hiển thị bảng đối soát cho nhân viên.
-29. Nhân viên click Lưu.
-30. Trang gdNhapKetQua.jsp gọi trang doLuuKetQua.jsp.
-31. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu kiểm tra chặng đã có kết quả cũ hay chưa.
-32. Lớp KetQuaDAO gọi hàm kiemTraKetQuaCu().
-33. Hàm kiemTraKetQuaCu() gọi lớp KetQua để đóng gói thông tin.
-34. Lớp KetQua đóng gói thông tin thực thể.
-35. Lớp KetQua trả kết quả về cho hàm kiemTraKetQuaCu().
-36. Hàm kiemTraKetQuaCu() trả kết quả cho trang doLuuKetQua.jsp.
-37. Trang doLuuKetQua.jsp gọi lớp KetQua để đóng gói dữ liệu kết quả vừa nhập.
-38. Lớp KetQua gọi hàm setter() đóng gói dữ liệu nhập.
-39. Lớp KetQua trả kết quả về cho trang doLuuKetQua.jsp.
-40. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu lưu kết quả của một tay đua.
-41. Lớp KetQuaDAO gọi hàm luuKetQua().
-42. Hàm luuKetQua() trả kết quả cho trang doLuuKetQua.jsp. *(Lặp lại các bước 40–42 cho đến khi lưu xong kết quả của tất cả tay đua trong chặng.)*
-43. Trang doLuuKetQua.jsp thông báo lưu thành công cho nhân viên.
-44. Nhân viên click OK.
-45. Trang doLuuKetQua.jsp gọi lại trang chính gdChinhNV.jsp.
-46. Trang gdChinhNV.jsp hiển thị cho nhân viên.
+3. Trang gdChonChang.jsp gọi lớp MuaGiaiDAO yêu cầu lấy mùa giải đang diễn ra.
+4. Lớp MuaGiaiDAO gọi hàm getMuaGiaiHienTai().
+5. Hàm getMuaGiaiHienTai() gọi lớp MuaGiai để đóng gói thông tin.
+6. Lớp MuaGiai đóng gói thông tin thực thể.
+7. Lớp MuaGiai trả kết quả về cho hàm getMuaGiaiHienTai().
+8. Hàm getMuaGiaiHienTai() trả kết quả cho trang gdChonChang.jsp.
+9. Trang gdChonChang.jsp gọi lớp ChangDuaDAO yêu cầu lấy danh sách chặng đua của mùa giải.
+10. Lớp ChangDuaDAO gọi hàm getDSChangDua().
+11. Hàm getDSChangDua() gọi lớp ChangDua để đóng gói thông tin.
+12. Lớp ChangDua đóng gói thông tin thực thể.
+13. Lớp ChangDua trả kết quả về cho hàm getDSChangDua().
+14. Hàm getDSChangDua() trả kết quả cho trang gdChonChang.jsp.
+15. Trang gdChonChang.jsp hiển thị danh sách chặng đua cho nhân viên.
+16. Nhân viên chọn chặng "R16 - Italian Grand Prix (Monza)" và click Tiếp tục.
+17. Trang gdChonChang.jsp gọi trang gdNhapKetQua.jsp.
+18. Trang gdNhapKetQua.jsp gọi lớp DangKyChangDAO yêu cầu lấy danh sách tay đua đã đăng ký chặng.
+19. Lớp DangKyChangDAO gọi hàm getDangKyCuaChang().
+20. Hàm getDangKyCuaChang() gọi lớp DangKyChang để đóng gói thông tin.
+21. Lớp DangKyChang đóng gói thông tin thực thể.
+22. Lớp DangKyChang trả kết quả về cho hàm getDangKyCuaChang().
+23. Hàm getDangKyCuaChang() trả kết quả cho trang gdNhapKetQua.jsp.
+24. Trang gdNhapKetQua.jsp hiển thị bảng nhập kết quả cho nhân viên.
+25. Nhân viên nhập thời gian về đích, số vòng hoàn thành và chọn trạng thái cho từng tay đua. *(Lặp lại bước 25 cho đến khi nhập xong tất cả tay đua.)*
+26. Nhân viên click Tính kết quả.
+27. Trang gdNhapKetQua.jsp submit gọi chính nó xử lí.
+28. Trang gdNhapKetQua.jsp gọi lớp KetQuaDAO yêu cầu xếp hạng và tính điểm cho chặng.
+29. Lớp KetQuaDAO gọi hàm xepHangVaTinhDiem().
+30. Hàm xepHangVaTinhDiem() gọi lớp KetQua để đóng gói thông tin.
+31. Lớp KetQua đóng gói thông tin thực thể.
+32. Lớp KetQua trả kết quả về cho hàm xepHangVaTinhDiem().
+33. Hàm xepHangVaTinhDiem() trả kết quả cho trang gdNhapKetQua.jsp.
+34. Trang gdNhapKetQua.jsp hiển thị bảng đối soát cho nhân viên.
+35. Nhân viên click Lưu.
+36. Trang gdNhapKetQua.jsp gọi trang doLuuKetQua.jsp.
+37. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu kiểm tra chặng đã có kết quả cũ hay chưa.
+38. Lớp KetQuaDAO gọi hàm kiemTraKetQuaCu().
+39. Hàm kiemTraKetQuaCu() gọi lớp KetQua để đóng gói thông tin.
+40. Lớp KetQua đóng gói thông tin thực thể.
+41. Lớp KetQua trả kết quả về cho hàm kiemTraKetQuaCu().
+42. Hàm kiemTraKetQuaCu() trả kết quả cho trang doLuuKetQua.jsp.
+43. Trang doLuuKetQua.jsp gọi lớp KetQua để đóng gói dữ liệu kết quả vừa nhập.
+44. Lớp KetQua gọi hàm setter() đóng gói dữ liệu nhập.
+45. Lớp KetQua trả kết quả về cho trang doLuuKetQua.jsp.
+46. Trang doLuuKetQua.jsp gọi lớp KetQuaDAO yêu cầu lưu kết quả của một tay đua.
+47. Lớp KetQuaDAO gọi hàm luuKetQua().
+48. Hàm luuKetQua() trả kết quả cho trang doLuuKetQua.jsp. *(Lặp lại các bước 46–48 cho đến khi lưu xong kết quả của tất cả tay đua trong chặng.)*
+49. Trang doLuuKetQua.jsp thông báo lưu thành công cho nhân viên.
+50. Nhân viên click OK.
+51. Trang doLuuKetQua.jsp gọi lại trang chính gdChinhNV.jsp.
+52. Trang gdChinhNV.jsp hiển thị cho nhân viên.
 
 ### 7.2. Biểu đồ tuần tự (Sequence)
 
 > Chỉ vẽ **luồng chính**. Các ngoại lệ (thiếu trạng thái, sai định dạng thời gian, số vòng không hợp lệ, trùng thời gian, ghi đè kết quả cũ) đã mô tả ở đặc tả use case mục 2, không đưa vào biểu đồ tuần tự.
 >
-> Message được đánh số tự động bằng `autonumber` (trong Visual Paradigm bật *Show sequence number*). Trang chính `gdChinhNV.jsp` là lifeline mở đầu và kết thúc; nút [Tính kết quả] do `gdNhapKetQua.jsp` tự submit xử lý (self-call `submit xu li`); luồng lưu đóng gói bằng `setter()` của lớp thực thể trước khi gọi DAO.
+> Message được đánh số tự động. Trang chính `gdChinhNV.jsp` là lifeline mở đầu và kết thúc; nút [Tính kết quả] do `gdNhapKetQua.jsp` tự submit xử lý (self-call `submit xu li`); luồng lưu đóng gói bằng `setter()` của lớp thực thể trước khi gọi DAO.
 
 ```plantuml
 @startuml
@@ -572,9 +575,11 @@ participant "gdChinhNV.jsp" as V0
 participant "gdChonChang.jsp" as V1
 participant "gdNhapKetQua.jsp" as V2
 participant "doLuuKetQua.jsp" as V3
+participant "MuaGiaiDAO" as D0
 participant "ChangDuaDAO" as D1
 participant "DangKyChangDAO" as D2
 participant "KetQuaDAO" as D3
+participant "MuaGiai" as E0
 participant "ChangDua" as E1
 participant "DangKyChang" as E2
 participant "KetQua" as E3
@@ -584,6 +589,16 @@ activate V0
 V0 -> V1 : goi
 activate V1
 deactivate V0
+V1 -> D0 : goi
+activate D0
+D0 -> D0 : getMuaGiaiHienTai()
+D0 -> E0 : goi
+activate E0
+E0 -> E0 : MuaGiai()
+E0 --> D0 : tra ve
+deactivate E0
+D0 --> V1 : tra ve
+deactivate D0
 V1 -> D1 : goi
 activate D1
 D1 -> D1 : getDSChangDua()
