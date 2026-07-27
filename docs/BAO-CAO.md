@@ -242,7 +242,7 @@ Ba quan hệ nhiều–nhiều được tách bằng đối tượng trung gian:
 
 ### 2.1. Phân tích và xác định actor
 
-Hệ thống chỉ được dùng bởi hai vai người dùng thật: người vận hành giải hằng ngày (ký hợp đồng, đăng ký chặng, nhập kết quả) và người quản lý giải (quyết toán, trao giải cuối mùa). Hai vai này có **đặc điểm chung**: đều phải có tài khoản trong hệ thống, đều đăng nhập và đổi mật khẩu. Vì vậy nhóm tách phần chung thành một **actor trừu tượng `ThanhVien`** làm cha, còn `NhanVien` và `QuanLy` kế thừa `ThanhVien`.
+Hệ thống chỉ được dùng bởi hai vai người dùng thật: người vận hành giải hằng ngày (ký hợp đồng, đăng ký chặng, nhập kết quả) và người quản lý giải (quyết toán, trao giải cuối mùa). Cả hai đều có tài khoản, đều đăng nhập và đổi mật khẩu, nên phần chung được tách thành **actor trừu tượng `ThanhVien`**; `NhanVien` và `QuanLy` kế thừa `ThanhVien`.
 
 | Actor | Loại | Mô tả | Kế thừa |
 |---|---|---|---|
@@ -250,13 +250,13 @@ Hệ thống chỉ được dùng bởi hai vai người dùng thật: người 
 | `NhanVien` | cụ thể | Nhân viên vận hành giải: ký hợp đồng, đăng ký tay đua vào chặng, cập nhật kết quả chặng, quản lý các danh mục. | `ThanhVien` |
 | `QuanLy` | cụ thể | Quản lý giải: quyết toán và trao giải cuối mùa. | `ThanhVien` |
 
-**Actor gián tiếp.** Nhóm rà soát các bên liên quan xuất hiện trong mô tả bài toán và kết luận như sau:
+**Actor gián tiếp.** Các bên liên quan còn lại trong mô tả bài toán:
 
-| Bên liên quan | Tham gia gián tiếp vào use case nào | Kết luận |
+| Bên liên quan | Tham gia gián tiếp vào use case nào | Vai trò |
 |---|---|---|
-| **Đội đua** | `Ký hợp đồng tay đua với đội đua`, `Đăng ký tay đua tham gia chặng đua`, `Quyết toán và trao giải cuối mùa` | Là **actor gián tiếp**. Đội đua không có tài khoản, không có màn hình nào trong hệ thống — mọi thao tác đều do `NhanVien` nhập hộ theo văn bản đội gửi. ⇒ Ghi nhận trong tài liệu, **không vẽ vào biểu đồ**. |
-| **Ban tổ chức** | `Đăng ký tay đua tham gia chặng đua`, `Cập nhật kết quả chặng đua`, `Xem bảng tổng sắp` | "Ban tổ chức" chính là **tên gọi nghiệp vụ của vai `NhanVien`**. ⇒ **Không tách thành actor riêng** vì sẽ trùng vai. |
-| **Tay đua** | `Ký hợp đồng tay đua với đội đua`, `Quyết toán và trao giải cuối mùa` | Là **actor gián tiếp**. Tay đua là **đối tượng được quản lý** (lớp thực thể `TayDua`), không đăng nhập, không thao tác trên hệ thống. ⇒ Ghi nhận trong tài liệu, **không vẽ vào biểu đồ**. |
+| **Đội đua** | `Ký hợp đồng tay đua với đội đua`, `Đăng ký tay đua tham gia chặng đua`, `Quyết toán và trao giải cuối mùa` | Là **actor gián tiếp**. Đội đua không có tài khoản, không có màn hình nào trong hệ thống — mọi thao tác đều do `NhanVien` nhập hộ theo văn bản đội gửi. |
+| **Ban tổ chức** | `Đăng ký tay đua tham gia chặng đua`, `Cập nhật kết quả chặng đua`, `Xem bảng tổng sắp` | "Ban tổ chức" chính là **tên gọi nghiệp vụ của vai `NhanVien`**. |
+| **Tay đua** | `Ký hợp đồng tay đua với đội đua`, `Quyết toán và trao giải cuối mùa` | Là **actor gián tiếp**. Tay đua là **đối tượng được quản lý** (lớp thực thể `TayDua`), không đăng nhập, không thao tác trên hệ thống. |
 
 ### 2.2. Yêu cầu chức năng — danh sách use case
 
@@ -386,7 +386,7 @@ Mỗi danh từ chỉ tính một lần. Cột "Nhóm" phân loại theo ngườ
 | đội đua | Vật (đơn vị tổ chức) | → lớp thực thể `DoiDua` |
 | mã đội | Thông tin | → thuộc tính `ma` của `DoiDua` |
 | tên đội | Thông tin | → thuộc tính `ten` của `DoiDua` |
-| hãng | Vật (đơn vị tổ chức) | → thuộc tính `hang` của `DoiDua` (biện luận ở mục 3.1.4) |
+| hãng | Vật (đơn vị tổ chức) | → thuộc tính `hang` của `DoiDua` |
 | mô tả đội | Thông tin | → thuộc tính `moTa` của `DoiDua` |
 | tay đua | Người | → lớp thực thể `TayDua` |
 | mã tay đua | Thông tin | → thuộc tính `ma` của `TayDua` |
@@ -438,12 +438,6 @@ Sau khi đánh giá, hệ thống có **12 lớp thực thể**, trong đó 9 l�
 `MuaGiai` · `ChangDua` · `DoiDua` · `TayDua` · `ThamGia` · `HopDong` · `DangKyChang` · `KetQua` · `TraoGiai` · `ThanhVien` (trừu tượng) · `NhanVien` · `QuanLy`.
 
 Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** của các quan hệ nhiều–nhiều (mục 3.3).
-
-#### 3.1.4. Hai quyết định về lớp thực thể
-
-**(a) Thuộc tính lấy từ mô tả bài toán.** Mô tả đối tượng ở mục 1.4 ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung `hang`, `moTa` cho `DoiDua`; `tieuSu` cho `TayDua`; `diaDiem`, `moTa` cho `ChangDua`.
-
-**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. "Hãng" chỉ là **một thông tin mô tả kèm theo đội đua**, hiển thị trên bảng xếp hạng đội. Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**.
 
 ### 3.2. Mô tả thực thể (thuộc tính, phương thức)
 
@@ -505,29 +499,21 @@ Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực th
 
 #### 3.3.2. Quan hệ đối tượng
 
-Các liên kết được chuyển thành quan hệ đối tượng: **hợp thành (composition, `*--`, hình thoi đặc)**, **thành phần (aggregation, `o--`, hình thoi rỗng)** và **kế thừa (`<|--`, tam giác rỗng)**. Biểu đồ **không dùng mũi tên định hướng**.
+Các liên kết được chuyển thành quan hệ **hợp thành** (`*--`), **thành phần** (`o--`) và **kế thừa** (`<|--`):
 
-**Loại quan hệ và căn cứ chọn:**
+| Quan hệ | Loại |
+|---|---|
+| `MuaGiai` – `ChangDua` | **Hợp thành `*--`** |
+| `ChangDua` – `DangKyChang` | **Hợp thành `*--`** |
+| `DangKyChang` – `KetQua` | **Hợp thành `*--`, bội số 1 – 0..1** |
+| `MuaGiai` – `TraoGiai` | **Hợp thành `*--`** |
+| `MuaGiai` – `ThamGia`, `DoiDua` – `ThamGia` | **Thành phần `o--`** |
+| `TayDua` – `HopDong`, `DoiDua` – `HopDong` | **Thành phần `o--`** |
+| `TayDua` – `DangKyChang`, `DoiDua` – `DangKyChang` | **Thành phần `o--`** |
+| `TayDua` – `TraoGiai`, `DoiDua` – `TraoGiai` | **Thành phần `o--`** |
+| `ThanhVien` – `NhanVien`, `ThanhVien` – `QuanLy` | **Kế thừa `<\|--`** |
 
-| Quan hệ | Loại | Lý do |
-|---|---|---|
-| `MuaGiai` – `ChangDua` | **Hợp thành `*--`** | Một chặng đua **không tồn tại độc lập**: chặng "Australian Grand Prix 2025" chỉ có nghĩa bên trong mùa giải 2025. Xoá mùa giải thì toàn bộ chặng của mùa đó mất theo |
-| `ChangDua` – `DangKyChang` | **Hợp thành `*--`** | Một bản đăng ký chỉ tồn tại gắn với đúng một chặng; xoá chặng thì các bản đăng ký của chặng đó vô nghĩa và bị xoá theo |
-| `DangKyChang` – `KetQua` | **Hợp thành `*--`, bội số 1 – 0..1** | Kết quả là kết quả **của một lượt đăng ký**; không có đăng ký thì không thể có kết quả |
-| `MuaGiai` – `TraoGiai` | **Hợp thành `*--`** | Quyết định trao giải là kết quả quyết toán **của một mùa giải cụ thể**, không có ý nghĩa tách rời mùa giải đó |
-| `MuaGiai` – `ThamGia`, `DoiDua` – `ThamGia` | **Thành phần `o--`** | `ThamGia` là bản ghi ghép nối; **đội đua vẫn tồn tại độc lập** dù chưa đăng ký tham gia mùa giải nào |
-| `TayDua` – `HopDong`, `DoiDua` – `HopDong` | **Thành phần `o--`** | **Tay đua và đội đua tồn tại độc lập** với hợp đồng: một tay đua mới thêm vào hệ thống chưa có hợp đồng nào vẫn là thực thể hợp lệ |
-| `TayDua` – `DangKyChang`, `DoiDua` – `DangKyChang` | **Thành phần `o--`** | Tay đua/đội đua không "chứa" bản đăng ký, chúng chỉ tham chiếu vào bản đăng ký |
-| `TayDua` – `TraoGiai`, `DoiDua` – `TraoGiai` | **Thành phần `o--`** | Bản ghi trao giải thuộc về mùa giải (đã là `*--`), tay đua/đội đua chỉ là bên nhận giải và vẫn tồn tại độc lập |
-| `ThanhVien` – `NhanVien`, `ThanhVien` – `QuanLy` | **Kế thừa `<\|--`** | Hai lớp con dùng chung toàn bộ thuộc tính và use case đăng nhập/đổi mật khẩu của lớp cha, chỉ khác quyền thực hiện chức năng |
-
-**Giữ `KetQua` tách khỏi `DangKyChang`.** Quy tắc thiết kế cơ sở dữ liệu nói quan hệ **1-1 thì nên gộp** hai bảng. Bội số thật giữa `DangKyChang` và `KetQua` là **1 – 0..1**:
-
-1. **Hai thời điểm khác nhau.** Bản ghi `DangKyChang` được tạo **trước** ngày đua (Module 2), còn `KetQua` chỉ ra đời **sau** khi chặng đua kết thúc (Module 3). Nếu gộp bảng thì trong suốt khoảng thời gian giữa hai mốc, mọi cột `thoiGian`, `soVongHoanThanh`, `trangThai`, `hang`, `diem` đều phải để NULL — đúng kiểu dư thừa cần tránh.
-2. **Hai nghiệp vụ, hai chủ thể ghi khác nhau.** Đăng ký do Module 2 ghi và có thể **sửa lại trước ngày đua**; kết quả do Module 3 ghi, có thể bị **ghi đè và tính lại toàn chặng**. Tách bảng cho phép `KetQua.xoaKetQuaCu(changDuaId)` xoá và nhập lại kết quả mà **không đụng tới danh sách đăng ký**.
-3. **Truy vấn tổng hợp của Module 4** chỉ đọc `tblKetQua`; giữ riêng bảng giúp câu lệnh cộng dồn điểm và countback gọn hơn.
-
-Hai lớp và hai bảng được giữ riêng, bội số `"1" *-- "0..1"`.
+Bội số giữa `DangKyChang` và `KetQua` là **1 – 0..1**: bản đăng ký được tạo trước ngày đua, kết quả chỉ phát sinh sau khi chặng kết thúc. Hai lớp giữ riêng, không gộp.
 
 ### 3.4. Biểu đồ lớp thực thể — pha phân tích
 
@@ -586,7 +572,7 @@ Các thuộc tính kiểu đối tượng thêm ở mục 3.5 **không trở th�
 
 - Toàn bộ quan hệ **1-n** được giữ nguyên thành cặp bảng cha – bảng con.
 - **Không còn quan hệ n-n** nào (đã tách bằng `ThamGia`, `HopDong`, `DangKyChang` ngay từ pha phân tích).
-- Quan hệ **1 – 0..1** giữa `tblDangKyChang` và `tblKetQua`: **giữ hai bảng riêng**, biện luận ở mục 3.3.2.
+- Quan hệ **1 – 0..1** giữa `tblDangKyChang` và `tblKetQua`: **giữ hai bảng riêng**.
 
 #### 3.6.4. Bước 4 — Bổ sung khoá chính và khoá ngoại
 
@@ -621,22 +607,17 @@ Khoá chính là cột `id`. Với quan hệ 1 `tblA` – n `tblB`, bảng `tblB
 
 | Thuộc tính bỏ đi | Bảng | Lý do |
 |---|---|---|
-| `tongDiem` | `tblTraoGiai` | Thuần dẫn xuất — bằng tổng `tblKetQua.diem` của tay đua (hoặc của đội) trong mùa. Nếu lưu lại thì mỗi lần sửa kết quả một chặng (Module 3 có luồng ghi đè kết quả cũ) là số liệu này sai ngay |
-| `tongThoiGian` | `tblTraoGiai` | Thuần dẫn xuất — bằng tổng `tblKetQua.thoiGian`. Tổng thời gian **luôn hiển thị trên bảng xếp hạng** và là tiêu chí phân định **cuối cùng (tầng 3)** khi countback vẫn bằng, nhưng luôn tính lại được từ `tblKetQua` nên không lưu |
+| `tongDiem` | `tblTraoGiai` | Dẫn xuất — tổng `tblKetQua.diem` của tay đua hoặc của đội trong mùa |
+| `tongThoiGian` | `tblTraoGiai` | Dẫn xuất — tổng `tblKetQua.thoiGian` |
 | Bảng xếp hạng cá nhân, bảng xếp hạng đội | — | Không tạo bảng nào cho hai bảng xếp hạng cuối mùa; chúng được tổng hợp lúc chạy bằng `KetQua.tongHopCaNhan(muaGiaiId)` và `KetQua.tongHopDoi(muaGiaiId)`; bảng chi tiết theo chặng của một tay đua/đội (drill-down ở Module 4) cũng tổng hợp lúc chạy bằng `KetQua.getChiTietTheoTayDua(muaGiaiId, tayDuaId)` / `KetQua.getChiTietTheoDoi(muaGiaiId, doiDuaId)` |
 
 Cách tính lúc chạy: tổng điểm cá nhân = `SUM(tblKetQua.diem)` gộp theo `tblDangKyChang.tblTayDuaid`; tổng điểm đội = `SUM(tblKetQua.diem)` gộp theo `tblDangKyChang.tblDoiDuaid` (gộp theo đội ghi trong bản đăng ký nên tay đua đổi đội giữa mùa vẫn cộng đúng cho đội tại thời điểm chặng). Tie-break cũng tính lúc chạy, không lưu cột nào — theo **quy tắc xếp hạng ba tầng**: bằng điểm thì **countback** (đếm `COUNT(tblKetQua.hang = 1)`, nếu bằng nhau thì `COUNT(tblKetQua.hang = 2)`, rồi `COUNT(tblKetQua.hang = 3)`…); nếu countback vẫn bằng thì so `SUM(tblKetQua.thoiGian)` tăng dần.
 
-**Cố ý GIỮ lại, có biện luận:**
-
-| Thuộc tính giữ | Bảng | Lý do giữ |
-|---|---|---|
-| `hang`, `diem` | `tblKetQua` | Đây là **kết quả chính thức đã công bố** của chặng đua, mang giá trị pháp lý — ban tổ chức căn cứ vào nó để trao cúp chặng. Nếu tính lại lúc chạy thì một thay đổi luật tính điểm trong tương lai sẽ **làm sai lệch lịch sử các mùa cũ**. Việc tính lại chỉ được phép xảy ra có kiểm soát, qua chức năng ghi đè kết quả của Module 3 |
-| `hang`, `tienThuong`, `loai` | `tblTraoGiai` | Đây là **quyết định trao giải đã chốt sổ** của mùa giải, không phải giá trị tính lại được: `tienThuong` phụ thuộc mức thưởng do quản lý nhập tại thời điểm quyết toán (mỗi mùa một mức khác nhau), còn `hang` và `loai` là nội dung của quyết định đó |
+`tblKetQua.hang`, `tblKetQua.diem` và `tblTraoGiai.hang`, `tienThuong`, `loai` **được giữ**: đây là kết quả đã công bố của chặng và quyết định trao giải đã chốt của mùa giải, không phải giá trị tính lại được.
 
 ### 3.7. Thiết kế triển khai (package view / dao / model)
 
-Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gói **`dao`**, trang jsp vào gói **`view`** (chia nhỏ theo nhóm người dùng). Ba gói nối với nhau bằng **đường kẻ trơn**, không dùng mũi tên.
+Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gói **`dao`**, trang jsp vào gói **`view`** (chia nhỏ theo nhóm người dùng).
 
 | Gói | Thành phần |
 |---|---|
@@ -1431,8 +1412,6 @@ Use case chính của module là **`Cập nhật kết quả chặng đua`** —
 
 Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công: `Hiển thị GD chính của nhân viên` —`[click Cập nhật kết quả chặng đua]`→ `Hiển thị GD chọn chặng` —`[chọn chặng, click Tiếp tục]`→ `Hiển thị GD nhập kết quả` (cung tự quay `[nhập thời gian, số vòng, trạng thái của từng tay đua]`) —`[click Tính kết quả, dữ liệu hợp lệ]`→ `Hiển thị GD nhập kết quả kèm bảng đối soát` —`[click Lưu]`→ `Hiển thị thông báo lưu thành công` —`[click OK]`→ Kết thúc.
 
-Các ràng buộc kiểm tra dữ liệu nhập (ngoại lệ 6a–6d, 8a ở mục 6.2) không xuất hiện ở đây — chúng được thể hiện bằng các node quyết định trong **biểu đồ hoạt động pha thiết kế** (mục 6.6).
-
 ![Biểu đồ trạng thái Module 3](<../Module 3 - Kiet/hinh/m3-trangthai.png>)
 
 *Hình 6.2 — Biểu đồ trạng thái Module 3 (phân tích hoạt động)*
@@ -2047,8 +2026,6 @@ Nội dung **đầy đủ** hai cột `hang` / `diem` của cả 72 dòng `tblKe
 | STR | 11 (0) | 10 (1) | 11 (0) | 12 (0) | 12 (0) | 11 (0) | 1 |
 
 `tblTraoGiai` — **rỗng** (chưa có dòng nào).
-
-> `tblTraoGiai` **không** lưu `tongDiem` và `tongThoiGian`: đây là thuộc tính dẫn xuất, tính lại được từ `tblKetQua` tại thời điểm hiển thị (xem mục 3.6.5). Các cột `loai`, `hang`, `tienThuong` được giữ vì là **quyết định trao giải đã chốt sổ**, không phải giá trị tính lại được.
 
 #### 7.9.2. Bảng test case
 
