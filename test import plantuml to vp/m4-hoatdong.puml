@@ -1,0 +1,71 @@
+@startuml
+start
+partition "Xử lí tại gdChinhQL.jsp" {
+  :Hiển thị GD chính của quản lý;
+}
+-> [click Quyết toán mùa giải];
+partition "Xử lí tại gdXepHang.jsp" {
+  :Lấy mùa giải hiện tại
+  MuaGiaiDAO: getMuaGiaiHienTai();
+  :Nhận chặng được chọn từ danh sách;
+  :Kiểm tra kết quả từng chặng
+  KetQuaDAO: kiemTraKetQuaCu();
+  :Tổng hợp xếp hạng cá nhân tính đến chặng đã chọn
+  KetQuaDAO: tongHopCaNhan();
+  :Tổng hợp xếp hạng đội theo đội đăng ký tại từng chặng
+  KetQuaDAO: tongHopDoi();
+  :Sắp xếp 2 bảng theo 3 tầng: điểm giảm dần,
+  countback, tổng thời gian tăng dần
+  KetQuaDAO: sapXepBangXepHang();
+  if (Đã chọn chặng cuối và mọi chặng có kết quả?) then (có)
+    :Hiển thị GD bảng tổng sắp, active nút Tiếp tục;
+  else (không)
+    :Hiển thị GD bảng tổng sắp kèm thông báo
+    chưa thể quyết toán, nút Tiếp tục không active;
+  endif
+}
+if (Quản lý click 1 dòng tay đua hoặc đội?) then (có)
+  partition "Xử lí tại gdChiTietXepHang.jsp" {
+    :Lấy chi tiết kết quả từng chặng
+    KetQuaDAO: getChiTietTheoTayDua() / getChiTietTheoDoi();
+    :Hiển thị GD chi tiết theo chặng;
+    -> [click Quay lại];
+    :Gọi lại trang gdXepHang.jsp;
+  }
+endif
+-> [click Tiếp tục];
+partition "Xử lí tại gdTraoGiai.jsp" {
+  :Hiển thị GD trao giải với danh sách trao giải,
+  cột Tiền thưởng rỗng;
+  repeat
+    :Nhận mức thưởng nhập vào;
+    if (Mức thưởng là số không âm?) then (không)
+      :Thông báo mức thưởng không hợp lệ;
+    else (có)
+      :Tính tiền thưởng cho từng hạng
+      TraoGiaiDAO: tinhTienThuong();
+      :Hiển thị cột Tiền thưởng, active nút Lưu;
+    endif
+  repeat while (Quản lý sửa lại mức thưởng và click Tính thưởng?) is (có)
+}
+-> [click Lưu];
+partition "Xử lí tại doLuuTraoGiai.jsp" {
+  if (Mùa giải đã có quyết định trao giải?) then (có)
+    if (Quản lý xác nhận ghi đè?) then (không)
+      :Huỷ thao tác lưu;
+      stop
+    else (có)
+      :Xoá quyết định trao giải cũ;
+    endif
+  endif
+  :Đóng gói danh sách trao giải bằng setter();
+  :Lưu danh sách trao giải
+  TraoGiaiDAO: luuTraoGiai();
+  :Thông báo lưu thành công, in danh sách trao giải;
+}
+-> [click OK];
+partition "Xử lí tại gdChinhQL.jsp " {
+  :Hiển thị GD chính của quản lý;
+}
+stop
+@enduml

@@ -1,0 +1,146 @@
+@startuml
+autonumber
+actor "Nhan vien" as NV
+participant "gdChinhNV.jsp" as V0
+participant "gdChonChangDoi.jsp" as V1
+participant "gdDangKyTayDua.jsp" as V2
+participant "doLuuDangKy.jsp" as V3
+participant "MuaGiaiDAO" as MDAO
+participant "ChangDuaDAO" as CDAO
+participant "DoiDuaDAO" as DDAO
+participant "HopDongDAO" as HDAO
+participant "DangKyChangDAO" as KDAO
+participant "MuaGiai" as MG
+participant "ChangDua" as CD
+participant "DoiDua" as DD
+participant "TayDua" as TD
+participant "DangKyChang" as DKC
+
+NV -> V0 : click Dang ky thi dau
+activate V0
+V0 -> V1 : goi
+activate V1
+deactivate V0
+
+V1 -> MDAO : goi
+activate MDAO
+MDAO -> MDAO : getMuaGiaiHienTai()
+MDAO -> MG : goi
+activate MG
+MG -> MG : MuaGiai()
+MG --> MDAO : tra ve
+deactivate MG
+MDAO --> V1 : tra ve
+deactivate MDAO
+
+V1 -> CDAO : goi
+activate CDAO
+CDAO -> CDAO : getDSChangDua()
+CDAO -> CD : goi
+activate CD
+CD -> CD : ChangDua()
+CD --> CDAO : tra ve
+deactivate CD
+CDAO --> V1 : tra ve
+deactivate CDAO
+
+V1 -> DDAO : goi
+activate DDAO
+DDAO -> DDAO : getDSDoiDua()
+DDAO -> DD : goi
+activate DD
+DD -> DD : DoiDua()
+DD --> DDAO : tra ve
+deactivate DD
+DDAO --> V1 : tra ve
+deactivate DDAO
+
+V1 --> NV : hien thi
+
+NV -> V1 : chon chang
+NV -> V1 : chon doi
+NV -> V1 : click Tiep tuc
+
+V1 -> V2 : goi
+activate V2
+deactivate V1
+
+V2 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : getTayDuaHieuLuc()
+HDAO -> TD : goi
+activate TD
+TD -> TD : TayDua()
+TD --> HDAO : tra ve
+deactivate TD
+HDAO --> V2 : tra ve
+deactivate HDAO
+
+V2 -> KDAO : goi
+activate KDAO
+KDAO -> KDAO : daDangKy()
+KDAO -> DKC : goi
+activate DKC
+DKC -> DKC : DangKyChang()
+DKC --> KDAO : tra ve
+deactivate DKC
+KDAO --> V2 : tra ve
+deactivate KDAO
+
+V2 --> NV : hien thi
+
+loop lap den khi chon xong tay dua
+  NV -> V2 : tick chon tay dua
+end
+
+NV -> V2 : click Luu
+
+V2 -> V3 : goi
+activate V3
+
+V3 -> KDAO : goi
+activate KDAO
+KDAO -> KDAO : demSoTayDua()
+KDAO -> DKC : goi
+activate DKC
+DKC -> DKC : DangKyChang()
+DKC --> KDAO : tra ve
+deactivate DKC
+KDAO --> V3 : tra ve
+deactivate KDAO
+
+loop lap den khi luu het tay dua duoc chon
+  V3 -> DKC : goi
+  activate DKC
+  DKC -> DKC : setter()
+  DKC --> V3 : tra ve
+  deactivate DKC
+  V3 -> KDAO : goi
+  activate KDAO
+  KDAO -> KDAO : luuDangKy()
+  KDAO --> V3 : tra ve
+  deactivate KDAO
+end
+
+V3 -> KDAO : goi
+activate KDAO
+KDAO -> KDAO : getDangKyCuaChang()
+KDAO -> DKC : goi
+activate DKC
+DKC -> DKC : DangKyChang()
+DKC --> KDAO : tra ve
+deactivate DKC
+KDAO --> V3 : tra ve
+deactivate KDAO
+
+V3 --> V2 : tra ve
+deactivate V3
+V2 --> NV : hien thi thong bao + danh sach xuat phat
+
+NV -> V2 : click OK
+V2 -> V0 : goi
+activate V0
+deactivate V2
+V0 --> NV : hien thi
+deactivate V0
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+actor "<i>ThanhVien</i>" as ThanhVien
+actor NhanVien
+actor QuanLy
+
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+
+rectangle "Hệ thống quản lý giải đua F1" {
+  usecase "Đăng nhập" as UCDN
+  usecase "Đổi mật khẩu" as UCMK
+  usecase "Quản lý danh mục" as UCDM
+  usecase "Quản lý mùa giải" as UCMG
+  usecase "Quản lý tay đua" as UCTD
+  usecase "Quản lý đội đua" as UCDD
+  usecase "Quản lý chặng đua" as UCCD
+  usecase "Đăng ký đội tham gia mùa giải" as UCTG
+  usecase "Ký hợp đồng tay đua với đội đua" as UC1
+  usecase "Đăng ký tay đua tham gia chặng đua" as UC2
+  usecase "Cập nhật kết quả chặng đua" as UC3
+  usecase "Quyết toán và trao giải cuối mùa" as UC4
+}
+
+UCDM <|-- UCMG
+UCDM <|-- UCTD
+UCDM <|-- UCDD
+UCDM <|-- UCCD
+
+ThanhVien -- UCDN
+ThanhVien -- UCMK
+NhanVien -- UCDM
+NhanVien -- UCTG
+NhanVien -- UC1
+NhanVien -- UC2
+NhanVien -- UC3
+QuanLy -- UC4
+@enduml

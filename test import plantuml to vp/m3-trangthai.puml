@@ -1,0 +1,15 @@
+@startuml
+state "Hiển thị GD chính của nhân viên" as S0
+state "Hiển thị GD chọn chặng" as S1
+state "Hiển thị GD nhập kết quả" as S2
+state "Hiển thị GD nhập kết quả kèm bảng đối soát" as S3
+state "Hiển thị thông báo lưu thành công" as S4
+
+[*] --> S0
+S0 --> S1 : [click Cập nhật kết quả chặng đua]
+S1 --> S2 : [chọn chặng, click Tiếp tục]
+S2 --> S2 : [nhập thời gian, số vòng, trạng thái của từng tay đua]
+S2 --> S3 : [click Tính kết quả, dữ liệu hợp lệ]
+S3 --> S4 : [click Lưu]
+S4 --> [*] : [click OK]
+@enduml

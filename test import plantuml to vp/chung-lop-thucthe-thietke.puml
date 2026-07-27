@@ -1,0 +1,100 @@
+@startuml
+hide circle
+class MuaGiai {
+  -id : integer
+  -ten : String
+  -nam : integer
+  -trangThai : String
+  -dsChangDua : ChangDua[]
+  -dsThamGia : ThamGia[]
+  -dsTraoGiai : TraoGiai[]
+}
+class ChangDua {
+  -id : integer
+  -ma : String
+  -ten : String
+  -soVong : integer
+  -diaDiem : String
+  -thoiGian : Date
+  -moTa : String
+  -muaGiai : MuaGiai
+  -dsDangKy : DangKyChang[]
+}
+class DoiDua {
+  -id : integer
+  -ma : String
+  -ten : String
+  -hang : String
+  -moTa : String
+}
+class TayDua {
+  -id : integer
+  -ma : String
+  -ten : String
+  -ngaySinh : Date
+  -quocTich : String
+  -tieuSu : String
+}
+class ThamGia {
+  -id : integer
+  -muaGiai : MuaGiai
+  -doiDua : DoiDua
+}
+class HopDong {
+  -id : integer
+  -ngayBatDau : Date
+  -ngayKetThuc : Date
+  -tayDua : TayDua
+  -doiDua : DoiDua
+}
+class DangKyChang {
+  -id : integer
+  -changDua : ChangDua
+  -tayDua : TayDua
+  -doiDua : DoiDua
+  -ketQua : KetQua
+}
+class KetQua {
+  -id : integer
+  -thoiGian : float
+  -soVongHoanThanh : integer
+  -trangThai : String
+  -hang : integer
+  -diem : integer
+  -dangKyChang : DangKyChang
+}
+class TraoGiai {
+  -id : integer
+  -loai : String
+  -hang : integer
+  -tienThuong : float
+  -muaGiai : MuaGiai
+  -tayDua : TayDua
+  -doiDua : DoiDua
+}
+abstract class ThanhVien {
+  -id : integer
+  -tenDangNhap : String
+  -matKhau : String
+  -hoTen : String
+}
+class NhanVien {
+}
+class QuanLy {
+}
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+@enduml

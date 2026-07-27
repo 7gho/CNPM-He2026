@@ -1,0 +1,15 @@
+@startuml
+state "Hiển thị GD chính NV" as S0
+state "Hiển thị GD chọn chặng và đội" as S1
+state "Hiển thị GD đăng ký tay đua" as S2
+state "Hiển thị thông báo + danh sách xuất phát" as S3
+
+[*] --> S0
+S0 --> S1 : [click Đăng ký thi đấu]
+S1 --> S1 : [chọn chặng / chọn đội]
+S1 --> S2 : [click Tiếp tục]
+S2 --> S2 : [tick chọn tay đua]
+S2 --> S1 : [click Quay lại]
+S2 --> S3 : [click Lưu, hợp lệ]
+S3 --> [*] : [click OK]
+@enduml

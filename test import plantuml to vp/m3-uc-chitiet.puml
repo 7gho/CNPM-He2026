@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+
+actor "Thành viên" as TV
+actor "Nhân viên" as NV
+TV <|-- NV
+
+usecase "Đăng nhập" as DN
+usecase "NV đăng nhập" as NVDN
+usecase "Cập nhật kết quả\nchặng đua" as UC
+usecase "Chọn chặng" as CC
+usecase "Nhập kết quả chặng" as NK
+
+TV -- DN
+NV -- UC
+
+DN <|-- NVDN
+UC ..> NVDN : <<include>>
+UC ..> CC : <<include>>
+UC ..> NK : <<include>>
+@enduml

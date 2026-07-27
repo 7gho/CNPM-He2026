@@ -1,0 +1,83 @@
+@startuml
+class "gdChinhNV.jsp" as gdChinhNV {
+  -capNhatKetQua : link
+  -nv : NhanVien
+}
+class "gdChonChang.jsp" as gdChonChang {
+  -tenMuaGiai : Text
+  -changDua : Select
+  -btnTiepTuc : submit
+  -btnVeTrangChu : submit
+  -muaGiai : MuaGiai
+  -nv : NhanVien
+}
+class "gdNhapKetQua.jsp" as gdNhapKetQua {
+  -thongTinChang : Text
+  -changDua : ChangDua
+  -listDangKy : DangKyChang[]
+  -tblKetQua : Table
+  -btnTinhKetQua : submit
+  -tblDoiSoat : Table
+  -listKQ : KetQua[]
+  -btnLuu : submit
+  -btnQuayLai : submit
+  -nv : NhanVien
+}
+class "doLuuKetQua.jsp" as doLuuKetQua {
+  -listKQ : KetQua[]
+  -nv : NhanVien
+}
+
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class MuaGiaiDAO {
+  +MuaGiaiDAO()
+  +getMuaGiaiHienTai() : MuaGiai
+}
+class ChangDuaDAO {
+  +ChangDuaDAO()
+  +getDSChangDua(muaGiaiId : int) : ChangDua[]
+}
+class DangKyChangDAO {
+  +DangKyChangDAO()
+  +getDangKyCuaChang(changDuaId : int) : DangKyChang[]
+}
+class KetQuaDAO {
+  +KetQuaDAO()
+  +kiemTraKetQuaCu(changDuaId : int) : boolean
+  +xoaKetQuaCu(changDuaId : int) : boolean
+  +xepHangVaTinhDiem(changDuaId : int) : KetQua[]
+  +luuKetQua(kq : KetQua) : boolean
+}
+
+class MuaGiai
+class ChangDua
+class DangKyChang
+class KetQua
+abstract class ThanhVien
+class NhanVien
+ThanhVien <|-- NhanVien
+
+DAO <|-- MuaGiaiDAO
+DAO <|-- ChangDuaDAO
+DAO <|-- DangKyChangDAO
+DAO <|-- KetQuaDAO
+
+gdChinhNV -- gdChonChang
+gdChonChang -- gdNhapKetQua
+gdNhapKetQua -- doLuuKetQua
+doLuuKetQua -- gdChinhNV
+
+gdChonChang -- MuaGiaiDAO
+gdChonChang -- ChangDuaDAO
+gdNhapKetQua -- DangKyChangDAO
+gdNhapKetQua -- KetQuaDAO
+doLuuKetQua -- KetQuaDAO
+
+MuaGiaiDAO -- MuaGiai
+ChangDuaDAO -- ChangDua
+DangKyChangDAO -- DangKyChang
+KetQuaDAO -- KetQua
+@enduml

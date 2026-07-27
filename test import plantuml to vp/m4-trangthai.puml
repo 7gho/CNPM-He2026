@@ -1,0 +1,16 @@
+@startuml
+state "Hiển thị GD chính QL" as S0
+state "Hiển thị GD bảng tổng sắp" as S1
+state "Hiển thị GD chi tiết theo chặng" as S2
+state "Hiển thị GD trao giải" as S3
+state "Hiển thị thông báo và in danh sách trao giải" as S4
+[*] --> S0
+S0 --> S1 : [click Quyết toán mùa giải]
+S1 --> S1 : [chọn chặng từ danh sách]
+S1 --> S2 : [click 1 dòng tay đua hoặc đội]
+S2 --> S1 : [click Quay lại]
+S1 --> S3 : [click Tiếp tục, đã chọn chặng cuối và đủ kết quả]
+S3 --> S3 : [nhập mức thưởng, click Tính thưởng]
+S3 --> S4 : [click Lưu, mức thưởng hợp lệ]
+S4 --> [*] : [click OK]
+@enduml

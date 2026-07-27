@@ -1,0 +1,122 @@
+@startuml
+autonumber
+actor "Nhân viên" as NV
+participant "gdChinhNV.jsp" as V0
+participant "gdChonChang.jsp" as V1
+participant "gdNhapKetQua.jsp" as V2
+participant "doLuuKetQua.jsp" as V3
+participant "MuaGiaiDAO" as D0
+participant "ChangDuaDAO" as D1
+participant "DangKyChangDAO" as D2
+participant "KetQuaDAO" as D3
+participant "MuaGiai" as E0
+participant "ChangDua" as E1
+participant "DangKyChang" as E2
+participant "KetQua" as E3
+
+NV -> V0 : click Cap nhat ket qua chang dua
+activate V0
+V0 -> V1 : goi
+activate V1
+deactivate V0
+V1 -> D0 : goi
+activate D0
+D0 -> D0 : getMuaGiaiHienTai()
+D0 -> E0 : goi
+activate E0
+E0 -> E0 : MuaGiai()
+E0 --> D0 : tra ve
+deactivate E0
+D0 --> V1 : tra ve
+deactivate D0
+V1 -> D1 : goi
+activate D1
+D1 -> D1 : getDSChangDua()
+D1 -> E1 : goi
+activate E1
+E1 -> E1 : ChangDua()
+E1 --> D1 : tra ve
+deactivate E1
+D1 --> V1 : tra ve
+deactivate D1
+V1 --> NV : hien thi
+deactivate V1
+
+NV -> V1 : chon chang R16, click Tiep tuc
+activate V1
+V1 -> V2 : goi
+activate V2
+deactivate V1
+V2 -> D2 : goi
+activate D2
+D2 -> D2 : getDangKyCuaChang()
+D2 -> E2 : goi
+activate E2
+E2 -> E2 : DangKyChang()
+E2 --> D2 : tra ve
+deactivate E2
+D2 --> V2 : tra ve
+deactivate D2
+V2 --> NV : hien thi
+deactivate V2
+
+loop lap den khi nhap xong tat ca tay dua
+  NV -> V2 : nhap thoi gian, so vong, trang thai
+  activate V2
+  deactivate V2
+end
+
+NV -> V2 : click Tinh ket qua
+activate V2
+V2 -> V2 : submit xu li
+V2 -> D3 : goi
+activate D3
+D3 -> D3 : xepHangVaTinhDiem()
+D3 -> E3 : goi
+activate E3
+E3 -> E3 : KetQua()
+E3 --> D3 : tra ve
+deactivate E3
+D3 --> V2 : tra ve
+deactivate D3
+V2 --> NV : hien thi
+deactivate V2
+
+NV -> V2 : click Luu
+activate V2
+V2 -> V3 : goi
+activate V3
+deactivate V2
+V3 -> D3 : goi
+activate D3
+D3 -> D3 : kiemTraKetQuaCu()
+D3 -> E3 : goi
+activate E3
+E3 -> E3 : KetQua()
+E3 --> D3 : tra ve
+deactivate E3
+D3 --> V3 : tra ve
+deactivate D3
+
+V3 -> E3 : goi
+activate E3
+E3 -> E3 : setter()
+E3 --> V3 : tra ve
+deactivate E3
+
+loop lap den khi luu xong ket qua tat ca tay dua
+  V3 -> D3 : goi
+  activate D3
+  D3 -> D3 : luuKetQua()
+  D3 --> V3 : tra ve
+  deactivate D3
+end
+
+V3 --> NV : thong bao thanh cong
+NV -> V3 : click OK
+V3 -> V0 : goi
+activate V0
+deactivate V3
+V0 --> NV : hien thi
+deactivate V0
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+start
+partition "Xử lí tại gdChinhNV.jsp" {
+  :Hiển thị GD chính của nhân viên;
+}
+-> [click Cập nhật kết quả chặng đua];
+partition "Xử lí tại gdChonChang.jsp" {
+  :Lấy mùa giải đang diễn ra
+  MuaGiaiDAO: getMuaGiaiHienTai();
+  :Lấy danh sách chặng đua của mùa giải
+  ChangDuaDAO: getDSChangDua();
+  -> [lấy xong dữ liệu];
+  :Hiển thị GD chọn chặng;
+}
+-> [chọn chặng R16, click Tiếp tục];
+partition "Xử lí tại gdNhapKetQua.jsp" {
+  :Lấy danh sách tay đua đã đăng ký chặng
+  DangKyChangDAO: getDangKyCuaChang();
+  if (Chặng có tay đua đăng ký?) then (không)
+    :Thông báo "Chặng đua chưa có tay đua nào đăng ký";
+    stop
+  else (có)
+  endif
+  :Hiển thị bảng nhập kết quả;
+  repeat
+    :Nhận thời gian về đích, số vòng hoàn thành, trạng thái của từng tay đua;
+    -> [click Tính kết quả];
+    :Trang gdNhapKetQua.jsp tự submit để kiểm tra dữ liệu nhập;
+    if (Mọi tay đua đã chọn trạng thái?) then (không)
+      :Thông báo "Vui lòng chọn trạng thái cho tất cả tay đua";
+    elseif (Tay đua Hoàn thành đều có thời gian hợp lệ?) then (không)
+      :Thông báo "Vui lòng nhập thời gian hợp lệ cho tay đua đã hoàn thành";
+    elseif (Số vòng nằm trong khoảng 0 đến số vòng của chặng?) then (không)
+      :Thông báo "Số vòng hoàn thành không hợp lệ";
+    elseif (Thời gian các tay đua Hoàn thành đôi một khác nhau?) then (không)
+      :Thông báo "Thời gian về đích của hai tay đua trùng nhau";
+    else (hợp lệ)
+      :Xếp hạng và tính điểm toàn chặng
+      KetQuaDAO: xepHangVaTinhDiem();
+      :Hiển thị bảng đối soát;
+    endif
+  repeat while (Dữ liệu đã hợp lệ?) is (chưa) not (rồi)
+}
+-> [click Lưu];
+partition "Xử lí tại doLuuKetQua.jsp" {
+  :Kiểm tra chặng đã có kết quả cũ
+  KetQuaDAO: kiemTraKetQuaCu();
+  if (Chặng đã có kết quả cũ?) then (có)
+    :Hiển thị cảnh báo "Chặng đua đã có kết quả, bạn có muốn ghi đè?";
+    if (Nhân viên xác nhận ghi đè?) then (không)
+      :Giữ nguyên kết quả cũ;
+      stop
+    else (có)
+      :Xóa kết quả cũ của chặng
+      KetQuaDAO: xoaKetQuaCu();
+    endif
+  else (không)
+  endif
+  repeat
+    :Lưu kết quả của một tay đua
+    KetQuaDAO: luuKetQua();
+  repeat while (Còn tay đua chưa lưu?) is (còn) not (hết)
+  :Thông báo "Đã lưu kết quả chặng";
+}
+-> [click OK];
+partition "Xử lí tại gdChinhNV.jsp " {
+  :Hiển thị lại GD chính của nhân viên;
+}
+stop
+@enduml

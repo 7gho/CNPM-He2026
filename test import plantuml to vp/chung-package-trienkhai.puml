@@ -1,0 +1,17 @@
+@startuml
+package view {
+  package "view.thanhvien" {
+  }
+  package "view.nhanvien" {
+  }
+  package "view.quanly" {
+  }
+}
+package dao {
+}
+package model {
+}
+
+view -- dao
+dao -- model
+@enduml

@@ -1,0 +1,119 @@
+@startuml
+class GDChinhQL {
+  -subQuyetToan
+}
+class GDXepHang {
+  -inChangDua
+  -outTinhTrangChang
+  -outsubXHCaNhan
+  -outsubXHDoi
+  -subTiepTuc
+  -subVeTrangChu
+}
+class GDChiTietXepHang {
+  -outTenDoiTuong
+  -outBangChiTiet
+  -subQuayLai
+}
+class GDTraoGiai {
+  -inMucThuongCaNhan1
+  -inMucThuongCaNhan2
+  -inMucThuongCaNhan3
+  -inMucThuongDoi1
+  -inMucThuongDoi2
+  -inMucThuongDoi3
+  -subTinhThuong
+  -outDSTraoGiai
+  -subLuu
+  -subQuayLai
+}
+class MuaGiai {
+  -ten
+  -nam
+  -trangThai
+  +getMuaGiaiHienTai()
+}
+class ChangDua {
+  -ma
+  -ten
+  -soVong
+  -diaDiem
+  -thoiGian
+  -moTa
+}
+class DoiDua {
+  -ma
+  -ten
+  -hang
+  -moTa
+}
+class TayDua {
+  -ma
+  -ten
+  -ngaySinh
+  -quocTich
+  -tieuSu
+}
+class ThamGia
+class HopDong {
+  -ngayBatDau
+  -ngayKetThuc
+}
+class DangKyChang
+class KetQua {
+  -thoiGian
+  -soVongHoanThanh
+  -trangThai
+  -hang
+  -diem
+  +kiemTraKetQuaCu(changDuaId)
+  +tongHopCaNhan(muaGiaiId, changDuaId)
+  +tongHopDoi(muaGiaiId, changDuaId)
+  +sapXepBangXepHang(ds)
+  +getChiTietTheoTayDua(muaGiaiId, tayDuaId, changDuaId)
+  +getChiTietTheoDoi(muaGiaiId, doiDuaId, changDuaId)
+}
+class TraoGiai {
+  -loai
+  -hang
+  -tienThuong
+  +tinhTienThuong(hang, mucThuong)
+  +luuTraoGiai()
+}
+abstract class ThanhVien {
+  -tenDangNhap
+  -matKhau
+  -hoTen
+}
+class NhanVien
+class QuanLy
+
+GDChinhQL -- GDXepHang
+GDXepHang -- GDChiTietXepHang
+GDXepHang -- GDTraoGiai
+GDXepHang -- MuaGiai
+GDXepHang -- ChangDua
+GDXepHang -- KetQua
+GDXepHang -- TayDua
+GDXepHang -- DoiDua
+GDChiTietXepHang -- KetQua
+GDChiTietXepHang -- ChangDua
+GDTraoGiai -- TraoGiai
+GDTraoGiai -- TayDua
+GDTraoGiai -- DoiDua
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+@enduml

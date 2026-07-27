@@ -1,0 +1,102 @@
+@startuml
+autonumber
+actor "Nhan vien" as NV
+participant "gdChinhNV.jsp" as V0
+participant "gdTimTayDua.jsp" as V1
+participant "gdNhapHopDong.jsp" as V2
+participant "doLuuHopDong.jsp" as V3
+participant "TayDuaDAO" as TDAO
+participant "DoiDuaDAO" as DDAO
+participant "HopDongDAO" as HDAO
+participant "TayDua" as ETD
+participant "DoiDua" as EDD
+participant "HopDong" as EHD
+
+loop lap cho tung tay dua can ky hop dong
+NV -> V0 : click Ky hop dong
+activate V0
+V0 -> V1 : goi
+activate V1
+deactivate V0
+V1 --> NV : hien thi
+deactivate V1
+
+NV -> V1 : nhap ten, click Tim
+activate V1
+V1 -> TDAO : goi
+activate TDAO
+TDAO -> TDAO : getTayDuaTheoTen()
+TDAO -> ETD : goi
+activate ETD
+ETD -> ETD : TayDua()
+ETD --> TDAO : tra ve
+deactivate ETD
+TDAO --> V1 : tra ve
+deactivate TDAO
+V1 --> NV : hien thi
+deactivate V1
+
+NV -> V1 : chon tay dua
+activate V1
+V1 -> V2 : goi
+activate V2
+deactivate V1
+V2 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : getHopDongCuaTayDua()
+HDAO -> EHD : goi
+activate EHD
+EHD -> EHD : HopDong()
+EHD --> HDAO : tra ve
+deactivate EHD
+HDAO --> V2 : tra ve
+deactivate HDAO
+V2 -> DDAO : goi
+activate DDAO
+DDAO -> DDAO : getDSDoiDua()
+DDAO -> EDD : goi
+activate EDD
+EDD -> EDD : DoiDua()
+EDD --> DDAO : tra ve
+deactivate EDD
+DDAO --> V2 : tra ve
+deactivate DDAO
+V2 --> NV : hien thi
+deactivate V2
+
+NV -> V2 : chon doi dua
+activate V2
+NV -> V2 : nhap ngay bat dau
+NV -> V2 : click Luu
+V2 -> V3 : goi
+activate V3
+deactivate V2
+V3 -> EHD : goi
+activate EHD
+EHD -> EHD : setter()
+EHD --> V3 : tra ve
+deactivate EHD
+V3 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : kiemTraChongLan()
+HDAO --> V3 : tra ve
+deactivate HDAO
+V3 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : dongHopDongCu()
+HDAO --> V3 : tra ve
+deactivate HDAO
+V3 -> HDAO : goi
+activate HDAO
+HDAO -> HDAO : luuHopDong()
+HDAO --> V3 : tra ve
+deactivate HDAO
+V3 --> NV : thong bao thanh cong
+NV -> V3 : click OK
+V3 -> V0 : goi
+activate V0
+deactivate V3
+V0 --> NV : hien thi
+deactivate V0
+end
+@enduml

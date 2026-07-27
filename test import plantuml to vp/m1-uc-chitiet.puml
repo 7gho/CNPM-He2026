@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor "Thành viên" as TV
+actor "Nhân viên" as NV
+TV <|-- NV
+
+usecase "Đăng nhập" as DN
+usecase "NV đăng nhập" as NVDN
+usecase "Ký hợp đồng tay đua\nvới đội đua" as UC
+usecase "Tìm tay đua" as TIM
+usecase "Nhập thông tin hợp đồng" as NHAP
+usecase "Thêm tay đua" as THEM
+
+TV -- DN
+NV -- UC
+
+DN <|-- NVDN
+UC ..> NVDN : <<include>>
+UC ..> TIM : <<include>>
+UC ..> NHAP : <<include>>
+THEM ..> TIM : <<extend>>
+@enduml

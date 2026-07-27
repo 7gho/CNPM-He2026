@@ -1,0 +1,100 @@
+@startuml
+class "gdChinhQL.jsp" as gdChinhQL {
+  -quyetToan : link
+  -ql : QuanLy
+}
+class "gdXepHang.jsp" as gdXepHang {
+  -changDua : Select
+  -tinhTrangChang : Text
+  -tblXHCaNhan : Table
+  -tblXHDoi : Table
+  -chonDoiTuong : link
+  -btnTiepTuc : submit
+  -btnVeTrangChu : submit
+  -muaGiai : MuaGiai
+  -changDuaChon : ChangDua
+  -listXHCaNhan : KetQua[]
+  -listXHDoi : KetQua[]
+  -ql : QuanLy
+}
+class "gdChiTietXepHang.jsp" as gdChiTietXepHang {
+  -tenDoiTuong : Text
+  -tblChiTiet : Table
+  -btnQuayLai : submit
+  -listChiTiet : KetQua[]
+  -changDua : ChangDua
+  -ql : QuanLy
+}
+class "gdTraoGiai.jsp" as gdTraoGiai {
+  -mucThuongCaNhan1 : Text
+  -mucThuongCaNhan2 : Text
+  -mucThuongCaNhan3 : Text
+  -mucThuongDoi1 : Text
+  -mucThuongDoi2 : Text
+  -mucThuongDoi3 : Text
+  -btnTinhThuong : submit
+  -tblDSTraoGiai : Table
+  -btnLuu : submit
+  -btnQuayLai : submit
+  -listTraoGiai : TraoGiai[]
+  -ql : QuanLy
+}
+class "doLuuTraoGiai.jsp" as doLuuTraoGiai {
+  -listTraoGiai : TraoGiai[]
+  -ql : QuanLy
+}
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class MuaGiaiDAO {
+  +MuaGiaiDAO()
+  +getMuaGiaiHienTai() : MuaGiai
+}
+class KetQuaDAO {
+  +KetQuaDAO()
+  +kiemTraKetQuaCu(changDuaId : int) : boolean
+  +tongHopCaNhan(muaGiaiId : int, changDuaId : int) : KetQua[]
+  +tongHopDoi(muaGiaiId : int, changDuaId : int) : KetQua[]
+  +sapXepBangXepHang(ds : KetQua[]) : KetQua[]
+  +getChiTietTheoTayDua(muaGiaiId : int, tayDuaId : int, changDuaId : int) : KetQua[]
+  +getChiTietTheoDoi(muaGiaiId : int, doiDuaId : int, changDuaId : int) : KetQua[]
+}
+class TraoGiaiDAO {
+  +TraoGiaiDAO()
+  +tinhTienThuong(hang : int, mucThuong : float) : float
+  +luuTraoGiai(listTG : TraoGiai[]) : boolean
+}
+class MuaGiai
+class ChangDua
+class KetQua
+class TayDua
+class DoiDua
+class TraoGiai
+abstract class ThanhVien
+class QuanLy
+ThanhVien <|-- QuanLy
+
+DAO <|-- MuaGiaiDAO
+DAO <|-- KetQuaDAO
+DAO <|-- TraoGiaiDAO
+
+gdChinhQL -- gdXepHang
+gdXepHang -- gdChiTietXepHang
+gdXepHang -- gdTraoGiai
+gdTraoGiai -- doLuuTraoGiai
+doLuuTraoGiai -- gdChinhQL
+gdXepHang -- MuaGiaiDAO
+gdXepHang -- KetQuaDAO
+gdChiTietXepHang -- KetQuaDAO
+gdTraoGiai -- TraoGiaiDAO
+doLuuTraoGiai -- TraoGiaiDAO
+
+MuaGiaiDAO -- MuaGiai
+MuaGiaiDAO -- ChangDua
+KetQuaDAO -- KetQua
+KetQuaDAO -- ChangDua
+KetQuaDAO -- TayDua
+KetQuaDAO -- DoiDua
+TraoGiaiDAO -- TraoGiai
+@enduml

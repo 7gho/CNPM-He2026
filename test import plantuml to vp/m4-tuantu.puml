@@ -1,0 +1,157 @@
+@startuml
+autonumber
+actor "Quản lý" as QL
+participant "gdChinhQL.jsp" as V0
+participant "gdXepHang.jsp" as V1
+participant "gdChiTietXepHang.jsp" as VC
+participant "gdTraoGiai.jsp" as V2
+participant "doLuuTraoGiai.jsp" as V3
+participant "MuaGiaiDAO" as MDAO
+participant "KetQuaDAO" as KDAO
+participant "TraoGiaiDAO" as TDAO
+participant "MuaGiai" as E1
+participant "ChangDua" as E2
+participant "KetQua" as E3
+participant "TayDua" as E4
+participant "DoiDua" as E5
+participant "TraoGiai" as E6
+
+QL -> V0 : click Quyet toan mua giai
+activate V0
+V0 -> V1 : goi
+activate V1
+deactivate V0
+V1 -> MDAO : goi
+activate MDAO
+MDAO -> MDAO : getMuaGiaiHienTai()
+MDAO -> E1 : goi
+activate E1
+E1 -> E1 : MuaGiai()
+E1 -> E2 : goi
+activate E2
+E2 -> E2 : ChangDua()
+E2 --> E1 : tra ve
+deactivate E2
+E1 --> MDAO : tra ve
+deactivate E1
+MDAO --> V1 : tra ve
+deactivate MDAO
+V1 --> QL : hien thi
+QL -> V1 : chon chang Abu Dhabi
+
+loop lap cho tung chang tinh den chang duoc chon
+  V1 -> KDAO : goi
+  activate KDAO
+  KDAO -> KDAO : kiemTraKetQuaCu(changDuaId)
+  KDAO -> E3 : goi
+  activate E3
+  E3 -> E3 : KetQua()
+  E3 --> KDAO : tra ve
+  deactivate E3
+  KDAO --> V1 : tra ve
+  deactivate KDAO
+end
+
+V1 -> KDAO : goi
+activate KDAO
+KDAO -> KDAO : tongHopCaNhan(muaGiaiId, changDuaId)
+KDAO -> E3 : goi
+activate E3
+E3 -> E3 : KetQua()
+E3 -> E4 : goi
+activate E4
+E4 -> E4 : TayDua()
+E4 --> E3 : tra ve
+deactivate E4
+E3 --> KDAO : tra ve
+deactivate E3
+KDAO -> KDAO : sapXepBangXepHang(ds)
+KDAO --> V1 : tra ve
+deactivate KDAO
+
+V1 -> KDAO : goi
+activate KDAO
+KDAO -> KDAO : tongHopDoi(muaGiaiId, changDuaId)
+KDAO -> E3 : goi
+activate E3
+E3 -> E3 : KetQua()
+E3 -> E5 : goi
+activate E5
+E5 -> E5 : DoiDua()
+E5 --> E3 : tra ve
+deactivate E5
+E3 --> KDAO : tra ve
+deactivate E3
+KDAO -> KDAO : sapXepBangXepHang(ds)
+KDAO --> V1 : tra ve
+deactivate KDAO
+V1 --> QL : hien thi
+
+QL -> V1 : click dong Verstappen
+V1 -> VC : goi
+activate VC
+deactivate V1
+VC -> KDAO : goi
+activate KDAO
+KDAO -> KDAO : getChiTietTheoTayDua(muaGiaiId, tayDuaId, changDuaId)
+KDAO -> E3 : goi
+activate E3
+E3 -> E3 : KetQua()
+E3 -> E2 : goi
+activate E2
+E2 -> E2 : ChangDua()
+E2 --> E3 : tra ve
+deactivate E2
+E3 --> KDAO : tra ve
+deactivate E3
+KDAO --> VC : tra ve
+deactivate KDAO
+VC --> QL : hien thi
+QL -> VC : click Quay lai
+VC -> V1 : goi
+activate V1
+deactivate VC
+V1 --> QL : hien thi
+
+QL -> V1 : click Tiep tuc
+V1 -> V2 : goi
+activate V2
+deactivate V1
+V2 --> QL : hien thi
+QL -> V2 : nhap muc thuong + click Tinh thuong
+loop lap cho tung hang duoc thuong
+  V2 -> TDAO : goi
+  activate TDAO
+  TDAO -> TDAO : tinhTienThuong(hang, mucThuong)
+  TDAO -> E6 : goi
+  activate E6
+  E6 -> E6 : TraoGiai()
+  E6 --> TDAO : tra ve
+  deactivate E6
+  TDAO --> V2 : tra ve
+  deactivate TDAO
+end
+V2 --> QL : hien thi
+
+QL -> V2 : click Luu
+V2 -> V3 : goi
+activate V3
+deactivate V2
+V3 -> E6 : goi
+activate E6
+E6 -> E6 : setter()
+E6 --> V3 : tra ve
+deactivate E6
+V3 -> TDAO : goi
+activate TDAO
+TDAO -> TDAO : luuTraoGiai()
+TDAO --> V3 : tra ve
+deactivate TDAO
+V3 --> QL : thong bao thanh cong
+QL -> V3 : click OK
+V3 -> V0 : goi
+activate V0
+deactivate V3
+V0 --> QL : hien thi
+deactivate V0
+@enduml

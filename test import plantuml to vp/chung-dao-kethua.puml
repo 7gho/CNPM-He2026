@@ -1,0 +1,32 @@
+@startuml
+hide circle
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class TayDuaDAO {
+}
+class DoiDuaDAO {
+}
+class HopDongDAO {
+}
+class ChangDuaDAO {
+}
+class DangKyChangDAO {
+}
+class KetQuaDAO {
+}
+class MuaGiaiDAO {
+}
+class TraoGiaiDAO {
+}
+
+DAO <|-- TayDuaDAO
+DAO <|-- DoiDuaDAO
+DAO <|-- HopDongDAO
+DAO <|-- ChangDuaDAO
+DAO <|-- DangKyChangDAO
+DAO <|-- KetQuaDAO
+DAO <|-- MuaGiaiDAO
+DAO <|-- TraoGiaiDAO
+@enduml

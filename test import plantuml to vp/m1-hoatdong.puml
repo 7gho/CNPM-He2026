@@ -1,0 +1,56 @@
+@startuml
+start
+partition "Xử lí tại gdChinhNV.jsp" {
+  :Hiển thị GD chính của nhân viên;
+}
+-> [click Ký hợp đồng];
+partition "Xử lí tại gdTimTayDua.jsp" {
+  :Hiển thị GD tìm tay đua;
+  -> [click Tìm];
+  :TayDuaDAO: getTayDuaTheoTen();
+  if (Tìm thấy tay đua?) then (không)
+    :Nhận thông tin tay đua mới;
+    -> [click Lưu tay đua];
+    :TayDuaDAO: themTayDua();
+    :Hiển thị lại danh sách có tay đua vừa thêm;
+  else (có)
+    :Hiển thị danh sách tay đua tìm được;
+  endif
+}
+-> [chọn 1 tay đua];
+partition "Xử lí tại gdNhapHopDong.jsp" {
+  :HopDongDAO: getHopDongCuaTayDua();
+  :DoiDuaDAO: getDSDoiDua();
+  -> [lấy xong dữ liệu];
+  :Hiển thị GD nhập hợp đồng;
+  :Nhận thông tin đội đua, ngày bắt đầu;
+}
+-> [click Lưu];
+partition "Xử lí tại doLuuHopDong.jsp" {
+  :HopDongDAO: kiemTraChongLan();
+  if (Ngày bắt đầu chồng lấn hợp đồng đã đóng?) then (có)
+    :Thông báo lỗi "Tay đua đã có hợp đồng
+trong khoảng thời gian này";
+    stop
+  else (không)
+  endif
+  if (Ngày bắt đầu sau ngày bắt đầu hợp đồng đang hiệu lực?) then (không)
+    :Thông báo lỗi "Ngày bắt đầu phải sau ngày bắt đầu
+của hợp đồng đang hiệu lực";
+    stop
+  else (có)
+  endif
+  if (Tay đua còn hợp đồng đang hiệu lực?) then (có)
+    :HopDongDAO: dongHopDongCu();
+  else (không)
+  endif
+  :HopDongDAO: luuHopDong();
+  -> [lưu xong];
+  :Thông báo lưu thành công và in hợp đồng;
+}
+-> [click OK];
+partition "Xử lí tại gdChinhNV.jsp " {
+  :Hiển thị GD chính của nhân viên;
+}
+stop
+@enduml

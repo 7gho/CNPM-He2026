@@ -1,0 +1,110 @@
+@startuml
+class GDChinhNV {
+  -subKyHopDong
+}
+class GDTimTayDua {
+  -inTenTayDua
+  -subTim
+  -outsubDSTayDua
+  -subThemTayDua
+  -inMaTayDua
+  -inTenTayDuaMoi
+  -inNgaySinh
+  -inQuocTich
+  -inTieuSu
+  -subLuuTayDua
+  -subVeTrangChu
+}
+class GDNhapHopDong {
+  -outTayDua
+  -outDSHopDongCu
+  -inDoiDua
+  -inNgayBatDau
+  -subLuu
+  -subQuayLai
+}
+
+class MuaGiai {
+  -ten
+  -nam
+  -trangThai
+}
+class DoiDua {
+  -ma
+  -ten
+  -hang
+  -moTa
+  +getDSDoiDua()
+}
+class TayDua {
+  -ma
+  -ten
+  -ngaySinh
+  -quocTich
+  -tieuSu
+  +getTayDuaTheoTen(ten)
+  +themTayDua()
+}
+class ChangDua {
+  -ma
+  -ten
+  -soVong
+  -diaDiem
+  -thoiGian
+  -moTa
+}
+class ThamGia {
+}
+class HopDong {
+  -ngayBatDau
+  -ngayKetThuc
+  +getHopDongCuaTayDua(tayDuaId)
+  +kiemTraChongLan(tayDuaId, ngayBatDau)
+  +dongHopDongCu(tayDuaId, ngayBatDau)
+  +luuHopDong()
+}
+class DangKyChang {
+}
+class KetQua {
+  -thoiGian
+  -soVongHoanThanh
+  -trangThai
+  -hang
+  -diem
+}
+class TraoGiai {
+  -loai
+  -hang
+  -tienThuong
+}
+abstract class ThanhVien {
+  -tenDangNhap
+  -matKhau
+  -hoTen
+}
+class NhanVien {
+}
+class QuanLy {
+}
+
+GDChinhNV -- GDTimTayDua
+GDTimTayDua -- TayDua
+GDTimTayDua -- GDNhapHopDong
+GDNhapHopDong -- DoiDua
+GDNhapHopDong -- HopDong
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+@enduml

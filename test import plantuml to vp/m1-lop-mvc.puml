@@ -1,0 +1,75 @@
+@startuml
+class "gdChinhNV.jsp" as gdChinhNV {
+  -kyHopDong : link
+  -nv : NhanVien
+}
+class "gdTimTayDua.jsp" as gdTimTayDua {
+  -tenTayDua : Text
+  -btnTim : submit
+  -tblTayDua : Table
+  -chonTayDua : link
+  -btnThemMoi : submit
+  -maTayDua : Text
+  -tenTayDuaMoi : Text
+  -ngaySinh : Text
+  -quocTich : Text
+  -tieuSu : Text
+  -btnLuuTayDua : submit
+  -btnVeTrangChu : submit
+  -nv : NhanVien
+}
+class "gdNhapHopDong.jsp" as gdNhapHopDong {
+  -tayDua : TayDua
+  -tblHopDongCu : Table
+  -doiDua : Select
+  -ngayBatDau : Text
+  -btnLuu : submit
+  -btnQuayLai : submit
+  -nv : NhanVien
+}
+class "doLuuHopDong.jsp" as doLuuHopDong {
+  -hopDong : HopDong
+  -nv : NhanVien
+}
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class TayDuaDAO {
+  +TayDuaDAO()
+  +getTayDuaTheoTen(ten : String) : TayDua[]
+  +themTayDua(td : TayDua) : boolean
+}
+class DoiDuaDAO {
+  +DoiDuaDAO()
+  +getDSDoiDua() : DoiDua[]
+}
+class HopDongDAO {
+  +HopDongDAO()
+  +getHopDongCuaTayDua(tayDuaId : int) : HopDong[]
+  +kiemTraChongLan(tayDuaId : int, ngayBatDau : Date) : boolean
+  +dongHopDongCu(tayDuaId : int, ngayBatDau : Date) : boolean
+  +luuHopDong(hd : HopDong) : boolean
+}
+class TayDua
+class DoiDua
+class HopDong
+
+abstract class ThanhVien
+class NhanVien
+ThanhVien <|-- NhanVien
+DAO <|-- TayDuaDAO
+DAO <|-- DoiDuaDAO
+DAO <|-- HopDongDAO
+gdChinhNV -- gdTimTayDua
+gdTimTayDua -- TayDuaDAO
+gdTimTayDua -- gdNhapHopDong
+gdNhapHopDong -- DoiDuaDAO
+gdNhapHopDong -- HopDongDAO
+gdNhapHopDong -- doLuuHopDong
+doLuuHopDong -- gdChinhNV
+doLuuHopDong -- HopDongDAO
+TayDuaDAO -- TayDua
+DoiDuaDAO -- DoiDua
+HopDongDAO -- HopDong
+@enduml

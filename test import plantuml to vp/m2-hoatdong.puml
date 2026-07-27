@@ -1,0 +1,61 @@
+@startuml
+start
+partition "Xử lí tại gdChinhNV.jsp" {
+  :Hiển thị GD chính của nhân viên;
+}
+-> [click Đăng ký thi đấu];
+partition "Xử lí tại gdChonChangDoi.jsp" {
+  :Lấy mùa giải đang diễn ra\n(MuaGiaiDAO: getMuaGiaiHienTai());
+  :Lấy danh sách chặng đua\n(ChangDuaDAO: getDSChangDua());
+  :Lấy danh sách đội đua\n(DoiDuaDAO: getDSDoiDua());
+  :Hiển thị GD chọn chặng và đội;
+  :Nhận thông tin chặng và đội được chọn;
+}
+-> [click Tiếp tục];
+partition "Xử lí tại gdDangKyTayDua.jsp" {
+  :Lấy danh sách tay đua có hợp đồng hiệu lực\n(HopDongDAO: getTayDuaHieuLuc());
+  if (Đội có tay đua hợp đồng hiệu lực?) then ([không])
+    :Thông báo "Đội không có tay đua\nhợp đồng hiệu lực tại thời điểm chặng";
+    stop
+  else ([có])
+  endif
+  :Lấy trạng thái đăng ký từng tay đua\n(DangKyChangDAO: daDangKy());
+  if (Chặng và đội đã có đăng ký?) then ([rồi])
+    :Tick sẵn tay đua đang đăng ký,\nkích hoạt nút Sửa;
+  else ([chưa])
+  endif
+  :Hiển thị bảng tay đua sắp xếp\ntheo alphabet của cột Tên;
+  :Nhận thông tin tick chọn tay đua;
+}
+-> [click Lưu];
+partition "Xử lí tại doLuuDangKy.jsp" {
+  :Đếm số tay đua đăng ký của đội trong chặng\n(DangKyChangDAO: demSoTayDua());
+  if (Số tay đua được tick <= 2?) then ([không])
+    :Báo lỗi "Mỗi đội tối đa 2 tay đua\ntrong một chặng";
+    stop
+  else ([có])
+  endif
+  if (Tay đua được tick đã đăng ký chặng này cho đội khác?) then ([rồi])
+    :Báo lỗi "Tay đua đã được đăng ký\ncho đội khác ở chặng này";
+    stop
+  else ([chưa])
+  endif
+  if (Ngày hiện tại trước thời gian diễn ra chặng?) then ([không])
+    :Báo lỗi "Chặng đã diễn ra, không được\nthay đổi danh sách đăng ký";
+    stop
+  else ([có])
+  endif
+  :Đóng gói từng dòng đăng ký\n(DangKyChang: setter());
+  :Lưu từng dòng đăng ký\n(DangKyChangDAO: luuDangKy());
+  :Lấy danh sách xuất phát của chặng\n(DangKyChangDAO: getDangKyCuaChang());
+}
+-> [lưu xong];
+partition "Xử lí tại gdDangKyTayDua.jsp (hiển thị lại)" {
+  :Hiển thị thông báo thành công\nvà danh sách xuất phát;
+}
+-> [click OK];
+partition "Xử lí tại gdChinhNV.jsp (kết thúc)" {
+  :Hiển thị GD chính của nhân viên;
+}
+stop
+@enduml

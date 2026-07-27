@@ -1,0 +1,12 @@
+@startuml
+state "Hiển thị GD chính NV" as S1
+state "Hiển thị GD tìm tay đua" as S2
+state "Hiển thị GD nhập hợp đồng" as S3
+state "Hiển thị thông báo và in hợp đồng" as S4
+[*] --> S1
+S1 --> S2 : [click Ký hợp đồng]
+S2 --> S2 : [click Tìm]
+S2 --> S3 : [chọn 1 tay đua]
+S3 --> S4 : [click Lưu, dữ liệu hợp lệ]
+S4 --> [*] : [click OK]
+@enduml

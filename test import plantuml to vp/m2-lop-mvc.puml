@@ -1,0 +1,93 @@
+@startuml
+class "gdChinhNV.jsp" as gdChinhNV {
+  -dangKyChang : link
+  -nv : NhanVien
+}
+class "gdChonChangDoi.jsp" as gdChonChangDoi {
+  -changDua : Select
+  -doiDua : Select
+  -btnTiepTuc : submit
+  -btnVeTrangChu : submit
+  -muaGiai : MuaGiai
+  -nv : NhanVien
+}
+class "gdDangKyTayDua.jsp" as gdDangKyTayDua {
+  -changDua : ChangDua
+  -doiDua : DoiDua
+  -listTayDua : TayDua[]
+  -tblTayDua : Table
+  -btnLuu : submit
+  -btnSua : submit
+  -tblXuatPhat : Table
+  -btnQuayLai : submit
+  -btnOK : submit
+  -nv : NhanVien
+}
+class "doLuuDangKy.jsp" as doLuuDangKy {
+  -listDangKy : DangKyChang[]
+  -nv : NhanVien
+}
+
+class DAO {
+  -con : Connection
+  +DAO()
+}
+class MuaGiaiDAO {
+  +MuaGiaiDAO()
+  +getMuaGiaiHienTai() : MuaGiai
+}
+class ChangDuaDAO {
+  +ChangDuaDAO()
+  +getDSChangDua(muaGiaiId : int) : ChangDua[]
+}
+class DoiDuaDAO {
+  +DoiDuaDAO()
+  +getDSDoiDua() : DoiDua[]
+}
+class HopDongDAO {
+  +HopDongDAO()
+  +getTayDuaHieuLuc(doiDuaId : int, thoiGianChang : Date) : TayDua[]
+}
+class DangKyChangDAO {
+  +DangKyChangDAO()
+  +demSoTayDua(changDuaId : int, doiDuaId : int) : int
+  +daDangKy(changDuaId : int, tayDuaId : int) : boolean
+  +luuDangKy(dk : DangKyChang) : boolean
+  +getDangKyCuaChang(changDuaId : int) : DangKyChang[]
+}
+
+class MuaGiai
+class ChangDua
+class DoiDua
+class TayDua
+class HopDong
+class DangKyChang
+abstract class ThanhVien
+class NhanVien
+ThanhVien <|-- NhanVien
+
+DAO <|-- MuaGiaiDAO
+DAO <|-- ChangDuaDAO
+DAO <|-- DoiDuaDAO
+DAO <|-- HopDongDAO
+DAO <|-- DangKyChangDAO
+
+gdChinhNV -- gdChonChangDoi
+gdChonChangDoi -- gdDangKyTayDua
+gdDangKyTayDua -- doLuuDangKy
+gdDangKyTayDua -- gdChinhNV
+
+gdChonChangDoi -- MuaGiaiDAO
+gdChonChangDoi -- ChangDuaDAO
+gdChonChangDoi -- DoiDuaDAO
+gdDangKyTayDua -- HopDongDAO
+gdDangKyTayDua -- DangKyChangDAO
+doLuuDangKy -- DangKyChangDAO
+
+MuaGiaiDAO -- MuaGiai
+ChangDuaDAO -- ChangDua
+DoiDuaDAO -- DoiDua
+HopDongDAO -- HopDong
+HopDongDAO -- TayDua
+DangKyChangDAO -- DangKyChang
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+hide circle
+class MuaGiai {
+  -ten
+  -nam
+  -trangThai
+}
+class ChangDua {
+  -ma
+  -ten
+  -soVong
+  -diaDiem
+  -thoiGian
+  -moTa
+}
+class DoiDua {
+  -ma
+  -ten
+  -hang
+  -moTa
+}
+class TayDua {
+  -ma
+  -ten
+  -ngaySinh
+  -quocTich
+  -tieuSu
+}
+class ThamGia {
+}
+class HopDong {
+  -ngayBatDau
+  -ngayKetThuc
+}
+class DangKyChang {
+}
+class KetQua {
+  -thoiGian
+  -soVongHoanThanh
+  -trangThai
+  -hang
+  -diem
+}
+class TraoGiai {
+  -loai
+  -hang
+  -tienThuong
+}
+abstract class ThanhVien {
+  -tenDangNhap
+  -matKhau
+  -hoTen
+}
+class NhanVien {
+}
+class QuanLy {
+}
+
+MuaGiai "1" *-- "n" ChangDua
+MuaGiai "1" o-- "n" ThamGia
+DoiDua "1" o-- "n" ThamGia
+TayDua "1" o-- "n" HopDong
+DoiDua "1" o-- "n" HopDong
+ChangDua "1" *-- "n" DangKyChang
+TayDua "1" o-- "n" DangKyChang
+DoiDua "1" o-- "n" DangKyChang
+DangKyChang "1" *-- "0..1" KetQua
+MuaGiai "1" *-- "n" TraoGiai
+TayDua "1" o-- "n" TraoGiai
+DoiDua "1" o-- "n" TraoGiai
+ThanhVien <|-- NhanVien
+ThanhVien <|-- QuanLy
+@enduml

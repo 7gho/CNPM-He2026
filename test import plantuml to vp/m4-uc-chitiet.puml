@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor "Thành viên" as TV
+actor "Quản lý" as QL
+TV <|-- QL
+
+usecase "Đăng nhập" as DN
+usecase "QL đăng nhập" as QLDN
+usecase "Quyết toán và trao giải\ncuối mùa" as UC
+usecase "Xem bảng tổng sắp" as XH
+usecase "Nhập thưởng và lưu" as NT
+usecase "Xem chi tiết theo chặng" as CT
+
+TV -- DN
+QL -- UC
+
+DN <|-- QLDN
+UC ..> QLDN : <<include>>
+UC ..> XH : <<include>>
+UC ..> NT : <<include>>
+CT ..> XH : <<extend>>
+@enduml
