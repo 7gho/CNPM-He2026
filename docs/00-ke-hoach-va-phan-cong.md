@@ -1,6 +1,6 @@
 # Kế hoạch & phân công — Đồ án CNPM (Nhóm 3)
 
-> Đề tài: **Quản lý giải đua xe F1** (project 10). Đề bài gốc: [../project10-F1-4modules.md](../project10-F1-4modules.md) — **không đổi nghiệp vụ của file này**, chỉ bổ sung thuộc tính cho khớp đề gốc trong giáo trình.
+> Đề tài: **Quản lý giải đua xe F1**. Mô tả bài toán: [../de-bai-f1.md](../de-bai-f1.md) — **không đổi nghiệp vụ của file này**.
 > Tài liệu này là bản kế hoạch tổng. Ghi chú/hướng dẫn khác đặt trong thư mục `docs/` hoặc thư mục của từng thành viên.
 
 ## 1. Thành viên & phân công
@@ -17,7 +17,7 @@
 ### 2.1. Phần làm chung của cả nhóm
 | # | Sản phẩm | File | Trạng thái |
 |---|---|---|---|
-| 1 | Mô tả bài toán (yêu cầu người dùng) | `project10-F1-4modules.md` | ✅ xong |
+| 1 | Mô tả bài toán (yêu cầu người dùng) | `de-bai-f1.md` | ✅ xong |
 | 2 | Đặc tả yêu cầu (chức năng + phi chức năng) | `docs/01-dac-ta-yeu-cau.md` | ✅ nội dung, ⬜ chốt |
 | 3 | Biểu đồ UC tổng quát | `docs/02-usecase-tong-quat.md` | ✅ blueprint, ⬜ vẽ VP |
 | 4 | Biểu đồ lớp thực thể (**pha phân tích** + **pha thiết kế**) + Thiết kế CSDL + Thiết kế triển khai (package) | `docs/03-lop-thuc-the-va-csdl.md` | ✅ blueprint, ⬜ vẽ VP |
@@ -186,7 +186,7 @@ Cấu trúc mỗi chương module (×4), theo đúng thứ tự:
 ## 6. Cấu trúc thư mục repo
 
 ```
-project10-F1-4modules.md          ← đề bài (chỉ bổ sung thuộc tính cho khớp đề gốc)
+de-bai-f1.md                      ← mô tả bài toán
 docs/                             ← tài liệu chung + kế hoạch
   00-ke-hoach-va-phan-cong.md
   01-dac-ta-yeu-cau.md

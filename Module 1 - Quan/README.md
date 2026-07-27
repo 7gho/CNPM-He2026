@@ -1,6 +1,6 @@
 # Module 1 — Ký hợp đồng tay đua với đội đua (Quan)
 
-> Đề bài: mục 1 trong [../project10-F1-4modules.md](../project10-F1-4modules.md).
+> Đề bài: mục 1 trong [../de-bai-f1.md](../de-bai-f1.md).
 > Tài liệu chung: [../docs/](../docs/). Mẫu đặc tả UC & test case: [../docs/00-ke-hoach-va-phan-cong.md](../docs/00-ke-hoach-va-phan-cong.md) mục 4.
 
 ## Tóm tắt module

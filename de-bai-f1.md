@@ -1,6 +1,6 @@
-# 10. Quản lý giải đua xe F1 (F1 Formula Championship Management)
+# Đề tài: Quản lý giải đua xe F1
 
-> Đề bài của nhóm, tóm gọn theo đề gốc project 10 trong `SE-list-of-project.pdf` và mô tả trong giáo trình. Chi tiết đầu việc của từng module nằm trong `Module N/noi-dung.md`.
+> Mô tả bài toán của nhóm. Chi tiết đầu việc của từng module nằm trong `Module N/noi-dung.md`.
 
 ## 1. Mô tả bài toán
 
@@ -22,15 +22,6 @@
 
 **Module 4 — Quyết toán và trao giải cuối mùa.** Quản lý chọn chặng bất kỳ từ danh sách thả xuống để xem bảng xếp hạng cá nhân và bảng xếp hạng đội tính đến hết chặng đó; click một dòng để xem chi tiết kết quả từng chặng của tay đua/đội đó (drill-down). Khi mùa giải kết thúc và mọi chặng đã có kết quả, quản lý nhập mức thưởng theo hạng; hệ thống tính tiền thưởng, lưu quyết định trao giải và in danh sách trao giải.
 
-**Ánh xạ với 4 module của đề gốc:**
-
-| Module của nhóm | Module đề gốc | Ghi chú ánh xạ |
-|---|---|---|
-| M1 — Ký hợp đồng tay đua với đội đua | *(không có module riêng)* | Hiện thực hoá ràng buộc "tại một thời điểm chỉ thi đấu cho 1 đội"; không có M1 thì M2/M3/M4 không xác định được tay đua thuộc đội nào tại thời điểm chặng |
-| M2 — Đăng ký tay đua tham gia chặng đua | Register to racing | Giữ nguyên phạm vi |
-| M3 — Cập nhật kết quả chặng đua | Update results | Giữ nguyên phạm vi |
-| M4 — Quyết toán và trao giải cuối mùa | View racers' standings + View team rankings | Gộp hai module xếp hạng (use case thuần hiển thị là use case yếu) và bổ sung nghiệp vụ chốt sổ, trao giải cuối mùa |
-
 ## 3. Ràng buộc nghiệp vụ chính
 
 - Mỗi đội tối đa 2 tay đua trong một chặng; mỗi tay đua chỉ được đăng ký 1 lần trong một chặng.
@@ -38,10 +29,3 @@
 - Điểm top 10: 25→1; DNF/DSQ nhận 0 điểm và xếp cuối; điểm của tay đua cộng cho đội mà tay đua đăng ký tại chặng đó (đúng cả khi đổi đội giữa mùa).
 - Xếp hạng ba tầng: (1) tổng điểm giảm dần; (2) bằng điểm → countback (so số lần về nhất, rồi về nhì, về ba… cho đến khi phân định được); (3) countback vẫn bằng → tổng thời gian tăng dần. Tổng thời gian luôn hiển thị trên bảng xếp hạng.
 - Chỉ quyết toán và trao giải khi tất cả các chặng của mùa đã có kết quả.
-
-## 4. Ghi chú tinh chỉnh so với đề gốc
-
-- **Countback chèn vào tầng 2 của quy tắc xếp hạng.** Đề gốc ghi "sắp giảm dần theo tổng điểm, sau đó tăng dần theo tổng thời gian". Nhóm chèn thêm tầng countback theo đúng luật FIA thật (mùa 2021, Verstappen và Hamilton bằng điểm được phân định bằng số lần thắng chặng); **tổng thời gian vẫn là tiêu chí phân định cuối cùng đúng nguyên văn đề** và luôn hiển thị trên bảng xếp hạng.
-- **Bổ sung trạng thái DSQ.** Đề gốc chỉ có DNF (bỏ cuộc hoặc tai nạn); nhóm thêm DSQ (bị loại vì vi phạm kỹ thuật) — cùng nhận 0 điểm nhưng khác bản chất nghiệp vụ, giúp dữ liệu lịch sử phản ánh đúng và Module 3 có thêm một nhánh kiểm thử.
-
-Hai tinh chỉnh này không làm thay đổi phạm vi, số lượng module hay khối lượng công việc của đề bài.

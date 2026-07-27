@@ -368,7 +368,9 @@ Giáo trình: *"BTC tích chọn **đúng 2** tay đua"* nhưng phần ràng bu�
 
 ---
 
-## P4 — Đối chiếu với ĐỀ BÀI GỐC `SE-list-of-project.pdf` (project 10, tiếng Anh)
+## P4 — Đối chiếu với văn bản mô tả đề tài `SE-list-of-project.pdf`
+
+> ⚠️ **Không đưa bất kỳ nội dung nào của mục này vào báo cáo.** `SE-list-of-project.pdf` là danh sách đề tài của một giảng viên khác; thầy Phong giao **đề tài tự chọn**. Nhóm chỉ mượn file đó làm nguồn tham khảo khi dựng mô tả bài toán, nên báo cáo phải trình bày đề tài như đề tài tự chọn của nhóm — không có mục "ánh xạ với đề bài gốc", không có câu "so với đề gốc". Mục này chỉ để lưu vết vì sao nhóm chốt các quyết định nghiệp vụ.
 
 > Đề bài gốc là văn bản giao đề, đứng TRÊN giáo trình về mặt phạm vi công việc. Đã đọc nguyên văn project 10 "F1 formula championship management" (trang 21-22 của PDF).
 

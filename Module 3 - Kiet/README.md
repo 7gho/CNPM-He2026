@@ -1,6 +1,6 @@
 # Module 3 — Cập nhật kết quả chặng đua (Kiet)
 
-> Đề bài: mục 3 trong [../project10-F1-4modules.md](../project10-F1-4modules.md).
+> Đề bài: mục 3 trong [../de-bai-f1.md](../de-bai-f1.md).
 > Tài liệu chung: [../docs/](../docs/). Mẫu đặc tả UC & test case: [../docs/00-ke-hoach-va-phan-cong.md](../docs/00-ke-hoach-va-phan-cong.md) mục 4.
 
 ## Tóm tắt module

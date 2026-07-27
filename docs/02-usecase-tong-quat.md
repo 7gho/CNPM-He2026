@@ -65,7 +65,7 @@ B1 yêu cầu xét cả actor gián tiếp. Nhóm rà soát các bên liên quan
 | Bên liên quan | Tham gia gián tiếp vào use case nào | Kết luận |
 |---|---|---|
 | **Đội đua** | `Ký hợp đồng tay đua với đội đua` (đội gửi yêu cầu ký hợp đồng với tay đua), `Đăng ký tay đua tham gia chặng đua` (đội gửi danh sách tay đua dự chặng), `Quyết toán và trao giải cuối mùa` (đội là bên nhận giải đồng đội) | Là **actor gián tiếp**. Đội đua không có tài khoản, không có màn hình nào trong hệ thống — mọi thao tác đều do `NhanVien` nhập hộ theo văn bản đội gửi. ⇒ **Ghi nhận trong tài liệu, không vẽ vào biểu đồ** để tránh hiểu nhầm đội đua là người dùng phần mềm. |
-| **Ban tổ chức** | `Đăng ký tay đua tham gia chặng đua`, `Cập nhật kết quả chặng đua`, `Xem bảng tổng sắp` | Trong đề gốc ở giáo trình, "Ban tổ chức" chính là **tên gọi nghiệp vụ của vai `NhanVien`** mà nhóm đang dùng. ⇒ **Không tách thành actor riêng** vì sẽ trùng vai, làm biểu đồ có hai actor cùng làm một việc. |
+| **Ban tổ chức** | `Đăng ký tay đua tham gia chặng đua`, `Cập nhật kết quả chặng đua`, `Xem bảng tổng sắp` | "Ban tổ chức" chính là **tên gọi nghiệp vụ của vai `NhanVien`** mà nhóm đang dùng. ⇒ **Không tách thành actor riêng** vì sẽ trùng vai, làm biểu đồ có hai actor cùng làm một việc. |
 | **Tay đua** | `Ký hợp đồng tay đua với đội đua` (là một bên của hợp đồng), `Quyết toán và trao giải cuối mùa` (là bên nhận giải cá nhân và tiền thưởng) | Là **actor gián tiếp**. Tay đua là **đối tượng được quản lý** (lớp thực thể `TayDua`), không đăng nhập, không thao tác trên hệ thống. ⇒ **Ghi nhận trong tài liệu, không vẽ vào biểu đồ.** |
 
 > Cả ba bên trên đều không tự thao tác với phần mềm nên không sinh thêm màn hình, không sinh thêm lớp biên. Việc ghi rõ ở đây là để chứng minh nhóm đã xét actor gián tiếp chứ không bỏ sót.
@@ -85,11 +85,9 @@ B1 yêu cầu xét cả actor gián tiếp. Nhóm rà soát các bên liên quan
 | **Ký hợp đồng tay đua với đội đua** | `NhanVien` | **Module 1 (Quan)** |
 | **Đăng ký tay đua tham gia chặng đua** | `NhanVien` | **Module 2 (Kin)** |
 | **Cập nhật kết quả chặng đua** | `NhanVien` | **Module 3 (Kiet)** |
-| **Quyết toán và trao giải cuối mùa** | `QuanLy` | **Module 4 (Thanh)** — gộp 2 module bảng xếp hạng của đề gốc, xem ghi chú dưới |
+| **Quyết toán và trao giải cuối mùa** | `QuanLy` | **Module 4 (Thanh)** |
 
 > Tên 4 use case module ở bảng này là **tên chuẩn duy nhất**, phải dùng y hệt trong `docs/BAO-CAO.md` và trong `noi-dung.md` của từng module.
-
-> **Ánh xạ với đề bài gốc (`SE-list-of-project.pdf`, project 10):** đề gốc chia 4 module *Register to racing* (= Module 2), *Update results* (= Module 3), *View racers' standings* và *View team rankings*. Use case **Quyết toán và trao giải cuối mùa** (Module 4) **gộp 2 module bảng xếp hạng** của đề gốc — giữ đủ nghiệp vụ của cả hai: xem BXH cá nhân + BXH đội "tính đến chặng X" (chọn chặng từ danh sách) và **drill-down** click một dòng tay đua / đội để xem bảng chi tiết từng chặng (UC con `Xem chi tiết theo chặng`, extend từ `Xem bảng tổng sắp`) — rồi bổ sung nghiệp vụ chốt sổ, tính thưởng và trao giải cuối mùa, vì use case "xem bảng" thuần hiển thị đứng riêng là use case yếu theo tiêu chí chấm (use case phải đủ lớn, có nghiệp vụ). Module 1 (`Ký hợp đồng tay đua với đội đua`) hiện thực hoá ràng buộc *"mỗi tay đua tại một thời điểm chỉ thuộc một đội"* của đề gốc.
 
 ## 3. Quan hệ
 

@@ -14,7 +14,7 @@
 
 ### 0.1. Bước 1 — Đoạn văn mô tả hệ thống
 
-Đoạn văn dưới đây tổng hợp lại từ đề bài (`project10-F1-4modules.md`). Các **danh từ** được in đậm để tiện trích ở bước 2.
+Đoạn văn dưới đây tổng hợp lại từ mô tả bài toán (`de-bai-f1.md`). Các **danh từ** được in đậm để tiện trích ở bước 2.
 
 Mỗi **năm** có một **mùa giải** (giải vô địch) mang một **tên giải** riêng và có **trạng thái** cho biết mùa giải đang diễn ra, đã kết thúc hay đã quyết toán. Một mùa giải gồm nhiều **chặng đua** diễn ra khắp **thế giới**; mỗi chặng đua có **mã chặng đua**, **tên chặng**, **số vòng đua**, **địa điểm**, **thời gian** diễn ra và **mô tả**. Mỗi mùa giải có nhiều **đội đua** đăng ký **tham gia**; mỗi đội đua có **mã đội**, **tên đội**, **hãng** và **mô tả**.
 
@@ -105,15 +105,15 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra �
 
 ### 0.4. Hai quyết định cần biện luận rõ
 
-**(a) Bổ sung thuộc tính theo đề gốc trong giáo trình.** Giáo trình `BG CNPM 2020.doc` mục **11.11** (đề F1 gốc) ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung:
+**(a) Thuộc tính lấy từ mô tả bài toán.** Mô tả đối tượng ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung:
 
 | Lớp | Thuộc tính thêm | Lý do |
 |---|---|---|
-| `DoiDua` | `hang`, `moTa` | Khớp mô tả đối tượng "Đội đua (mã, tên, hãng, mô tả)" trong giáo trình mục 11.11; `hang` còn được dùng làm một cột của bảng xếp hạng đội ở Module 4 |
+| `DoiDua` | `hang`, `moTa` | Khớp mô tả đối tượng "Đội đua (mã, tên, hãng, mô tả)"; `hang` còn được dùng làm một cột của bảng xếp hạng đội ở Module 4 |
 | `TayDua` | `tieuSu` | Khớp mô tả "Tay đua (mã, tên, ngày sinh, quốc tịch, tiểu sử)"; hiển thị ở màn hình tìm và hồ sơ tay đua của Module 1 |
 | `ChangDua` | `diaDiem`, `moTa` | Khớp mô tả "Chặng đua (mã chặng đua, tên, số vòng đua, địa điểm, thời gian, mô tả)"; `diaDiem` dùng ở màn chọn chặng của Module 2, Module 3 |
 
-**(b) Vì sao KHÔNG tạo lớp thực thể `Hang` riêng.** Giáo trình mục 11.11 có một modul *"quản lí hãng đua"* riêng, tức trong đề gốc `Hang` là một thực thể độc lập. Tuy nhiên **modul đó không nằm trong 4 module được phân công cho nhóm**, và cũng không có chức năng nào trong phạm vi hệ thống (`docs/01`) thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Theo bước 3 của phương pháp trích danh từ, một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
+**(b) Vì sao KHÔNG tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống (`docs/01`) thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Theo bước 3 của phương pháp trích danh từ, một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
 
 ---
 

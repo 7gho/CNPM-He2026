@@ -44,7 +44,7 @@ Module có 3 màn hình hiển thị nghiệp vụ (ngoài trang chính của qu
 | — (dùng chung toàn hệ thống) | `QL đăng nhập` — kế thừa `Đăng nhập` | include | — | — |
 | — (trang xử lý, không hiển thị tương tác) | — | — | — | `doLuuTraoGiai.jsp` |
 
-UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp (đề gốc bắt buộc có drill-down này). Tên UC cũ `Tổng hợp xếp hạng` bị **đổi thành `Xem bảng tổng sắp`**: "tổng hợp/xếp hạng" là hành động của **hệ thống**, còn tên UC bắt buộc phải là động từ chỉ hành động của **actor**.
+UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp. Tên UC cũ `Tổng hợp xếp hạng` bị **đổi thành `Xem bảng tổng sắp`**: "tổng hợp/xếp hạng" là hành động của **hệ thống**, còn tên UC bắt buộc phải là động từ chỉ hành động của **actor**.
 
 ```plantuml
 @startuml

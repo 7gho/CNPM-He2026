@@ -20,7 +20,7 @@
 **PHẦN 1 — CÔNG VIỆC CHUNG CỦA NHÓM**
 
 - **CHƯƠNG 1: Mô tả yêu cầu bài toán, yêu cầu người dùng**
-  - 1.1. Giới thiệu — mục đích hệ thống (kèm Ánh xạ với đề bài gốc)
+  - 1.1. Giới thiệu — mục đích hệ thống
   - 1.2. Phạm vi hệ thống
   - 1.3. Mô tả chi tiết hoạt động nghiệp vụ của từng chức năng
   - 1.4. Các đối tượng được quản lý và thuộc tính
@@ -67,24 +67,6 @@ Mục đích của hệ thống **Quản lý giải đua xe F1** là hỗ trợ 
 Trước khi có phần mềm, các công việc trên được làm thủ công trên giấy tờ và bảng tính, dẫn tới ba khó khăn chính: (a) khó kiểm soát ràng buộc "tại một thời điểm một tay đua chỉ thuộc một đội" khi tay đua chuyển đội giữa mùa; (b) dễ sai sót khi cộng dồn điểm của hàng chục tay đua qua hàng chục chặng; (c) khó phân định thứ hạng khi hai tay đua hoặc hai đội bằng điểm. Hệ thống được xây dựng để tự động hóa và kiểm soát chặt ba điểm này.
 
 Hệ thống gồm 4 phân hệ (module) nghiệp vụ chính, mỗi thành viên phụ trách một phân hệ: (1) Ký hợp đồng tay đua với đội đua, (2) Đăng ký tay đua tham gia chặng đua, (3) Cập nhật kết quả chặng đua, (4) Quyết toán và trao giải cuối mùa.
-
-#### Ánh xạ với đề bài gốc
-
-Bốn module của nhóm được ánh xạ với 4 module của đề bài gốc (project 10 — *F1 Formula Championship Management*) như sau:
-
-| Module của nhóm | Module đề gốc | Ghi chú ánh xạ |
-|---|---|---|
-| M1 — Ký hợp đồng tay đua với đội đua | *(không có module riêng)* | Hiện thực hoá ràng buộc "tại một thời điểm chỉ thi đấu cho 1 đội"; không có M1 thì M2/M3/M4 không xác định được tay đua thuộc đội nào tại thời điểm chặng |
-| M2 — Đăng ký tay đua tham gia chặng đua | Register to racing | Giữ nguyên phạm vi |
-| M3 — Cập nhật kết quả chặng đua | Update results | Giữ nguyên phạm vi |
-| M4 — Quyết toán và trao giải cuối mùa | View racers' standings + View team rankings | Gộp hai module xếp hạng (use case thuần hiển thị là use case yếu) và bổ sung nghiệp vụ chốt sổ, trao giải cuối mùa |
-
-Ngoài ra, nhóm có hai tinh chỉnh nghiệp vụ **có chủ đích** so với mô tả gốc:
-
-- **Countback chèn vào tầng 2 của quy tắc xếp hạng.** Đề gốc ghi "sắp giảm dần theo tổng điểm, sau đó tăng dần theo tổng thời gian". Nhóm chèn thêm tầng countback theo đúng luật FIA thật (mùa 2021, Verstappen và Hamilton bằng điểm được phân định bằng số lần thắng chặng); **tổng thời gian vẫn là tiêu chí phân định cuối cùng đúng nguyên văn đề** và luôn hiển thị trên bảng xếp hạng.
-- **Bổ sung trạng thái DSQ.** Đề gốc chỉ có DNF (bỏ cuộc hoặc tai nạn); nhóm thêm DSQ (bị loại vì vi phạm kỹ thuật) — cùng nhận 0 điểm nhưng khác bản chất nghiệp vụ, giúp dữ liệu lịch sử phản ánh đúng và Module 3 có thêm một nhánh kiểm thử.
-
-Hai tinh chỉnh này không làm thay đổi phạm vi, số lượng module hay khối lượng công việc của đề bài.
 
 ### 1.2. Phạm vi hệ thống
 
@@ -463,7 +445,7 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra đ
 
 #### 3.1.4. Hai quyết định cần biện luận
 
-**(a) Bổ sung thuộc tính theo đề gốc.** Mô tả đối tượng trong đề gốc ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung `hang`, `moTa` cho `DoiDua`; `tieuSu` cho `TayDua`; `diaDiem`, `moTa` cho `ChangDua`.
+**(a) Thuộc tính lấy từ mô tả bài toán.** Mô tả đối tượng ở mục 1.4 ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung `hang`, `moTa` cho `DoiDua`; `tieuSu` cho `TayDua`; `diaDiem`, `moTa` cho `ChangDua`.
 
 **(b) Vì sao KHÔNG tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
 
@@ -1616,7 +1598,7 @@ Mỗi ca được chạy trên trạng thái cơ sở dữ liệu của mục 5.
 | DKC_19 | Tick chọn tay đua đã được đội khác đăng ký ở chính chặng đó → báo lỗi | 1. Áp data test chuyển nhượng + 2 dòng đăng ký Williams tại R10 (mục 5.9.1); ngày hệ thống 04/07/2025.<br>2. Chọn chặng `R10`, đội `Ferrari (Ferrari)`, click [Tiếp tục].<br>3. Tick dòng `LEC - Charles Leclerc` và dòng `SAI - Carlos Sainz`, click [Lưu].<br>4. Bỏ tick SAI, tick dòng `HAM - Lewis Hamilton`, click [Lưu]. | Bước 2: dòng SAI hiện Trạng thái đăng ký `Đã đăng ký (Williams)` — cảnh báo trực quan ràng buộc trùng. Bước 3: báo lỗi "Tay đua Carlos Sainz đã được đăng ký cho đội Williams ở chặng R10"; **CSDL:** không dòng nào được ghi vào `tblDangKyChang` (kể cả dòng của Leclerc). Bước 4: lưu thành công. **CSDL:** `tblDangKyChang` giữ nguyên 2 dòng Williams (ALB, SAI) và thêm 2 dòng `(4 - R10, 1 - LEC, 1 - Ferrari)`, `(4 - R10, 2 - HAM, 1 - Ferrari)` |
 | DKC_20 | Chọn đội không có tay đua hợp đồng hiệu lực tại thời điểm chặng → thông báo | 1. Chọn chặng `R06 - Monaco Grand Prix - Monte Carlo - 25/05/2025`, đội `Aston Martin (Mercedes)` — chưa có dòng nào trong `tblHopDong`, click [Tiếp tục].<br>2. Click [Quay lại]. | Bước 1: bảng tay đua rỗng, thông báo "Đội Aston Martin không có tay đua nào có hợp đồng hiệu lực tại thời điểm chặng R06"; [Lưu], [Sửa] chưa active. Bước 2: hệ thống trở về màn Chọn chặng và đội, giữ nguyên chặng R06 để nhân viên chọn đội khác. **CSDL:** không bảng nào thay đổi |
 | DKC_21 | Thay tay đua trước ngày đua (sửa danh sách đã đăng ký) | 1. Tiền đề: CSDL sau khi chạy DKC_17 — `tblDangKyChang` có 2 dòng VER, TSU của Red Bull tại R06; ngày hệ thống 22/05/2025.<br>2. Chọn chặng `R06`, đội `Red Bull (Honda RBPT)`, click [Tiếp tục].<br>3. Click [Sửa], bỏ tick dòng `TSU - Yuki Tsunoda` (tay đua chấn thương).<br>4. Click [Lưu].<br>5. Đặt ngày hệ thống 26/05/2025 (sau ngày đua), lặp lại bước 2–4. | Bước 2: 2 dòng được **tick sẵn**, Trạng thái `Đã đăng ký (Red Bull)`; [Sửa] đang active, [Lưu] chưa active. Bước 3: các ô tick được mở khóa, [Lưu] chuyển sang active. Bước 4: kiểm tra hợp lệ (1 ≤ 2; 22/05/2025 trước 25/05/2025), thông báo "Đã cập nhật đăng ký cho đội Red Bull ở chặng R06"; danh sách xuất phát đổi thành `Red Bull \| Max Verstappen \| (trống)`; Trạng thái của dòng TSU đổi lại `Chưa đăng ký`. **CSDL:** `tblDangKyChang` chỉ còn dòng `(3 - R06, 3 - VER, 2 - Red Bull)`, dòng của TSU bị xóa. Bước 5: báo lỗi "Chặng đã diễn ra, không được thay đổi danh sách đăng ký"; **CSDL:** `tblDangKyChang` không đổi |
-| DKC_22 | Danh sách tay đua sắp xếp đúng thứ tự alphabet của Tên (đề gốc: "sorted by their alphabetic order of name") | 1. Chọn chặng `R06`, đội `Mercedes (Mercedes)`, click [Tiếp tục].<br>2. Click [Quay lại], đổi đội sang `Williams (Mercedes)`, click [Tiếp tục]. | Bước 1: bảng hiện đúng 2 dòng — dòng đầu `ANT - Andrea Kimi Antonelli`, dòng thứ hai `RUS - George Russell` — theo alphabet của Tên (`Andrea` trước `George`), **không** theo thứ tự id trong `tblTayDua` (RUS id 7 nhập trước, ANT id 8 nhập sau). Bước 2: dòng đầu `ALB - Alexander Albon`, dòng thứ hai `SAI - Carlos Sainz` (`Alexander` trước `Carlos`). **CSDL:** không bảng nào thay đổi (ca chỉ xem) |
+| DKC_22 | Danh sách tay đua sắp xếp đúng thứ tự alphabet của Tên | 1. Chọn chặng `R06`, đội `Mercedes (Mercedes)`, click [Tiếp tục].<br>2. Click [Quay lại], đổi đội sang `Williams (Mercedes)`, click [Tiếp tục]. | Bước 1: bảng hiện đúng 2 dòng — dòng đầu `ANT - Andrea Kimi Antonelli`, dòng thứ hai `RUS - George Russell` — theo alphabet của Tên (`Andrea` trước `George`), **không** theo thứ tự id trong `tblTayDua` (RUS id 7 nhập trước, ANT id 8 nhập sau). Bước 2: dòng đầu `ALB - Alexander Albon`, dòng thứ hai `SAI - Carlos Sainz` (`Alexander` trước `Carlos`). **CSDL:** không bảng nào thay đổi (ca chỉ xem) |
 
 ---
 
@@ -1989,7 +1971,7 @@ Module có 3 màn hình hiển thị nghiệp vụ (ngoài trang chính của qu
 | — (dùng chung toàn hệ thống) | `QL đăng nhập` — kế thừa `Đăng nhập` | include | — | — |
 | — (trang xử lý, không hiển thị tương tác) | — | — | — | `doLuuTraoGiai.jsp` |
 
-UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp (đề gốc bắt buộc có drill-down này). Kịch bản vẫn mở đầu "sau khi đăng nhập" và Tiền điều kiện giữ "đã đăng nhập".
+UC con `Xem chi tiết theo chặng` là **extend**: chỉ xảy ra khi quản lý click vào 1 dòng tay đua/đội trên bảng tổng sắp. Kịch bản vẫn mở đầu "sau khi đăng nhập" và Tiền điều kiện giữ "đã đăng nhập".
 
 ![Biểu đồ Use Case chi tiết Module 4](<../Module 4 - Thanh/hinh/m4-uc-chitiet.png>)
 
