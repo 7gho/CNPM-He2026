@@ -22,7 +22,7 @@ Nguyên tắc: **mỗi chức năng nằm trong phạm vi hệ thống → 1 use
 
 Khi đặt tên, nhóm bám quy tắc thầy nhấn mạnh: **tên use case phải là động từ chỉ hành động của ACTOR, không phải động từ chỉ hành động của HỆ THỐNG**. Vì quy tắc này, 3 tên đặt ban đầu bị sửa lại:
 
-| Tên đặt ban đầu | Vì sao phải sửa | Tên chốt |
+| Tên đặt ban đầu | Lý do sửa | Tên chốt |
 |---|---|---|
 | Cập nhật kết quả **và tính điểm** chặng đua | "tính điểm" là việc hệ thống tự làm sau khi nhân viên bấm nút, không phải hành động của nhân viên | **Cập nhật kết quả chặng đua** |
 | Tổng hợp xếp hạng | "tổng hợp", "xếp hạng" đều là việc hệ thống làm; quản lý chỉ mở màn hình để xem | **Xem bảng tổng sắp** (UC con của Module 4) |

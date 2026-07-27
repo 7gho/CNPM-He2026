@@ -439,11 +439,11 @@ Sau khi đánh giá, hệ thống có **12 lớp thực thể**, trong đó 9 l�
 
 Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra để tách quan hệ nhiều–nhiều (xem mục 3.3).
 
-#### 3.1.4. Hai quyết định cần biện luận
+#### 3.1.4. Hai quyết định về lớp thực thể
 
 **(a) Thuộc tính lấy từ mô tả bài toán.** Mô tả đối tượng ở mục 1.4 ghi rõ: *Chặng đua (mã, tên, số vòng đua, **địa điểm**, thời gian, **mô tả**)*, *Đội đua (mã, tên, **hãng**, **mô tả**)*, *Tay đua (mã, tên, ngày sinh, quốc tịch, **tiểu sử**)*. Vì vậy nhóm bổ sung `hang`, `moTa` cho `DoiDua`; `tieuSu` cho `TayDua`; `diaDiem`, `moTa` cho `ChangDua`.
 
-**(b) Vì sao KHÔNG tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
+**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
 
 ### 3.2. Mô tả thực thể (thuộc tính, phương thức)
 
@@ -466,7 +466,7 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra đ
 | `NhanVien` | (kế thừa `ThanhVien`) | Thực hiện Module 1, 2, 3 |
 | `QuanLy` | (kế thừa `ThanhVien`) | Thực hiện Module 4 |
 
-**Vì sao tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` **kế thừa** (`ThanhVien <|-- NhanVien`, `ThanhVien <|-- QuanLy`). Cách này **bỏ được thuộc tính `vaiTro` kiểu chuỗi** — vốn là cách mô phỏng kế thừa bằng dữ liệu — và tạo ra quan hệ generalization giữa ba lớp. Theo quy tắc thiết kế, **hai lớp con kế thừa không được bổ sung thuộc tính `id`** mà dùng chung định danh của lớp cha.
+**Tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` **kế thừa** (`ThanhVien <|-- NhanVien`, `ThanhVien <|-- QuanLy`). Cách này **bỏ được thuộc tính `vaiTro` kiểu chuỗi** — vốn là cách mô phỏng kế thừa bằng dữ liệu — và tạo ra quan hệ generalization giữa ba lớp. Theo quy tắc thiết kế, **hai lớp con kế thừa không được bổ sung thuộc tính `id`** mà dùng chung định danh của lớp cha.
 
 #### 3.2.2. Phương thức nghiệp vụ gán cho lớp thực thể
 
@@ -507,7 +507,7 @@ Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực th
 
 Các liên kết được chuyển thành quan hệ đối tượng: **hợp thành (composition, `*--`, hình thoi đặc)**, **thành phần (aggregation, `o--`, hình thoi rỗng)** và **kế thừa (`<|--`, tam giác rỗng)**. Biểu đồ **không dùng mũi tên định hướng**.
 
-**Biện luận từng quan hệ:**
+**Loại quan hệ và căn cứ chọn:**
 
 | Quan hệ | Loại | Lý do |
 |---|---|---|
@@ -521,7 +521,7 @@ Các liên kết được chuyển thành quan hệ đối tượng: **hợp th�
 | `TayDua` – `TraoGiai`, `DoiDua` – `TraoGiai` | **Thành phần `o--`** | Bản ghi trao giải thuộc về mùa giải (đã là `*--`), tay đua/đội đua chỉ là bên nhận giải và vẫn tồn tại độc lập |
 | `ThanhVien` – `NhanVien`, `ThanhVien` – `QuanLy` | **Kế thừa `<\|--`** | Hai lớp con dùng chung toàn bộ thuộc tính và use case đăng nhập/đổi mật khẩu của lớp cha, chỉ khác quyền thực hiện chức năng |
 
-**Vì sao KHÔNG gộp `KetQua` vào `DangKyChang` dù bội số là 1-1?** Quy tắc thiết kế cơ sở dữ liệu nói quan hệ **1-1 thì nên gộp** hai bảng. Tuy nhiên `DangKyChang` – `KetQua` **không phải 1-1 thật**, mà là **1 – 0..1**:
+**Giữ `KetQua` tách khỏi `DangKyChang`.** Quy tắc thiết kế cơ sở dữ liệu nói quan hệ **1-1 thì nên gộp** hai bảng. Tuy nhiên `DangKyChang` – `KetQua` **không phải 1-1 thật**, mà là **1 – 0..1**:
 
 1. **Hai thời điểm khác nhau.** Bản ghi `DangKyChang` được tạo **trước** ngày đua (Module 2), còn `KetQua` chỉ ra đời **sau** khi chặng đua kết thúc (Module 3). Nếu gộp bảng thì trong suốt khoảng thời gian giữa hai mốc, mọi cột `thoiGian`, `soVongHoanThanh`, `trangThai`, `hang`, `diem` đều phải để NULL — đúng kiểu dư thừa cần tránh.
 2. **Hai nghiệp vụ, hai chủ thể ghi khác nhau.** Đăng ký do Module 2 ghi và có thể **sửa lại trước ngày đua**; kết quả do Module 3 ghi, có thể bị **ghi đè và tính lại toàn chặng**. Tách bảng cho phép `KetQua.xoaKetQuaCu(changDuaId)` xoá và nhập lại kết quả mà **không đụng tới danh sách đăng ký**.

@@ -109,7 +109,7 @@ Sau khối Ngoại lệ đặt **một dòng ghi chú ánh xạ lớp biên** (g
 
 > **Ánh xạ sang lớp biên:** màn *Tìm tay đua* (`GDTimTayDua`) — ô "Tên tay đua" = `-inTenTayDua`, nút [Tìm] = `-subTim`, bảng kết quả = `-outsubDSTayDua`. Màn *Nhập hợp đồng* (`GDNhapHopDong`) — …
 
-**Vì sao tách 3 khối?** Markdown **không lồng được bảng vào ô của một bảng khác**, nên không thể viết thẳng bảng dữ liệu bên trong ô "Kịch bản chính" của bảng đặc tả. Khi sinh file Word bằng `docs/build-baocao-docx.py` (mục 4.3), script **tự ghép 3 khối lại thành đúng bảng 6 dòng như mẫu của thầy**, với các bảng phác thảo và bảng dữ liệu **lồng trong ô "Kịch bản chính"**. Vì vậy phải giữ đúng thứ tự và đúng tên hai nhãn `**Kịch bản chính**` / `**Ngoại lệ**` để script nhận diện.
+**Lý do tách 3 khối.** Markdown **không lồng được bảng vào ô của một bảng khác**, nên không thể viết thẳng bảng dữ liệu bên trong ô "Kịch bản chính" của bảng đặc tả. Khi sinh file Word bằng `docs/build-baocao-docx.py` (mục 4.3), script **tự ghép 3 khối lại thành đúng bảng 6 dòng như mẫu của thầy**, với các bảng phác thảo và bảng dữ liệu **lồng trong ô "Kịch bản chính"**. Vì vậy phải giữ đúng thứ tự và đúng tên hai nhãn `**Kịch bản chính**` / `**Ngoại lệ**` để script nhận diện.
 
 > Bản Word sinh ra phải là bảng **đúng 6 dòng, đúng thứ tự** `Use case | Actor | Tiền điều kiện | Hậu điều kiện | Kịch bản chính | Ngoại lệ`. Không thêm dòng "Luồng phụ", "Thuộc tính", "Ràng buộc" vào bảng 4 dòng — nội dung đó chuyển thành ngoại lệ đánh số theo bước, hoặc ghi chú sau khối Ngoại lệ.
 > Kịch bản chính phải **có dữ liệu thật và trạng thái nút** (dùng bộ dữ liệu mẫu ở `docs/03` mục 5), ví dụ: *"Nhân viên nhập `Hamilton` và click Tìm"*, *"nút [Lưu] chưa được active"*; các bảng phác thảo chèn kèm cũng dùng chính bộ dữ liệu đó.

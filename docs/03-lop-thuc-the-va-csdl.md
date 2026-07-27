@@ -113,7 +113,7 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** sinh ra �
 | `TayDua` | `tieuSu` | Khớp mô tả "Tay đua (mã, tên, ngày sinh, quốc tịch, tiểu sử)"; hiển thị ở màn hình tìm và hồ sơ tay đua của Module 1 |
 | `ChangDua` | `diaDiem`, `moTa` | Khớp mô tả "Chặng đua (mã chặng đua, tên, số vòng đua, địa điểm, thời gian, mô tả)"; `diaDiem` dùng ở màn chọn chặng của Module 2, Module 3 |
 
-**(b) Vì sao KHÔNG tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống (`docs/01`) thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Theo bước 3 của phương pháp trích danh từ, một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
+**(b) Không tạo lớp thực thể `Hang` riêng.** Không có chức năng nào trong phạm vi hệ thống (`docs/01`) thao tác trên danh mục hãng: không thêm/sửa/xoá hãng, không tra cứu theo hãng, không có màn hình nào của hãng. Theo bước 3 của phương pháp trích danh từ, một danh từ chỉ trở thành lớp thực thể khi hệ thống cần quản lý vòng đời của nó; ở đây "hãng" chỉ xuất hiện như **một thông tin mô tả kèm theo đội đua** (hiển thị trên bảng xếp hạng đội). Vì vậy nhóm giữ `hang` là **thuộc tính kiểu chuỗi của `DoiDua`**. Nếu sau này mở rộng thêm modul quản lý hãng đua thì chỉ cần tách `hang` thành lớp `Hang` và thay bằng quan hệ `Hang "1" o-- "n" DoiDua`, không ảnh hưởng các module hiện có.
 
 ---
 
@@ -138,7 +138,7 @@ Theo lưu ý của thầy ở B2: *"thuộc tính chưa cần kiểu dữ liệu
 | `NhanVien` | (kế thừa `ThanhVien`) | Thực hiện Module 1, 2, 3 |
 | `QuanLy` | (kế thừa `ThanhVien`) | Thực hiện Module 4 và các chức năng danh mục |
 
-**Vì sao tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Theo B2 bước 5 (quan hệ kế thừa) và đúng mẫu của thầy (`Thanhvien` là cha của `Sinhvien` / `Nhanvien`), nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` kế thừa. Cách này bỏ được thuộc tính `vaiTro` kiểu chuỗi (vốn là cách mô phỏng kế thừa bằng dữ liệu) và tạo ra quan hệ generalization mà biểu đồ trước đây còn thiếu. Theo B3 bước 1, **hai lớp con kế thừa không được bổ sung thuộc tính `id`**.
+**Tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Theo B2 bước 5 (quan hệ kế thừa) và đúng mẫu của thầy (`Thanhvien` là cha của `Sinhvien` / `Nhanvien`), nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` kế thừa. Cách này bỏ được thuộc tính `vaiTro` kiểu chuỗi (vốn là cách mô phỏng kế thừa bằng dữ liệu) và tạo ra quan hệ generalization mà biểu đồ trước đây còn thiếu. Theo B3 bước 1, **hai lớp con kế thừa không được bổ sung thuộc tính `id`**.
 
 ### 1.2. Phương thức nghiệp vụ gán cho lớp thực thể
 
@@ -217,7 +217,7 @@ ThanhVien <|-- NhanVien
 ThanhVien <|-- QuanLy
 ```
 
-**Biện luận từng quan hệ:**
+**Loại quan hệ và căn cứ chọn:**
 
 | Quan hệ | Loại | Lý do |
 |---|---|---|
@@ -231,7 +231,7 @@ ThanhVien <|-- QuanLy
 | `TayDua` – `TraoGiai`, `DoiDua` – `TraoGiai` | **Thành phần `o--`** | Bản ghi trao giải thuộc về mùa giải (đã là `*--`), tay đua/đội đua chỉ là bên nhận giải và vẫn tồn tại độc lập |
 | `ThanhVien` – `NhanVien`, `ThanhVien` – `QuanLy` | **Kế thừa `<\|--`** | Hai lớp con dùng chung toàn bộ thuộc tính và use case đăng nhập/đổi mật khẩu của lớp cha, chỉ khác quyền thực hiện chức năng |
 
-**Vì sao KHÔNG gộp `KetQua` vào `DangKyChang` dù bội số là 1-1?**
+**Giữ `KetQua` tách khỏi `DangKyChang`.**
 
 B3 (thiết kế CSDL, bước 3) nói quan hệ **1-1 thì nên gộp** hai bảng thành một. Tuy nhiên `DangKyChang` – `KetQua` **không phải 1-1 thật**, mà là **1 – 0..1**:
 
