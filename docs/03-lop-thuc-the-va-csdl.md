@@ -537,6 +537,128 @@ Cách tính lúc chạy: tổng điểm cá nhân = `SUM(tblKetQua.diem)` gộp 
 
 Nói cách khác: dữ liệu **suy ra được và luôn suy ra đúng** thì bỏ (`tongDiem`, `tongThoiGian`, các bảng xếp hạng); dữ liệu là **bản chốt tại một thời điểm** thì giữ (`tblKetQua.hang/diem`, `tblTraoGiai.hang/tienThuong/loai`).
 
+### 4.6. Biểu đồ thiết kế CSDL
+
+Kết quả của 5 bước trên: **12 bảng**, 14 khoá ngoại. Hình xuất ra: `docs/hinh/csdl.png`.
+
+> **Vẽ bằng Entity Relationship Diagram của Visual Paradigm**, không phải Class Diagram — đúng như Hình 4.2 giáo trình: mỗi bảng là một entity, khoá chính có icon khoá, khoá ngoại in nghiêng, cột ghi kèm kiểu dữ liệu và đánh dấu cột cho phép NULL.
+>
+> Khối PlantUML dưới đây chỉ để **render bản tham chiếu** cho dễ đối chiếu khi vẽ; plugin PlantUML không import được sang ERD nên biểu đồ này phải vẽ tay trong VP.
+
+```plantuml
+@startuml
+hide circle
+skinparam linetype ortho
+
+entity tblMuaGiai {
+  * id : integer(10)
+  --
+  ten : varchar(255)
+  nam : integer(10)
+  trangThai : varchar(255)
+}
+entity tblChangDua {
+  * id : integer(10)
+  --
+  ma : varchar(255)
+  ten : varchar(255)
+  soVong : integer(10)
+  diaDiem : varchar(255)
+  thoiGian : datetime
+  moTa : varchar(255)
+  # tblMuaGiaiid : integer(10)
+}
+entity tblDoiDua {
+  * id : integer(10)
+  --
+  ma : varchar(255)
+  ten : varchar(255)
+  hang : varchar(255)
+  moTa : varchar(255)
+}
+entity tblTayDua {
+  * id : integer(10)
+  --
+  ma : varchar(255)
+  ten : varchar(255)
+  ngaySinh : date
+  quocTich : varchar(255)
+  tieuSu : varchar(255)
+}
+entity tblThamGia {
+  * id : integer(10)
+  --
+  # tblMuaGiaiid : integer(10)
+  # tblDoiDuaid : integer(10)
+}
+entity tblHopDong {
+  * id : integer(10)
+  --
+  ngayBatDau : date
+  ngayKetThuc : date [NULL]
+  # tblTayDuaid : integer(10)
+  # tblDoiDuaid : integer(10)
+}
+entity tblDangKyChang {
+  * id : integer(10)
+  --
+  # tblChangDuaid : integer(10)
+  # tblTayDuaid : integer(10)
+  # tblDoiDuaid : integer(10)
+}
+entity tblKetQua {
+  * id : integer(10)
+  --
+  thoiGian : float(10)
+  soVongHoanThanh : integer(10)
+  trangThai : varchar(255)
+  hang : integer(10)
+  diem : integer(10)
+  # tblDangKyChangid : integer(10)
+}
+entity tblTraoGiai {
+  * id : integer(10)
+  --
+  loai : varchar(255)
+  hang : integer(10)
+  tienThuong : float(10)
+  # tblMuaGiaiid : integer(10)
+  # tblTayDuaid : integer(10) [NULL]
+  # tblDoiDuaid : integer(10) [NULL]
+}
+entity tblThanhVien {
+  * id : integer(10)
+  --
+  tenDangNhap : varchar(255)
+  matKhau : varchar(255)
+  hoTen : varchar(255)
+}
+entity tblNhanVien {
+  * tblThanhVienid : integer(10)
+}
+entity tblQuanLy {
+  * tblThanhVienid : integer(10)
+}
+
+tblMuaGiai ||--o{ tblChangDua
+tblMuaGiai ||--o{ tblThamGia
+tblDoiDua ||--o{ tblThamGia
+tblTayDua ||--o{ tblHopDong
+tblDoiDua ||--o{ tblHopDong
+tblChangDua ||--o{ tblDangKyChang
+tblTayDua ||--o{ tblDangKyChang
+tblDoiDua ||--o{ tblDangKyChang
+tblDangKyChang ||--o| tblKetQua
+tblMuaGiai ||--o{ tblTraoGiai
+tblTayDua ||--o{ tblTraoGiai
+tblDoiDua ||--o{ tblTraoGiai
+tblThanhVien ||--o| tblNhanVien
+tblThanhVien ||--o| tblQuanLy
+@enduml
+```
+
+**Đối chiếu số lượng:** 12 bảng · 12 khoá chính (`tblNhanVien` và `tblQuanLy` dùng chung khoá ngoại làm khoá chính) · 14 khoá ngoại · 2 ràng buộc UNIQUE (`tblDangKyChang(tblChangDuaid, tblTayDuaid)` và `tblThanhVien(tenDangNhap)`) · 3 cột cho phép NULL (`tblHopDong.ngayKetThuc`, `tblTraoGiai.tblTayDuaid`, `tblTraoGiai.tblDoiDuaid`).
+
 ---
 
 ## 5. Bộ dữ liệu mẫu (mùa giải 2025 thật)

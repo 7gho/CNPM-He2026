@@ -37,7 +37,7 @@
   - 3.3. Quan hệ giữa các lớp thực thể
   - 3.4. Biểu đồ lớp thực thể — pha phân tích
   - 3.5. Biểu đồ lớp thực thể — pha thiết kế
-  - 3.6. Thiết kế cơ sở dữ liệu
+  - 3.6. Thiết kế cơ sở dữ liệu (kèm biểu đồ CSDL)
   - 3.7. Thiết kế triển khai (package view / dao / model)
 
 **PHẦN 2 — KẾT QUẢ TỪNG THÀNH VIÊN**
@@ -615,6 +615,14 @@ Cách tính lúc chạy: tổng điểm cá nhân = `SUM(tblKetQua.diem)` gộp 
 
 `tblKetQua.hang`, `tblKetQua.diem` và `tblTraoGiai.hang`, `tienThuong`, `loai` **được giữ**: đây là kết quả đã công bố của chặng và quyết định trao giải đã chốt của mùa giải, không phải giá trị tính lại được.
 
+#### 3.6.6. Biểu đồ thiết kế cơ sở dữ liệu
+
+Kết quả của năm bước trên: **12 bảng, 14 khoá ngoại, 2 ràng buộc UNIQUE** (`tblDangKyChang(tblChangDuaid, tblTayDuaid)` và `tblThanhVien(tenDangNhap)`) và **3 cột cho phép NULL** (`tblHopDong.ngayKetThuc`, `tblTraoGiai.tblTayDuaid`, `tblTraoGiai.tblDoiDuaid`).
+
+![Biểu đồ thiết kế cơ sở dữ liệu](<hinh/csdl.png>)
+
+*Hình 3.3 — Biểu đồ thiết kế cơ sở dữ liệu*
+
 ### 3.7. Thiết kế triển khai (package view / dao / model)
 
 Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gói **`dao`**, trang jsp vào gói **`view`** (chia nhỏ theo nhóm người dùng).
@@ -641,7 +649,7 @@ Lớp thực thể vào gói **`model`**, lớp truy xuất dữ liệu vào gó
 
 ![Biểu đồ package thiết kế triển khai](<hinh/package-trienkhai.png>)
 
-*Hình 3.3 — Thiết kế triển khai: package `view` → `dao` → `model`*
+*Hình 3.4 — Thiết kế triển khai: package `view` → `dao` → `model`*
 
 ---
 

@@ -207,13 +207,13 @@ Module 4 - Thanh/
 Lectures/                         ← tài liệu giảng viên (tham khảo)
 ```
 
-## 7. Danh sách ảnh cần export từ Visual Paradigm (tổng **28 ảnh**)
+## 7. Danh sách ảnh cần export từ Visual Paradigm (tổng **29 ảnh**)
 
-> **Giao diện không có ảnh:** nhóm không vẽ mockup, nên bảng dưới **không có dòng ảnh giao diện nào**. Tổng cộng **6 ảnh mỗi module × 4 module + 4 ảnh chung = 28 ảnh**.
+> **Giao diện không có ảnh:** nhóm không vẽ mockup, nên bảng dưới **không có dòng ảnh giao diện nào**. Tổng cộng **6 ảnh mỗi module × 4 module + 5 ảnh chung = 29 ảnh**.
 
 **Quy tắc tên file:** chữ thường, không dấu, ngăn cách bằng `-`, đuôi `.png`. Ảnh của module đặt tên `m<số module>-<tên biểu đồ>.png`. Tên file ở bảng dưới là **tên chốt**, phải trùng với bảng "Danh sách ảnh cần export" ở đầu `noi-dung.md` của từng module và với đường dẫn `![…](…)` trong `docs/BAO-CAO.md`.
 
-### 7.1. `docs/hinh/` — phần chung của nhóm (4 ảnh)
+### 7.1. `docs/hinh/` — phần chung của nhóm (5 ảnh)
 
 | Tên file | Biểu đồ | Blueprint | Trạng thái |
 |---|---|---|---|
@@ -221,6 +221,7 @@ Lectures/                         ← tài liệu giảng viên (tham khảo)
 | `lop-thucthe-phantich.png` | Lớp thực thể **pha phân tích** (không `id`, không kiểu dữ liệu, không phương thức) | `docs/03` | chưa vẽ |
 | `lop-thucthe-thietke.png` | Lớp thực thể **pha thiết kế** (có `id`, có kiểu dữ liệu, có thuộc tính kiểu đối tượng) | `docs/03` | chưa vẽ |
 | `package-trienkhai.png` | Thiết kế triển khai — package `view` → `dao` → `model` | `docs/03` | chưa vẽ |
+| `csdl.png` | Biểu đồ thiết kế cơ sở dữ liệu (ERD, 12 bảng) | `docs/03` mục 4.6 | chưa vẽ — dùng **Entity Relationship Diagram** của VP, không phải Class Diagram |
 
 > File cũ `docs/hinh/lop-thucthe.png` **bị thay bởi 2 file** `lop-thucthe-phantich.png` và `lop-thucthe-thietke.png` — xóa khỏi repo sau khi có 2 ảnh mới.
 

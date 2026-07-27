@@ -78,3 +78,11 @@ Plugin dựng phần tử và quan hệ, không dựng được cách trình bà
 ---
 
 Đây là thư mục nháp. Sửa blueprint thì sửa trong `Module N/noi-dung.md`, không sửa ở đây.
+
+---
+
+**Bổ sung `chung-csdl.puml`** (biểu đồ thiết kế CSDL, nguồn `docs/03` mục 4.6).
+Plugin **không import được** file này — nó dùng cú pháp `entity` của ERD, còn plugin chỉ nhận
+Class / Use Case / Sequence / Component / Deployment / State / Activity.
+Biểu đồ CSDL phải vẽ tay bằng **Entity Relationship Diagram** của Visual Paradigm;
+file `.puml` này chỉ để render bản tham chiếu cho dễ đối chiếu.
