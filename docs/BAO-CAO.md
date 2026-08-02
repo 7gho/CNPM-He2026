@@ -469,8 +469,6 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** của các
 
 ### 3.3. Quan hệ giữa các lớp thực thể
 
-#### 3.3.1. Quan hệ số lượng và ba lớp trung gian
-
 Ba quan hệ nhiều–nhiều được tách bằng lớp trung gian:
 
 | Quan hệ n-n | Lớp trung gian | Tách thành | Ý nghĩa của một bản ghi |
@@ -504,7 +502,7 @@ Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực th
 | `ngaySinh`, `ngayBatDau`, `ngayKetThuc` | `Date` | |
 | `thoiGian` của `ChangDua` | `Date` | ngày giờ diễn ra chặng |
 
-**Bước 3 — Chuyển association thành aggregation/composition.** Đã làm ở mục 3.3.2; biểu đồ thiết kế dùng đúng bộ quan hệ đó.
+**Bước 3 — Chuyển association thành aggregation/composition.** Biểu đồ thiết kế dùng đúng bộ quan hệ đã xác định ở mục 3.3.
 
 **Bước 4 — Bổ sung thuộc tính kiểu đối tượng.** Lớp nào chứa lớp kia thì khai báo tường minh thuộc tính có kiểu là lớp kia; kiểu mảng `[]` nếu phía bên kia là "n", số ít nếu là "1" hoặc "0..1".
 
