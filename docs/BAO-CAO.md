@@ -323,7 +323,7 @@ Hệ thống chỉ được dùng bởi hai vai người dùng thật: người 
 | NFR3 | Toàn vẹn dữ liệu | Kiểm tra ràng buộc (chồng lấn hợp đồng, ≤2 tay đua/đội/chặng, cảnh báo ghi đè kết quả, đủ kết quả trước khi quyết toán) trước khi lưu. |
 | NFR4 | Khả dụng | Giao diện tiếng Việt, thao tác tìm kiếm → chọn → lưu rõ ràng; thông báo lỗi cụ thể khi vi phạm ràng buộc. |
 | NFR5 | Hiệu năng | Danh sách (tay đua, kết quả, xếp hạng) hiển thị < 2 giây với quy mô một mùa giải. |
-| NFR6 | Khả bảo trì | **Kiến trúc phân tầng view (.jsp) / dao / model**: tầng `view` là các trang `.jsp` hiển thị và nhận dữ liệu, tầng `dao` là các lớp truy xuất dữ liệu, tầng `model` là các lớp thực thể. Mỗi tầng chỉ gọi tầng ngay dưới nó, giúp dễ sửa và mở rộng. |
+| NFR6 | Khả bảo trì | **Kiến trúc phân tầng view (.jsp) / dao / model**: tầng `view` là các trang `.jsp` hiển thị và nhận dữ liệu, tầng `dao` là các lớp truy xuất dữ liệu, tầng `model` là các lớp thực thể. |
 | NFR7 | Khả chuyển | Chạy trên trình duyệt web thông dụng. |
 
 ### 2.4. Biểu đồ Use Case tổng quát
@@ -469,6 +469,8 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** của các
 
 ### 3.3. Quan hệ giữa các lớp thực thể
 
+#### 3.3.1. Quan hệ số lượng và ba lớp trung gian
+
 Ba quan hệ nhiều–nhiều được tách bằng lớp trung gian:
 
 | Quan hệ n-n | Lớp trung gian | Tách thành | Ý nghĩa của một bản ghi |
@@ -478,6 +480,20 @@ Ba quan hệ nhiều–nhiều được tách bằng lớp trung gian:
 | `ChangDua` – `TayDua` | **`DangKyChang`** | `ChangDua "1" – "n" DangKyChang`, `TayDua "1" – "n" DangKyChang` và `DoiDua "1" – "n" DangKyChang` | Một tay đua được một đội đăng ký thi đấu ở một chặng (Module 2) |
 
 Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực thể.
+
+#### 3.3.2. Quan hệ đối tượng
+
+Sau khi có quan hệ số lượng, các liên kết được chuyển thành quan hệ **hợp thành** (`*--`), **thành phần** (`o--`) và **kế thừa** (`<|--`):
+
+- Một mùa giải có nhiều chặng đua. Chặng đua chỉ tồn tại bên trong mùa giải của nó ⇒ **hợp thành**.
+- Một chặng đua có nhiều bản đăng ký thi đấu. Bản đăng ký chỉ tồn tại gắn với chặng đó ⇒ **hợp thành**.
+- Một bản đăng ký thi đấu có nhiều nhất một kết quả. Kết quả chỉ phát sinh sau khi chặng kết thúc, nên bội số là **1 – 0..1** ⇒ **hợp thành**.
+- Một mùa giải có nhiều quyết định trao giải. Quyết định trao giải là kết quả quyết toán của mùa giải đó ⇒ **hợp thành**.
+- Một mùa giải có nhiều lượt đội đua tham gia; một đội đua tham gia nhiều mùa giải. Đội đua vẫn tồn tại khi chưa tham gia mùa nào ⇒ **thành phần**.
+- Một tay đua có nhiều hợp đồng; một đội đua có nhiều hợp đồng. Tay đua và đội đua tồn tại độc lập với hợp đồng ⇒ **thành phần**.
+- Một tay đua có nhiều bản đăng ký thi đấu; một đội đua có nhiều bản đăng ký thi đấu. Tay đua và đội đua chỉ được tham chiếu vào bản đăng ký ⇒ **thành phần**.
+- Một tay đua có thể nhận nhiều giải; một đội đua có thể nhận nhiều giải. Tay đua và đội đua là bên nhận giải, vẫn tồn tại độc lập ⇒ **thành phần**.
+- Một thành viên là nhân viên hoặc quản lý. Hai lớp con dùng chung thuộc tính và use case đăng nhập, đổi mật khẩu của lớp cha ⇒ **kế thừa**.
 
 ### 3.4. Biểu đồ lớp thực thể — pha phân tích
 
@@ -502,7 +518,7 @@ Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực th
 | `ngaySinh`, `ngayBatDau`, `ngayKetThuc` | `Date` | |
 | `thoiGian` của `ChangDua` | `Date` | ngày giờ diễn ra chặng |
 
-**Bước 3 — Chuyển association thành aggregation/composition.** Biểu đồ thiết kế dùng đúng bộ quan hệ đã xác định ở mục 3.3.
+**Bước 3 — Chuyển association thành aggregation/composition.** Đã làm ở mục 3.3.2; biểu đồ thiết kế dùng đúng bộ quan hệ đó.
 
 **Bước 4 — Bổ sung thuộc tính kiểu đối tượng.** Lớp nào chứa lớp kia thì khai báo tường minh thuộc tính có kiểu là lớp kia; kiểu mảng `[]` nếu phía bên kia là "n", số ít nếu là "1" hoặc "0..1".
 
