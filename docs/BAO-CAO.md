@@ -483,17 +483,25 @@ Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực th
 
 #### 3.3.2. Quan hệ đối tượng
 
-Sau khi có quan hệ số lượng, các liên kết được chuyển thành quan hệ **hợp thành** (`*--`), **thành phần** (`o--`) và **kế thừa** (`<|--`):
+Sau khi có quan hệ số lượng, các liên kết được chuyển thành quan hệ **hợp thành** (`*--`), **thành phần** (`o--`) và **kế thừa** (`<|--`).
 
-- Một mùa giải có nhiều chặng đua. Chặng đua chỉ tồn tại bên trong mùa giải của nó ⇒ **hợp thành**.
-- Một chặng đua có nhiều bản đăng ký thi đấu. Bản đăng ký chỉ tồn tại gắn với chặng đó ⇒ **hợp thành**.
-- Một bản đăng ký thi đấu có nhiều nhất một kết quả. Kết quả chỉ phát sinh sau khi chặng kết thúc, nên bội số là **1 – 0..1** ⇒ **hợp thành**.
-- Một mùa giải có nhiều quyết định trao giải. Quyết định trao giải là kết quả quyết toán của mùa giải đó ⇒ **hợp thành**.
-- Một mùa giải có nhiều lượt đội đua tham gia; một đội đua tham gia nhiều mùa giải. Đội đua vẫn tồn tại khi chưa tham gia mùa nào ⇒ **thành phần**.
-- Một tay đua có nhiều hợp đồng; một đội đua có nhiều hợp đồng. Tay đua và đội đua tồn tại độc lập với hợp đồng ⇒ **thành phần**.
-- Một tay đua có nhiều bản đăng ký thi đấu; một đội đua có nhiều bản đăng ký thi đấu. Tay đua và đội đua chỉ được tham chiếu vào bản đăng ký ⇒ **thành phần**.
-- Một tay đua có thể nhận nhiều giải; một đội đua có thể nhận nhiều giải. Tay đua và đội đua là bên nhận giải, vẫn tồn tại độc lập ⇒ **thành phần**.
-- Một thành viên là nhân viên hoặc quản lý. Hai lớp con dùng chung thuộc tính và use case đăng nhập, đổi mật khẩu của lớp cha ⇒ **kế thừa**.
+**Hợp thành** — lớp con chỉ tồn tại bên trong lớp chứa nó, xoá lớp chứa thì xoá theo:
+
+- Một mùa giải có nhiều chặng đua. Chặng đua chỉ tồn tại bên trong mùa giải của nó.
+- Một chặng đua có nhiều bản đăng ký thi đấu. Bản đăng ký chỉ tồn tại gắn với chặng đó.
+- Một bản đăng ký thi đấu có nhiều nhất một kết quả, bội số **1 – 0..1**. Kết quả chỉ phát sinh sau khi chặng kết thúc.
+- Một mùa giải có nhiều quyết định trao giải. Quyết định trao giải là kết quả quyết toán của mùa giải đó.
+
+**Thành phần** — hai lớp tồn tại độc lập, chỉ tham chiếu lẫn nhau:
+
+- Một mùa giải có nhiều lượt đội đua tham gia; một đội đua tham gia nhiều mùa giải. Đội đua vẫn tồn tại khi chưa tham gia mùa nào.
+- Một tay đua có nhiều hợp đồng; một đội đua có nhiều hợp đồng. Tay đua và đội đua tồn tại độc lập với hợp đồng.
+- Một tay đua có nhiều bản đăng ký thi đấu; một đội đua có nhiều bản đăng ký thi đấu. Tay đua và đội đua chỉ được tham chiếu vào bản đăng ký.
+- Một tay đua có thể nhận nhiều giải; một đội đua có thể nhận nhiều giải. Tay đua và đội đua là bên nhận giải, vẫn tồn tại độc lập.
+
+**Kế thừa:**
+
+- Một thành viên là nhân viên hoặc quản lý. Hai lớp con dùng chung thuộc tính và use case đăng nhập, đổi mật khẩu của lớp cha.
 
 ### 3.4. Biểu đồ lớp thực thể — pha phân tích
 
