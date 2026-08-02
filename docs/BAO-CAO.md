@@ -1326,15 +1326,15 @@ Module bao gồm các use case thành phần và quan hệ mở rộng/bao hàm 
   - `Phê duyệt kết quả chặng` (do **Nhân viên 2** thực hiện)
   - `Áp dụng án phạt sau chặng` (do **Nhân viên 2** thực hiện)
 
-| Màn hình / Vai trò | Use case con / Use case mở rộng | Quan hệ với UC chính / UC Lưu kết quả | Actor thực hiện |
+| Use case con / Use case mở rộng | Quan hệ với UC chính / UC Lưu kết quả | Actor thực hiện | Màn hình liên quan (theo luồng mục 6.2) |
 |---|---|---|---|
-| Màn đăng nhập | `Đăng nhập` | include | Nhân viên 1 |
-| Màn chọn chặng | `Chọn chặng` | include | Nhân viên 1 |
-| Màn chi tiết chặng | `Nhập kết quả và tính điểm` | include | Nhân viên 1 |
-| Màn chi tiết chặng | `Lưu kết quả` | include | Nhân viên 1 |
-| Màn kháng nghị | `Xử lý kháng nghị kết quả` | extend (qua extension point) | Nhân viên 1 |
-| Màn phê duyệt/án phạt | `Phê duyệt kết quả chặng` | extend (qua extension point) | Nhân viên 2 |
-| Màn phê duyệt/án phạt | `Áp dụng án phạt sau chặng` | extend (qua extension point) | Nhân viên 2 |
+| `Đăng nhập` | include | Nhân viên 1 | (màn dùng chung toàn hệ thống, không thuộc luồng màn của module) |
+| `Chọn chặng` | include | Nhân viên 1 | Danh sách chặng `Chang.jsp` |
+| `Nhập kết quả và tính điểm` | include | Nhân viên 1 | Chi tiết chặng `ChangChiTiet.jsp` |
+| `Lưu kết quả` | include | Nhân viên 1 | Chi tiết chặng `ChangChiTiet.jsp` |
+| `Xử lý kháng nghị kết quả` | extend (qua extension point) | Nhân viên 1 | Quản lý kháng nghị `KhangNghi.jsp` |
+| `Phê duyệt kết quả chặng` | extend (qua extension point) | Nhân viên 2 | Chi tiết chặng `ChangChiTiet.jsp` (thao tác qua nút [Phê duyệt kết quả], không có màn riêng) |
+| `Áp dụng án phạt sau chặng` | extend (qua extension point) | Nhân viên 2 | Chi tiết chặng `ChangChiTiet.jsp` (không có màn riêng) |
 
 ![Biểu đồ Use Case chi tiết Module 3](<../Module 3 - Kiet/hinh/m3-uc-chitiet.png>)
 
@@ -1434,11 +1434,11 @@ Luồng màn hình: **Trang chính `NhanVien.jsp` → Danh sách mùa giải `Mu
 
 Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc khi lưu kết quả hoặc xử lý xong kháng nghị:
 
-- `Hiển thị GD chính NV` —`[click Mùa giải]`→ `Hiển thị GD danh sách mùa giải` (cung `[click Quay lại]` trở về trang chính)
-- `Hiển thị GD danh sách mùa giải` —`[click Chi tiết mùa giải]`→ `Hiển thị GD danh sách chặng đua` (cung `[click Quay lại]` trở về danh sách mùa giải)
-- `Hiển thị GD danh sách chặng đua` —`[click Chi tiết chặng]`→ `Hiển thị GD chi tiết chặng & nhập kết quả` (cung tự quay `[Nhập số vòng, thời gian, trạng thái]`, cung `[click Quay lại]` trở về danh sách chặng)
-- `Hiển thị GD chi tiết chặng & nhập kết quả` —`[click Tính kết quả]`→ `Hiển thị GD kết quả chặng đua` (cung tự quay `[click Lưu]`)
-- `Hiển thị GD kết quả chặng đua` —`[không có kháng nghị]`→ Kết thúc; hoặc —`[có đơn kháng nghị]`→ `Hiển thị GD danh sách kháng nghị` (cung tự quay xử lý đơn kháng nghị) —`[hết kháng nghị]`→ Kết thúc
+- `Hiển thị giao diện chính của nhân viên` —`[click mùa giải]`→ `Hiển thị danh sách mùa giải` (cung `[click quay lại]` trở về giao diện chính)
+- `Hiển thị danh sách mùa giải` —`[click chi tiết mùa giải]`→ `Hiển thị danh sách các chặng đua` (cung `[click quay lại]` trở về danh sách mùa giải)
+- `Hiển thị danh sách các chặng đua` —`[click chi tiết chặng đua]`→ `Hiển thị danh sách các tay đua, đội đua, thông tin chặng` (cung tự lặp `[Nhập số vòng, thời gian, trạng thái hợp lệ]`, cung `[click quay lại]` trở về danh sách các chặng đua)
+- `Hiển thị danh sách các tay đua, đội đua, thông tin chặng` —`[click tính toán kết quả]`→ `Hiển thị kết quả chặng đua` (cung tự lặp `[click lưu]`)
+- `Hiển thị kết quả chặng đua` —`[ko có đội đua, tay đua nộp đơn kháng nghị]`→ Kết thúc; hoặc —`[có đội đua, tay đua nộp đơn kháng nghị]`→ `Hiện thị danh sách kháng nghị` (các cung tự lặp `[Từ chối kháng nghị]`, `[kháng nghị không thành công]`, `[cập nhật lại kết quả chặng đua khi kháng nghị thành công]`, `[ghi nhận còn kháng nghị từ các đội đua, tay đua]`) —`[hết kháng nghị]`→ Kết thúc
 
 ![Biểu đồ trạng thái Module 3](<../Module 3 - Kiet/hinh/m3-trangthai.png>)
 
@@ -1448,27 +1448,31 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính c
 
 ### 6.4. Biểu đồ lớp phân tích
 
-Biểu đồ chỉ gồm **hai tầng**: lớp biên và lớp thực thể. Không có lớp điều khiển; nghiệp vụ được gán thẳng cho lớp thực thể.
+Biểu đồ chỉ gồm **hai tầng**: lớp biên và lớp thực thể, không có lớp điều khiển. Ở pha phân tích, cả lớp biên và lớp thực thể mới chỉ mô tả **thuộc tính**, chưa gán phương thức; các phương thức nghiệp vụ tương ứng được trình bày ở biểu đồ lớp thiết kế (mục 6.5).
 
 **Lớp biên** (mỗi màn hình một lớp, chỉ có thuộc tính, đặt tên theo chức năng dữ liệu):
 
 | Lớp biên | Màn hình | Thuộc tính |
 |---|---|---|
-| `GDNhanVien` | Trang chính của nhân viên | `-subKhangNghi`, `-subChang`, `-subCaiDat` |
+| `GDNhanVien` | Trang chính của nhân viên | `-subKhangNghi`, `-subChang`, `-subCaidat` |
 | `GDMuaGiai` | Danh sách mùa giải | `-outMuaGiai`, `-subCreateMuaGiai`, `-subViewDetailMuaGiai`, `-subBack`, `-subSave` |
 | `GDChang` | Danh sách các chặng đua | `-outChang`, `-subCreateChang`, `-subViewDetailChang`, `-subBack`, `-subSave` |
 | `GDChangChiTiet` | Chi tiết chặng & Nhập kết quả | `-cmbChang`, `-outTayDua`, `-subSave`, `-subBack`, `-subCalculateResult`, `-outKetQua`, `-subContinue` |
 
-**Phương thức nghiệp vụ gán cho lớp thực thể:**
+**Lớp thực thể** (ở pha phân tích chỉ mô tả thuộc tính, chưa gán phương thức):
 
-| Chức năng cần thực hiện dưới tầng giao diện | Gán cho lớp | Phương thức |
-|---|---|---|
-| Lấy danh sách mùa giải | `MuaGiai` | `getAllMuaGiai()`, `getMuaGiaiById(id)` |
-| Lấy danh sách chặng đua theo mùa giải | `ChangDua` | `getAllChangDuaByMuaGiaiID(id)` |
-| Lấy danh sách tay đua và đội đua của chặng | `DangKyChang` | `getAllTayDuaAndDoiDuaByChangID(id)` |
-| Tạo đối tượng kết quả chặng | `KetQua` | `createKetQua()` |
-| Kiểm tra kết quả cũ | `KetQua` | `kiemTraKetQuaCu()` |
-| Lưu kết quả mới | `KetQua` | `luuKetQua()` |
+| Lớp thực thể | Thuộc tính |
+|---|---|
+| `MuaGiai` | `-ten`, `-nam`, `-trangThai` |
+| `ChangDua` | `-ma`, `-ten`, `-soVong`, `-diaDiem`, `-thoiGian`, `-moTa` |
+| `DoiDua` | `-ma`, `-ten`, `-hang`, `-moTa` |
+| `TayDua` | `-ma`, `-ten`, `-quocTich`, `-ngaySinh`, `-tieuSu` |
+| `KetQua` | `-thoiGian`, `-soVongHoanThanh`, `-trangThai`, `-hang`, `-diem` |
+| `DangkyChang` | (lớp liên kết trung gian, thân rỗng — không có thuộc tính riêng) |
+
+**Quan hệ giữa các lớp thực thể:** `MuaGiai` 1 ◆—— 1..* `ChangDua` (thành phần); `ChangDua` 1 ◇—— 1..* `DangkyChang`, `DoiDua` 1 ◇—— 1..* `DangkyChang`, `TayDua` 1 ◇—— 1..* `DangkyChang` (kết tập); `DangkyChang` 1 ◆—— 1 `KetQua` (thành phần).
+
+Các chức năng nghiệp vụ dưới tầng giao diện (`getAllMuaGiai()`, `getMuaGiaiById(id)`, `getAllChangDuaByMuaGiaiID(id)`, `getAllTayDuaAndDoiDuaByChangID(id)`, `createKetQua()`, `kiemTraKetQuaCu()`, `luuKetQua()`) được gán cho các lớp DAO tương ứng ở biểu đồ lớp thiết kế — mục 6.5.
 
 ![Biểu đồ lớp phân tích Module 3](<../Module 3 - Kiet/hinh/m3-lop-phantich.png>)
 
@@ -1484,10 +1488,10 @@ Biểu đồ lớp thiết kế xây dựng theo mô hình Swing/JSP với Inter
 - `<<Interface>> ActionListener`: `+actionPerformed(e : EventAction) : void`
 
 **Tầng View (màn hình hiển thị thực thi Interface `ActionListener`):**
-- `NhanVien.jsp`: `-btnKhangNghi: JButton`, `-btnMuaGiai: JButton`, `-btnCaiDat: JButton`, `+NhanVien()`, `+actionPerformed(e: EventAction): void`
+- `NhanVien.jsp`: `-btnKhangNghi: JButton`, `-btnMuaGiai: JButton`, `-btnCaidat: JButton`, `+NhanVien()`, `+actionPerformed(e: EventAction): void`
 - `MuaGiai.jsp`: `-tblMuaGiai: JTable`, `-btnCreateMuaGiai: JButton`, `-btnViewDetailMuaGiai: JButton`, `-btnSave: JButton`, `-btnBack: JButton`, `-mg: MuaGiai`, `+getAllMuaGiai()`, `+getMuaGiaiById(id: int)`, `+MuaGiai()`, `+actionPerformed(e: EventAction): void`, `+createMuaGiai(mg: MuaGiai)`
 - `Chang.jsp`: `-tblChang: JTable`, `-btnCreateChang: JButton`, `-btnViewDetailChang: JButton`, `-btnBack: JButton`, `-btnSave: JButton`, `-c: ChangDua`, `-n: NhanVien`, `-dkc: DangKyChang`, `-mg: MuaGiai`, `+actionPerformed(e: EventAction): void`, `+Chang()`, `+createChang(dkc: DangKyChang)`, `+getAllChangDuaByMuaGiaiID(id: int)`
-- `ChangChiTiet.jsp`: `-cmbChang: JComboBox`, `-tblTayDua: JTable`, `-btnSave: JButton`, `-btnBack: JButton`, `-btnCalculateResult: JButton`, `-btnContinue: JButton`, `-tblKetQua: JTable`, `-n: NhanVien`, `-kq: KetQua`, `-c: ChangDua`, `+actionPerformed(e: EventAction): void`, `+ChangChiTiet()`, `+createKetQua(kq: KetQua)`, `+kiemTraKetQuaCu(kq: KetQua)`, `+luuKetQua(kq: KetQua)`, `+getById(id: int)`, `+getAllTayDuaAndDoiDuaByChangID(id: int)`
+- `ChangChiTiet.jsp`: `-cmbChang: JCombobox`, `-tblTayDua: JTable`, `-btnSave: JButton`, `-btnBack: JButton`, `-btnCalculateResult: JButton`, `-btnContinue: JButton`, `-tblKetQua: JTable`, `-n: NhanVien`, `-kq: KetQua`, `-c: ChangDua`, `+actionPerformed(e: EventAction): void`, `+ChangChiTiet()`, `+createKetQua(kq: KetQua)`, `+kiemTraKetQuaCu(kq: KetQua)`, `+luuKetQua(kq: KetQua)`, `+getById(id: int)`, `+getAllTayDuaAndDoiDuaByChangID(id: int)`
 
 **Tầng DAO (kế thừa lớp `DAO` có `-conn: Connection`, `+DAO()`):**
 - `MuaGiaiDAO`: `+MuaGiaiDAO()`, `+getAllMuaGiai()`, `+getMuaGiaiById(id: int)`
@@ -1500,7 +1504,7 @@ Biểu đồ lớp thiết kế xây dựng theo mô hình Swing/JSP với Inter
 - `ChangDua`: `-id: int`, `-soVong: int`, `-ma: String`, `-ten: String`, `-diaDiem: String`, `-thoiGian: date`, `-moTa: String`, `-muaGiai: MuaGiai`, `-dsDangKy: DangKyChang[]`
 - `DoiDua`: `-id: int`, `-ma: String`, `-ten: String`, `-hang: String`, `-moTa: String`
 - `TayDua`: `-id: int`, `-ma: String`, `-ten: String`, `-quocTich: String`, `-ngaySinh: String`, `-tieuSu: String`
-- `DangKyChang`: `-id: int`, `-changDua: ChangDua`, `-tayDua: TayDua`, `-doiDua: DoiDua`, `-ketQua: KetQua`
+- `DangKyChang`: `-id: int`, `-changDua: ChangDua`, `-tayDua: TayDua`, `-dolDua: DoiDua`, `-ketQua: KetQua`
 - `KetQua`: `-id: int`, `-thoiGian: float`, `-soVongHoanThanh: int`, `-dangKyChang: DangKyChang`, `-trangThai: String`, `-hang: int`, `-diem: int`
 
 ![Biểu đồ lớp thiết kế Module 3](<../Module 3 - Kiet/hinh/m3-lop-mvc.png>)
@@ -1518,7 +1522,7 @@ Biểu đồ hoạt động phân chia theo 2 swimlanes tương ứng với 2 ac
 2. **`MuaGiai.jsp`**: 
    - Lấy danh sách mùa giải thông qua `MuaGiaiDAO: getAllMuaGiai()`.
    - Hiển thị danh sách mùa giải.
-   - Nhân viên chọn mùa giải (gọi `MuaGiaiDAO: getMuaGiaiById(id: int)`), click `Click xem chi tiết`.
+   - Nhân viên chọn mùa giải (gọi `MuaGiaiDAO: getMuaGiaiByID(id: int)`), click `Click xem chi tiết`.
 3. **`Chang.jsp`**: 
    - Lấy danh sách chặng của mùa giải qua `ChangDuaDAO: getAllChangDuaByMuaGiaiID()`.
    - Hiển thị danh sách các chặng đua.
@@ -1539,12 +1543,12 @@ Biểu đồ hoạt động phân chia theo 2 swimlanes tương ứng với 2 ac
 
 **Luồng swimlane `Nhân viên 2` (`KhangNghi.jsp`):**
 1. Hệ thống hiển thị danh sách kháng nghị.
-2. `Nhân viên 2` xem xét đơn kháng nghị:
-   - Nếu **Từ chối kháng nghị**: Ghi nhận kháng nghị bị từ chối.
-   - Nếu **Chấp nhận kháng nghị**: Đối chiếu kết quả qua camera:
-     - Nếu kháng nghị không thành công: Ghi nhận kết quả đối chiếu không thành công.
-     - Nếu kháng nghị thành công: Hệ thống cập nhật lại điểm xếp hạng, nhân viên click lưu → ghi nhận cập nhật thành công.
-3. Sau khi hết đơn kháng nghị: Luồng quay trở lại node `Phê duyệt kết quả` ở swimlane `Nhân viên 1` để kết thúc.
+2. `Nhân viên 2` thực hiện node `Xem xét kháng nghị`:
+   - Nhánh **Từ chối kháng nghị**: luồng đi thẳng tới node hội tụ `Hệ thống ghi nhận có kháng nghị từ các đội đua?` (trên biểu đồ chỉ có nhãn rẽ nhánh, không có node ghi nhận riêng), kết quả chặng giữ nguyên.
+   - Nhánh **Chấp nhận kháng nghị**: chuyển sang node `Đối chiếu kết quả qua camera với kháng nghị`:
+     - Nhánh **Kháng nghị ko thành công**: luồng đi thẳng tới node `Hệ thống ghi nhận có kháng nghị từ các đội đua?`, hệ thống không cập nhật lại điểm xếp hạng.
+     - Nhánh **Kháng nghị thành công**: chuyển sang node `Hệ thống cập nhập lại điểm xếp hạng`, nhân viên `click lưu`, luồng về node `Hệ thống ghi nhận có kháng nghị từ các đội đua?`.
+3. Tại node `Hệ thống ghi nhận có kháng nghị từ các đội đua?`: nếu còn đơn (nhánh `Có kháng nghị`) thì quay lại node `Hệ thống hiển thị danh sách kháng nghị` để xử lý đơn tiếp theo; nếu hết thì luồng quay trở lại node `Phê duyệt kết quả` ở swimlane `Nhân viên 1` để kết thúc.
 
 ![Biểu đồ hoạt động Module 3](<../Module 3 - Kiet/hinh/m3-hoatdong.png>)
 
