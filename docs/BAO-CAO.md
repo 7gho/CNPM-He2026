@@ -32,7 +32,7 @@
   - 2.3. Yêu cầu phi chức năng
   - 2.4. Biểu đồ Use Case tổng quát
 - **CHƯƠNG 3: Xây dựng biểu đồ lớp thực thể**
-  - 3.1. Phân tích và xác định các thực thể (trích danh từ)
+  - 3.1. Phân tích và xác định các thực thể
   - 3.2. Mô tả thực thể (thuộc tính, phương thức)
   - 3.3. Quan hệ giữa các lớp thực thể
   - 3.4. Biểu đồ lớp thực thể — pha phân tích
@@ -43,13 +43,13 @@
 **PHẦN 2 — KẾT QUẢ TỪNG THÀNH VIÊN**
 
 - **CHƯƠNG 4: Module 1 — Ký hợp đồng tay đua với đội đua (Khuất Anh Quân)**
-  - 4.1. Biểu đồ Use Case chi tiết · 4.2. Đặc tả Use Case · 4.3. Biểu đồ trạng thái (phân tích hoạt động) · 4.4. Biểu đồ lớp phân tích · 4.5. Biểu đồ lớp thiết kế · 4.6. Biểu đồ hoạt động (pha thiết kế) · 4.7. Thuyết minh (kịch bản phiên bản 3) · 4.8. Biểu đồ tuần tự · 4.9. Test case
+  - 4.1. Biểu đồ Use Case chi tiết · 4.2. Đặc tả Use Case · 4.3. Biểu đồ trạng thái · 4.4. Biểu đồ lớp phân tích · 4.5. Biểu đồ lớp thiết kế · 4.6. Biểu đồ hoạt động (pha thiết kế) · 4.7. Scenario v3 · 4.8. Biểu đồ tuần tự · 4.9. Test case
 - **CHƯƠNG 5: Module 2 — Đăng ký tay đua tham gia chặng đua (Trần Xuân Kiên)**
-  - 5.1. Biểu đồ Use Case chi tiết · 5.2. Đặc tả Use Case · 5.3. Biểu đồ trạng thái (phân tích hoạt động) · 5.4. Biểu đồ lớp phân tích · 5.5. Biểu đồ lớp thiết kế · 5.6. Biểu đồ hoạt động (pha thiết kế) · 5.7. Thuyết minh (kịch bản phiên bản 3) · 5.8. Biểu đồ tuần tự · 5.9. Test case
+  - 5.1. Biểu đồ Use Case chi tiết · 5.2. Đặc tả Use Case · 5.3. Biểu đồ trạng thái · 5.4. Biểu đồ lớp phân tích · 5.5. Biểu đồ lớp thiết kế · 5.6. Biểu đồ hoạt động (pha thiết kế) · 5.7. Scenario v3 · 5.8. Biểu đồ tuần tự · 5.9. Test case
 - **CHƯƠNG 6: Module 3 — Cập nhật kết quả chặng đua (Nguyễn Minh Kiệt)**
-  - 6.1. Biểu đồ Use Case chi tiết · 6.2. Đặc tả Use Case · 6.3. Biểu đồ trạng thái (phân tích hoạt động) · 6.4. Biểu đồ lớp phân tích · 6.5. Biểu đồ lớp thiết kế · 6.6. Biểu đồ hoạt động (pha thiết kế) · 6.7. Thuyết minh (kịch bản phiên bản 3) · 6.8. Biểu đồ tuần tự · 6.9. Test case
+  - 6.1. Biểu đồ Use Case chi tiết · 6.2. Đặc tả Use Case · 6.3. Biểu đồ trạng thái · 6.4. Biểu đồ lớp phân tích · 6.5. Biểu đồ lớp thiết kế · 6.6. Biểu đồ hoạt động (pha thiết kế) · 6.7. Scenario v3 · 6.8. Biểu đồ tuần tự · 6.9. Test case
 - **CHƯƠNG 7: Module 4 — Quyết toán và trao giải cuối mùa (Phùng Tuấn Thành)**
-  - 7.1. Biểu đồ Use Case chi tiết · 7.2. Đặc tả Use Case · 7.3. Biểu đồ trạng thái (phân tích hoạt động) · 7.4. Biểu đồ lớp phân tích · 7.5. Biểu đồ lớp thiết kế · 7.6. Biểu đồ hoạt động (pha thiết kế) · 7.7. Thuyết minh (kịch bản phiên bản 3) · 7.8. Biểu đồ tuần tự · 7.9. Test case
+  - 7.1. Biểu đồ Use Case chi tiết · 7.2. Đặc tả Use Case · 7.3. Biểu đồ trạng thái · 7.4. Biểu đồ lớp phân tích · 7.5. Biểu đồ lớp thiết kế · 7.6. Biểu đồ hoạt động (pha thiết kế) · 7.7. Scenario v3 · 7.8. Biểu đồ tuần tự · 7.9. Test case
 - **CHƯƠNG 8: Kết luận**
 
 ---
@@ -90,11 +90,7 @@ Cụ thể, các nội dung sau **không** thuộc phạm vi: bán vé và quả
 
 #### 1.3.1. Đăng nhập
 
-Thành viên mở phần mềm → hệ thống hiển thị màn hình đăng nhập gồm ô nhập **Tên đăng nhập**, ô nhập **Mật khẩu** (hiển thị dạng dấu chấm) và nút **Đăng nhập**; các ô đang rỗng → thành viên nhập tên đăng nhập (ví dụ `nv01`) và mật khẩu, click **Đăng nhập** → hệ thống **kiểm tra tên đăng nhập có tồn tại không và mật khẩu có khớp không** → nếu sai, hệ thống báo lỗi "Tên đăng nhập hoặc mật khẩu không đúng", giữ nguyên màn hình đăng nhập và xóa ô mật khẩu, yêu cầu nhập lại → nếu đúng, hệ thống tạo phiên đăng nhập, đọc vai trò của tài khoản → nếu vai trò là **Nhân viên**, hệ thống hiển thị màn hình chính với các menu: Quản lý mùa giải, Quản lý tay đua, Quản lý đội đua, Quản lý chặng đua, Đăng ký đội tham gia mùa giải, Ký hợp đồng, Đăng ký chặng, Nhập kết quả chặng, Đổi mật khẩu, Đăng xuất → nếu vai trò là **Quản lý**, hệ thống hiển thị màn hình chính với các menu: Quyết toán và trao giải, Đổi mật khẩu, Đăng xuất.
-
 #### 1.3.2. Đổi mật khẩu
-
-Thành viên đã đăng nhập chọn menu **Đổi mật khẩu** → hệ thống hiển thị màn hình đổi mật khẩu gồm dòng chữ hiển thị họ tên và tên đăng nhập của người đang đăng nhập, ba ô nhập **Mật khẩu cũ**, **Mật khẩu mới**, **Nhập lại mật khẩu mới** và nút **Lưu**; ba ô đang rỗng → thành viên nhập mật khẩu cũ, nhập mật khẩu mới, nhập lại mật khẩu mới rồi click **Lưu** → hệ thống **kiểm tra mật khẩu cũ có khớp với mật khẩu đang lưu không** → nếu không khớp, báo lỗi "Mật khẩu cũ không đúng", xóa ba ô và yêu cầu nhập lại → hệ thống **kiểm tra hai ô mật khẩu mới có giống nhau không** → nếu khác nhau, báo lỗi "Nhập lại mật khẩu mới không khớp" → nếu hợp lệ, hệ thống lưu mật khẩu mới cho tài khoản, hiển thị thông báo "Đổi mật khẩu thành công" và quay về màn hình chính; lần đăng nhập sau thành viên phải dùng mật khẩu mới.
 
 #### 1.3.3. Quản lý mùa giải
 
@@ -172,8 +168,6 @@ Nhân viên chọn menu **Đăng ký đội tham gia mùa giải** → hệ th�
 | Đối tượng | Thuộc tính |
 |---|---|
 | **Đội đua** | mã, tên, hãng, mô tả |
-
-> Đề bài có nhắc tới **hãng** xe của đội đua. Vì hệ thống không có chức năng quản lý hãng đua (không thuộc phạm vi ở mục 1.2), hãng được giữ làm **thuộc tính** của đội đua chứ không tách thành đối tượng riêng.
 
 **c. Nhóm chuyên môn vận hành**
 
@@ -348,7 +342,7 @@ Biểu đồ tổng quát đặt toàn bộ use case trong khung hệ thống `H
 
 ## CHƯƠNG 3: XÂY DỰNG BIỂU ĐỒ LỚP THỰC THỂ
 
-### 3.1. Phân tích và xác định các thực thể (phương pháp trích danh từ)
+### 3.1. Phân tích và xác định các thực thể
 
 #### 3.1.1. Đoạn văn mô tả hệ thống
 
@@ -460,11 +454,7 @@ Ba lớp `ThamGia`, `HopDong`, `DangKyChang` là **lớp trung gian** của các
 | `NhanVien` | (kế thừa `ThanhVien`) | Thực hiện Module 1, 2, 3 |
 | `QuanLy` | (kế thừa `ThanhVien`) | Thực hiện Module 4 |
 
-**Tách `ThanhVien` thành cây kế thừa.** Nhân viên và quản lý dùng chung ba thuộc tính `tenDangNhap`, `matKhau`, `hoTen` và dùng chung use case `Đăng nhập`, `Đổi mật khẩu`, nhưng khác nhau về quyền thực hiện chức năng. Nhóm khai báo `ThanhVien` là **lớp trừu tượng** làm cha, `NhanVien` và `QuanLy` **kế thừa** (`ThanhVien <|-- NhanVien`, `ThanhVien <|-- QuanLy`). Cách này **bỏ được thuộc tính `vaiTro` kiểu chuỗi** — vốn là cách mô phỏng kế thừa bằng dữ liệu — và tạo ra quan hệ generalization giữa ba lớp. Theo quy tắc thiết kế, **hai lớp con kế thừa không được bổ sung thuộc tính `id`** mà dùng chung định danh của lớp cha.
-
 #### 3.2.2. Phương thức nghiệp vụ gán cho lớp thực thể
-
-Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở lớp thực thể.
 
 | Lớp | Phương thức | Module dùng |
 |---|---|---|
@@ -476,10 +466,6 @@ Hệ thống **không có lớp Control** — toàn bộ nghiệp vụ nằm ở
 | `KetQua` | `kiemTraKetQuaCu(changDuaId)`, `xoaKetQuaCu(changDuaId)`, `xepHangVaTinhDiem(changDuaId)`, `luuKetQua()`, `tongHopCaNhan(muaGiaiId, changDuaId)`, `tongHopDoi(muaGiaiId, changDuaId)`, `sapXepBangXepHang(ds)`, `getChiTietTheoTayDua(muaGiaiId, tayDuaId, changDuaId)`, `getChiTietTheoDoi(muaGiaiId, doiDuaId, changDuaId)` | M3, M4 |
 | `MuaGiai` | `getMuaGiaiHienTai()` | M4 |
 | `TraoGiai` | `tinhTienThuong(hang, mucThuong)`, `luuTraoGiai()` | M4 |
-
-- `xepHangVaTinhDiem(changDuaId)` — đầu ra là danh sách kết quả đã xếp hạng và gán điểm, thuộc `KetQua` ⇒ gán cho `KetQua`.
-- `getChiTietTheoTayDua(muaGiaiId, tayDuaId, changDuaId)` và `getChiTietTheoDoi(muaGiaiId, doiDuaId, changDuaId)` (bảng chi tiết theo chặng ở Module 4) — đầu ra là danh sách bản ghi `KetQua` của từng chặng ⇒ gán cho `KetQua`, dù tham số vào là mùa giải và tay đua/đội.
-- `getTayDuaHieuLuc(doiDuaId, thoiGianChang)` — đầu ra là danh sách tay đua nhưng được lọc theo điều kiện hợp đồng; cả hai tham số vào đều so khớp trên dữ liệu của hợp đồng (`doiDua`, `ngayBatDau`/`ngayKetThuc`) ⇒ gán cho `HopDong`, thực thể nhỏ nhất chứa được nhiều tham số nhất.
 
 ### 3.3. Quan hệ giữa các lớp thực thể
 
@@ -493,27 +479,7 @@ Ba quan hệ nhiều–nhiều được tách bằng lớp trung gian:
 | `TayDua` – `DoiDua` | **`HopDong`** | `TayDua "1" – "n" HopDong` và `DoiDua "1" – "n" HopDong` | Một giai đoạn tay đua thi đấu cho một đội, có `ngayBatDau` và `ngayKetThuc` (Module 1) |
 | `ChangDua` – `TayDua` | **`DangKyChang`** | `ChangDua "1" – "n" DangKyChang`, `TayDua "1" – "n" DangKyChang` và `DoiDua "1" – "n" DangKyChang` | Một tay đua được một đội đăng ký thi đấu ở một chặng (Module 2) |
 
-> `DangKyChang` thực chất tách một quan hệ **ba ngôi** `ChangDua` – `TayDua` – `DoiDua` thành ba quan hệ 1-n. `DoiDua` được giữ ở đây thay vì tra ngược qua `HopDong`, vì tay đua có thể **đổi đội giữa mùa**: điểm của chặng phải cộng cho đội tại **thời điểm diễn ra chặng**, tức đội ghi trong `DangKyChang`, không phải đội hiện tại.
-
 Sau bước này, **không còn quan hệ n-n nào** giữa các lớp thực thể.
-
-#### 3.3.2. Quan hệ đối tượng
-
-Các liên kết được chuyển thành quan hệ **hợp thành** (`*--`), **thành phần** (`o--`) và **kế thừa** (`<|--`):
-
-| Quan hệ | Loại |
-|---|---|
-| `MuaGiai` – `ChangDua` | **Hợp thành `*--`** |
-| `ChangDua` – `DangKyChang` | **Hợp thành `*--`** |
-| `DangKyChang` – `KetQua` | **Hợp thành `*--`, bội số 1 – 0..1** |
-| `MuaGiai` – `TraoGiai` | **Hợp thành `*--`** |
-| `MuaGiai` – `ThamGia`, `DoiDua` – `ThamGia` | **Thành phần `o--`** |
-| `TayDua` – `HopDong`, `DoiDua` – `HopDong` | **Thành phần `o--`** |
-| `TayDua` – `DangKyChang`, `DoiDua` – `DangKyChang` | **Thành phần `o--`** |
-| `TayDua` – `TraoGiai`, `DoiDua` – `TraoGiai` | **Thành phần `o--`** |
-| `ThanhVien` – `NhanVien`, `ThanhVien` – `QuanLy` | **Kế thừa `<\|--`** |
-
-Bội số giữa `DangKyChang` và `KetQua` là **1 – 0..1**: bản đăng ký được tạo trước ngày đua, kết quả chỉ phát sinh sau khi chặng kết thúc. Hai lớp giữ riêng, không gộp.
 
 ### 3.4. Biểu đồ lớp thực thể — pha phân tích
 
@@ -751,7 +717,7 @@ Ngoài ra có một use case mở rộng: khi nhân viên tìm mà không thấy
 
 > Luồng chuyển màn: **Trang chính → Tìm tay đua → Nhập hợp đồng → (lưu) → Trang chính**.
 
-### 4.3. Biểu đồ trạng thái (phân tích hoạt động)
+### 4.3. Biểu đồ trạng thái
 
 Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc sau khi nhân viên xác nhận thông báo lưu thành công:
 
@@ -763,7 +729,7 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính c
 
 ![Biểu đồ trạng thái Module 1](<../Module 1 - Quan/hinh/m1-trangthai.png>)
 
-*Hình 4.2 — Biểu đồ trạng thái Module 1 (phân tích hoạt động)*
+*Hình 4.2 — Biểu đồ trạng thái Module 1*
 
 ### 4.4. Biểu đồ lớp phân tích
 
@@ -822,7 +788,7 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính c
 
 *Hình 4.5 — Biểu đồ hoạt động Module 1 (pha thiết kế)*
 
-### 4.7. Thuyết minh (kịch bản phiên bản 3)
+### 4.7. Scenario v3
 
 Luồng chính: Lewis Hamilton đang có hợp đồng hiệu lực với Mercedes, ký hợp đồng mới với Ferrari từ `01/01/2025`. Luồng mở đầu và kết thúc tại **trang chính của nhân viên** `gdChinhNV.jsp`; **luồng lưu**: lớp thực thể `HopDong` tự gọi `setter()` đóng gói dữ liệu nhập **trước**, sau đó trang xử lý mới gọi các hàm của `HopDongDAO` (không gọi constructor thực thể ở luồng lưu). Mỗi dòng thuyết minh tương ứng đúng một message trong biểu đồ tuần tự ở mục 4.8.
 
@@ -1063,13 +1029,13 @@ Luồng màn hình: **Chọn chặng và đội → Đăng ký tay đua**; phác
 
 > Luồng chuyển màn: **Trang chính → Chọn chặng và đội → Đăng ký tay đua → (lưu qua `doLuuDangKy.jsp`) → Đăng ký tay đua (hiển thị lại kèm danh sách xuất phát) → Trang chính**.
 
-### 5.3. Biểu đồ trạng thái (phân tích hoạt động)
+### 5.3. Biểu đồ trạng thái
 
 Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính** của nhân viên: `Hiển thị GD chính NV` —`[click Đăng ký thi đấu]`→ `Hiển thị GD chọn chặng và đội` (cung tự quay `[chọn chặng / chọn đội]`) —`[click Tiếp tục]`→ `Hiển thị GD đăng ký tay đua` (cung tự quay `[tick chọn tay đua]`, cung `[click Quay lại]` trở về màn chọn chặng và đội) —`[click Lưu, hợp lệ]`→ `Hiển thị thông báo + danh sách xuất phát` —`[click OK]`→ Kết thúc.
 
 ![Biểu đồ trạng thái Module 2](<../Module 2 - Kin/hinh/m2-trangthai.png>)
 
-*Hình 5.2 — Biểu đồ trạng thái Module 2 (phân tích hoạt động)*
+*Hình 5.2 — Biểu đồ trạng thái Module 2*
 
 ### 5.4. Biểu đồ lớp phân tích
 
@@ -1115,7 +1081,7 @@ Biểu đồ chỉ gồm **hai tầng**: lớp biên và lớp thực thể. Kh�
 
 *Hình 5.5 — Biểu đồ hoạt động Module 2 (pha thiết kế)*
 
-### 5.7. Thuyết minh (kịch bản phiên bản 3)
+### 5.7. Scenario v3
 
 Kịch bản dưới đây chỉ mô tả **luồng chính**; các ngoại lệ đã nêu ở đặc tả use case mục 5.2. Mỗi dòng tương ứng với một message trong biểu đồ tuần tự ở mục 5.8 (64 dòng — 64 message). Luồng **đọc** dữ liệu giữ chuỗi 7 message (DAO self-call tên hàm + lớp thực thể self-call constructor); luồng **lưu**: lớp thực thể tự đóng gói dữ liệu nhập bằng `setter()` **trước**, rồi trang xử lý mới gọi DAO lưu (DAO không gọi lại lớp thực thể nữa).
 
@@ -1430,7 +1396,7 @@ Luồng màn hình: **Trang chính `NhanVien.jsp` → Danh sách mùa giải `Mu
 
 ---
 
-### 6.3. Biểu đồ trạng thái (phân tích hoạt động)
+### 6.3. Biểu đồ trạng thái
 
 Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính của nhân viên** và kết thúc khi lưu kết quả hoặc xử lý xong kháng nghị:
 
@@ -1442,7 +1408,7 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính c
 
 ![Biểu đồ trạng thái Module 3](<../Module 3 - Kiet/hinh/m3-trangthai.png>)
 
-*Hình 6.2 — Biểu đồ trạng thái Module 3 (phân tích hoạt động)*
+*Hình 6.2 — Biểu đồ trạng thái Module 3*
 
 ---
 
@@ -1556,7 +1522,7 @@ Biểu đồ hoạt động phân chia theo 2 swimlanes tương ứng với 2 ac
 
 ---
 
-### 6.7. Thuyết minh (kịch bản phiên bản 3)
+### 6.7. Scenario v3
 
 Kịch bản tuần tự mô tả chi tiết luồng tương tác giữa Actor **Nhân viên**, các trang View (`NhanVien.jsp`, `MuaGiai.jsp`, `Chang.jsp`, `ChangChiTiet.jsp`), các lớp DAO (`MuaGiaiDAO`, `ChangDuaDAO`, `DangKyChangDAO`, `KetQuaDAO`) và các lớp Model (`MuaGiai`, `ChangDua`, `DangKyChang`, `KetQua`). Luồng mở đầu từ trang chính `NhanVien.jsp` và kết thúc khi hiển thị thông báo lưu thành công trên `ChangChiTiet.jsp`:
 
@@ -1677,7 +1643,6 @@ Biểu đồ tuần tự chi tiết biểu diễn luồng tương tác giữa Ac
 | CNKQ_8 | Ghi đè kết quả khi chặng đã có kết quả cũ | 1. Mở chặng R16 đã nhập kết quả từ trước.<br>2. Nhập lại thời gian mới, click [Tính kết quả], click [Lưu]. | Hệ thống hiển thị hộp thoại cảnh báo "Chặng đua này đã có kết quả, bạn có muốn ghi đè?". Chọn Xác nhận → hệ thống xóa kết quả cũ trong `tblKetQua` và lưu kết quả mới thành công. |
 | CNKQ_9 | Xử lý kháng nghị thành công (`KhangNghi.jsp`) | 1. Đăng nhập quyền `NhanVien2`, mở màn hình `KhangNghi.jsp`.<br>2. Chọn đơn kháng nghị của đội McLaren, đối chiếu video camera.<br>3. Chấp nhận kháng nghị, nhập lại kết quả đúng và click [Lưu]. | Hệ thống cập nhật lại bảng điểm xếp hạng của chặng, lưu dữ liệu mới và ghi nhận trạng thái kháng nghị thành công. |
 | CNKQ_10 | Phê duyệt kết quả chặng đua | 1. `NhanVien2` kiểm tra kết quả chặng R16 sau khi hết kháng nghị.<br>2. Click [Phê duyệt]. | Hệ thống khóa kết quả chặng R16, đổi trạng thái sang đã phê duyệt và hiển thị thông báo "Phê duyệt kết quả chặng thành công". |
-
 
 ---
 
@@ -1839,13 +1804,13 @@ Module có 3 màn hình hiển thị nghiệp vụ:
 
 > Luồng chuyển màn: **Trang chính → Bảng tổng sắp → (click 1 dòng) Chi tiết theo chặng → (Quay lại) Bảng tổng sắp → (Tiếp tục) Trao giải → (Lưu) → Trang chính**.
 
-### 7.3. Biểu đồ trạng thái (phân tích hoạt động)
+### 7.3. Biểu đồ trạng thái
 
 Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính** của quản lý: `Hiển thị GD chính QL` —`[click Quyết toán mùa giải]`→ `Hiển thị GD bảng tổng sắp` (cung tự quay `[chọn chặng từ danh sách]` — xem bảng xếp hạng tính đến chặng bất kỳ; cung `[click 1 dòng tay đua hoặc đội]` sang `Hiển thị GD chi tiết theo chặng`, từ đó `[click Quay lại]` trở về) —`[click Tiếp tục, đã chọn chặng cuối và đủ kết quả]`→ `Hiển thị GD trao giải` (cung tự quay `[nhập mức thưởng, click Tính thưởng]` — tính lại tiền thưởng nhiều lần trước khi lưu) —`[click Lưu, mức thưởng hợp lệ]`→ `Hiển thị thông báo và in danh sách trao giải` —`[click OK]`→ Kết thúc.
 
 ![Biểu đồ trạng thái Module 4](<../Module 4 - Thanh/hinh/m4-trangthai.png>)
 
-*Hình 7.2 — Biểu đồ trạng thái Module 4 (phân tích hoạt động)*
+*Hình 7.2 — Biểu đồ trạng thái Module 4*
 
 ### 7.4. Biểu đồ lớp phân tích
 
@@ -1892,7 +1857,7 @@ Biểu đồ bắt đầu từ trạng thái hiển thị **giao diện chính**
 
 *Hình 7.5 — Biểu đồ hoạt động Module 4 (pha thiết kế)*
 
-### 7.7. Thuyết minh (kịch bản phiên bản 3)
+### 7.7. Scenario v3
 
 1. Quản lý click chức năng "Quyết toán mùa giải" trên trang chính gdChinhQL.jsp.
 2. Trang gdChinhQL.jsp gọi trang gdXepHang.jsp.
@@ -2134,6 +2099,6 @@ Nội dung **đầy đủ** hai cột `hang` / `diem` của cả 72 dòng `tblKe
 
 Nhóm đã phân tích và thiết kế hệ thống Quản lý giải đua xe F1 với 4 module nghiệp vụ, mỗi module có ràng buộc và xử lý riêng: kiểm tra chồng lấn hợp đồng và tự động đóng hợp đồng cũ (Module 1), giới hạn 2 tay đua/đội/chặng (Module 2), xếp hạng và tính điểm theo luật F1 với ba trạng thái Hoàn thành / DNF / DSQ (Module 3), và quyết toán trao giải với điều kiện đủ kết quả, xem bảng xếp hạng tính đến chặng bất kỳ kèm drill-down chi tiết theo chặng, cùng quy tắc xếp hạng ba tầng: tổng điểm giảm dần → countback → tổng thời gian tăng dần (Module 4).
 
-Các sản phẩm đã hoàn thành gồm: mô tả yêu cầu bài toán theo ngôn ngữ tự nhiên (phạm vi hệ thống, nghiệp vụ 11 chức năng, đối tượng và thuộc tính, quan hệ số lượng, ràng buộc nghiệp vụ); mô tả yêu cầu phần mềm (actor, bảng use case, yêu cầu chức năng, yêu cầu phi chức năng, biểu đồ use case tổng quát); biểu đồ lớp thực thể ở cả hai pha phân tích và thiết kế kèm bảng trích danh từ, thiết kế cơ sở dữ liệu 12 bảng và biểu đồ package triển khai; và với mỗi thành viên là bộ tài liệu đầy đủ cho một use case (biểu đồ use case chi tiết, đặc tả use case kèm giao diện phác thảo, biểu đồ trạng thái phân tích hoạt động, biểu đồ lớp phân tích, biểu đồ lớp thiết kế, biểu đồ hoạt động pha thiết kế, thuyết minh kịch bản kèm biểu đồ tuần tự, và test case\).
+Các sản phẩm đã hoàn thành gồm: mô tả yêu cầu bài toán theo ngôn ngữ tự nhiên (phạm vi hệ thống, nghiệp vụ 11 chức năng, đối tượng và thuộc tính, quan hệ số lượng, ràng buộc nghiệp vụ); mô tả yêu cầu phần mềm (actor, bảng use case, yêu cầu chức năng, yêu cầu phi chức năng, biểu đồ use case tổng quát); biểu đồ lớp thực thể ở cả hai pha phân tích và thiết kế kèm bảng trích danh từ, thiết kế cơ sở dữ liệu 12 bảng và biểu đồ package triển khai; và với mỗi thành viên là bộ tài liệu đầy đủ cho một use case (biểu đồ use case chi tiết, đặc tả use case kèm giao diện phác thảo, biểu đồ trạng thái, biểu đồ lớp phân tích, biểu đồ lớp thiết kế, biểu đồ hoạt động pha thiết kế, thuyết minh kịch bản kèm biểu đồ tuần tự, và test case).
 
 **Hướng phát triển:** bổ sung chức năng quản lý danh mục đầy đủ, thống kê theo mùa giải, và triển khai mã nguồn theo kiến trúc phân tầng view (`.jsp`) / dao / model đã thiết kế.
